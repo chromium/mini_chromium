@@ -24,6 +24,7 @@
         'mac/foundation_util.h',
         'mac/foundation_util.mm',
         'mac/scoped_cftyperef.h',
+        'mac/scoped_ioobject.h',
         'mac/scoped_launch_data.h',
         'mac/scoped_mach_port.cc',
         'mac/scoped_mach_port.h',
