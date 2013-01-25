@@ -15,7 +15,6 @@
 
 #if defined(OS_MACOSX)
 #include <mach/mach.h>
-#include "base/mac/scoped_mach_port.h"
 #elif defined(OS_LINUX)
 #include <sys/syscall.h>
 #include <sys/types.h>
@@ -80,7 +79,7 @@ void LogMessage::Init(const char* function,
 
   pid_t pid = getpid();
 #if defined(OS_MACOSX)
-  base::mac::ScopedMachPort thread(mach_thread_self());
+  mach_port_t thread = pthread_mach_thread_np(pthread_self());
 #elif defined(OS_LINUX)
   pid_t thread = syscall(__NR_gettid);
 #endif
