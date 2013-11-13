@@ -66,6 +66,11 @@
               'CLANG_LINK_OBJC_RUNTIME': 'NO',      # -fno-objc-link-runtime
 
               'CLANG_WARN_CXX0X_EXTENSIONS': 'NO',  # -Wno-c++0x-extensions
+
+              # CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS maps to
+              # -Wobjc-missing-property-synthesis
+              'CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS': 'YES',
+
               'GCC_VERSION': 'com.apple.compilers.llvm.clang.1_0',
               'WARNING_CFLAGS': [
                 '-Wheader-hygiene',
