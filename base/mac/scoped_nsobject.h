@@ -2,14 +2,16 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef MINI_CHROMIUM_BASE_MEMORY_SCOPED_NSOBJECT_H_
-#define MINI_CHROMIUM_BASE_MEMORY_SCOPED_NSOBJECT_H_
+#ifndef MINI_CHROMIUM_BASE_MAC_SCOPED_NSOBJECT_H_
+#define MINI_CHROMIUM_BASE_MAC_SCOPED_NSOBJECT_H_
 
 #import <Foundation/Foundation.h>
 
 #include "base/basictypes.h"
 #include "base/compiler_specific.h"
 #include "base/memory/scoped_policy.h"
+
+namespace base {
 
 // scoped_nsobject<> is patterned after scoped_ptr<>, but maintains ownership
 // of an NSObject subclass object.  Style deviations here are solely for
@@ -173,4 +175,6 @@ class scoped_nsobject<NSAutoreleasePool> {
   DISALLOW_COPY_AND_ASSIGN(scoped_nsobject);
 };
 
-#endif  // MINI_CHROMIUM_BASE_MEMORY_SCOPED_NSOBJECT_H_
+}  // namespace base
+
+#endif  // MINI_CHROMIUM_BASE_MAC_SCOPED_NSOBJECT_H_
