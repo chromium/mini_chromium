@@ -11,9 +11,14 @@ ScopedMachPort::ScopedMachPort(mach_port_t port) : port_(port) {
 }
 
 ScopedMachPort::~ScopedMachPort() {
+  reset();
+}
+
+void ScopedMachPort::reset(mach_port_t port) {
   if (port_ != MACH_PORT_NULL) {
     mach_port_deallocate(mach_task_self(), port_);
   }
+  port_ = port;
 }
 
 }  // namespace mac

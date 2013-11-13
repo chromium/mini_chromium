@@ -18,6 +18,8 @@ class ScopedMachPort {
 
   ~ScopedMachPort();
 
+  void reset(mach_port_t port = MACH_PORT_NULL);
+
   operator mach_port_t() const {
     return port_;
   }
