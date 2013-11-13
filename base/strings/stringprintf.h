@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef MINI_CHROMIUM_BASE_STRINGPRINTF_H_
-#define MINI_CHROMIUM_BASE_STRINGPRINTF_H_
+#ifndef MINI_CHROMIUM_BASE_STRINGS_STRINGPRINTF_H_
+#define MINI_CHROMIUM_BASE_STRINGS_STRINGPRINTF_H_
 
 #include <stdarg.h>
 
@@ -20,4 +20,4 @@ void StringAppendV(std::string* dst, const char* format, va_list ap)
 
 }  // namespace base
 
-#endif  // MINI_CHROMIUM_BASE_STRINGPRINTF_H_
+#endif  // MINI_CHROMIUM_BASE_STRINGS_STRINGPRINTF_H_
