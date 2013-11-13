@@ -12,7 +12,6 @@
 #include "base/memory/scoped_policy.h"
 
 namespace base {
-namespace mac {
 
 // ScopedCFTypeRef<> is patterned after scoped_ptr<>, but maintains ownership
 // of a CoreFoundation object: any object that can be represented as a
@@ -102,7 +101,6 @@ class ScopedCFTypeRef {
   CFT object_;
 };
 
-}  // namespace mac
 }  // namespace base
 
 #endif  // MINI_CHROMIUM_BASE_MAC_SCOPED_CFTYPEREF_H_
