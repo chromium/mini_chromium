@@ -60,6 +60,8 @@
 
           'conditions': [
             ['clang!=0', {
+              'CLANG_CXX_LANGUAGE_STANDARD': 'gnu++11',  # -std=gnu++11
+
               # Don't link in libarclite_macosx.a, see http://crbug.com/156530.
               'CLANG_LINK_OBJC_RUNTIME': 'NO',      # -fno-objc-link-runtime
 
@@ -67,10 +69,8 @@
               'GCC_VERSION': 'com.apple.compilers.llvm.clang.1_0',
               'WARNING_CFLAGS': [
                 '-Wheader-hygiene',
-                '-Wno-c++11-extensions',
                 '-Wno-char-subscripts',
                 '-Wno-covered-switch-default',
-                '-Wno-unnamed-type-template-args',
                 '-Wno-unused-function',
               ],
             }, {  # else: clang==0
@@ -125,11 +125,12 @@
           ['clang!=0', {
             'cflags': [
               '-Wheader-hygiene',
-              '-Wno-c++11-extensions',
               '-Wno-char-subscripts',
               '-Wno-covered-switch-default',
-              '-Wno-unnamed-type-template-args',
               '-Wno-unused-function',
+            ],
+            'cflags_cc': [
+              'std=gnu++11',
             ],
           }, {  # else: clang==0
             'cflags': [
