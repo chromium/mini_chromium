@@ -7,7 +7,7 @@
 
 #include <string>
 
-#include "base/string16.h"
+#include "base/strings/string16.h"
 
 bool UTF8ToUTF16(const char* src, size_t src_len, string16* output);
 string16 UTF8ToUTF16(const std::string& utf8);

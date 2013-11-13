@@ -8,7 +8,7 @@
 
 #include <string>
 
-#include "base/string16.h"
+#include "base/strings/string16.h"
 #include "base/utf_string_conversion_utils.h"
 
 namespace {
