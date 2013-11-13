@@ -17,7 +17,6 @@
       'sources': [
         'basictypes.h',
         'compiler_specific.h',
-        'eintr_wrapper.h',
         'file_util.h',
         'logging.cc',
         'logging.h',
@@ -35,6 +34,7 @@
         'memory/scoped_ptr.h',
         'move.h',
         'port.h',
+        'posix/eintr_wrapper.h',
         'safe_strerror_posix.cc',
         'safe_strerror_posix.h',
         'strings/string16.cc',

@@ -7,8 +7,8 @@
 //
 // On Windows, this wrapper macro does nothing.
 
-#ifndef MINI_CHROMIUM_BASE_EINTR_WRAPPER_H_
-#define MINI_CHROMIUM_BASE_EINTR_WRAPPER_H_
+#ifndef MINI_CHROMIUM_BASE_POSIX_EINTR_WRAPPER_H_
+#define MINI_CHROMIUM_BASE_POSIX_EINTR_WRAPPER_H_
 
 #include "build/build_config.h"
 
@@ -30,4 +30,4 @@
 
 #endif  // OS_POSIX
 
-#endif  // MINI_CHROMIUM_BASE_EINTR_WRAPPER_H_
+#endif  // MINI_CHROMIUM_BASE_POSIX_EINTR_WRAPPER_H_
