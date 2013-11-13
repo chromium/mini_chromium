@@ -76,6 +76,7 @@
                 '-Wheader-hygiene',
                 '-Wno-char-subscripts',
                 '-Wno-covered-switch-default',
+                '-Wstring-conversion',
                 '-Wno-unused-function',
               ],
             }, {  # else: clang==0
@@ -132,6 +133,7 @@
               '-Wheader-hygiene',
               '-Wno-char-subscripts',
               '-Wno-covered-switch-default',
+              '-Wstring-conversion',
               '-Wno-unused-function',
             ],
             'cflags_cc': [
