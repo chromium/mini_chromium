@@ -2,14 +2,14 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include "base/utf_string_conversions.h"
+#include "base/strings/utf_string_conversions.h"
 
 #include <stdint.h>
 
 #include <string>
 
 #include "base/strings/string16.h"
-#include "base/utf_string_conversion_utils.h"
+#include "base/strings/utf_string_conversion_utils.h"
 
 namespace {
 
@@ -34,6 +34,8 @@ bool ConvertUnicode(const SRC_CHAR* src,
 
 }  // namespace
 
+namespace base {
+
 bool UTF8ToUTF16(const char* src, size_t src_len, string16* output) {
   base::PrepareForUTF16Or32Output(src, src_len, output);
   return ConvertUnicode(src, src_len, output);
@@ -55,3 +57,5 @@ std::string UTF16ToUTF8(const string16& utf16) {
   UTF16ToUTF8(utf16.data(), utf16.length(), &ret);
   return ret;
 }
+
+}  // namespace

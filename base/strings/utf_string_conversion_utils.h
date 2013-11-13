@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef MINI_CHROMIUM_BASE_UTF_STRING_CONVERSION_UTILS_H_
-#define MINI_CHROMIUM_BASE_UTF_STRING_CONVERSION_UTILS_H_
+#ifndef MINI_CHROMIUM_BASE_STRINGS_UTF_STRING_CONVERSION_UTILS_H_
+#define MINI_CHROMIUM_BASE_STRINGS_UTF_STRING_CONVERSION_UTILS_H_
 
 #include "base/strings/string16.h"
 
@@ -36,4 +36,4 @@ void PrepareForUTF16Or32Output(const char* src, size_t src_len, STRING* output);
 
 }  // namespace base
 
-#endif  // MINI_CHROMIUM_BASE_UTF_STRING_CONVERSION_UTILS_H_
+#endif  // MINI_CHROMIUM_BASE_STRINGS_UTF_STRING_CONVERSION_UTILS_H_
