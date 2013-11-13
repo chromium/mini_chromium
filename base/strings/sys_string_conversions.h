@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef MINI_CHROMIUM_BASE_SYS_STRING_CONVERSIONS_H_
-#define MINI_CHROMIUM_BASE_SYS_STRING_CONVERSIONS_H_
+#ifndef MINI_CHROMIUM_BASE_STRINGS_SYS_STRING_CONVERSIONS_H_
+#define MINI_CHROMIUM_BASE_STRINGS_SYS_STRING_CONVERSIONS_H_
 
 #include "build/build_config.h"
 
@@ -21,4 +21,4 @@ std::string SysCFStringRefToUTF8(CFStringRef ref);
 
 #endif  // defined(OS_MACOSX)
 
-#endif  // MINI_CHROMIUM_BASE_SYS_STRING_CONVERSIONS_H_
+#endif  // MINI_CHROMIUM_BASE_STRINGS_SYS_STRING_CONVERSIONS_H_
