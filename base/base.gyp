@@ -30,7 +30,7 @@
         'mac/scoped_mach_port.h',
         'mac/scoped_nsautorelease_pool.h',
         'mac/scoped_nsautorelease_pool.mm',
-        'memory/scoped_nsobject.h',
+        'mac/scoped_nsobject.h',
         'memory/scoped_policy.h',
         'memory/scoped_ptr.h',
         'move.h',
