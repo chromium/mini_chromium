@@ -2,10 +2,10 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef MINI_CHROMIUM_BASE_STRING_UTIL_POSIX_H_
-#define MINI_CHROMIUM_BASE_STRING_UTIL_POSIX_H_
+#ifndef MINI_CHROMIUM_BASE_STRINGS_STRING_UTIL_POSIX_H_
+#define MINI_CHROMIUM_BASE_STRINGS_STRING_UTIL_POSIX_H_
 
-#include "base/string_util.h"
+#include "base/strings/string_util.h"
 
 #include <stdio.h>
 
@@ -19,4 +19,4 @@ inline int vsnprintf(char* buffer,
 
 }  // namespace base
 
-#endif  // MINI_CHROMIUM_BASE_STRING_UTIL_POSIX_H_
+#endif  // MINI_CHROMIUM_BASE_STRINGS_STRING_UTIL_POSIX_H_

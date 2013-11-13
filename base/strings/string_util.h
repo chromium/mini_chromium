@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef MINI_CHROMIUM_BASE_STRING_UTIL_H_
-#define MINI_CHROMIUM_BASE_STRING_UTIL_H_
+#ifndef MINI_CHROMIUM_BASE_STRINGS_STRING_UTIL_H_
+#define MINI_CHROMIUM_BASE_STRINGS_STRING_UTIL_H_
 
 #include "base/compiler_specific.h"
 #include "base/logging.h"
@@ -16,7 +16,7 @@ int vsnprintf(char* buffer, size_t size, const char* format, va_list arguments)
 }  // namespace base
 
 #if defined(OS_POSIX)
-#include "base/string_util_posix.h"
+#include "base/strings/string_util_posix.h"
 #endif
 
 template <class string_type>
@@ -32,4 +32,4 @@ inline typename string_type::value_type* WriteInto(string_type* str,
   return &((*str)[0]);
 }
 
-#endif  // MINI_CHROMIUM_BASE_STRING_UTIL_H_
+#endif  // MINI_CHROMIUM_BASE_STRINGS_STRING_UTIL_H_
