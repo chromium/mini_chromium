@@ -13,6 +13,9 @@
       ],
     },
     'clang%': '<(clang)',
+
+    'mac_sdk%': '',
+    'mac_deployment_target%': '',
   },
 
   'target_defaults': {
@@ -81,6 +84,15 @@
               ],
             }, {  # else: clang==0
               'GCC_VERSION': '4.2',
+            }],
+
+            ['mac_sdk!=""', {
+              'SDKROOT': 'macosx<(mac_sdk)',  # -isysroot
+            }],
+
+            ['mac_deployment_target!=""', {
+              # MACOSX_DEPLOYMENT_TARGET maps to -mmacosx-version-min
+              'MACOSX_DEPLOYMENT_TARGET': '<(mac_deployment_target)',
             }],
           ],
 
