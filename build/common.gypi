@@ -149,7 +149,7 @@
               '-Wno-unused-function',
             ],
             'cflags_cc': [
-              'std=gnu++11',
+              '-std=gnu++11',
             ],
           }, {  # else: clang==0
             'cflags': [
