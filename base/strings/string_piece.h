@@ -109,6 +109,26 @@ class BasicStringPiece {
     return ret;
   }
 
+  size_type find(const BasicStringPiece<StringType>& str, size_type pos) const {
+    if (pos >= size()) {
+      return npos;
+    }
+    const_iterator result = std::search(begin() + pos,
+                                        end(),
+                                        str.begin(),
+                                        str.end());
+    size_type xpos = static_cast<size_type>(result - begin());
+    return xpos + str.size() <= size() ? xpos : npos;
+  }
+
+  size_type find(value_type c, size_type pos) const {
+    if (pos >= size()) {
+      return npos;
+    }
+    const_iterator result = std::find(begin() + pos, end(), c);
+    return result != end() ? static_cast<size_type>(result - begin()) : npos;
+  }
+
   void set(const value_type* string) {
     pointer_ = string;
     length_ = string ? traits_type::length(string) : 0;
