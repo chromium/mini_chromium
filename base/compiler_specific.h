@@ -5,6 +5,8 @@
 #ifndef MINI_CHROMIUM_BASE_COMPILER_SPECIFIC_H_
 #define MINI_CHROMIUM_BASE_COMPILER_SPECIFIC_H_
 
+#define ALLOW_UNUSED __attribute__((unused))
+
 #if defined(__clang__)
 #define OVERRIDE override
 #else
