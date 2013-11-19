@@ -10,24 +10,17 @@
 #include <string>
 #include <vector>
 
+#include "base/strings/string_piece.h"
+
 namespace base {
 
-bool StringToInt(const std::string& input, int* output);
-bool StringToInt(const char* begin, const char* end, int* output);
+bool StringToInt(const StringPiece& input, int* output);
+bool StringToUint(const StringPiece& input, unsigned int* output);
+bool StringToInt64(const StringPiece& input, int64_t* output);
+bool StringToUint64(const StringPiece& input, uint64_t* output);
+bool StringToSizeT(const StringPiece& input, size_t* output);
 
-bool StringToUint(const std::string& input, unsigned int* output);
-bool StringToUint(const char* begin, const char* end, unsigned int* output);
-
-bool StringToInt64(const std::string& input, int64_t* output);
-bool StringToInt64(const char* begin, const char* end, int64_t* output);
-
-bool StringToUint64(const std::string& input, uint64_t* output);
-bool StringToUint64(const char* begin, const char* end, uint64_t* output);
-
-bool StringToSizeT(const std::string& input, size_t* output);
-bool StringToSizeT(const char* begin, const char* end, size_t* output);
-
-bool HexStringToInt(const std::string& input, int* output);
+bool HexStringToInt(const StringPiece& input, int* output);
 bool HexStringToBytes(const std::string& input, std::vector<uint8_t>* output);
 
 }  // namespace base

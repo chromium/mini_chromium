@@ -185,38 +185,28 @@ class BaseIteratorRangeToNumberTraits {
   static const int kBase = BASE;
 };
 
-typedef BaseIteratorRangeToNumberTraits<std::string::const_iterator, int, 10>
+typedef BaseIteratorRangeToNumberTraits<StringPiece::const_iterator, int, 10>
     IteratorRangeToIntTraits;
-typedef BaseIteratorRangeToNumberTraits<const char*, int, 10>
-    CharBufferToIntTraits;
 
-typedef BaseIteratorRangeToNumberTraits<std::string::const_iterator,
+typedef BaseIteratorRangeToNumberTraits<StringPiece::const_iterator,
                                        unsigned int,
                                        10>
     IteratorRangeToUintTraits;
-typedef BaseIteratorRangeToNumberTraits<const char*, unsigned int, 10>
-    CharBufferToUintTraits;
 
-typedef BaseIteratorRangeToNumberTraits<std::string::const_iterator,
+typedef BaseIteratorRangeToNumberTraits<StringPiece::const_iterator,
                                         int64_t,
                                         10>
     IteratorRangeToInt64Traits;
-typedef BaseIteratorRangeToNumberTraits<const char*, int64_t, 10>
-    CharBufferToInt64Traits;
 
-typedef BaseIteratorRangeToNumberTraits<std::string::const_iterator,
+typedef BaseIteratorRangeToNumberTraits<StringPiece::const_iterator,
                                         uint64_t,
                                         10>
     IteratorRangeToUint64Traits;
-typedef BaseIteratorRangeToNumberTraits<const char*, uint64_t, 10>
-    CharBufferToUint64Traits;
 
-typedef BaseIteratorRangeToNumberTraits<std::string::const_iterator,
+typedef BaseIteratorRangeToNumberTraits<StringPiece::const_iterator,
                                         size_t,
                                         10>
     IteratorRangeToSizeTTraits;
-typedef BaseIteratorRangeToNumberTraits<const char*, size_t, 10>
-    CharBufferToSizeTTraits;
 
 template<typename ITERATOR>
 class BaseHexIteratorRangeToIntTraits
@@ -227,69 +217,39 @@ class BaseHexIteratorRangeToIntTraits
   }
 };
 
-typedef BaseHexIteratorRangeToIntTraits<std::string::const_iterator>
+typedef BaseHexIteratorRangeToIntTraits<StringPiece::const_iterator>
     HexIteratorRangeToIntTraits;
 
 }  // namespace
 
-bool StringToInt(const std::string& input, int* output) {
+bool StringToInt(const StringPiece& input, int* output) {
   return IteratorRangeToNumber<IteratorRangeToIntTraits>::Invoke(input.begin(),
                                                                  input.end(),
                                                                  output);
 }
 
-bool StringToInt(const char* begin, const char* end, int* output) {
-  return IteratorRangeToNumber<CharBufferToIntTraits>::Invoke(begin,
-                                                              end,
-                                                              output);
-}
-
-bool StringToUint(const std::string& input, unsigned int* output) {
+bool StringToUint(const StringPiece& input, unsigned int* output) {
   return IteratorRangeToNumber<IteratorRangeToUintTraits>::Invoke(input.begin(),
                                                                   input.end(),
                                                                   output);
 }
 
-bool StringToUint(const char* begin, const char* end, unsigned int* output) {
-  return IteratorRangeToNumber<CharBufferToUintTraits>::Invoke(begin,
-                                                               end,
-                                                               output);
-}
-
-bool StringToInt64(const std::string& input, int64_t* output) {
+bool StringToInt64(const StringPiece& input, int64_t* output) {
   return IteratorRangeToNumber<IteratorRangeToInt64Traits>::Invoke(
       input.begin(), input.end(), output);
 }
 
-bool StringToInt64(const char* begin, const char* end, int64_t* output) {
-  return IteratorRangeToNumber<CharBufferToInt64Traits>::Invoke(begin,
-                                                                end,
-                                                                output);
-}
-
-bool StringToUint64(const std::string& input, uint64_t* output) {
+bool StringToUint64(const StringPiece& input, uint64_t* output) {
   return IteratorRangeToNumber<IteratorRangeToUint64Traits>::Invoke(
       input.begin(), input.end(), output);
 }
 
-bool StringToUint64(const char* begin, const char* end, uint64_t* output) {
-  return IteratorRangeToNumber<CharBufferToUint64Traits>::Invoke(begin,
-                                                                 end,
-                                                                 output);
-}
-
-bool StringToSizeT(const std::string& input, size_t* output) {
+bool StringToSizeT(const StringPiece& input, size_t* output) {
   return IteratorRangeToNumber<IteratorRangeToSizeTTraits>::Invoke(
       input.begin(), input.end(), output);
 }
 
-bool StringToSizeT(const char* begin, const char* end, size_t* output) {
-  return IteratorRangeToNumber<CharBufferToSizeTTraits>::Invoke(begin,
-                                                                end,
-                                                                output);
-}
-
-bool HexStringToInt(const std::string& input, int* output) {
+bool HexStringToInt(const StringPiece& input, int* output) {
   return IteratorRangeToNumber<HexIteratorRangeToIntTraits>::Invoke(
       input.begin(), input.end(), output);
 }
