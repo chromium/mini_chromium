@@ -7,6 +7,7 @@
 
 #include <algorithm>
 #include <iterator>
+#include <ostream>
 #include <string>
 
 #include "base/strings/string16.h"
@@ -81,7 +82,7 @@ class BasicStringPiece {
 
   int compare(const BasicStringPiece<StringType>& that) const {
     int result = traits_type::compare(pointer_,
-                                      that.poitner_,
+                                      that.pointer_,
                                       std::min(length_, that.length_));
     if (result == 0) {
       if (length_ < that.length_) {
@@ -121,6 +122,13 @@ class BasicStringPiece {
   const value_type* pointer_;
   size_type length_;
 };
+
+template<typename StringType>
+std::ostream& operator<<(std::ostream& ostream,
+                         const BasicStringPiece<StringType>& string_piece) {
+  ostream.write(string_piece.data(), string_piece.size());
+  return ostream;
+}
 
 typedef BasicStringPiece<std::string> StringPiece;
 typedef BasicStringPiece<string16> StringPiece16;
