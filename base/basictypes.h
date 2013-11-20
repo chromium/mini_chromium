@@ -36,6 +36,12 @@ inline To implicit_cast(const From& f) {
   return f;
 }
 
+#if __cplusplus >= 201103L
+ 
+#define COMPILE_ASSERT(expr, msg) static_assert(expr, #msg)
+
+#else
+
 template <bool>
 struct CompileAssert {
 };
@@ -51,5 +57,7 @@ inline Dest bit_cast(const Source& source) {
   memcpy(&dest, &source, sizeof(dest));
   return dest;
 }
+
+#endif
 
 #endif  // MINI_CHROMIUM_BASE_BASICTYPES_H_
