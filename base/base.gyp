@@ -14,6 +14,18 @@
       'include_dirs': [
         '..',
       ],
+      'link_settings': {
+        'conditions': [
+          ['OS=="mac"', {
+            'libraries': [
+              '$(SDKROOT)/System/Library/Frameworks/ApplicationServices.framework',
+              '$(SDKROOT)/System/Library/Frameworks/CoreFoundation.framework',
+              '$(SDKROOT)/System/Library/Frameworks/Foundation.framework',
+              '$(SDKROOT)/System/Library/Frameworks/Security.framework',
+            ],
+          }],
+        ],
+      },
       'sources': [
         'basictypes.h',
         'compiler_specific.h',
