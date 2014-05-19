@@ -22,6 +22,8 @@
         'logging.h',
         'mac/foundation_util.h',
         'mac/foundation_util.mm',
+        'mac/mach_logging.h',
+        'mac/mach_logging.cc',
         'mac/scoped_cftyperef.h',
         'mac/scoped_ioobject.h',
         'mac/scoped_launch_data.h',
