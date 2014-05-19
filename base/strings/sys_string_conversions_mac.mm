@@ -16,8 +16,9 @@ template<typename StringType>
 StringType CFStringToSTLStringWithEncodingT(CFStringRef cfstring,
                                             CFStringEncoding encoding) {
   CFIndex length = CFStringGetLength(cfstring);
-  if (length == 0)
+  if (length == 0) {
     return StringType();
+  }
 
   CFRange whole_string = CFRangeMake(0, length);
   CFIndex out_size;
@@ -29,8 +30,9 @@ StringType CFStringToSTLStringWithEncodingT(CFStringRef cfstring,
                                        NULL,
                                        0,
                                        &out_size);
-  if (converted == 0 || out_size == 0)
+  if (converted == 0 || out_size == 0) {
     return StringType();
+  }
 
   typename StringType::size_type elements =
       out_size * sizeof(UInt8) / sizeof(typename StringType::value_type) + 1;
@@ -44,11 +46,29 @@ StringType CFStringToSTLStringWithEncodingT(CFStringRef cfstring,
                                reinterpret_cast<UInt8*>(&out_buffer[0]),
                                out_size,
                                NULL);
-  if (converted == 0)
+  if (converted == 0) {
     return StringType();
+  }
 
   out_buffer[elements - 1] = '\0';
   return StringType(&out_buffer[0], elements - 1);
+}
+
+template<typename StringType>
+static CFStringRef STLStringToCFStringWithEncodingsT(
+    const StringType& in,
+    CFStringEncoding in_encoding) {
+  typename StringType::size_type in_length = in.length();
+  if (in_length == 0) {
+    return CFSTR("");
+  }
+
+  return CFStringCreateWithBytes(kCFAllocatorDefault,
+                                 reinterpret_cast<const UInt8*>(in.c_str()),
+                                 in_length *
+                                     sizeof(typename StringType::value_type),
+                                 in_encoding,
+                                 FALSE);
 }
 
 }  // namespace
@@ -56,6 +76,10 @@ StringType CFStringToSTLStringWithEncodingT(CFStringRef cfstring,
 std::string SysCFStringRefToUTF8(CFStringRef ref) {
   return CFStringToSTLStringWithEncodingT<std::string>(ref,
                                                        kNarrowStringEncoding);
+}
+
+CFStringRef SysUTF8ToCFStringRef(const std::string& utf8) {
+  return STLStringToCFStringWithEncodingsT(utf8, kNarrowStringEncoding);
 }
 
 }  // namespace base

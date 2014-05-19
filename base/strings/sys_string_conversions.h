@@ -16,6 +16,7 @@
 namespace base {
 
 std::string SysCFStringRefToUTF8(CFStringRef ref);
+CFStringRef SysUTF8ToCFStringRef(const std::string& utf8);
 
 }  // namespace base
 
