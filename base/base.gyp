@@ -29,6 +29,8 @@
         'mac/scoped_launch_data.h',
         'mac/scoped_mach_port.cc',
         'mac/scoped_mach_port.h',
+        'mac/scoped_mach_vm.cc',
+        'mac/scoped_mach_vm.h',
         'mac/scoped_nsautorelease_pool.h',
         'mac/scoped_nsautorelease_pool.mm',
         'mac/scoped_nsobject.h',
