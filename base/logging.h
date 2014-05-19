@@ -223,11 +223,11 @@ class ErrnoLogMessage : public LogMessage {
 #if defined(NDEBUG)
 #define DLOG_IS_ON(severity) false
 #define DVLOG_IS_ON(verbose_level) false
-#define DCHECK_IS_ON() false
+#define DCHECK_IS_ON false
 #else
 #define DLOG_IS_ON(severity) LOG_IS_ON(severity)
 #define DVLOG_IS_ON(verbose_level) VLOG_IS_ON(verbose_level)
-#define DCHECK_IS_ON() true
+#define DCHECK_IS_ON true
 #endif
 
 #define DLOG(severity) LAZY_STREAM(LOG_STREAM(severity), DLOG_IS_ON(severity))
@@ -253,14 +253,14 @@ class ErrnoLogMessage : public LogMessage {
                 DVLOG_IS_ON(verbose_level) && (condition))
 
 #define DCHECK(condition) \
-    LAZY_STREAM(LOG_STREAM(FATAL), DCHECK_IS_ON() && !(condition)) \
+    LAZY_STREAM(LOG_STREAM(FATAL), DCHECK_IS_ON && !(condition)) \
     << "Check failed: " # condition << ". "
 #define DPCHECK(condition) \
-    LAZY_STREAM(PLOG_STREAM(FATAL), DCHECK_IS_ON() && !(condition)) \
+    LAZY_STREAM(PLOG_STREAM(FATAL), DCHECK_IS_ON && !(condition)) \
     << "Check failed: " # condition << ". "
 
 #define DCHECK_OP(name, op, val1, val2) \
-    if (DCHECK_IS_ON()) \
+    if (DCHECK_IS_ON) \
       if (std::string* _result = \
           logging::Check ## name ## Impl((val1), (val2), \
                                          # val1 " " # op " " # val2)) \

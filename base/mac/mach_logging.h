@@ -86,7 +86,7 @@ class MachLogMessage : public logging::LogMessage {
 
 #define MACH_DCHECK(condition, mach_err) \
     LAZY_STREAM(MACH_LOG_STREAM(FATAL, mach_err), \
-                DCHECK_IS_ON() && !(condition)) \
+                DCHECK_IS_ON && !(condition)) \
     << "Check failed: " # condition << ". "
 
 namespace logging {
@@ -149,7 +149,7 @@ class BootstrapLogMessage : public logging::LogMessage {
 
 #define BOOTSTRAP_DCHECK(condition, bootstrap_err) \
     LAZY_STREAM(BOOTSTRAP_LOG_STREAM(FATAL, bootstrap_err), \
-                DCHECK_IS_ON() && !(condition)) \
+                DCHECK_IS_ON && !(condition)) \
     << "Check failed: " # condition << ". "
 
 #endif  // MINI_CHROMIUM_BASE_MAC_MACH_LOGGING_H_
