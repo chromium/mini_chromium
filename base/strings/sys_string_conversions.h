@@ -10,13 +10,16 @@
 #if defined(OS_MACOSX)
 
 #include <CoreFoundation/CoreFoundation.h>
+#import <Foundation/Foundation.h>
 
 #include <string>
 
 namespace base {
 
 std::string SysCFStringRefToUTF8(CFStringRef ref);
+std::string SysNSStringToUTF8(NSString* nsstring);
 CFStringRef SysUTF8ToCFStringRef(const std::string& utf8);
+NSString* SysUTF8ToNSString(const std::string& utf8);
 
 }  // namespace base
 

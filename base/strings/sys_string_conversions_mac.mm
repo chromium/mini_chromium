@@ -4,7 +4,8 @@
 
 #include "base/strings/sys_string_conversions.h"
 
-#include <vector>
+#include "base/logging.h"
+#include "base/mac/foundation_util.h"
 
 namespace base {
 
@@ -34,24 +35,24 @@ StringType CFStringToSTLStringWithEncodingT(CFStringRef cfstring,
     return StringType();
   }
 
+  DCHECK_EQ(out_size % sizeof(typename StringType::value_type), 0u);
   typename StringType::size_type elements =
-      out_size * sizeof(UInt8) / sizeof(typename StringType::value_type) + 1;
+      out_size * sizeof(UInt8) / sizeof(typename StringType::value_type);
+  StringType out(elements, typename StringType::value_type());
 
-  std::vector<typename StringType::value_type> out_buffer(elements);
   converted = CFStringGetBytes(cfstring,
                                whole_string,
                                encoding,
                                0,
                                FALSE,
-                               reinterpret_cast<UInt8*>(&out_buffer[0]),
+                               reinterpret_cast<UInt8*>(&out[0]),
                                out_size,
                                NULL);
   if (converted == 0) {
     return StringType();
   }
 
-  out_buffer[elements - 1] = '\0';
-  return StringType(&out_buffer[0], elements - 1);
+  return out;
 }
 
 template<typename StringType>
@@ -78,8 +79,19 @@ std::string SysCFStringRefToUTF8(CFStringRef ref) {
                                                        kNarrowStringEncoding);
 }
 
+std::string SysNSStringToUTF8(NSString *nsstring) {
+  if (!nsstring) {
+    return std::string();
+  }
+  return SysCFStringRefToUTF8(base::mac::NSToCFCast(nsstring));
+}
+
 CFStringRef SysUTF8ToCFStringRef(const std::string& utf8) {
   return STLStringToCFStringWithEncodingsT(utf8, kNarrowStringEncoding);
+}
+
+NSString* SysUTF8ToNSString(const std::string& utf8) {
+  return [base::mac::CFToNSCast(SysUTF8ToCFStringRef(utf8)) autorelease];
 }
 
 }  // namespace base
