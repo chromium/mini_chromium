@@ -29,7 +29,9 @@
       'sources': [
         'basictypes.h',
         'compiler_specific.h',
+        'file_util.cc',
         'file_util.h',
+        'files/scoped_file.h',
         'logging.cc',
         'logging.h',
         'mac/foundation_util.h',
@@ -51,6 +53,8 @@
         'move.h',
         'port.h',
         'posix/eintr_wrapper.h',
+        'rand_util.cc',
+        'rand_util.h',
         'safe_strerror_posix.cc',
         'safe_strerror_posix.h',
         'strings/string16.cc',
