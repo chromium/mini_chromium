@@ -5,6 +5,7 @@
 #ifndef MINI_CHROMIUM_BASE_FILES_SCOPED_FILE_H_
 #define MINI_CHROMIUM_BASE_FILES_SCOPED_FILE_H_
 
+#include <stdio.h>
 #include <unistd.h>
 
 #include <algorithm>
@@ -60,6 +61,52 @@ class ScopedFD {
   int fd_;
 
   DISALLOW_COPY_AND_ASSIGN(ScopedFD);
+};
+
+class ScopedFILE {
+ public:
+  explicit ScopedFILE(FILE* file = NULL)
+      : file_(file) {
+  }
+
+  ~ScopedFILE() {
+    CloseFile();
+  }
+
+  void reset(FILE* file = NULL) {
+    if (file_ != file) {
+      CloseFile();
+      file_ = file;
+    }
+  }
+
+  FILE* get() const {
+    return file_;
+  }
+
+  void swap(ScopedFILE& that) {
+    std::swap(file_, that.file_);
+  }
+
+  FILE* release() WARN_UNUSED_RESULT {
+    FILE* temp = file_;
+    file_ = NULL;
+    return temp;
+  }
+
+ private:
+  void CloseFile() {
+    if (file_) {
+      if (fclose(file_) < 0) {
+        PLOG(ERROR) << "fclose";
+      }
+      file_ = NULL;
+    }
+  }
+
+  FILE* file_;
+
+  DISALLOW_COPY_AND_ASSIGN(ScopedFILE);
 };
 
 }  // namespace base
