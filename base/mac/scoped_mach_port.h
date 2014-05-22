@@ -28,6 +28,12 @@ class ScopedMachPort {
     return port_;
   }
 
+  mach_port_t release() {
+    mach_port_t temp = port_;
+    port_ = MACH_PORT_NULL;
+    return temp;
+  }
+
  private:
   mach_port_t port_;
 
