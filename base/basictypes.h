@@ -60,4 +60,8 @@ inline Dest bit_cast(const Source& source) {
 
 #endif
 
+template<typename T>
+inline void ignore_result(const T&) {
+}
+
 #endif  // MINI_CHROMIUM_BASE_BASICTYPES_H_
