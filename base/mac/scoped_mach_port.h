@@ -7,38 +7,48 @@
 
 #include <mach/mach.h>
 
-#include "base/basictypes.h"
-#include "base/compiler_specific.h"
+#include "base/scoped_generic.h"
 
 namespace base {
 namespace mac {
 
-class ScopedMachPort {
+namespace internal {
+
+struct SendRightTraits {
+  static mach_port_t InvalidValue() {
+    return MACH_PORT_NULL;
+  }
+  static void Free(mach_port_t port);
+};
+
+struct ReceiveRightTraits {
+  static mach_port_t InvalidValue() {
+    return MACH_PORT_NULL;
+  }
+  static void Free(mach_port_t port);
+};
+
+}  // namespace internal
+
+class ScopedMachSendRight
+    : public ScopedGeneric<mach_port_t, internal::SendRightTraits> {
  public:
-  explicit ScopedMachPort(mach_port_t port);
-
-  ~ScopedMachPort();
-
-  void reset(mach_port_t port = MACH_PORT_NULL);
-
-  operator mach_port_t() const {
-    return port_;
+  explicit ScopedMachSendRight(mach_port_t port = traits_type::InvalidValue())
+      : ScopedGeneric(port) {
   }
 
-  mach_port_t get() const {
-    return port_;
+  operator mach_port_t() const { return get(); }
+};
+
+class ScopedMachReceiveRight
+    : public ScopedGeneric<mach_port_t, internal::ReceiveRightTraits> {
+ public:
+  explicit ScopedMachReceiveRight(
+      mach_port_t port = traits_type::InvalidValue())
+    : ScopedGeneric(port) {
   }
 
-  mach_port_t release() WARN_UNUSED_RESULT {
-    mach_port_t temp = port_;
-    port_ = MACH_PORT_NULL;
-    return temp;
-  }
-
- private:
-  mach_port_t port_;
-
-  DISALLOW_COPY_AND_ASSIGN(ScopedMachPort);
+  operator mach_port_t() const { return get(); }
 };
 
 }  // namespace mac
