@@ -10,9 +10,14 @@
 #if defined(OS_MACOSX)
 
 #include <CoreFoundation/CoreFoundation.h>
-#import <Foundation/Foundation.h>
 
 #include <string>
+
+#if defined(__OBJC__)
+#import <Foundation/Foundation.h>
+#else
+class NSString;
+#endif
 
 namespace base {
 

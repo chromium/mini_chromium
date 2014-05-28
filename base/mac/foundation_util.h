@@ -5,13 +5,15 @@
 #ifndef MINI_CHROMIUM_BASE_MAC_FOUNDATION_UTIL_H_
 #define MINI_CHROMIUM_BASE_MAC_FOUNDATION_UTIL_H_
 
+#include <ApplicationServices/ApplicationServices.h>
+
+#include "base/logging.h"
+
 #if defined(__OBJC__)
 #import <Foundation/Foundation.h>
 #else  // defined(__OBJC__)
 #include <CoreFoundation/CoreFoundation.h>
 #endif  // defined(__OBJC__)
-
-#include "base/logging.h"
 
 #if !defined(__OBJC__)
 #define OBJC_CPP_CLASS_DECL(x) class x;
