@@ -75,6 +75,7 @@
         'strings/utf_string_conversions.cc',
         'strings/utf_string_conversions.h',
         'sys_byteorder.h',
+        'template_util.h',
         'third_party/icu/icu_utf.cc',
         'third_party/icu/icu_utf.h',
         '../build/build_config.h',
