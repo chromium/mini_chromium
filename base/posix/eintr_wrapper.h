@@ -17,16 +17,28 @@
 #include <errno.h>
 
 #define HANDLE_EINTR(x) ({ \
-  typeof(x) __eintr_result__; \
+  typeof(x) eintr_wrapper_result; \
   do { \
-    __eintr_result__ = x; \
-  } while (__eintr_result__ == -1 && errno == EINTR); \
-  __eintr_result__;\
+    eintr_wrapper_result = (x); \
+  } while (eintr_wrapper_result == -1 && errno == EINTR); \
+  eintr_wrapper_result; \
+})
+
+#define IGNORE_EINTR(x) ({ \
+  typeof(x) eintr_wrapper_result; \
+  do { \
+    eintr_wrapper_result = (x); \
+    if (eintr_wrapper_result == -1 && errno == EINTR) { \
+      eintr_wrapper_result = 0; \
+    } \
+  } while (0); \
+  eintr_wrapper_result; \
 })
 
 #else
 
 #define HANDLE_EINTR(x) x
+#define IGNORE_EINTR(x) x
 
 #endif  // OS_POSIX
 
