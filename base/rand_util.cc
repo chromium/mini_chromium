@@ -19,7 +19,7 @@ namespace {
 
 int GetUrandomFDInternal() {
   int fd = HANDLE_EINTR(open("/dev/urandom", O_RDONLY));
-  PCHECK(fd >= 0);
+  PCHECK(fd >= 0) << "open /dev/urandom";
   return fd;
 }
 
