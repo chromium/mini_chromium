@@ -37,7 +37,7 @@ inline To implicit_cast(const From& f) {
 }
 
 #if __cplusplus >= 201103L
- 
+
 #define COMPILE_ASSERT(expr, msg) static_assert(expr, #msg)
 
 #else
