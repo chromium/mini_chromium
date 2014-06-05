@@ -54,6 +54,8 @@
         'move.h',
         'numerics/safe_conversions.h',
         'numerics/safe_conversions_impl.h',
+        'numerics/safe_math.h',
+        'numerics/safe_math_impl.h',
         'port.h',
         'posix/eintr_wrapper.h',
         'rand_util.cc',
