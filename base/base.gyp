@@ -27,6 +27,7 @@
         ],
       },
       'sources': [
+        'auto_reset.h',
         'basictypes.h',
         'compiler_specific.h',
         'file_util.cc',
