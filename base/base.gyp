@@ -64,6 +64,7 @@
         'safe_strerror_posix.cc',
         'safe_strerror_posix.h',
         'scoped_generic.h',
+        'stl_util.h',
         'strings/string16.cc',
         'strings/string16.h',
         'strings/string_number_conversions.cc',
