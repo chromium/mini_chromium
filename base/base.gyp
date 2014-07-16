@@ -21,6 +21,7 @@
               '$(SDKROOT)/System/Library/Frameworks/ApplicationServices.framework',
               '$(SDKROOT)/System/Library/Frameworks/CoreFoundation.framework',
               '$(SDKROOT)/System/Library/Frameworks/Foundation.framework',
+              '$(SDKROOT)/System/Library/Frameworks/IOKit.framework',
               '$(SDKROOT)/System/Library/Frameworks/Security.framework',
             ],
           }],
