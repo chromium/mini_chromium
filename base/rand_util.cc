@@ -98,7 +98,7 @@ std::string RandBytesAsString(size_t length) {
     return std::string();
   }
 
-  std::string result(std::string::value_type(), length);
+  std::string result(length, std::string::value_type());
   RandBytes(&result[0], length);
   return result;
 }
