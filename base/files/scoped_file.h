@@ -5,6 +5,8 @@
 #ifndef MINI_CHROMIUM_BASE_FILES_SCOPED_FILE_H_
 #define MINI_CHROMIUM_BASE_FILES_SCOPED_FILE_H_
 
+#include <stdio.h>
+
 #include "base/memory/scoped_ptr.h"
 #include "base/scoped_generic.h"
 
