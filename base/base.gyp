@@ -39,6 +39,7 @@
         'files/scoped_file.h',
         'logging.cc',
         'logging.h',
+        'mac/close_nocancel.cc',
         'mac/foundation_util.h',
         'mac/foundation_util.mm',
         'mac/mach_logging.h',
