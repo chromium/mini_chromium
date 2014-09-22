@@ -63,6 +63,8 @@ struct CompileAssert {
 #define COMPILE_ASSERT(expr, msg) \
     typedef CompileAssert<(bool(expr))> msg[bool(expr) ? 1 : -1] ALLOW_UNUSED
 
+#endif
+
 template <typename Dest, typename Source>
 inline Dest bit_cast(const Source& source) {
   COMPILE_ASSERT(sizeof(Dest) == sizeof(Source), sizes_must_be_equal);
@@ -71,8 +73,6 @@ inline Dest bit_cast(const Source& source) {
   memcpy(&dest, &source, sizeof(dest));
   return dest;
 }
-
-#endif
 
 template<typename T>
 inline void ignore_result(const T&) {
