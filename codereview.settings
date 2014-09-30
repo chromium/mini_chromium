@@ -1,0 +1,8 @@
+# Copyright 2009 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+CODE_REVIEW_SERVER: codereview.chromium.org
+CC_LIST: crashpad-dev@chromium.org
+VIEW_VC: https://chromium.googlesource.com/chromium/mini_chromium/+/
+PROJECT: mini_chromium
