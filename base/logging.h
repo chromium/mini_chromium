@@ -13,6 +13,7 @@
 #include <string>
 
 #include "base/basictypes.h"
+#include "build/build_config.h"
 
 namespace logging {
 
@@ -126,23 +127,29 @@ class ErrnoLogMessage : public LogMessage {
 
 }  // namespace logging
 
+#if defined(COMPILER_MSVC)
+#define FUNCTION_SIGNATURE __FUNCSIG__
+#else
+#define FUNCTION_SIGNATURE __PRETTY_FUNCTION__
+#endif
+
 #define COMPACT_GOOGLE_LOG_EX_INFO(ClassName, ...) \
-    logging::ClassName(__PRETTY_FUNCTION__, __FILE__, __LINE__, \
+    logging::ClassName(FUNCTION_SIGNATURE, __FILE__, __LINE__, \
                        logging::LOG_INFO, ## __VA_ARGS__)
 #define COMPACT_GOOGLE_LOG_EX_WARNING(ClassName, ...) \
-    logging::ClassName(__PRETTY_FUNCTION__, __FILE__, __LINE__, \
+    logging::ClassName(FUNCTION_SIGNATURE, __FILE__, __LINE__, \
                        logging::LOG_WARNING, ## __VA_ARGS__)
 #define COMPACT_GOOGLE_LOG_EX_ERROR(ClassName, ...) \
-    logging::ClassName(__PRETTY_FUNCTION__, __FILE__, __LINE__, \
+    logging::ClassName(FUNCTION_SIGNATURE, __FILE__, __LINE__, \
                        logging::LOG_ERROR, ## __VA_ARGS__)
 #define COMPACT_GOOGLE_LOG_EX_ERROR_REPORT(ClassName, ...) \
-    logging::ClassName(__PRETTY_FUNCTION__, __FILE__, __LINE__, \
+    logging::ClassName(FUNCTION_SIGNATURE, __FILE__, __LINE__, \
                        logging::LOG_ERROR_REPORT, ## __VA_ARGS__)
 #define COMPACT_GOOGLE_LOG_EX_FATAL(ClassName, ...) \
-    logging::ClassName(__PRETTY_FUNCTION__, __FILE__, __LINE__, \
+    logging::ClassName(FUNCTION_SIGNATURE, __FILE__, __LINE__, \
                        logging::LOG_FATAL, ## __VA_ARGS__)
 #define COMPACT_GOOGLE_LOG_EX_DFATAL(ClassName, ...) \
-    logging::ClassName(__PRETTY_FUNCTION__, __FILE__, __LINE__, \
+    logging::ClassName(FUNCTION_SIGNATURE, __FILE__, __LINE__, \
                        logging::LOG_DFATAL, ## __VA_ARGS__)
 
 #define COMPACT_GOOGLE_LOG_INFO \
@@ -168,12 +175,12 @@ class ErrnoLogMessage : public LogMessage {
 
 #define LOG_STREAM(severity) COMPACT_GOOGLE_LOG_ ## severity.stream()
 #define VLOG_STREAM(verbose_level) \
-    logging::LogMessage(__PRETTY_FUNCTION__, __FILE__, __LINE__, \
+    logging::LogMessage(FUNCTION_SIGNATURE, __FILE__, __LINE__, \
                         -verbose_level).stream()
 #define PLOG_STREAM(severity) COMPACT_GOOGLE_LOG_EX_ ## severity( \
     ErrnoLogMessage, ::logging::GetLastSystemErrorCode()).stream()
 #define VPLOG_STREAM(verbose_level) \
-    logging::ErrnoLogMessage(__PRETTY_FUNCTION__, __FILE__, __LINE__, \
+    logging::ErrnoLogMessage(FUNCTION_SIGNATURE, __FILE__, __LINE__, \
                              -verbose_level, \
                              ::logging::GetLastSystemErrorCode()).stream()
 
@@ -210,7 +217,7 @@ class ErrnoLogMessage : public LogMessage {
     if (std::string* _result = \
           logging::Check ## name ## Impl((val1), (val2), \
                                          # val1 " " # op " " # val2)) \
-      logging::LogMessage(__PRETTY_FUNCTION__, __FILE__, __LINE__, \
+      logging::LogMessage(FUNCTION_SIGNATURE, __FILE__, __LINE__, \
                           _result).stream()
 
 #define CHECK_EQ(val1, val2) CHECK_OP(EQ, ==, val1, val2)
@@ -264,7 +271,7 @@ class ErrnoLogMessage : public LogMessage {
       if (std::string* _result = \
           logging::Check ## name ## Impl((val1), (val2), \
                                          # val1 " " # op " " # val2)) \
-        logging::LogMessage(__PRETTY_FUNCTION__, __FILE__, __LINE__, \
+        logging::LogMessage(FUNCTION_SIGNATURE, __FILE__, __LINE__, \
                             _result).stream()
 
 #define DCHECK_EQ(val1, val2) DCHECK_OP(EQ, ==, val1, val2)

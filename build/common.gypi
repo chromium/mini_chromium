@@ -160,6 +160,31 @@
 
       }],
 
+      ['OS=="win"', {
+        'msvs_settings': {
+          'VCCLCompilerTool': {
+            'WarningLevel': '4',
+            'WarnAsError': 'true',
+            'DebugInformationFormat': '3',
+            'ExceptionHandling': '0',
+            'RuntimeTypeInfo': 'false',
+            'BufferSecurityCheck': 'true',
+            'EnableFunctionLevelLinking': 'true',
+          },
+          'VCLinkerTool': {
+            'GenerateDebugInformation': 'true',
+          },
+        },
+        'msvs_disabled_warnings': [
+          4127,  # Conditional expression is constant.
+          4530,  # Exceptions are disabled.
+        ],
+        'defines': [
+          '_HAS_EXCEPTIONS=0',
+          '_CRT_SECURE_NO_WARNINGS',
+        ],
+      }],
+
     ],
     'default_configuration': 'Debug',
     'configurations': {
@@ -210,6 +235,14 @@
 
           }],
 
+          ['OS=="win"', {
+            'msvs_settings': {
+              'VCCLCompilerTool': {
+                'Optimization': '3',
+              },
+            },
+          }],
+
         ],
       },
       'Debug': {
@@ -228,6 +261,15 @@
               '-O0',
             ],
           }],
+
+          ['OS=="win"', {
+            'msvs_settings': {
+              'VCCLCompilerTool': {
+                'Optimization': '0',
+              },
+            },
+          }],
+
 
         ],
       },
