@@ -50,24 +50,9 @@ inline To implicit_cast(const From& f) {
   return f;
 }
 
-#if __cplusplus >= 201103L
-
-#define COMPILE_ASSERT(expr, msg) static_assert(expr, #msg)
-
-#else
-
-template <bool>
-struct CompileAssert {
-};
-
-#define COMPILE_ASSERT(expr, msg) \
-    typedef CompileAssert<(bool(expr))> msg[bool(expr) ? 1 : -1] ALLOW_UNUSED
-
-#endif
-
 template <typename Dest, typename Source>
 inline Dest bit_cast(const Source& source) {
-  COMPILE_ASSERT(sizeof(Dest) == sizeof(Source), sizes_must_be_equal);
+  static_assert(sizeof(Dest) == sizeof(Source), "sizes must be equal");
 
   Dest dest;
   memcpy(&dest, &source, sizeof(dest));

@@ -10,7 +10,6 @@
 #include <cmath>
 #include <limits>
 
-#include "base/compiler_specific.h"
 #include "base/file_util.h"
 #include "base/logging.h"
 #include "base/posix/eintr_wrapper.h"
@@ -67,12 +66,13 @@ double RandDouble() {
   const int kMantissaBits = std::numeric_limits<double>::digits;
   uint64_t random_bits = RandUint64();
 
-  COMPILE_ASSERT(std::numeric_limits<double>::radix == 2, otherwise_use_scalbn);
+  static_assert(std::numeric_limits<double>::radix == 2,
+                "otherwise use scalbn");
   uint64_t mantissa_bits = random_bits & ((UINT64_C(1) << kMantissaBits) - 1);
 
   double mantissa;
-  COMPILE_ASSERT(std::numeric_limits<uint64_t>::digits >= kMantissaBits,
-                 uint64_vs_double);
+  static_assert(std::numeric_limits<uint64_t>::digits >= kMantissaBits,
+                "uint64 vs double");
   memcpy(&mantissa, &mantissa_bits, sizeof(mantissa));
 
   double result = std::ldexp(random_bits, -1 * kMantissaBits);

@@ -176,8 +176,12 @@
           },
         },
         'msvs_disabled_warnings': [
+          4100,  # Unreferenced formal parameter.
           4127,  # Conditional expression is constant.
+          4351,  # New behavior: elements of array will be default initialized.
           4530,  # Exceptions are disabled.
+          4706,  # Assignment within conditional expression.
+          4800,  # Forcing value to bool.
         ],
         'defines': [
           '_HAS_EXCEPTIONS=0',

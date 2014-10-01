@@ -7,8 +7,6 @@
 
 #include <limits>
 
-#include "base/basictypes.h"
-
 namespace base {
 namespace internal {
 
@@ -202,10 +200,10 @@ struct DstRangeRelationToSrcRangeImpl<Dst,
 
 template <typename Dst, typename Src>
 inline RangeConstraint DstRangeRelationToSrcRange(Src value) {
-  COMPILE_ASSERT(std::numeric_limits<Src>::is_specialized,
-                 argument_must_be_numeric);
-  COMPILE_ASSERT(std::numeric_limits<Dst>::is_specialized,
-                 result_must_be_numeric);
+  static_assert(std::numeric_limits<Src>::is_specialized,
+                "argument must be numeric");
+  static_assert(std::numeric_limits<Dst>::is_specialized,
+                "result must be numeric");
   return DstRangeRelationToSrcRangeImpl<Dst, Src>::Check(value);
 }
 

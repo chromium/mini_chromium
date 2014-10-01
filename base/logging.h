@@ -228,13 +228,13 @@ class ErrnoLogMessage : public LogMessage {
 #define CHECK_GT(val1, val2) CHECK_OP(GT, >, val1, val2)
 
 #if defined(NDEBUG)
-#define DLOG_IS_ON(severity) false
-#define DVLOG_IS_ON(verbose_level) false
-#define DCHECK_IS_ON false
+#define DLOG_IS_ON(severity) 0
+#define DVLOG_IS_ON(verbose_level) 0
+#define DCHECK_IS_ON 0
 #else
 #define DLOG_IS_ON(severity) LOG_IS_ON(severity)
 #define DVLOG_IS_ON(verbose_level) VLOG_IS_ON(verbose_level)
-#define DCHECK_IS_ON true
+#define DCHECK_IS_ON 1
 #endif
 
 #define DLOG(severity) LAZY_STREAM(LOG_STREAM(severity), DLOG_IS_ON(severity))

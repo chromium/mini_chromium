@@ -10,8 +10,6 @@
 
 #include <string>
 
-#include "base/basictypes.h"
-
 typedef uint16_t char16;
 
 namespace base {
@@ -27,7 +25,7 @@ struct string16_char_traits {
   typedef char16 char_type;
   typedef int int_type;
 
-  COMPILE_ASSERT(sizeof(int_type) > sizeof(char_type), unexpected_type_width);
+  static_assert(sizeof(int_type) > sizeof(char_type), "unexpected type width");
 
   typedef std::streamoff off_type;
   typedef mbstate_t state_type;
