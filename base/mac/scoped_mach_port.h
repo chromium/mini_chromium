@@ -28,6 +28,13 @@ struct ReceiveRightTraits {
   static void Free(mach_port_t port);
 };
 
+struct PortSetTraits {
+  static mach_port_t InvalidValue() {
+    return MACH_PORT_NULL;
+  }
+  static void Free(mach_port_t port);
+};
+
 }  // namespace internal
 
 class ScopedMachSendRight
@@ -45,7 +52,17 @@ class ScopedMachReceiveRight
  public:
   explicit ScopedMachReceiveRight(
       mach_port_t port = traits_type::InvalidValue())
-    : ScopedGeneric(port) {
+      : ScopedGeneric(port) {
+  }
+
+  operator mach_port_t() const { return get(); }
+};
+
+class ScopedMachPortSet
+    : public ScopedGeneric<mach_port_t, internal::PortSetTraits> {
+ public:
+  explicit ScopedMachPortSet(mach_port_t port = traits_type::InvalidValue())
+      : ScopedGeneric(port) {
   }
 
   operator mach_port_t() const { return get(); }

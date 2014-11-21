@@ -21,6 +21,12 @@ void ReceiveRightTraits::Free(mach_port_t port) {
   MACH_LOG_IF(ERROR, kr != KERN_SUCCESS, kr) << "mach_port_mod_refs";
 }
 
+void PortSetTraits::Free(mach_port_t port) {
+  kern_return_t kr =
+      mach_port_mod_refs(mach_task_self(), port, MACH_PORT_RIGHT_PORT_SET, -1);
+  MACH_LOG_IF(ERROR, kr != KERN_SUCCESS, kr) << "mach_port_mod_refs";
+}
+
 }  // namespace internal
 }  // namespace mac
 }  // namespace base
