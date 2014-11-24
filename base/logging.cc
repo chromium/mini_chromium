@@ -14,7 +14,7 @@
 #include "base/safe_strerror_posix.h"
 
 #if defined(OS_MACOSX)
-#include <mach/mach.h>
+#include <pthread.h>
 #elif defined(OS_LINUX)
 #include <sys/syscall.h>
 #include <sys/types.h>
@@ -79,7 +79,8 @@ void LogMessage::Init(const char* function,
 
   pid_t pid = getpid();
 #if defined(OS_MACOSX)
-  mach_port_t thread = pthread_mach_thread_np(pthread_self());
+  uint64_t thread;
+  pthread_threadid_np(pthread_self(), &thread);
 #elif defined(OS_LINUX)
   pid_t thread = syscall(__NR_gettid);
 #endif
