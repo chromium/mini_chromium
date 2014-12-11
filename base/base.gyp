@@ -90,6 +90,7 @@
         'synchronization/lock.h',
         'synchronization/lock_impl.h',
         'synchronization/lock_impl_posix.cc',
+        'synchronization/lock_impl_win.cc',
         'sys_byteorder.h',
         'template_util.h',
         'third_party/icu/icu_utf.cc',

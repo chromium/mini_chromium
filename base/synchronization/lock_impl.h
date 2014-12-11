@@ -5,7 +5,13 @@
 #ifndef MINI_CHROMIUM_BASE_SYNCHRONIZATION_LOCK_IMPL_H_
 #define MINI_CHROMIUM_BASE_SYNCHRONIZATION_LOCK_IMPL_H_
 
+#include "build/build_config.h"
+
+#if defined(OS_WIN)
+#include <windows.h>
+#elif defined(OS_POSIX)
 #include <pthread.h>
+#endif
 
 #include "base/basictypes.h"
 
@@ -17,6 +23,12 @@ namespace internal {
 // should instead use Lock.
 class LockImpl {
  public:
+#if defined(OS_WIN)
+  typedef CRITICAL_SECTION NativeHandle;
+#elif defined(OS_POSIX)
+  typedef pthread_mutex_t NativeHandle;
+#endif
+
   LockImpl();
   ~LockImpl();
 
@@ -34,10 +46,10 @@ class LockImpl {
   // Return the native underlying lock.
   // TODO(awalker): refactor lock and condition variables so that this is
   // unnecessary.
-  pthread_mutex_t* native_handle() { return &lock_; }
+  NativeHandle* native_handle() { return &native_handle_; }
 
  private:
-  pthread_mutex_t lock_;
+  NativeHandle native_handle_;
 
   DISALLOW_COPY_AND_ASSIGN(LockImpl);
 };
