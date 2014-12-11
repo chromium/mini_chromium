@@ -21,6 +21,11 @@
         ['exclude', '_posix(_unittest)?\\.(h|cc)$'],
         ['exclude', '(^|/)posix/'],
       ],
+    }, {
+      'sources/': [
+        ['exclude', '_win(_unittest)?\\.(h|cc)$'],
+        ['exclude', '(^|/)win/'],
+      ],
     }],
   ],
 }

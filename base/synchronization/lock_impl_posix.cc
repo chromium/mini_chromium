@@ -19,34 +19,34 @@ LockImpl::LockImpl() {
   DCHECK_EQ(rv, 0);
   rv = pthread_mutexattr_settype(&mta, PTHREAD_MUTEX_ERRORCHECK);
   DCHECK_EQ(rv, 0);
-  rv = pthread_mutex_init(&lock_, &mta);
+  rv = pthread_mutex_init(&native_handle_, &mta);
   DCHECK_EQ(rv, 0);
   rv = pthread_mutexattr_destroy(&mta);
   DCHECK_EQ(rv, 0);
 #else
   // In release, go with the default lock attributes.
-  pthread_mutex_init(&lock_, NULL);
+  pthread_mutex_init(&native_handle_, NULL);
 #endif
 }
 
 LockImpl::~LockImpl() {
-  int rv = pthread_mutex_destroy(&lock_);
+  int rv = pthread_mutex_destroy(&native_handle_);
   DCHECK_EQ(rv, 0);
 }
 
 bool LockImpl::Try() {
-  int rv = pthread_mutex_trylock(&lock_);
+  int rv = pthread_mutex_trylock(&native_handle_);
   DCHECK(rv == 0 || rv == EBUSY);
   return rv == 0;
 }
 
 void LockImpl::Lock() {
-  int rv = pthread_mutex_lock(&lock_);
+  int rv = pthread_mutex_lock(&native_handle_);
   DCHECK_EQ(rv, 0);
 }
 
 void LockImpl::Unlock() {
-  int rv = pthread_mutex_unlock(&lock_);
+  int rv = pthread_mutex_unlock(&native_handle_);
   DCHECK_EQ(rv, 0);
 }
 
