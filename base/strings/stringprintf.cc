@@ -10,6 +10,7 @@
 
 #include "base/basictypes.h"
 #include "base/logging.h"
+#include "base/scoped_clear_errno.h"
 #include "base/strings/string_util.h"
 
 namespace base {
@@ -33,7 +34,7 @@ static void StringAppendVT(StringType* dst,
   va_copy(ap_copy, ap);
 
 #if !defined(OS_WIN)
-  errno = 0;
+  ScopedClearErrno clear_errno;
 #endif
   int result = vsnprintfT(stack_buf, arraysize(stack_buf), format, ap_copy);
   va_end(ap_copy);
@@ -43,33 +44,44 @@ static void StringAppendVT(StringType* dst,
     return;
   }
 
+  // Repeatedly increase buffer size until it fits.
   int mem_length = arraysize(stack_buf);
   while (true) {
     if (result < 0) {
-#if !defined(OS_WIN)
+#if defined(OS_WIN)
+      // On Windows, vsnprintfT always returns the number of characters in a
+      // fully-formatted string, so if we reach this point, something else is
+      // wrong and no amount of buffer-doubling is going to fix it.
+      return;
+#else
       if (errno != 0 && errno != EOVERFLOW)
-#endif
-      {
-        DLOG(WARNING) << "Unable to printf the requested string due to error.";
         return;
-      }
+      // Try doubling the buffer size.
       mem_length *= 2;
+#endif
     } else {
+      // We need exactly "result + 1" characters.
       mem_length = result + 1;
     }
 
     if (mem_length > 32 * 1024 * 1024) {
+      // That should be plenty, don't try anything larger.  This protects
+      // against huge allocations when using vsnprintfT implementations that
+      // return -1 for reasons other than overflow without setting errno.
       DLOG(WARNING) << "Unable to printf the requested string due to size.";
       return;
     }
 
     std::vector<typename StringType::value_type> mem_buf(mem_length);
 
+    // NOTE: You can only use a va_list once.  Since we're in a while loop, we
+    // need to make a new copy each time so we don't use up the original.
     va_copy(ap_copy, ap);
     result = vsnprintfT(&mem_buf[0], mem_length, format, ap_copy);
     va_end(ap_copy);
 
     if ((result >= 0) && (result < mem_length)) {
+      // It fit.
       dst->append(&mem_buf[0], result);
       return;
     }

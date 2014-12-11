@@ -44,7 +44,7 @@ bool ReadUnicodeCharacter(const char16* src,
 
 size_t WriteUnicodeCharacter(uint32_t code_point, std::string* output) {
   if (code_point <= 0x7f) {
-    output->push_back(code_point);
+    output->push_back(static_cast<char>(code_point));
     return 1;
   }
 
