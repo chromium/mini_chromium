@@ -4,6 +4,8 @@
 
 #include "base/strings/stringprintf.h"
 
+#include <stdarg.h>
+
 #include <vector>
 
 #include "base/basictypes.h"
@@ -28,7 +30,7 @@ static void StringAppendVT(StringType* dst,
   typename StringType::value_type stack_buf[1024];
 
   va_list ap_copy;
-  GG_VA_COPY(ap_copy, ap);
+  va_copy(ap_copy, ap);
 
 #if !defined(OS_WIN)
   errno = 0;
@@ -63,7 +65,7 @@ static void StringAppendVT(StringType* dst,
 
     std::vector<typename StringType::value_type> mem_buf(mem_length);
 
-    GG_VA_COPY(ap_copy, ap);
+    va_copy(ap_copy, ap);
     result = vsnprintfT(&mem_buf[0], mem_length, format, ap_copy);
     va_end(ap_copy);
 
