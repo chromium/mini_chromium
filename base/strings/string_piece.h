@@ -28,7 +28,7 @@ class BasicStringPiece {
   typedef const value_type* const_iterator;
   typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
 
-  static const size_type npos = StringType::npos;
+  static const size_type npos;
 
   BasicStringPiece()
       : pointer_(NULL),
@@ -142,6 +142,10 @@ class BasicStringPiece {
   const value_type* pointer_;
   size_type length_;
 };
+
+template <typename StringType>
+const typename BasicStringPiece<StringType>::size_type
+    BasicStringPiece<StringType>::npos = StringType::npos;
 
 template<typename StringType>
 std::ostream& operator<<(std::ostream& ostream,
