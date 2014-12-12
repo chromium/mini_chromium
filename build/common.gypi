@@ -161,6 +161,9 @@
       }],
 
       ['OS=="win"', {
+        'msvs_configuration_attributes': {
+          'CharacterSet': '1',
+        },
         'msvs_settings': {
           'VCCLCompilerTool': {
             'WarningLevel': '4',
