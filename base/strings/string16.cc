@@ -56,14 +56,10 @@ char16* c16memset(char16* s, char16 c, size_t n) {
   return s_orig;
 }
 
-}  // namespace base
-
-template class std::basic_string<char16, base::string16_char_traits>;
-
-namespace base {
-
 std::ostream& operator<<(std::ostream& out, const string16& str) {
   return out << UTF16ToUTF8(str);
 }
 
 }  // namespace base
+
+template class std::basic_string<base::char16, base::string16_char_traits>;

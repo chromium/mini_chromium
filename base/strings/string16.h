@@ -10,9 +10,9 @@
 
 #include <string>
 
-typedef uint16_t char16;
-
 namespace base {
+
+typedef uint16_t char16;
 
 int c16memcmp(const char16* s1, const char16* s2, size_t n);
 size_t c16len(const char16* s);
@@ -88,16 +88,13 @@ struct string16_char_traits {
   }
 };
 
-}  // namespace base
-
-extern template class std::basic_string<char16, base::string16_char_traits>;
-
 typedef std::basic_string<char16, base::string16_char_traits> string16;
-
-namespace base {
 
 extern std::ostream& operator<<(std::ostream& out, const string16& str);
 
 }  // namespace base
+
+extern template class std::basic_string<base::char16,
+                                        base::string16_char_traits>;
 
 #endif  // MINI_CHROMIUM_BASE_STRINGS_STRING16_H_
