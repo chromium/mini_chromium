@@ -7,12 +7,29 @@
 #include <fcntl.h>
 #include <string.h>
 
+#include <algorithm>
 #include <cmath>
 #include <limits>
 
 #include "base/files/file_util.h"
 #include "base/logging.h"
+#include "build/build_config.h"
+
+#if defined(OS_POSIX)
 #include "base/posix/eintr_wrapper.h"
+#elif defined(OS_WIN)
+#include <windows.h>
+
+// #define needed to link in RtlGenRandom(), a.k.a. SystemFunction036.  See the
+// "Community Additions" comment on MSDN here:
+// http://msdn.microsoft.com/en-us/library/windows/desktop/aa387694.aspx
+#define SystemFunction036 NTAPI SystemFunction036
+#include <NTSecAPI.h>
+#undef SystemFunction036
+
+#endif  // OS_WIN
+
+#if defined(OS_POSIX)
 
 namespace {
 
@@ -28,6 +45,8 @@ int GetUrandomFD() {
 }
 
 }  // namespace
+
+#endif  // OS_POSIX
 
 namespace base {
 
@@ -88,9 +107,22 @@ void RandBytes(void* output, size_t output_length) {
     return;
   }
 
+#if defined(OS_POSIX)
   int fd = GetUrandomFD();
   bool success = ReadFromFD(fd, static_cast<char*>(output), output_length);
   CHECK(success);
+#elif defined(OS_WIN)
+  char* output_ptr = static_cast<char*>(output);
+  while (output_length > 0) {
+    const ULONG output_bytes_this_pass = static_cast<ULONG>(std::min(
+        output_length, static_cast<size_t>(std::numeric_limits<ULONG>::max())));
+    const bool success =
+        RtlGenRandom(output_ptr, output_bytes_this_pass) != FALSE;
+    CHECK(success);
+    output_length -= output_bytes_this_pass;
+    output_ptr += output_bytes_this_pass;
+  }
+#endif
 }
 
 std::string RandBytesAsString(size_t length) {

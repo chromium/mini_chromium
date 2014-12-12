@@ -186,6 +186,7 @@
         'defines': [
           '_HAS_EXCEPTIONS=0',
           '_CRT_SECURE_NO_WARNINGS',
+          'NOMINMAX',
         ],
       }],
 
