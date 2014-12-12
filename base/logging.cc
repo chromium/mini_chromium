@@ -61,7 +61,11 @@ LogMessage::~LogMessage() {
 #ifndef NDEBUG
     abort();
 #else
+#if defined(OS_WIN)
+    __debugbreak();
+#else
     __asm__("int3");
+#endif
 #endif
   }
 }
