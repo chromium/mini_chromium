@@ -4,6 +4,8 @@
 
 #include "base/files/file_path.h"
 
+#include <ctype.h>
+
 #include "base/basictypes.h"
 #include "base/logging.h"
 
@@ -50,9 +52,7 @@ bool EqualDriveLetterCaseInsensitive(const StringType& a,
   if (a_letter_pos == StringType::npos || b_letter_pos == StringType::npos)
     return a == b;
 
-  StringType a_letter(a.substr(0, a_letter_pos + 1));
-  StringType b_letter(b.substr(0, b_letter_pos + 1));
-  if (!StartsWith(a_letter, b_letter, false))
+  if (::tolower(a[0]) != ::tolower(b[0]))
     return false;
 
   StringType a_rest(a.substr(a_letter_pos + 1));
@@ -267,5 +267,5 @@ void FilePath::StripTrailingSeparatorsInternal() {
 }  // namespace base
 
 void PrintTo(const base::FilePath& path, std::ostream* out) {
-  *out << path.value();
+  *out << path.value().c_str();
 }
