@@ -40,9 +40,15 @@ static inline int GetVlogLevel(const char* file) {
   return std::numeric_limits<int>::max();
 }
 
+#if defined(OS_WIN)
+// This is just ::GetLastError, but out-of-line to avoid including windows.h in
+// such a widely used place.
+unsigned long GetLastSystemErrorCode();
+#elif defined(OS_POSIX)
 static inline int GetLastSystemErrorCode() {
   return errno;
 }
+#endif
 
 template<typename t1, typename t2>
 std::string* MakeCheckOpString(const t1& v1, const t2& v2, const char* names) {
@@ -110,6 +116,22 @@ class LogMessageVoidify {
   void operator&(const std::ostream&) const {}
 };
 
+#if defined(OS_WIN)
+class Win32ErrorLogMessage : public LogMessage {
+ public:
+  Win32ErrorLogMessage(const char* function,
+                       const char* file_path,
+                       int line,
+                       LogSeverity severity,
+                       unsigned long err);
+  ~Win32ErrorLogMessage();
+
+ private:
+  unsigned long err_;
+
+  DISALLOW_COPY_AND_ASSIGN(Win32ErrorLogMessage);
+};
+#elif defined(OS_POSIX)
 class ErrnoLogMessage : public LogMessage {
  public:
   ErrnoLogMessage(const char* function,
@@ -124,6 +146,7 @@ class ErrnoLogMessage : public LogMessage {
 
   DISALLOW_COPY_AND_ASSIGN(ErrnoLogMessage);
 };
+#endif
 
 }  // namespace logging
 
@@ -177,12 +200,22 @@ class ErrnoLogMessage : public LogMessage {
 #define VLOG_STREAM(verbose_level) \
     logging::LogMessage(FUNCTION_SIGNATURE, __FILE__, __LINE__, \
                         -verbose_level).stream()
+
+#if defined(OS_WIN)
+#define PLOG_STREAM(severity) COMPACT_GOOGLE_LOG_EX_ ## severity( \
+    Win32ErrorLogMessage, ::logging::GetLastSystemErrorCode()).stream()
+#define VPLOG_STREAM(verbose_level)                                       \
+    logging::Win32ErrorLogMessage(FUNCTION_SIGNATURE, __FILE__, __LINE__, \
+                                  -verbose_level,                         \
+                                  ::logging::GetLastSystemErrorCode()).stream()
+#elif defined(OS_POSIX)
 #define PLOG_STREAM(severity) COMPACT_GOOGLE_LOG_EX_ ## severity( \
     ErrnoLogMessage, ::logging::GetLastSystemErrorCode()).stream()
 #define VPLOG_STREAM(verbose_level) \
     logging::ErrnoLogMessage(FUNCTION_SIGNATURE, __FILE__, __LINE__, \
                              -verbose_level, \
                              ::logging::GetLastSystemErrorCode()).stream()
+#endif
 
 #define LOG(severity) LAZY_STREAM(LOG_STREAM(severity), LOG_IS_ON(severity))
 #define LOG_IF(severity, condition) \
