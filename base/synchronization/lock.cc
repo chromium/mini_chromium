@@ -14,25 +14,37 @@
 
 namespace base {
 
+namespace {
+
+ThreadRefType GetCurrentThreadRef() {
+#if defined(OS_WIN)
+  return GetCurrentThreadId();
+#elif defined(OS_POSIX)
+  return pthread_self();
+#endif
+}
+
+}  // namespace
+
 Lock::Lock() : owning_thread_(NULL), lock_() {
 }
 
 Lock::~Lock() {
-  DCHECK_EQ(owning_thread_, static_cast<pthread_t>(NULL));
+  DCHECK_EQ(owning_thread_, ThreadRefType());
 }
 
 void Lock::AssertAcquired() const {
-  DCHECK_EQ(owning_thread_, pthread_self());
+  DCHECK_EQ(owning_thread_, GetCurrentThreadRef());
 }
 
 void Lock::CheckHeldAndUnmark() {
-  DCHECK_EQ(owning_thread_, pthread_self());
+  DCHECK_EQ(owning_thread_, GetCurrentThreadRef());
   owning_thread_ = NULL;
 }
 
 void Lock::CheckUnheldAndMark() {
-  DCHECK_EQ(owning_thread_, static_cast<pthread_t>(NULL));
-  owning_thread_ = pthread_self();
+  DCHECK_EQ(owning_thread_, ThreadRefType());
+  owning_thread_ = GetCurrentThreadRef();
 }
 
 }  // namespace base

@@ -5,11 +5,23 @@
 #ifndef MINI_CHROMIUM_BASE_SYNCHRONIZATION_LOCK_H_
 #define MINI_CHROMIUM_BASE_SYNCHRONIZATION_LOCK_H_
 
+#include "build/build_config.h"
+
+#if defined(OS_WIN)
+#include <windows.h>
+#elif defined(OS_POSIX)
 #include <pthread.h>
+#endif
 
 #include "base/synchronization/lock_impl.h"
 
 namespace base {
+
+#if defined(OS_WIN)
+typedef DWORD ThreadRefType;
+#elif defined(OS_POSIX)
+typedef pthread_t ThreadRefType;
+#endif
 
 // A convenient wrapper for an OS specific critical section.  The only real
 // intelligence in this class is in debug mode for the support for the
@@ -75,7 +87,7 @@ class Lock {
 
   // All private data is implicitly protected by lock_.
   // Be VERY careful to only access members under that lock.
-  pthread_t owning_thread_;
+  ThreadRefType owning_thread_;
 #endif
 
   // Platform specific underlying lock implementation.
