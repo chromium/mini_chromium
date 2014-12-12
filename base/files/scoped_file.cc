@@ -5,17 +5,22 @@
 #include "base/files/scoped_file.h"
 
 #include <stdio.h>
-#include <unistd.h>
 
 #include "base/logging.h"
+
+#if defined(OS_POSIX)
+#include <unistd.h>
 #include "base/posix/eintr_wrapper.h"
+#endif
 
 namespace base {
 namespace internal {
 
+#if defined(OS_POSIX)
 void ScopedFDCloseTraits::Free(int fd) {
   PCHECK(IGNORE_EINTR(close(fd)) == 0);
 }
+#endif  // OS_POSIX
 
 void ScopedFILECloser::operator()(FILE* file) const {
   if (file) {

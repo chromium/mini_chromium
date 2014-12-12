@@ -9,17 +9,20 @@
 
 #include "base/memory/scoped_ptr.h"
 #include "base/scoped_generic.h"
+#include "build/build_config.h"
 
 namespace base {
 
 namespace internal {
 
+#if defined(OS_POSIX)
 struct ScopedFDCloseTraits {
   static int InvalidValue() {
     return -1;
   }
   static void Free(int fd);
 };
+#endif  // OS_POSIX
 
 struct ScopedFILECloser {
   void operator()(FILE* file) const;
@@ -27,7 +30,9 @@ struct ScopedFILECloser {
 
 }  // namespace internal
 
+#if defined(OS_POSIX)
 typedef ScopedGeneric<int, internal::ScopedFDCloseTraits> ScopedFD;
+#endif  // OS_POSIX
 typedef scoped_ptr<FILE, internal::ScopedFILECloser> ScopedFILE;
 
 }  // namespace base
