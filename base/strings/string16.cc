@@ -4,6 +4,8 @@
 
 #include "base/strings/string16.h"
 
+#if defined(WCHAR_T_IS_UTF32)
+
 #include <ostream>
 
 #include "base/strings/utf_string_conversions.h"
@@ -63,3 +65,5 @@ std::ostream& operator<<(std::ostream& out, const string16& str) {
 }  // namespace base
 
 template class std::basic_string<base::char16, base::string16_char_traits>;
+
+#endif  // WCHAR_T_IS_UTF32

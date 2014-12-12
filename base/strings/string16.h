@@ -10,6 +10,20 @@
 
 #include <string>
 
+#include "build/build_config.h"
+
+#if defined(WCHAR_T_IS_UTF16)
+
+namespace base {
+
+typedef wchar_t char16;
+typedef std::wstring string16;
+typedef std::char_traits<wchar_t> string16_char_traits;
+
+}  // namespace base
+
+#elif defined(WCHAR_T_IS_UTF32)
+
 namespace base {
 
 typedef uint16_t char16;
@@ -96,5 +110,7 @@ extern std::ostream& operator<<(std::ostream& out, const string16& str);
 
 extern template class std::basic_string<base::char16,
                                         base::string16_char_traits>;
+
+#endif  // WCHAR_T_IS_UTF32
 
 #endif  // MINI_CHROMIUM_BASE_STRINGS_STRING16_H_
