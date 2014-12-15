@@ -5,10 +5,9 @@
 #include "base/strings/string16.h"
 
 #if defined(WCHAR_T_IS_UTF32)
-
 #include <ostream>
-
 #include "base/strings/utf_string_conversions.h"
+#endif  // WCHAR_T_IS_UTF32
 
 namespace base {
 
@@ -58,12 +57,16 @@ char16* c16memset(char16* s, char16 c, size_t n) {
   return s_orig;
 }
 
+#if defined(WCHAR_T_IS_UTF32)
 std::ostream& operator<<(std::ostream& out, const string16& str) {
   return out << UTF16ToUTF8(str);
 }
+#endif  // WCHAR_T_IS_UTF32
 
 }  // namespace base
 
+#if defined(WCHAR_T_IS_UTF32)
 template class std::basic_string<base::char16, base::string16_char_traits>;
+#endif  // WCHAR_T_IS_UTF32
 
 #endif  // WCHAR_T_IS_UTF32
