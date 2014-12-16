@@ -15,6 +15,9 @@
 #include "base/basictypes.h"
 #include "build/build_config.h"
 
+// Remove pollution from windows.h if it's been included.
+#undef ERROR
+
 namespace logging {
 
 typedef int LogSeverity;
