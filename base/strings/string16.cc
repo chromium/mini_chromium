@@ -68,5 +68,3 @@ std::ostream& operator<<(std::ostream& out, const string16& str) {
 #if defined(WCHAR_T_IS_UTF32)
 template class std::basic_string<base::char16, base::string16_char_traits>;
 #endif  // WCHAR_T_IS_UTF32
-
-#endif  // WCHAR_T_IS_UTF32
