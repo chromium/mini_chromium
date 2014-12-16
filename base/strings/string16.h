@@ -12,27 +12,13 @@
 
 #include "build/build_config.h"
 
+namespace base {
+
 #if defined(WCHAR_T_IS_UTF16)
-
-namespace base {
-
 typedef wchar_t char16;
-typedef std::wstring string16;
-typedef std::char_traits<wchar_t> string16_char_traits;
-
-}  // namespace base
-
 #elif defined(WCHAR_T_IS_UTF32)
-
-namespace base {
-
 typedef uint16_t char16;
-
-}  // namespace base
-
 #endif  // WCHAR_T_IS_UTF32
-
-namespace base {
 
 int c16memcmp(const char16* s1, const char16* s2, size_t n);
 size_t c16len(const char16* s);
@@ -41,11 +27,12 @@ char16* c16memmove(char16* s1, const char16* s2, size_t n);
 char16* c16memcpy(char16* s1, const char16* s2, size_t n);
 char16* c16memset(char16* s, char16 c, size_t n);
 
-}  // namespace base
+#if defined(WCHAR_T_IS_UTF16)
 
-#if defined(WCHAR_T_IS_UTF32)
+typedef std::wstring string16;
+typedef std::char_traits<wchar_t> string16_char_traits;
 
-namespace base {
+#elif defined(WCHAR_T_IS_UTF32)
 
 struct string16_char_traits {
   typedef char16 char_type;
@@ -118,11 +105,13 @@ typedef std::basic_string<char16, base::string16_char_traits> string16;
 
 extern std::ostream& operator<<(std::ostream& out, const string16& str);
 
+#endif  // WCHAR_T_IS_UTF32
+
 }  // namespace base
 
+#if defined(WCHAR_T_IS_UTF32)
 extern template class std::basic_string<base::char16,
                                         base::string16_char_traits>;
-
 #endif  // WCHAR_T_IS_UTF32
 
 #endif  // MINI_CHROMIUM_BASE_STRINGS_STRING16_H_
