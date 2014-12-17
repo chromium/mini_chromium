@@ -127,6 +127,7 @@
           '-fno-rtti',
           '-fno-threadsafe-statics',
           '-fvisibility-inlines-hidden',
+          '-std=gnu++11',
           '-Wsign-compare',
         ],
         'defines': [
@@ -147,9 +148,6 @@
               '-Wno-covered-switch-default',
               '-Wstring-conversion',
               '-Wno-unused-function',
-            ],
-            'cflags_cc': [
-              '-std=gnu++11',
             ],
           }, {  # else: clang==0
             'cflags': [
