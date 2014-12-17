@@ -1,15 +1,15 @@
 mini_chromium
 
-This is mini_chromium, a small collection of useful low-level ("base")
+This is mini_chromium, a small collection of useful low-level (“base”)
 routines from the Chromium open-source project at
 http://www.chromium.org/ . Chromium is large, sprawling, full of
 dependencies, and a web browser. mini_chromium is small, self-contained,
 and a library. mini_chromium is especially useful as a dependency of
-other code that wishes to use Chromium's base routines. By using
-mini_chromium, other projects' code can function in a standalone
+other code that wishes to use Chromium’s base routines. By using
+mini_chromium, other projects’ code can function in a standalone
 environment outside of Chromium without having to treat all of Chromium
-as a dependency. When building as part of Chromium, those projects' code
-can use Chromium's own (non-mini_chromium) base implementation.
+as a dependency. When building as part of Chromium, those projects’ code
+can use Chromium’s own (non-mini_chromium) base implementation.
 
 Code provided in mini_chromium provides the same interface as the
 equivalent code in Chromium. One major difference is that
@@ -17,6 +17,20 @@ equivalent code in Chromium. One major difference is that
 types such as int8 and uint64. To use mini_chromium, use <stdint.h>
 types such as int8_t and uint64_t. See http://crbug.com/138542 and
 https://groups.google.com/a/chromium.org/d/topic/chromium-dev/zFzvBFptJj4/ .
+
+While it’s a goal of mini_chromium to maintain interface compatibility
+with Chromium’s base library for the interfaces it does implement,
+there’s no requirement that it use the same implementations as
+Chromium’s base library. Many of the implementations used in
+mini_chromium are identical to Chromium’s, but many others have been
+modified to eliminate dependencies that are not desired in
+mini_chromium, and a few are completely distinct from Chromium’s
+altogether. Additionally, when mini_chromium provides an interface in
+the form of a file or class present in Chromium, it’s not bound to
+provide all functions, methods, or types that the Chromium equivalent
+does. The differences noted above notwithstanding, the interfaces
+exposed by mini_chromium’s base are and must remain a strict subset of
+Chromium’s.
 
 Mark Mentovai
 mark@chromium.org
