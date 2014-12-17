@@ -26,7 +26,7 @@ ThreadRefType GetCurrentThreadRef() {
 
 }  // namespace
 
-Lock::Lock() : owning_thread_(NULL), lock_() {
+Lock::Lock() : owning_thread_(), lock_() {
 }
 
 Lock::~Lock() {
@@ -39,7 +39,7 @@ void Lock::AssertAcquired() const {
 
 void Lock::CheckHeldAndUnmark() {
   DCHECK_EQ(owning_thread_, GetCurrentThreadRef());
-  owning_thread_ = NULL;
+  owning_thread_ = ThreadRefType();
 }
 
 void Lock::CheckUnheldAndMark() {
