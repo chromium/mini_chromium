@@ -9,6 +9,8 @@
 
 #if defined(OS_MACOSX)
 #include <libkern/OSByteOrder.h>
+#elif defined(OS_WIN)
+#include <stdlib.h>
 #else
 #include <byteswap.h>
 #endif
@@ -18,6 +20,8 @@ namespace base {
 inline uint16_t ByteSwap(uint16_t x) {
 #if defined(OS_MACOSX)
   return OSSwapInt16(x);
+#elif defined(OS_WIN)
+  return _byteswap_ushort(x);
 #else
   return bswap_16(x);
 #endif
@@ -26,6 +30,8 @@ inline uint16_t ByteSwap(uint16_t x) {
 inline uint32_t ByteSwap(uint32_t x) {
 #if defined(OS_MACOSX)
   return OSSwapInt32(x);
+#elif defined(OS_WIN)
+  return _byteswap_ulong(x);
 #else
   return bswap_32(x);
 #endif
@@ -34,6 +40,8 @@ inline uint32_t ByteSwap(uint32_t x) {
 inline uint64_t ByteSwap(uint64_t x) {
 #if defined(OS_MACOSX)
   return OSSwapInt64(x);
+#elif defined(OS_WIN)
+  return _byteswap_uint64(x);
 #else
   return bswap_64(x);
 #endif
