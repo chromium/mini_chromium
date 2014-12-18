@@ -15,9 +15,6 @@
 #include "base/basictypes.h"
 #include "build/build_config.h"
 
-// Remove pollution from windows.h if it's been included.
-#undef ERROR
-
 namespace logging {
 
 typedef int LogSeverity;
@@ -190,6 +187,24 @@ class ErrnoLogMessage : public LogMessage {
     COMPACT_GOOGLE_LOG_EX_FATAL(LogMessage)
 #define COMPACT_GOOGLE_LOG_DFATAL \
     COMPACT_GOOGLE_LOG_EX_DFATAL(LogMessage)
+
+#if defined(OS_WIN)
+
+// wingdi.h defines ERROR 0. We don't want to include windows.h here, and we
+// want to allow "LOG(ERROR)", which will expand to LOG_0.
+
+// This will not cause a warning if the RHS text is identical to that in
+// wingdi.h (which it is).
+#define ERROR 0
+
+#define COMPACT_GOOGLE_LOG_EX_0(ClassName, ...) \
+  COMPACT_GOOGLE_LOG_EX_ERROR(ClassName , ##__VA_ARGS__)
+#define COMPACT_GOOGLE_LOG_0 COMPACT_GOOGLE_LOG_ERROR
+namespace logging {
+const LogSeverity LOG_0 = LOG_ERROR;
+}  // namespace logging
+
+#endif  // OS_WIN
 
 #define LAZY_STREAM(stream, condition) \
     !(condition) ? (void) 0 : ::logging::LogMessageVoidify() & (stream)
