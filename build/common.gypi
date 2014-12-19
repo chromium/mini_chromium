@@ -179,6 +179,7 @@
         'msvs_disabled_warnings': [
           4100,  # Unreferenced formal parameter.
           4127,  # Conditional expression is constant.
+          4201,  # Nonstandard extension used : nameless struct/union.
           4351,  # New behavior: elements of array will be default initialized.
           4530,  # Exceptions are disabled.
           4702,  # Unreachable code. https://crbug.com/346399
