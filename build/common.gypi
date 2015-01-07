@@ -174,6 +174,7 @@
           },
           'VCLinkerTool': {
             'GenerateDebugInformation': 'true',
+            'SubSystem': '1',
           },
         },
         'msvs_disabled_warnings': [
