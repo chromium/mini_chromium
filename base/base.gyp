@@ -25,6 +25,11 @@
               '$(SDKROOT)/System/Library/Frameworks/Security.framework',
             ],
           }],
+          ['OS=="win"', {
+            'libraries': [
+              '-ladvapi32.lib',
+            ],
+          }],
         ],
       },
       'sources': [
