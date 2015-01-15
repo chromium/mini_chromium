@@ -42,6 +42,7 @@
         'files/file_util_posix.cc',
         'files/scoped_file.cc',
         'files/scoped_file.h',
+        'format_macros.h',
         'logging.cc',
         'logging.h',
         'mac/close_nocancel.cc',
