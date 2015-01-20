@@ -18,6 +18,8 @@ const FilePath::CharType FilePath::kSeparators[] = FILE_PATH_LITERAL("/");
 #endif  // FILE_PATH_USES_WIN_SEPARATORS
 
 const FilePath::CharType FilePath::kCurrentDirectory[] = FILE_PATH_LITERAL(".");
+const FilePath::CharType FilePath::kParentDirectory[] = FILE_PATH_LITERAL("..");
+const FilePath::CharType FilePath::kExtensionSeparator = FILE_PATH_LITERAL('.');
 
 typedef FilePath::StringType StringType;
 
@@ -188,6 +190,25 @@ FilePath FilePath::BaseName() const {
   }
 
   return new_path;
+}
+
+StringType FilePath::FinalExtension() const {
+  StringType base(BaseName().value());
+  // Special case "." and ".."
+  if (base == FilePath::kCurrentDirectory || base == FilePath::kParentDirectory)
+    return StringType();
+  const StringType::size_type dot = base.rfind(FilePath::kExtensionSeparator);
+  if (dot == StringType::npos)
+    return StringType();
+
+  return base.substr(dot, StringType::npos);
+}
+
+FilePath FilePath::RemoveFinalExtension() const {
+  StringType extension = FinalExtension();
+  if (FinalExtension().empty())
+    return *this;
+  return FilePath(path_.substr(0, path_.size() - extension.size()));
 }
 
 FilePath FilePath::Append(const StringType& component) const {

@@ -147,6 +147,12 @@ class FilePath {
   // A special path component meaning "this directory."
   static const CharType kCurrentDirectory[];
 
+  // A special path component meaning "the parent directory."
+  static const CharType kParentDirectory[];
+
+  // The character used to identify a file extension.
+  static const CharType kExtensionSeparator;
+
   FilePath();
   FilePath(const FilePath& that);
   explicit FilePath(const StringType& path);
@@ -183,6 +189,14 @@ class FilePath {
   // the root directory, returns a FilePath identifying the root directory;
   // this is the only situation in which BaseName will return an absolute path.
   FilePath BaseName() const WARN_UNUSED_RESULT;
+
+  // Returns the path's file extension. This does not have a special case for
+  // common double extensions, so FinalExtension() of "foo.tar.gz" is simply
+  // ".gz". If there is no extension, "" will be returned.
+  StringType FinalExtension() const WARN_UNUSED_RESULT;
+
+  // Returns a FilePath with FinalExtension() removed.
+  FilePath RemoveFinalExtension() const WARN_UNUSED_RESULT;
 
   // Returns a FilePath by appending a separator and the supplied path
   // component to this object's path.  Append takes care to avoid adding
