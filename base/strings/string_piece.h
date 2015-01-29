@@ -135,7 +135,7 @@ class BasicStringPiece {
   }
 
   StringType as_string() const {
-    return empty() ? StringType() : StringType(data(), size);
+    return empty() ? StringType() : StringType(data(), size());
   }
 
  private:
