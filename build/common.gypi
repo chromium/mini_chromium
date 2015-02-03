@@ -181,6 +181,7 @@
           4100,  # Unreferenced formal parameter.
           4127,  # Conditional expression is constant.
           4201,  # Nonstandard extension used : nameless struct/union.
+          4324,  # 'X' was padded due to __declspec(align()).
           4351,  # New behavior: elements of array will be default initialized.
           4530,  # Exceptions are disabled.
           4702,  # Unreachable code. https://crbug.com/346399
@@ -191,6 +192,7 @@
           '_HAS_EXCEPTIONS=0',
           '_CRT_SECURE_NO_WARNINGS',
           'NOMINMAX',
+          'WIN32_LEAN_AND_MEAN',
         ],
       }],
 
