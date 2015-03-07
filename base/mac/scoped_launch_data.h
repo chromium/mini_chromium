@@ -12,6 +12,17 @@
 #include "base/basictypes.h"
 #include "base/compiler_specific.h"
 
+namespace {
+
+inline void LaunchDataFree(launch_data_t data) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+  return launch_data_free(data);
+#pragma clang diagnostic pop
+}
+
+}  // namespace
+
 namespace base {
 namespace mac {
 
@@ -26,13 +37,13 @@ class ScopedLaunchData {
 
   ~ScopedLaunchData() {
     if (object_)
-      launch_data_free(object_);
+      LaunchDataFree(object_);
   }
 
   void reset(launch_data_t object = NULL) {
     if (object != object_) {
       if (object_)
-        launch_data_free(object_);
+        LaunchDataFree(object_);
       object_ = object;
     }
   }
