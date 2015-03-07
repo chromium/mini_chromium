@@ -162,6 +162,7 @@
         'msvs_configuration_attributes': {
           'CharacterSet': '1',
         },
+        'msvs_configuration_platform': 'x64',
         'msvs_settings': {
           'VCCLCompilerTool': {
             'WarningLevel': '4',
@@ -175,6 +176,11 @@
           'VCLinkerTool': {
             'GenerateDebugInformation': 'true',
             'SubSystem': '1',
+            'MinimumRequiredVersion': '5.02',  # Server 2003.
+            'TargetMachine': '17',  # x64.
+          },
+          'VCLibrarianTool': {
+            'TargetMachine': '17',  # x64.
           },
         },
         'msvs_disabled_warnings': [
@@ -282,8 +288,15 @@
             },
           }],
 
-
         ],
+      },
+
+      # gyp-ninja seems to requires these, but we don't use them.
+      'Debug_x64': {
+        'inherit_from': ['Debug'],
+      },
+      'Release_x64': {
+        'inherit_from': ['Release'],
       },
     },
   },
