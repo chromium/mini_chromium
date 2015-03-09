@@ -63,12 +63,10 @@
 
           'conditions': [
             ['clang!=0', {
-              'CLANG_CXX_LANGUAGE_STANDARD': 'gnu++11',  # -std=gnu++11
+              'CLANG_CXX_LANGUAGE_STANDARD': 'c++11',  # -std=c++11
 
               # Don't link in libarclite_macosx.a, see http://crbug.com/156530.
               'CLANG_LINK_OBJC_RUNTIME': 'NO',      # -fno-objc-link-runtime
-
-              'CLANG_WARN_CXX0X_EXTENSIONS': 'NO',  # -Wno-c++0x-extensions
 
               # CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS maps to
               # -Wobjc-missing-property-synthesis
@@ -76,11 +74,11 @@
 
               'GCC_VERSION': 'com.apple.compilers.llvm.clang.1_0',
               'WARNING_CFLAGS': [
+                '-Wexit-time-destructors',
                 '-Wheader-hygiene',
-                '-Wno-char-subscripts',
-                '-Wno-covered-switch-default',
+                '-Wno-selector-type-mismatch',
+                '-Wsign-compare',
                 '-Wstring-conversion',
-                '-Wno-unused-function',
               ],
             }, {  # else: clang==0
               'GCC_VERSION': '4.2',
@@ -127,8 +125,7 @@
           '-fno-rtti',
           '-fno-threadsafe-statics',
           '-fvisibility-inlines-hidden',
-          '-std=gnu++11',
-          '-Wsign-compare',
+          '-std=c++11',
         ],
         'defines': [
           '_FILE_OFFSET_BITS=64',
@@ -143,11 +140,10 @@
         'conditions': [
           ['clang!=0', {
             'cflags': [
+              '-Wexit-time-destructors',
               '-Wheader-hygiene',
-              '-Wno-char-subscripts',
-              '-Wno-covered-switch-default',
+              '-Wsign-compare',
               '-Wstring-conversion',
-              '-Wno-unused-function',
             ],
           }, {  # else: clang==0
             'cflags': [
