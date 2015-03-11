@@ -16,7 +16,7 @@ namespace base {
 
 template<typename T, typename Traits>
 class ScopedGeneric {
-  MOVE_ONLY_TYPE_FOR_CPP_03(ScopedGeneric, RValue)
+  MOVE_ONLY_TYPE_WITH_MOVE_CONSTRUCTOR_FOR_CPP_03(ScopedGeneric)
 
  private:
   struct Data : public Traits {
@@ -37,12 +37,17 @@ class ScopedGeneric {
       : data_(value, traits) {
   }
 
-  ScopedGeneric(RValue rvalue)
-      : data_(rvalue.object->release(), rvalue.object->get_traits()) {
+  ScopedGeneric(ScopedGeneric<T, Traits>&& rvalue)
+      : data_(rvalue.release(), rvalue.get_traits()) {
   }
 
   ~ScopedGeneric() {
     FreeIfNecessary();
+  }
+
+  ScopedGeneric& operator=(ScopedGeneric<T, Traits>&& rvalue) {
+    reset(rvalue.release());
+    return *this;
   }
 
   void reset(const element_type& value = traits_type::InvalidValue()) {
