@@ -287,13 +287,17 @@
         ],
       },
 
-      # gyp-ninja seems to requires these, but we don't use them.
-      'Debug_x64': {
-        'inherit_from': ['Debug'],
-      },
-      'Release_x64': {
-        'inherit_from': ['Release'],
-      },
+      'conditions': [
+        ['OS=="win"', {
+          # gyp-ninja seems to requires these, but we don't use them.
+          'Debug_x64': {
+            'inherit_from': ['Debug'],
+          },
+          'Release_x64': {
+            'inherit_from': ['Release'],
+          },
+        }],
+      ],
     },
   },
 
