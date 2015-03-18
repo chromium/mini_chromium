@@ -16,6 +16,8 @@
 
     'mac_sdk%': '',
     'mac_deployment_target%': '',
+
+    'target_arch%': 'x64',
   },
 
   'target_defaults': {
@@ -92,6 +94,17 @@
               # MACOSX_DEPLOYMENT_TARGET maps to -mmacosx-version-min
               'MACOSX_DEPLOYMENT_TARGET': '<(mac_deployment_target)',
             }],
+
+            ['target_arch=="ia32"', {
+              'ARCHS': [
+                'i386',
+              ],
+            }],
+            ['target_arch=="x64"', {
+              'ARCHS': [
+                'x86_64',
+              ],
+            }],
           ],
 
           'target_conditions': [
@@ -158,7 +171,6 @@
         'msvs_configuration_attributes': {
           'CharacterSet': '1',
         },
-        'msvs_configuration_platform': 'x64',
         'msvs_settings': {
           'VCCLCompilerTool': {
             'WarningLevel': '4',
@@ -172,11 +184,6 @@
           'VCLinkerTool': {
             'GenerateDebugInformation': 'true',
             'SubSystem': '1',
-            'MinimumRequiredVersion': '5.02',  # Server 2003.
-            'TargetMachine': '17',  # x64.
-          },
-          'VCLibrarianTool': {
-            'TargetMachine': '17',  # x64.
           },
         },
         'msvs_disabled_warnings': [
@@ -196,6 +203,20 @@
           '_CRT_SECURE_NO_WARNINGS',
           'NOMINMAX',
           'WIN32_LEAN_AND_MEAN',
+        ],
+        'conditions': [
+          ['target_arch=="x64"', {
+            'msvs_configuration_platform': 'x64',
+            'msvs_settings': {
+              'VCLibrarianTool': {
+                'TargetMachine': '17',  # x64.
+              },
+              'VCLinkerTool': {
+                'MinimumRequiredVersion': '5.02',  # Server 2003.
+                'TargetMachine': '17',  # x64.
+              },
+            },
+          }],
         ],
       }],
 
