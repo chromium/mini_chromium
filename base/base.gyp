@@ -34,6 +34,11 @@
       },
       'sources': [
         'auto_reset.h',
+        'base/atomicops.h',
+        'base/atomicops_internals_atomicword_compat.h',
+        'base/atomicops_internals_mac.h',
+        'base/atomicops_internals_portable.h',
+        'base/atomicops_internals_x86_msvc.h',
         'basictypes.h',
         'compiler_specific.h',
         'files/file_path.cc',
