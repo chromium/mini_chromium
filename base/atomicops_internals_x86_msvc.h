@@ -11,8 +11,6 @@
 
 #include <intrin.h>
 
-#include "base/macros.h"
-
 #if defined(ARCH_CPU_64_BITS)
 // windows.h #defines this (only on x64). This causes problems because the
 // public API also uses MemoryBarrier at the public name for this fence. So, on
@@ -109,7 +107,7 @@ inline Atomic32 Release_Load(volatile const Atomic32* ptr) {
 
 // 64-bit low-level operations on 64-bit platform.
 
-COMPILE_ASSERT(sizeof(Atomic64) == sizeof(PVOID), atomic_word_is_atomic);
+static_assert(sizeof(Atomic64) == sizeof(PVOID), "atomic word is atomic");
 
 inline Atomic64 NoBarrier_CompareAndSwap(volatile Atomic64* ptr,
                                          Atomic64 old_value,
