@@ -25,8 +25,8 @@
 // to use these.
 //
 
-#ifndef BASE_ATOMICOPS_H_
-#define BASE_ATOMICOPS_H_
+#ifndef MINI_CHROMIUM_BASE_ATOMICOPS_H_
+#define MINI_CHROMIUM_BASE_ATOMICOPS_H_
 
 #include <stdint.h>
 
@@ -195,4 +195,4 @@ extern struct AtomicOps_x86CPUFeatureStruct AtomicOps_Internalx86CPUFeatures;
 #include "base/atomicops_internals_atomicword_compat.h"
 #endif
 
-#endif  // BASE_ATOMICOPS_H_
+#endif  // MINI_CHROMIUM_BASE_ATOMICOPS_H_

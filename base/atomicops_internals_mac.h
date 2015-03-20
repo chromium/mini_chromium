@@ -4,8 +4,8 @@
 
 // This file is an internal atomic implementation, use base/atomicops.h instead.
 
-#ifndef BASE_ATOMICOPS_INTERNALS_MAC_H_
-#define BASE_ATOMICOPS_INTERNALS_MAC_H_
+#ifndef MINI_CHROMIUM_BASE_ATOMICOPS_INTERNALS_MAC_H_
+#define MINI_CHROMIUM_BASE_ATOMICOPS_INTERNALS_MAC_H_
 
 #include <libkern/OSAtomic.h>
 
@@ -194,4 +194,4 @@ inline Atomic64 Release_Load(volatile const Atomic64* ptr) {
 }   // namespace base::subtle
 }   // namespace base
 
-#endif  // BASE_ATOMICOPS_INTERNALS_MAC_H_
+#endif  // MINI_CHROMIUM_BASE_ATOMICOPS_INTERNALS_MAC_H_

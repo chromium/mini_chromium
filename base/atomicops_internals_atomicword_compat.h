@@ -4,8 +4,8 @@
 
 // This file is an internal atomic implementation, use base/atomicops.h instead.
 
-#ifndef BASE_ATOMICOPS_INTERNALS_ATOMICWORD_COMPAT_H_
-#define BASE_ATOMICOPS_INTERNALS_ATOMICWORD_COMPAT_H_
+#ifndef MINI_CHROMIUM_BASE_ATOMICOPS_INTERNALS_ATOMICWORD_COMPAT_H_
+#define MINI_CHROMIUM_BASE_ATOMICOPS_INTERNALS_ATOMICWORD_COMPAT_H_
 
 // AtomicWord is a synonym for intptr_t, and Atomic32 is a synonym for int32,
 // which in turn means int. On some LP32 platforms, intptr_t is an int, but
@@ -97,4 +97,4 @@ inline AtomicWord Release_Load(volatile const AtomicWord* ptr) {
 
 #endif  // !defined(ARCH_CPU_64_BITS)
 
-#endif  // BASE_ATOMICOPS_INTERNALS_ATOMICWORD_COMPAT_H_
+#endif  // MINI_CHROMIUM_BASE_ATOMICOPS_INTERNALS_ATOMICWORD_COMPAT_H_
