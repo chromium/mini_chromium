@@ -39,10 +39,11 @@ const char* const log_severity_names[] = {
   "FATAL"
 };
 
+}  // namespace
+
 #if defined(OS_WIN)
 std::string SystemErrorCodeToString(unsigned long error_code) {
-  const int kErrorMessageBufferSize = 256;
-  char msgbuf[kErrorMessageBufferSize];
+  char msgbuf[256];
   DWORD flags = FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS |
                 FORMAT_MESSAGE_MAX_WIDTH_MASK;
   DWORD len = FormatMessageA(flags, NULL, error_code, 0, msgbuf,
@@ -54,8 +55,6 @@ std::string SystemErrorCodeToString(unsigned long error_code) {
                             GetLastError(), error_code);
 }
 #endif  // OS_WIN
-
-}  // namespace
 
 LogMessage::LogMessage(const char* function,
                        const char* file_path,

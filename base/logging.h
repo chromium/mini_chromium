@@ -44,6 +44,7 @@ static inline int GetVlogLevel(const char*) {
 // This is just ::GetLastError, but out-of-line to avoid including windows.h in
 // such a widely used place.
 unsigned long GetLastSystemErrorCode();
+std::string SystemErrorCodeToString(unsigned long error_code);
 #elif defined(OS_POSIX)
 static inline int GetLastSystemErrorCode() {
   return errno;
