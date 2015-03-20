@@ -36,7 +36,7 @@ static inline int GetMinLogLevel() {
   return LOG_INFO;
 }
 
-static inline int GetVlogLevel(const char* file) {
+static inline int GetVlogLevel(const char*) {
   return std::numeric_limits<int>::max();
 }
 

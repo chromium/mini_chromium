@@ -112,8 +112,8 @@ struct DefaultDeleter {
     // Note, the is_convertible<U*, T*> check also ensures that U is not an
     // array. T is guaranteed to be a non-array, so any U* where U is an array
     // cannot convert to T*.
-    enum { T_must_be_complete = sizeof(T) };
-    enum { U_must_be_complete = sizeof(U) };
+    enum { T_must_be_complete = sizeof(*this) };
+    enum { U_must_be_complete = sizeof(other) };
     static_assert(base::is_convertible<U*, T*>::value,
                   "U ptr must implicitly convert to T ptr");
   }
