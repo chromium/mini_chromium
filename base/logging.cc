@@ -39,7 +39,17 @@ const char* const log_severity_names[] = {
   "FATAL"
 };
 
+LogMessageHandlerFunction g_log_message_handler = nullptr;
+
 }  // namespace
+
+void SetLogMessageHandler(LogMessageHandlerFunction log_message_handler) {
+  g_log_message_handler = log_message_handler;
+}
+
+LogMessageHandlerFunction GetLogMessageHandler() {
+  return g_log_message_handler;
+}
 
 #if defined(OS_WIN)
 std::string SystemErrorCodeToString(unsigned long error_code) {
@@ -60,16 +70,24 @@ LogMessage::LogMessage(const char* function,
                        const char* file_path,
                        int line,
                        LogSeverity severity)
-    : severity_(severity) {
-  Init(function, file_path, line);
+    : stream_(),
+      file_path_(file_path),
+      message_start_(0),
+      line_(line),
+      severity_(severity) {
+  Init(function);
 }
 
 LogMessage::LogMessage(const char* function,
                        const char* file_path,
                        int line,
                        std::string* result)
-    : severity_(LOG_FATAL) {
-  Init(function, file_path, line);
+    : stream_(),
+      file_path_(file_path),
+      message_start_(0),
+      line_(line),
+      severity_(LOG_FATAL) {
+  Init(function);
   stream_ << "Check failed: " << *result << ". ";
   delete result;
 }
@@ -77,6 +95,13 @@ LogMessage::LogMessage(const char* function,
 LogMessage::~LogMessage() {
   stream_ << std::endl;
   std::string str_newline(stream_.str());
+
+  if (g_log_message_handler &&
+      g_log_message_handler(
+          severity_, file_path_, line_, message_start_, str_newline)) {
+    return;
+  }
+
   fprintf(stderr, "%s", str_newline.c_str());
   fflush(stderr);
   if (severity_ == LOG_FATAL) {
@@ -92,15 +117,15 @@ LogMessage::~LogMessage() {
   }
 }
 
-void LogMessage::Init(const char* function,
-                      const std::string& file_path,
-                      int line) {
-  std::string file_name;
-  size_t last_slash = file_path.find_last_of('/');
+void LogMessage::Init(const char* function) {
+  std::string file_name(file_path_);
+#if defined(OS_WIN)
+  size_t last_slash = file_name.find_last_of("\\/");
+#else
+  size_t last_slash = file_name.find_last_of('/');
+#endif
   if (last_slash != std::string::npos) {
-    file_name.assign(file_path.substr(last_slash + 1));
-  } else {
-    file_name.assign(file_path);
+    file_name.assign(file_name.substr(last_slash + 1));
   }
 
 #if defined(OS_POSIX)
@@ -126,9 +151,9 @@ void LogMessage::Init(const char* function,
           << std::setfill('0');
 
 #if defined(OS_POSIX)
-  struct timeval tv;
+  timeval tv;
   gettimeofday(&tv, NULL);
-  struct tm local_time;
+  tm local_time;
   localtime_r(&tv.tv_sec, &local_time);
   stream_ << std::setw(4) << local_time.tm_year + 1900
           << std::setw(2) << local_time.tm_mon + 1
@@ -164,8 +189,10 @@ void LogMessage::Init(const char* function,
   stream_ << ' '
           << file_name
           << ':'
-          << line
+          << line_
           << "] ";
+
+  message_start_ = stream_.str().size();
 }
 
 #if defined(OS_WIN)

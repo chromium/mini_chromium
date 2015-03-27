@@ -32,6 +32,15 @@ const LogSeverity LOG_DFATAL = LOG_ERROR;
 const LogSeverity LOG_DFATAL = LOG_FATAL;
 #endif
 
+typedef bool (*LogMessageHandlerFunction)(LogSeverity severity,
+                                          const char* file_poath,
+                                          int line,
+                                          size_t message_start,
+                                          const std::string& string);
+
+void SetLogMessageHandler(LogMessageHandlerFunction log_message_handler);
+LogMessageHandlerFunction GetLogMessageHandler();
+
 static inline int GetMinLogLevel() {
   return LOG_INFO;
 }
@@ -102,9 +111,12 @@ class LogMessage {
   std::ostream& stream() { return stream_; }
 
  private:
-  void Init(const char* function, const std::string& file_path, int line);
+  void Init(const char* function);
 
   std::ostringstream stream_;
+  const char* file_path_;
+  size_t message_start_;
+  const int line_;
   LogSeverity severity_;
 
   DISALLOW_COPY_AND_ASSIGN(LogMessage);
