@@ -107,6 +107,10 @@
         'template_util.h',
         'third_party/icu/icu_utf.cc',
         'third_party/icu/icu_utf.h',
+        'threading/thread_local_storage.cc',
+        'threading/thread_local_storage.h',
+        'threading/thread_local_storage_posix.cc',
+        'threading/thread_local_storage_win.cc',
         '../build/build_config.h',
       ],
       'direct_dependent_settings': {
