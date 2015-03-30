@@ -34,7 +34,9 @@
 #ifndef BASE_MEMORY_ALIGNED_MEMORY_H_
 #define BASE_MEMORY_ALIGNED_MEMORY_H_
 
-#include "base/basictypes.h"
+#include <stdint.h>
+#include <sys/types.h>
+
 #include "base/compiler_specific.h"
 
 #if defined(COMPILER_MSVC)
