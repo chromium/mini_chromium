@@ -15,7 +15,9 @@ int vsnprintf(char* buffer, size_t size, const char* format, va_list arguments)
 
 }  // namespace base
 
-#if defined(OS_POSIX)
+#if defined(OS_WIN)
+#include "base/strings/string_util_win.h"
+#elif defined(OS_POSIX)
 #include "base/strings/string_util_posix.h"
 #endif
 

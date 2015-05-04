@@ -92,6 +92,7 @@
         'strings/string_util.h',
         'strings/string_util_posix.h',
         'strings/string_util_win.cc',
+        'strings/string_util_win.h',
         'strings/stringprintf.cc',
         'strings/stringprintf.h',
         'strings/sys_string_conversions.h',
