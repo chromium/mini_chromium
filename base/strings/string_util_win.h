@@ -5,11 +5,7 @@
 #ifndef BASE_STRINGS_STRING_UTIL_WIN_H_
 #define BASE_STRINGS_STRING_UTIL_WIN_H_
 
-#include <stdio.h>
 #include <string.h>
-#include <wchar.h>
-
-#include "base/strings/string16.h"
 
 namespace base {
 
@@ -25,10 +21,6 @@ inline int strcasecmp(const char* s1, const char* s2) {
 
 inline int strncasecmp(const char* s1, const char* s2, size_t count) {
   return _strnicmp(s1, s2, count);
-}
-
-inline int strncmp16(const char16* s1, const char16* s2, size_t count) {
-  return wcsncmp(s1, s2, count);
 }
 
 }  // namespace base
