@@ -198,7 +198,7 @@ ThreadLocalStorage::Slot::Slot(TLSDestructorFunc destructor) {
   Initialize(destructor);
 }
 
-bool ThreadLocalStorage::StaticSlot::Initialize(TLSDestructorFunc destructor) {
+void ThreadLocalStorage::StaticSlot::Initialize(TLSDestructorFunc destructor) {
   PlatformThreadLocalStorage::TLSKey key =
       base::subtle::NoBarrier_Load(&g_native_tls_key);
   if (key == PlatformThreadLocalStorage::TLS_KEY_OUT_OF_INDEXES ||
@@ -213,7 +213,6 @@ bool ThreadLocalStorage::StaticSlot::Initialize(TLSDestructorFunc destructor) {
   // Setup our destructor.
   g_tls_destructors[slot_] = destructor;
   initialized_ = true;
-  return true;
 }
 
 void ThreadLocalStorage::StaticSlot::Free() {
