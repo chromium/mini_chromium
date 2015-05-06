@@ -8,13 +8,14 @@
 #include <string>
 
 #include "base/strings/string16.h"
+#include "base/strings/string_piece.h"
 
 namespace base {
 
 bool UTF8ToUTF16(const char* src, size_t src_len, string16* output);
-string16 UTF8ToUTF16(const std::string& utf8);
+string16 UTF8ToUTF16(const StringPiece& utf8);
 bool UTF16ToUTF8(const char16* src, size_t src_len, std::string* output);
-std::string UTF16ToUTF8(const string16& utf16);
+std::string UTF16ToUTF8(const StringPiece16& utf16);
 
 }  // namespace
 

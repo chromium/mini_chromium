@@ -41,7 +41,7 @@ bool UTF8ToUTF16(const char* src, size_t src_len, string16* output) {
   return ConvertUnicode(src, src_len, output);
 }
 
-string16 UTF8ToUTF16(const std::string& utf8) {
+string16 UTF8ToUTF16(const StringPiece& utf8) {
   string16 ret;
   UTF8ToUTF16(utf8.data(), utf8.length(), &ret);
   return ret;
@@ -52,7 +52,7 @@ bool UTF16ToUTF8(const char16* src, size_t src_len, std::string* output) {
   return ConvertUnicode(src, src_len, output);
 }
 
-std::string UTF16ToUTF8(const string16& utf16) {
+std::string UTF16ToUTF8(const StringPiece16& utf16) {
   std::string ret;
   UTF16ToUTF8(utf16.data(), utf16.length(), &ret);
   return ret;
