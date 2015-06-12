@@ -2,12 +2,14 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include "base/safe_strerror_posix.h"
+#include "base/posix/safe_strerror.h"
 
 #include <stdio.h>
 #include <string.h>
 
 #include "base/basictypes.h"
+
+namespace base {
 
 // The Chromium implementation of this file is concerned with two distinct
 // interfaces to strerror_r, and in the case of the POSIX interface,
@@ -40,3 +42,5 @@ std::string safe_strerror(int err) {
   safe_strerror_r(err, buf, arraysize(buf));
   return std::string(buf);
 }
+
+}  // namespace base

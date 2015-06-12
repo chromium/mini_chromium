@@ -12,7 +12,7 @@
 #if defined(OS_POSIX)
 #include <sys/time.h>
 #include <unistd.h>
-#include "base/safe_strerror_posix.h"
+#include "base/posix/safe_strerror.h"
 #endif  // OS_POSIX
 
 #if defined(OS_MACOSX)
@@ -227,7 +227,7 @@ ErrnoLogMessage::ErrnoLogMessage(const char* function,
 
 ErrnoLogMessage::~ErrnoLogMessage() {
   stream() << ": "
-           << safe_strerror(err_)
+           << base::safe_strerror(err_)
            << " ("
            << err_
            << ")";
