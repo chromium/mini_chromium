@@ -15,14 +15,6 @@ inline char* strdup(const char* str) {
   return _strdup(str);
 }
 
-inline int strcasecmp(const char* s1, const char* s2) {
-  return _stricmp(s1, s2);
-}
-
-inline int strncasecmp(const char* s1, const char* s2, size_t count) {
-  return _strnicmp(s1, s2, count);
-}
-
 }  // namespace base
 
 #endif  // BASE_STRINGS_STRING_UTIL_WIN_H_
