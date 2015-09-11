@@ -205,6 +205,17 @@
           'WIN32_LEAN_AND_MEAN',
         ],
         'conditions': [
+          ['target_arch=="ia32"', {
+            'msvs_settings': {
+              'VCLibrarianTool': {
+                'TargetMachine': '1',  # x86.
+              },
+              'VCLinkerTool': {
+                'MinimumRequiredVersion': '5.01',  # XP.
+                'TargetMachine': '1',  # x86.
+              },
+            },
+          }],
           ['target_arch=="x64"', {
             'msvs_configuration_platform': 'x64',
             'msvs_settings': {
