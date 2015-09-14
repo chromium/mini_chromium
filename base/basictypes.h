@@ -44,11 +44,6 @@ char (&ArraySizeHelper(const T (&array)[N]))[N];
     ((sizeof(a) / sizeof(*(a))) / \
      static_cast<size_t>(!(sizeof(a) % sizeof(*(a)))))
 
-template<typename To, typename From>
-inline To implicit_cast(const From& f) {
-  return f;
-}
-
 template <typename Dest, typename Source>
 inline Dest bit_cast(const Source& source) {
   static_assert(sizeof(Dest) == sizeof(Source), "sizes must be equal");
