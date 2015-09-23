@@ -291,6 +291,7 @@
           ['OS=="win"', {
             'msvs_settings': {
               'VCCLCompilerTool': {
+                'RuntimeLibrary': '0',  # /MT.
                 'Optimization': '3',
                 'AdditionalOptions': [
                   '/Zo',  # Improve debugging optimized builds.
@@ -321,9 +322,14 @@
           ['OS=="win"', {
             'msvs_settings': {
               'VCCLCompilerTool': {
+                'RuntimeLibrary': '1',  # /MTd.
                 'Optimization': '0',
               },
             },
+            'defines': [
+              '_DEBUG',
+              '_ITERATOR_DEBUG_LEVEL=2',
+            ],
           }],
 
         ],
