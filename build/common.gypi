@@ -183,6 +183,7 @@
           },
           'VCLinkerTool': {
             'GenerateDebugInformation': 'true',
+            'RandomizedBaseAddress': '2',  # /DYNAMICBASE.
             'SubSystem': '1',
           },
         },
