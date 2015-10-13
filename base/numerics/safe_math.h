@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef MINI_CHROMIUM_BASE_SAFE_MATH_H_
-#define MINI_CHROMIUM_BASE_SAFE_MATH_H_
+#ifndef MINI_CHROMIUM_BASE_NUMERICS_SAFE_MATH_H_
+#define MINI_CHROMIUM_BASE_NUMERICS_SAFE_MATH_H_
 
 #include "base/numerics/safe_math_impl.h"
 
@@ -63,7 +63,14 @@ class CheckedNumeric {
   CheckedNumeric(Src value)
       : state_(value) {
     static_assert(std::numeric_limits<Src>::is_specialized,
-                  "argument must be numeric");
+                  "Argument must be numeric.");
+  }
+
+  // This is not an explicit constructor because we want a seamless conversion
+  // from StrictNumeric types.
+  template <typename Src>
+  CheckedNumeric(StrictNumeric<Src> value)
+      : state_(static_cast<Src>(value)) {
   }
 
   // IsValid() is the public API to test if a CheckedNumeric is currently valid.
@@ -87,7 +94,7 @@ class CheckedNumeric {
   // we provide an easy method for extracting them directly, without a risk of
   // crashing on a CHECK.
   T ValueFloating() const {
-    static_assert(std::numeric_limits<T>::is_iec559, "argument must be float");
+    static_assert(std::numeric_limits<T>::is_iec559, "Argument must be float.");
     return CheckedNumeric<T>::cast(*this).ValueUnsafe();
   }
 
@@ -138,6 +145,14 @@ class CheckedNumeric {
     return CheckedNumeric<T>(value, validity);
   }
 
+  // This function is available only for integral types. It returns an unsigned
+  // integer of the same width as the source type, containing the absolute value
+  // of the source, and properly handling signed min.
+  CheckedNumeric<typename UnsignedOrFloatForSize<T>::type> UnsignedAbs() const {
+    return CheckedNumeric<typename UnsignedOrFloatForSize<T>::type>(
+        CheckedUnsignedAbs(state_.value()), state_.validity());
+  }
+
   CheckedNumeric& operator++() {
     *this += 1;
     return *this;
@@ -181,6 +196,16 @@ class CheckedNumeric {
   static const CheckedNumeric<T>& cast(const CheckedNumeric<T>& u) { return u; }
 
  private:
+  template <typename NumericType>
+  struct UnderlyingType {
+    using type = NumericType;
+  };
+
+  template <typename NumericType>
+  struct UnderlyingType<CheckedNumeric<NumericType>> {
+    using type = NumericType;
+  };
+
   CheckedNumericState<T> state_;
 };
 
@@ -205,9 +230,10 @@ class CheckedNumeric {
           lhs.ValueUnsafe() OP rhs.ValueUnsafe(),                             \
           GetRangeConstraint(rhs.validity() | lhs.validity()));               \
     RangeConstraint validity = RANGE_VALID;                                   \
-    T result = Checked##NAME(static_cast<Promotion>(lhs.ValueUnsafe()),       \
-                             static_cast<Promotion>(rhs.ValueUnsafe()),       \
-                             &validity);                                      \
+    T result = static_cast<T>(Checked##NAME(                                  \
+        static_cast<Promotion>(lhs.ValueUnsafe()),                            \
+        static_cast<Promotion>(rhs.ValueUnsafe()),                            \
+        &validity));                                                          \
     return CheckedNumeric<Promotion>(                                         \
         result,                                                               \
         GetRangeConstraint(validity | lhs.validity() | rhs.validity()));      \
@@ -216,7 +242,8 @@ class CheckedNumeric {
   template <typename T>                                                       \
   template <typename Src>                                                     \
   CheckedNumeric<T>& CheckedNumeric<T>::operator COMPOUND_OP(Src rhs) {       \
-    *this = CheckedNumeric<T>::cast(*this) OP CheckedNumeric<Src>::cast(rhs); \
+    *this = CheckedNumeric<T>::cast(*this)                                    \
+        OP CheckedNumeric<typename UnderlyingType<Src>::type>::cast(rhs);     \
     return *this;                                                             \
   }                                                                           \
   /* Binary arithmetic operator for CheckedNumeric of different type. */      \
@@ -268,4 +295,4 @@ using internal::CheckedNumeric;
 
 }  // namespace base
 
-#endif  // MINI_CHROMIUM_BASE_SAFE_MATH_H_
+#endif  // MINI_CHROMIUM_BASE_NUMERICS_SAFE_MATH_H_
