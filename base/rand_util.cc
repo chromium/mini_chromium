@@ -82,19 +82,18 @@ uint64_t RandGenerator(uint64_t range) {
 }
 
 double RandDouble() {
-  const int kMantissaBits = std::numeric_limits<double>::digits;
-  uint64_t random_bits = RandUint64();
-
   static_assert(std::numeric_limits<double>::radix == 2,
                 "otherwise use scalbn");
-  uint64_t mantissa_bits = random_bits & ((UINT64_C(1) << kMantissaBits) - 1);
+  static_assert(std::numeric_limits<double>::digits <
+                std::numeric_limits<uint64_t>::digits,
+                "integer type must be wider than floating-point mantissa");
 
-  double mantissa;
-  static_assert(std::numeric_limits<uint64_t>::digits >= kMantissaBits,
-                "uint64 vs double");
-  memcpy(&mantissa, &mantissa_bits, sizeof(mantissa));
+  uint64_t random_bits = RandUint64();
+  const int kMantissaBits = std::numeric_limits<double>::digits;
 
-  double result = std::ldexp(random_bits, -1 * kMantissaBits);
+  uint64_t mantissa = random_bits & ((UINT64_C(1) << kMantissaBits) - 1);
+
+  double result = std::ldexp(mantissa, -1 * kMantissaBits);
 
   DCHECK_GE(result, 0.0);
   DCHECK_LT(result, 1.0);
