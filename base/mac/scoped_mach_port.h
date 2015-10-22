@@ -37,36 +37,11 @@ struct PortSetTraits {
 
 }  // namespace internal
 
-class ScopedMachSendRight
-    : public ScopedGeneric<mach_port_t, internal::SendRightTraits> {
- public:
-  explicit ScopedMachSendRight(mach_port_t port = traits_type::InvalidValue())
-      : ScopedGeneric(port) {
-  }
-
-  operator mach_port_t() const { return get(); }
-};
-
-class ScopedMachReceiveRight
-    : public ScopedGeneric<mach_port_t, internal::ReceiveRightTraits> {
- public:
-  explicit ScopedMachReceiveRight(
-      mach_port_t port = traits_type::InvalidValue())
-      : ScopedGeneric(port) {
-  }
-
-  operator mach_port_t() const { return get(); }
-};
-
-class ScopedMachPortSet
-    : public ScopedGeneric<mach_port_t, internal::PortSetTraits> {
- public:
-  explicit ScopedMachPortSet(mach_port_t port = traits_type::InvalidValue())
-      : ScopedGeneric(port) {
-  }
-
-  operator mach_port_t() const { return get(); }
-};
+using ScopedMachSendRight =
+    ScopedGeneric<mach_port_t, internal::SendRightTraits>;
+using ScopedMachReceiveRight =
+    ScopedGeneric<mach_port_t, internal::ReceiveRightTraits>;
+using ScopedMachPortSet = ScopedGeneric<mach_port_t, internal::PortSetTraits>;
 
 }  // namespace mac
 }  // namespace base
