@@ -196,7 +196,6 @@
           4530,  # Exceptions are disabled.
           4702,  # Unreachable code. https://crbug.com/346399
           4706,  # Assignment within conditional expression.
-          4800,  # Forcing value to bool.
           4996,  # 'X' was declared deprecated.
         ],
         'defines': [
