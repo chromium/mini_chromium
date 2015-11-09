@@ -26,6 +26,7 @@
 
 #include "base/strings/string_util.h"
 #include "base/strings/stringprintf.h"
+#include "base/strings/utf_string_conversions.h"
 
 namespace logging {
 
@@ -56,13 +57,14 @@ std::string SystemErrorCodeToString(unsigned long error_code) {
   char msgbuf[256];
   DWORD flags = FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS |
                 FORMAT_MESSAGE_MAX_WIDTH_MASK;
-  DWORD len = FormatMessageA(flags, NULL, error_code, 0, msgbuf,
-                             arraysize(msgbuf), NULL);
+  DWORD len = FormatMessageA(
+      flags, NULL, error_code, 0, msgbuf, arraysize(msgbuf), NULL);
   if (len) {
     return msgbuf + base::StringPrintf(" (0x%X)", error_code);
   }
   return base::StringPrintf("Error (0x%X) while retrieving error. (0x%X)",
-                            GetLastError(), error_code);
+                            GetLastError(),
+                            error_code);
 }
 #endif  // OS_WIN
 
@@ -104,6 +106,9 @@ LogMessage::~LogMessage() {
 
   fprintf(stderr, "%s", str_newline.c_str());
   fflush(stderr);
+#if defined(OS_WIN)
+  OutputDebugString(base::UTF8ToUTF16(str_newline).c_str());
+#endif
   if (severity_ == LOG_FATAL) {
 #ifndef NDEBUG
     abort();
@@ -198,7 +203,7 @@ void LogMessage::Init(const char* function) {
 #if defined(OS_WIN)
 
 unsigned long GetLastSystemErrorCode() {
-  return ::GetLastError();
+  return GetLastError();
 }
 
 Win32ErrorLogMessage::Win32ErrorLogMessage(const char* function,
@@ -208,7 +213,6 @@ Win32ErrorLogMessage::Win32ErrorLogMessage(const char* function,
                                            unsigned long err)
     : LogMessage(function, file_path, line, severity), err_(err) {
 }
-
 
 Win32ErrorLogMessage::~Win32ErrorLogMessage() {
   stream() << ": " << SystemErrorCodeToString(err_);
