@@ -54,15 +54,21 @@ LogMessageHandlerFunction GetLogMessageHandler() {
 
 #if defined(OS_WIN)
 std::string SystemErrorCodeToString(unsigned long error_code) {
-  char msgbuf[256];
+  wchar_t msgbuf[256];
   DWORD flags = FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS |
                 FORMAT_MESSAGE_MAX_WIDTH_MASK;
-  DWORD len = FormatMessageA(
-      flags, NULL, error_code, 0, msgbuf, arraysize(msgbuf), NULL);
+  DWORD len = FormatMessage(
+      flags, nullptr, error_code, 0, msgbuf, arraysize(msgbuf), nullptr);
   if (len) {
-    return msgbuf + base::StringPrintf(" (0x%X)", error_code);
+    // Most system messages end in a period and a space. Remove the space if
+    // it’s there, because the following StringPrintf() includes one.
+    if (len >= 1 && msgbuf[len - 1] == ' ') {
+      msgbuf[len - 1] = '\0';
+    }
+    return base::StringPrintf("%s (%u)",
+                              base::UTF16ToUTF8(msgbuf).c_str(), error_code);
   }
-  return base::StringPrintf("Error (0x%X) while retrieving error. (0x%X)",
+  return base::StringPrintf("Error %u while retrieving error %u",
                             GetLastError(),
                             error_code);
 }
@@ -157,7 +163,7 @@ void LogMessage::Init(const char* function) {
 
 #if defined(OS_POSIX)
   timeval tv;
-  gettimeofday(&tv, NULL);
+  gettimeofday(&tv, nullptr);
   tm local_time;
   localtime_r(&tv.tv_sec, &local_time);
   stream_ << std::setw(4) << local_time.tm_year + 1900
