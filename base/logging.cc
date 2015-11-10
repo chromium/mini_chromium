@@ -10,12 +10,16 @@
 #include <iomanip>
 
 #if defined(OS_POSIX)
+#include <paths.h>
+#include <sys/stat.h>
 #include <sys/time.h>
 #include <unistd.h>
 #include "base/posix/safe_strerror.h"
 #endif  // OS_POSIX
 
 #if defined(OS_MACOSX)
+#include <asl.h>
+#include <CoreFoundation/CoreFoundation.h>
 #include <pthread.h>
 #elif defined(OS_LINUX)
 #include <sys/syscall.h>
@@ -112,9 +116,117 @@ LogMessage::~LogMessage() {
 
   fprintf(stderr, "%s", str_newline.c_str());
   fflush(stderr);
-#if defined(OS_WIN)
+
+#if defined(OS_MACOSX)
+  const bool log_via_asl = []() {
+    struct stat stderr_stat;
+    if (fstat(fileno(stderr), &stderr_stat) == -1) {
+      return true;
+    }
+    if (!S_ISCHR(stderr_stat.st_mode)) {
+      return false;
+    }
+
+    struct stat dev_null_stat;
+    if (stat(_PATH_DEVNULL, &dev_null_stat) == -1) {
+      return true;
+    }
+
+    return !S_ISCHR(dev_null_stat.st_mode) ||
+           stderr_stat.st_rdev == dev_null_stat.st_rdev;
+  }();
+
+  if (log_via_asl) {
+    CFBundleRef main_bundle = CFBundleGetMainBundle();
+    CFStringRef main_bundle_id_cf =
+        main_bundle ? CFBundleGetIdentifier(main_bundle) : nullptr;
+
+    std::string main_bundle_id_buf;
+    const char* asl_facility = nullptr;
+
+    if (main_bundle_id_cf) {
+      asl_facility =
+          CFStringGetCStringPtr(main_bundle_id_cf, kCFStringEncodingUTF8);
+      if (!asl_facility) {
+        // 1024 is from 10.10.5 CF-1153.18/CFBundle.c __CFBundleMainID__ (at
+        // the point of use, not declaration).
+        main_bundle_id_buf.resize(1024);
+        if (!CFStringGetCString(main_bundle_id_cf,
+                                &main_bundle_id_buf[0],
+                                main_bundle_id_buf.size(),
+                                kCFStringEncodingUTF8)) {
+          main_bundle_id_buf.clear();
+        } else {
+          asl_facility = &main_bundle_id_buf[0];
+        }
+      }
+    }
+
+    if (!asl_facility) {
+      asl_facility = "com.apple.console";
+    }
+
+    class ASLClient {
+     public:
+      explicit ASLClient(const char* asl_facility)
+          : client_(asl_open(nullptr, asl_facility, ASL_OPT_NO_DELAY)) {}
+      ~ASLClient() { asl_close(client_); }
+
+      aslclient get() const { return client_; }
+
+     private:
+      aslclient client_;
+      DISALLOW_COPY_AND_ASSIGN(ASLClient);
+    } asl_client(asl_facility);
+
+    class ASLMessage {
+     public:
+      ASLMessage() : message_(asl_new(ASL_TYPE_MSG)) {}
+      ~ASLMessage() { asl_free(message_); }
+
+      aslmsg get() const { return message_; }
+
+     private:
+      aslmsg message_;
+      DISALLOW_COPY_AND_ASSIGN(ASLMessage);
+    } asl_message;
+
+    // By default, messages are only readable by the admin group. Explicitly
+    // make them readable by the user generating the messages.
+    char euid_string[12];
+    snprintf(euid_string, arraysize(euid_string), "%d", geteuid());
+    asl_set(asl_message.get(), ASL_KEY_READ_UID, euid_string);
+
+    // Map Chrome log severities to ASL log levels.
+    const char* const asl_level_string = [](LogSeverity severity) {
+#define ASL_LEVEL_STR(level) ASL_LEVEL_STR_X(level)
+#define ASL_LEVEL_STR_X(level) #level
+        switch (severity) {
+          case LOG_INFO:
+            return ASL_LEVEL_STR(ASL_LEVEL_INFO);
+          case LOG_WARNING:
+            return ASL_LEVEL_STR(ASL_LEVEL_WARNING);
+          case LOG_ERROR:
+            return ASL_LEVEL_STR(ASL_LEVEL_ERR);
+          case LOG_FATAL:
+            return ASL_LEVEL_STR(ASL_LEVEL_CRIT);
+          default:
+            return severity < 0 ? ASL_LEVEL_STR(ASL_LEVEL_DEBUG)
+                                : ASL_LEVEL_STR(ASL_LEVEL_NOTICE);
+        }
+#undef ASL_LEVEL_STR
+#undef ASL_LEVEL_STR_X
+    }(severity_);
+    asl_set(asl_message.get(), ASL_KEY_LEVEL, asl_level_string);
+
+    asl_set(asl_message.get(), ASL_KEY_MSG, str_newline.c_str());
+
+    asl_send(asl_client.get(), asl_message.get());
+  }
+#elif defined(OS_WIN)
   OutputDebugString(base::UTF8ToUTF16(str_newline).c_str());
-#endif
+#endif  // OS_MACOSX
+
   if (severity_ == LOG_FATAL) {
 #ifndef NDEBUG
     abort();
