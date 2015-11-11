@@ -180,6 +180,9 @@
             'RuntimeTypeInfo': 'false',
             'BufferSecurityCheck': 'true',
             'EnableFunctionLevelLinking': 'true',
+            'AdditionalOptions': [
+              '/bigobj',  # Maximum 2^32 sections in .obj files (default 2^16).
+            ],
           },
           'VCLinkerTool': {
             'GenerateDebugInformation': 'true',
