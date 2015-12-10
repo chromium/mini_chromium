@@ -71,7 +71,6 @@
         'memory/aligned_memory.h',
         'memory/scoped_policy.h',
         'memory/scoped_ptr.h',
-        'move.h',
         'numerics/safe_conversions.h',
         'numerics/safe_conversions_impl.h',
         'numerics/safe_math.h',
