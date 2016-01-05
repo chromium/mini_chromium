@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_BASE_THREADING_THREAD_LOCAL_STORAGE_H_
 #define MINI_CHROMIUM_BASE_THREADING_THREAD_LOCAL_STORAGE_H_
 
-#include "base/basictypes.h"
+#include "base/macros.h"
 #include "build/build_config.h"
 
 #if defined(OS_WIN)

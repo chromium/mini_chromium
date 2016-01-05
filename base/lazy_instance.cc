@@ -5,7 +5,7 @@
 #include "base/lazy_instance.h"
 
 #include "base/atomicops.h"
-#include "base/basictypes.h"
+#include "base/macros.h"
 
 #if defined(OS_POSIX)
 #include <sched.h>

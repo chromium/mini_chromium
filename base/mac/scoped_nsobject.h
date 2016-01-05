@@ -7,8 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
-#include "base/basictypes.h"
 #include "base/compiler_specific.h"
+#include "base/macros.h"
 #include "base/memory/scoped_policy.h"
 
 namespace base {

@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_BASE_AUTO_RESET_H_
 #define MINI_CHROMIUM_BASE_AUTO_RESET_H_
 
-#include "base/basictypes.h"
+#include "base/macros.h"
 
 namespace base {
 

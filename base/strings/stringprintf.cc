@@ -8,8 +8,8 @@
 
 #include <vector>
 
-#include "base/basictypes.h"
 #include "base/logging.h"
+#include "base/macros.h"
 #include "base/scoped_clear_errno.h"
 #include "base/strings/string_util.h"
 

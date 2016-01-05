@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef MINI_CHROMIUM_BASE_BASICTYPES_H_
-#define MINI_CHROMIUM_BASE_BASICTYPES_H_
+#ifndef MINI_CHROMIUM_BASE_MACROS_H_
+#define MINI_CHROMIUM_BASE_MACROS_H_
 
 #include <string.h>
 #include <sys/types.h>
@@ -40,10 +40,6 @@ char (&ArraySizeHelper(const T (&array)[N]))[N];
 
 #define arraysize(array) (sizeof(ArraySizeHelper(array)))
 
-#define ARRAYSIZE_UNSAFE(a) \
-    ((sizeof(a) / sizeof(*(a))) / \
-     static_cast<size_t>(!(sizeof(a) % sizeof(*(a)))))
-
 template <typename Dest, typename Source>
 inline Dest bit_cast(const Source& source) {
   static_assert(sizeof(Dest) == sizeof(Source), "sizes must be equal");
@@ -57,4 +53,4 @@ template<typename T>
 inline void ignore_result(const T&) {
 }
 
-#endif  // MINI_CHROMIUM_BASE_BASICTYPES_H_
+#endif  // MINI_CHROMIUM_BASE_MACROS_H_

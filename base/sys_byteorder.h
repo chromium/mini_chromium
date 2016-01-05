@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_BASE_SYS_BYTEORDER_H_
 #define MINI_CHROMIUM_BASE_SYS_BYTEORDER_H_
 
-#include "base/basictypes.h"
+#include "base/macros.h"
 
 #if defined(OS_MACOSX)
 #include <libkern/OSByteOrder.h>

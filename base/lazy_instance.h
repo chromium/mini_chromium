@@ -36,8 +36,8 @@
 #include <new>
 
 #include "base/atomicops.h"
-#include "base/basictypes.h"
 #include "base/logging.h"
+#include "base/macros.h"
 #include "base/memory/aligned_memory.h"
 
 // LazyInstance uses its own struct initializer-list style static

@@ -9,8 +9,8 @@
 
 #include <algorithm>
 
-#include "base/basictypes.h"
 #include "base/logging.h"
+#include "base/macros.h"
 
 // Use ScopedMachVM to supervise ownership of pages in the current process
 // through the Mach VM subsystem. Pages allocated with vm_allocate can be

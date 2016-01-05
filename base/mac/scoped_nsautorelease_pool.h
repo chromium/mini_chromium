@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_BASE_MAC_SCOPED_NSAUTORELEASE_POOL_H_
 #define MINI_CHROMIUM_BASE_MAC_SCOPED_NSAUTORELEASE_POOL_H_
 
-#include "base/basictypes.h"
+#include "base/macros.h"
 
 #if defined(OS_MACOSX)
 #if defined(__OBJC__)

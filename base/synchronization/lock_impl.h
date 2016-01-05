@@ -13,7 +13,7 @@
 #include <pthread.h>
 #endif
 
-#include "base/basictypes.h"
+#include "base/macros.h"
 
 namespace base {
 namespace internal {
