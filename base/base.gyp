@@ -66,6 +66,7 @@
         'mac/scoped_nsautorelease_pool.h',
         'mac/scoped_nsautorelease_pool.mm',
         'mac/scoped_nsobject.h',
+        'mac/scoped_typeref.h',
         'macros.h',
         'memory/aligned_memory.cc',
         'memory/aligned_memory.h',

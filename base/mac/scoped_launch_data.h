@@ -7,78 +7,28 @@
 
 #include <launch.h>
 
-#include <algorithm>
-
-#include "base/compiler_specific.h"
-#include "base/macros.h"
-
-namespace {
-
-inline void LaunchDataFree(launch_data_t data) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-  return launch_data_free(data);
-#pragma clang diagnostic pop
-}
-
-}  // namespace
+#include "base/scoped_generic.h"
 
 namespace base {
 namespace mac {
 
-// Just like scoped_ptr<> but for launch_data_t.
-class ScopedLaunchData {
- public:
-  typedef launch_data_t element_type;
+namespace internal {
 
-  explicit ScopedLaunchData(launch_data_t object = NULL)
-      : object_(object) {
+struct ScopedLaunchDataTraits {
+  static launch_data_t InvalidValue() { return nullptr; }
+
+  static void Free(launch_data_t ldt) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    launch_data_free(ldt);
+#pragma clang diagnostic pop
   }
-
-  ~ScopedLaunchData() {
-    if (object_)
-      LaunchDataFree(object_);
-  }
-
-  void reset(launch_data_t object = NULL) {
-    if (object != object_) {
-      if (object_)
-        LaunchDataFree(object_);
-      object_ = object;
-    }
-  }
-
-  bool operator==(launch_data_t that) const {
-    return object_ == that;
-  }
-
-  bool operator!=(launch_data_t that) const {
-    return object_ != that;
-  }
-
-  operator launch_data_t() const {
-    return object_;
-  }
-
-  launch_data_t get() const {
-    return object_;
-  }
-
-  void swap(ScopedLaunchData& that) {
-    std::swap(object_, that.object_);
-  }
-
-  launch_data_t release() WARN_UNUSED_RESULT {
-    launch_data_t temp = object_;
-    object_ = NULL;
-    return temp;
-  }
-
- private:
-  launch_data_t object_;
-
-  DISALLOW_COPY_AND_ASSIGN(ScopedLaunchData);
 };
+
+}  // namespace internal
+
+using ScopedLaunchData =
+    ScopedGeneric<launch_data_t, internal::ScopedLaunchDataTraits>;
 
 }  // namespace mac
 }  // namespace base
