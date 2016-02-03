@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "71e018e1_dee1051c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1115972
+      },
+      "writtenOn": "2016-02-03T15:29:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d133841e_418ed21d",
+      "revId": "a6cc90b81c0ef432b8589e4e75570e08604466e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "71c65832_8e59bb85",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "f1b5e8da_da6ca54c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1115972
+      },
+      "writtenOn": "2016-02-03T15:29:34Z",
+      "side": 1,
+      "message": "Continued discussion privately.",
+      "parentUuid": "71c65832_8e59bb85",
+      "revId": "a6cc90b81c0ef432b8589e4e75570e08604466e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d133841e_2193ce43",
         "filename": "build/common.gypi",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2016-02-03T14:35:07Z",
       "side": 1,
       "message": "This may also be a warning that your build environment opts into that’s not in the default set. Either that, or your compiler is behaving differently than ours. It may be more appropriate to prevent your build from pushing settings that aren’t appropriate into code that doesn’t want it.\n\nCan you show me a sample warning or two? I’m sorry if you already provided this.\n\nI don’t generally like disabling warnings here that aren’t also disabled in Chromium’s common.gypi, because it can lead to warning on things in one configuration but not another.",
+      "revId": "a6cc90b81c0ef432b8589e4e75570e08604466e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "51db1439_7ded5740",
+        "filename": "build/common.gypi",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1115972
+      },
+      "writtenOn": "2016-02-03T15:29:34Z",
+      "side": 1,
+      "message": "There are a bunch of errors that appear if I do not set this. I can understand though your reasoning. Could it be because Chrome builds i386 and not x86_64?\n\nHere is a sample:\nCompileC /Users/msarda/Library/Developer/Xcode/DerivedData/xxx_osx-gztfuyjdiytwblauiunzsuwnpzdc/Build/Intermediates/base_osx.build/Debug/base.build/Objects-normal/x86_64/thread_local_storage.o threading/thread_local_storage.cc normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler\n    cd /Users/msarda/Development/piper_crashpad/google3/third_party/mini_chromium/mini_chromium/base\n    export LANG\u003den_US.US-ASCII\n    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length\u003d0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit\u003d0 -std\u003dc++11 -Wno-trigraphs -fno-exceptions -fno-rtti -O0 -Werror -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wshorten-64-to-32 -Wnewline-eof -Wno-c++11-extensions -D_GLIBCXX_DEBUG_PEDANTIC -D_GLIBCXX_DEBUG -D_GLIBCPP_CONCEPT_CHECKS -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -fstrict-aliasing -fprofile-arcs -ftest-coverage -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min\u003d10.10 -g -fvisibility\u003dhidden -fvisibility-inlines-hidden -fno-threadsafe-statics -Wno-sign-conversion -I/Users/msarda/Library/Developer/Xcode/DerivedData/xxx_osx-gztfuyjdiytwblauiunzsuwnpzdc/Build/Products/Debug/include -I../../../.. -I.. -I/Users/msarda/Library/Developer/Xcode/DerivedData/xxx_osx-gztfuyjdiytwblauiunzsuwnpzdc/Build/Intermediates/base_osx.build/Debug/base.build/DerivedSources/x86_64 -I/Users/msarda/Library/Developer/Xcode/DerivedData/xxx_osx-gztfuyjdiytwblauiunzsuwnpzdc/Build/Intermediates/base_osx.build/Debug/base.build/DerivedSources -Wall -Wendif-labels -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wexit-time-destructors -Wheader-hygiene -Wno-selector-type-mismatch -Wsign-compare -Wstring-conversion -Wall -Wextra -Wendif-labels -Wnewline-eof -Wno-unused-parameter -Wno-missing-field-initializers -F/Users/msarda/Library/Developer/Xcode/DerivedData/xxx_osx-gztfuyjdiytwblauiunzsuwnpzdc/Build/Products/Debug -std\u003dc++11 -stdlib\u003dlibc++ -MMD -MT dependencies -MF /Users/msarda/Library/Developer/Xcode/DerivedData/xxx_osx-gztfuyjdiytwblauiunzsuwnpzdc/Build/Intermediates/base_osx.build/Debug/base.build/Objects-normal/x86_64/thread_local_storage.d --serialize-diagnostics /Users/msarda/Library/Developer/Xcode/DerivedData/xxx_osx-gztfuyjdiytwblauiunzsuwnpzdc/Build/Intermediates/base_osx.build/Debug/base.build/Objects-normal/x86_64/thread_local_storage.dia -c /Users/msarda/Development/piper_crashpad/google3/third_party/mini_chromium/mini_chromium/base/threading/thread_local_storage.cc -o /Users/msarda/Library/Developer/Xcode/DerivedData/xxx_osx-gztfuyjdiytwblauiunzsuwnpzdc/Build/Intermediates/base_osx.build/Debug/base.build/Objects-normal/x86_64/thread_local_storage.o\n\n/Users/msarda/Development/piper_crashpad/google3/third_party/mini_chromium/mini_chromium/base/threading/thread_local_storage.cc:81:65: error: implicit conversion loses integer precision: \u0027PlatformThreadLocalStorage::TLSKey\u0027 (aka \u0027unsigned long\u0027) to \u0027Atomic32\u0027 (aka \u0027int\u0027) [-Werror,-Wshorten-64-to-32]\n            PlatformThreadLocalStorage::TLS_KEY_OUT_OF_INDEXES, key)) {\n                                                                ^~~\n1 error generated.\n\nIn any case, I can avoid this change by setting this config in my common.gypi.",
+      "parentUuid": "d133841e_2193ce43",
       "revId": "a6cc90b81c0ef432b8589e4e75570e08604466e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
