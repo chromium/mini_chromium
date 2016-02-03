@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d133841e_418ed21d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1143760
+      },
+      "writtenOn": "2016-02-03T14:35:07Z",
+      "side": 1,
+      "message": "Why are you yelling at me? What is a BUILD error, why is it not just a build error?",
+      "revId": "a6cc90b81c0ef432b8589e4e75570e08604466e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "71c65832_8e59bb85",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1143760
+      },
+      "writtenOn": "2016-02-03T14:35:07Z",
+      "side": 1,
+      "message": "This must be caused by something weird being pushed in by your build environment. Can you show it to me? (Privately may be more appropriate.)",
+      "revId": "a6cc90b81c0ef432b8589e4e75570e08604466e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d133841e_2193ce43",
+        "filename": "build/common.gypi",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1143760
+      },
+      "writtenOn": "2016-02-03T14:35:07Z",
+      "side": 1,
+      "message": "This may also be a warning that your build environment opts into that’s not in the default set. Either that, or your compiler is behaving differently than ours. It may be more appropriate to prevent your build from pushing settings that aren’t appropriate into code that doesn’t want it.\n\nCan you show me a sample warning or two? I’m sorry if you already provided this.\n\nI don’t generally like disabling warnings here that aren’t also disabled in Chromium’s common.gypi, because it can lead to warning on things in one configuration but not another.",
+      "revId": "a6cc90b81c0ef432b8589e4e75570e08604466e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
