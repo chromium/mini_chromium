@@ -40,6 +40,8 @@
         'atomicops_internals_x86_msvc.h',
         'auto_reset.h',
         'compiler_specific.h',
+        'debug/alias.cc',
+        'debug/alias.h',
         'files/file_path.cc',
         'files/file_path.h',
         'files/file_util.h',
