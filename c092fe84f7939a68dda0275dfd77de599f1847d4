@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08ea54c4_df51ff55",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1143760
+      },
+      "writtenOn": "2016-04-19T18:21:52Z",
+      "side": 1,
+      "message": "If you don’t have anything nice to say, don’t say anything at all.",
+      "revId": "c092fe84f7939a68dda0275dfd77de599f1847d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "08ea54c4_ff4ebbb4",
+        "filename": "base/debug/alias.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1143760
+      },
+      "writtenOn": "2016-04-19T18:21:52Z",
+      "side": 1,
+      "message": "We took the (c) out of most of these files. Same in the header.",
+      "revId": "c092fe84f7939a68dda0275dfd77de599f1847d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
