@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8f8a0fc_bed5b568",
+        "filename": "base/bit_cast.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1144624
+      },
+      "writtenOn": "2016-04-25T18:19:25Z",
+      "side": 1,
+      "message": "Odd that this one isn\u0027t namespaced, but OK.",
+      "revId": "d0f053e227ecf3ff4fe2b9bd4db85737ca658bed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
