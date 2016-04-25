@@ -80,4 +80,12 @@
     __attribute__((format(printf, format_param, dots_param)))
 #endif
 
+// Compiler feature-detection.
+// clang.llvm.org/docs/LanguageExtensions.html#has-feature-and-has-extension
+#if defined(__has_feature)
+#define HAS_FEATURE(FEATURE) __has_feature(FEATURE)
+#else
+#define HAS_FEATURE(FEATURE) 0
+#endif
+
 #endif  // MINI_CHROMIUM_BASE_COMPILER_SPECIFIC_H_
