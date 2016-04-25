@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08733496_67d6e374",
+        "filename": "base/bit_cast.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2016-04-25T19:19:02Z",
+      "side": 1,
+      "message": "Shoot, didn\u0027t notice this magic. Will need to adapt this for mini_chromium.",
+      "revId": "ec5d457170a4deb112c3ee69dd0bd0c2d024c5a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
