@@ -16,6 +16,24 @@
       "revId": "d0f053e227ecf3ff4fe2b9bd4db85737ca658bed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "08733496_744e8f6d",
+        "filename": "base/bit_cast.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2016-04-25T18:21:44Z",
+      "side": 1,
+      "message": "That is odd, I didn\u0027t notice. I guess we should match upstream in any case.",
+      "parentUuid": "e8f8a0fc_bed5b568",
+      "revId": "d0f053e227ecf3ff4fe2b9bd4db85737ca658bed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
