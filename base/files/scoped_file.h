@@ -7,7 +7,8 @@
 
 #include <stdio.h>
 
-#include "base/memory/scoped_ptr.h"
+#include <memory>
+
 #include "base/scoped_generic.h"
 #include "build/build_config.h"
 
@@ -33,7 +34,7 @@ struct ScopedFILECloser {
 #if defined(OS_POSIX)
 typedef ScopedGeneric<int, internal::ScopedFDCloseTraits> ScopedFD;
 #endif  // OS_POSIX
-typedef scoped_ptr<FILE, internal::ScopedFILECloser> ScopedFILE;
+typedef std::unique_ptr<FILE, internal::ScopedFILECloser> ScopedFILE;
 
 }  // namespace base
 
