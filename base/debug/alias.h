@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef BASE_DEBUG_ALIAS_H_
-#define BASE_DEBUG_ALIAS_H_
+#ifndef MINI_CHROMIUM_BASE_DEBUG_ALIAS_H_
+#define MINI_CHROMIUM_BASE_DEBUG_ALIAS_H_
 
 namespace base {
 namespace debug {
@@ -16,4 +16,4 @@ void Alias(const void* var);
 }  // namespace debug
 }  // namespace base
 
-#endif  // BASE_DEBUG_ALIAS_H_
+#endif  // MINI_CHROMIUM_BASE_DEBUG_ALIAS_H_

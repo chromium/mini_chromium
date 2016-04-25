@@ -39,6 +39,7 @@
         'atomicops_internals_portable.h',
         'atomicops_internals_x86_msvc.h',
         'auto_reset.h',
+        'bit_cast.h',
         'compiler_specific.h',
         'debug/alias.cc',
         'debug/alias.h',
