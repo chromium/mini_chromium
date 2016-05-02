@@ -73,6 +73,7 @@
         'macros.h',
         'memory/aligned_memory.cc',
         'memory/aligned_memory.h',
+        'memory/ptr_util.h',
         'memory/scoped_policy.h',
         'numerics/safe_conversions.h',
         'numerics/safe_conversions_impl.h',
