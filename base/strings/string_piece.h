@@ -75,6 +75,12 @@ class BasicStringPiece {
   size_type max_size() const { return length_; }
   size_type capacity() const { return length_; }
 
+  static int wordmemcmp(const value_type* p,
+                        const value_type* p2,
+                        size_type N) {
+    return StringType::traits_type::compare(p, p2, N);
+  }
+
   void clear() {
     pointer_ = NULL;
     length_ = 0;
@@ -156,6 +162,41 @@ std::ostream& operator<<(std::ostream& ostream,
 
 typedef BasicStringPiece<std::string> StringPiece;
 typedef BasicStringPiece<string16> StringPiece16;
+
+inline bool operator==(const StringPiece& x, const StringPiece& y) {
+  if (x.size() != y.size())
+    return false;
+
+  return StringPiece::wordmemcmp(x.data(), y.data(), x.size()) == 0;
+}
+
+inline bool operator==(const StringPiece16& x, const StringPiece16& y) {
+  if (x.size() != y.size())
+    return false;
+
+  return StringPiece16::wordmemcmp(x.data(), y.data(), x.size()) == 0;
+}
+
+// This hash function is copied from base/strings/string16.h. We don't use the
+// ones already defined for string and string16 directly because it would
+// require the string constructors to be called, which we don't want.
+#define HASH_STRING_PIECE(StringPieceType, string_piece)         \
+  std::size_t result = 0;                                        \
+  for (StringPieceType::const_iterator i = string_piece.begin(); \
+       i != string_piece.end(); ++i)                             \
+    result = (result * 131) + *i;                                \
+  return result;
+
+struct StringPieceHash {
+  std::size_t operator()(const StringPiece& sp) const {
+    HASH_STRING_PIECE(StringPiece, sp);
+  }
+};
+struct StringPiece16Hash {
+  std::size_t operator()(const StringPiece16& sp16) const {
+    HASH_STRING_PIECE(StringPiece16, sp16);
+  }
+};
 
 }  // namespace base;
 
