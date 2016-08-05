@@ -18,9 +18,15 @@
 #endif  // OS_POSIX
 
 #if defined(OS_MACOSX)
-#include <asl.h>
+#include <AvailabilityMacros.h>
 #include <CoreFoundation/CoreFoundation.h>
 #include <pthread.h>
+#if !defined(MAC_OS_X_VERSION_10_12) || \
+    MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_12
+#include <asl.h>
+#else
+#include <os/log.h>
+#endif
 #elif defined(OS_LINUX)
 #include <sys/syscall.h>
 #include <sys/types.h>
@@ -118,7 +124,7 @@ LogMessage::~LogMessage() {
   fflush(stderr);
 
 #if defined(OS_MACOSX)
-  const bool log_via_asl = []() {
+  const bool log_to_system = []() {
     struct stat stderr_stat;
     if (fstat(fileno(stderr), &stderr_stat) == -1) {
       return true;
@@ -136,18 +142,18 @@ LogMessage::~LogMessage() {
            stderr_stat.st_rdev == dev_null_stat.st_rdev;
   }();
 
-  if (log_via_asl) {
+  if (log_to_system) {
     CFBundleRef main_bundle = CFBundleGetMainBundle();
     CFStringRef main_bundle_id_cf =
         main_bundle ? CFBundleGetIdentifier(main_bundle) : nullptr;
 
     std::string main_bundle_id_buf;
-    const char* asl_facility = nullptr;
+    const char* main_bundle_id = nullptr;
 
     if (main_bundle_id_cf) {
-      asl_facility =
+      main_bundle_id =
           CFStringGetCStringPtr(main_bundle_id_cf, kCFStringEncodingUTF8);
-      if (!asl_facility) {
+      if (!main_bundle_id) {
         // 1024 is from 10.10.5 CF-1153.18/CFBundle.c __CFBundleMainID__ (at
         // the point of use, not declaration).
         main_bundle_id_buf.resize(1024);
@@ -157,16 +163,17 @@ LogMessage::~LogMessage() {
                                 kCFStringEncodingUTF8)) {
           main_bundle_id_buf.clear();
         } else {
-          asl_facility = &main_bundle_id_buf[0];
+          main_bundle_id = &main_bundle_id_buf[0];
         }
       }
     }
 
-    if (!asl_facility) {
-      asl_facility = "com.apple.console";
-    }
+#if !defined(MAC_OS_X_VERSION_10_12) || \
+    MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_12
+    // Use ASL when this might run on pre-10.12 systems. Unified Logging
+    // (os_log) was introduced in 10.12.
 
-    class ASLClient {
+    const class ASLClient {
      public:
       explicit ASLClient(const char* asl_facility)
           : client_(asl_open(nullptr, asl_facility, ASL_OPT_NO_DELAY)) {}
@@ -177,9 +184,9 @@ LogMessage::~LogMessage() {
      private:
       aslclient client_;
       DISALLOW_COPY_AND_ASSIGN(ASLClient);
-    } asl_client(asl_facility);
+    } asl_client(main_bundle_id ? main_bundle_id : "com.apple.console");
 
-    class ASLMessage {
+    const class ASLMessage {
      public:
       ASLMessage() : message_(asl_new(ASL_TYPE_MSG)) {}
       ~ASLMessage() { asl_free(message_); }
@@ -222,6 +229,45 @@ LogMessage::~LogMessage() {
     asl_set(asl_message.get(), ASL_KEY_MSG, str_newline.c_str());
 
     asl_send(asl_client.get(), asl_message.get());
+#else
+    // Use Unified Logging (os_log) when this will only run on 10.12 and later.
+    // ASL is deprecated in 10.12.
+
+    const class OSLog {
+     public:
+      explicit OSLog(const char* subsystem)
+          : os_log_(subsystem ? os_log_create(subsystem, "chromium_logging")
+                              : OS_LOG_DEFAULT) {}
+      ~OSLog() {
+        if (os_log_ != OS_LOG_DEFAULT) {
+          os_release(os_log_);
+        }
+      }
+
+      os_log_t get() const { return os_log_; }
+
+     private:
+      os_log_t os_log_;
+      DISALLOW_COPY_AND_ASSIGN(OSLog);
+    } log(main_bundle_id);
+
+    const os_log_type_t os_log_type = [](LogSeverity severity) {
+      switch (severity) {
+        case LOG_INFO:
+          return OS_LOG_TYPE_INFO;
+        case LOG_WARNING:
+          return OS_LOG_TYPE_DEFAULT;
+        case LOG_ERROR:
+          return OS_LOG_TYPE_ERROR;
+        case LOG_FATAL:
+          return OS_LOG_TYPE_FAULT;
+        default:
+          return severity < 0 ? OS_LOG_TYPE_DEBUG : OS_LOG_TYPE_DEFAULT;
+      }
+    }(severity_);
+
+    os_log_with_type(log.get(), os_log_type, "%{public}s", str_newline.c_str());
+#endif
   }
 #elif defined(OS_WIN)
   OutputDebugString(base::UTF8ToUTF16(str_newline).c_str());
