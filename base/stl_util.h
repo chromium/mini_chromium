@@ -13,14 +13,16 @@
 
 #include "base/logging.h"
 
-template<class T>
+namespace base {
+
+template <class T>
 void STLClearObject(T* obj) {
   T tmp;
   tmp.swap(*obj);
   obj->reserve(0);
 }
 
-template<class ForwardIterator>
+template <class ForwardIterator>
 void STLDeleteContainerPointers(ForwardIterator begin, ForwardIterator end) {
   while (begin != end) {
     ForwardIterator temp = begin;
@@ -29,7 +31,7 @@ void STLDeleteContainerPointers(ForwardIterator begin, ForwardIterator end) {
   }
 }
 
-template<class ForwardIterator>
+template <class ForwardIterator>
 void STLDeleteContainerPairPointers(ForwardIterator begin,
                                     ForwardIterator end) {
   while (begin != end) {
@@ -40,7 +42,7 @@ void STLDeleteContainerPairPointers(ForwardIterator begin,
   }
 }
 
-template<class ForwardIterator>
+template <class ForwardIterator>
 void STLDeleteContainerPairFirstPointers(ForwardIterator begin,
                                          ForwardIterator end) {
   while (begin != end) {
@@ -50,7 +52,7 @@ void STLDeleteContainerPairFirstPointers(ForwardIterator begin,
   }
 }
 
-template<class ForwardIterator>
+template <class ForwardIterator>
 void STLDeleteContainerPairSecondPointers(ForwardIterator begin,
                                           ForwardIterator end) {
   while (begin != end) {
@@ -60,21 +62,18 @@ void STLDeleteContainerPairSecondPointers(ForwardIterator begin,
   }
 }
 
-template<typename T>
-inline T* vector_as_array(std::vector<T>* v) {
-  return v->empty() ? NULL : &*v->begin();
-}
-
-template<typename T>
-inline const T* vector_as_array(const std::vector<T>* v) {
-  return v->empty() ? NULL : &*v->begin();
+template <typename Container, typename T>
+typename std::iterator_traits<
+    typename Container::const_iterator>::difference_type
+STLCount(const Container& container, const T& val) {
+  return std::count(container.begin(), container.end(), val);
 }
 
 inline char* string_as_array(std::string* str) {
   return str->empty() ? NULL : &*str->begin();
 }
 
-template<class T>
+template <class T>
 void STLDeleteElements(T* container) {
   if (!container) {
     return;
@@ -84,20 +83,17 @@ void STLDeleteElements(T* container) {
   container->clear();
 }
 
-template<class T>
+template <class T>
 void STLDeleteValues(T* container) {
   if (!container) {
     return;
   }
 
-  for (typename T::iterator i(container->begin()); i != container->end(); ++i) {
-    delete i->second;
-  }
-
+  STLDeleteContainerPairSecondPointers(container->begin(), container->end());
   container->clear();
 }
 
-template<class T>
+template <class T>
 class STLElementDeleter {
  public:
   STLElementDeleter<T>(T* container) : container_(container) {}
@@ -107,7 +103,7 @@ class STLElementDeleter {
   T* container_;
 };
 
-template<class T>
+template <class T>
 class STLValueDeleter {
  public:
   STLValueDeleter<T>(T* container) : container_(container) {}
@@ -117,63 +113,73 @@ class STLValueDeleter {
   T* container_;
 };
 
-template<typename Collection, typename Key>
+template <typename Collection, typename Key>
 bool ContainsKey(const Collection& collection, const Key& key) {
   return collection.find(key) != collection.end();
 }
 
-namespace base {
+template <typename Collection, typename Value>
+bool ContainsValue(const Collection& collection, const Value& value) {
+  return std::find(collection.begin(), collection.end(), value) !=
+         collection.end();
+}
 
-template<typename Container>
+template <typename Container>
 bool STLIsSorted(const Container& cont) {
-  return std::adjacent_find(cont.rbegin(), cont.rend(),
+  return std::adjacent_find(cont.rbegin(),
+                            cont.rend(),
                             std::less<typename Container::value_type>()) ==
          cont.rend();
 }
 
-template<typename ResultType, typename Arg1, typename Arg2>
+template <typename ResultType, typename Arg1, typename Arg2>
 ResultType STLSetDifference(const Arg1& a1, const Arg2& a2) {
   DCHECK(STLIsSorted(a1));
   DCHECK(STLIsSorted(a2));
 
   ResultType difference;
-  std::set_difference(a1.begin(), a1.end(),
-                      a2.begin(), a2.end(),
+  std::set_difference(a1.begin(),
+                      a1.end(),
+                      a2.begin(),
+                      a2.end(),
                       std::inserter(difference, difference.end()));
   return difference;
 }
 
-template<typename ResultType, typename Arg1, typename Arg2>
+template <typename ResultType, typename Arg1, typename Arg2>
 ResultType STLSetUnion(const Arg1& a1, const Arg2& a2) {
   DCHECK(STLIsSorted(a1));
   DCHECK(STLIsSorted(a2));
 
   ResultType result;
-  std::set_union(a1.begin(), a1.end(),
-                 a2.begin(), a2.end(),
+  std::set_union(a1.begin(),
+                 a1.end(),
+                 a2.begin(),
+                 a2.end(),
                  std::inserter(result, result.end()));
   return result;
 }
 
-template<typename ResultType, typename Arg1, typename Arg2>
+template <typename ResultType, typename Arg1, typename Arg2>
 ResultType STLSetIntersection(const Arg1& a1, const Arg2& a2) {
   DCHECK(STLIsSorted(a1));
   DCHECK(STLIsSorted(a2));
 
   ResultType result;
-  std::set_intersection(a1.begin(), a1.end(),
-                        a2.begin(), a2.end(),
+  std::set_intersection(a1.begin(),
+                        a1.end(),
+                        a2.begin(),
+                        a2.end(),
                         std::inserter(result, result.end()));
   return result;
 }
 
-template<typename Arg1, typename Arg2>
+template <typename Arg1, typename Arg2>
 bool STLIncludes(const Arg1& a1, const Arg2& a2) {
   DCHECK(STLIsSorted(a1));
   DCHECK(STLIsSorted(a2));
 
-  return std::includes(a1.begin(), a1.end(),
-                       a2.begin(), a2.end());
+  return std::includes(a1.begin(), a1.end(), a2.begin(), a2.end());
 }
 
 }  // namespace base
