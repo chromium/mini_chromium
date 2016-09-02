@@ -16,6 +16,24 @@
       "revId": "e4e1ab7b1fa0868c448e6c26523daf9aa39a8e6a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "11cc5df8_f2f8ed67",
+        "filename": "base/metrics/histogram_macros.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2016-09-02T18:48:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "716bd99b_9c762933",
+      "revId": "e4e1ab7b1fa0868c448e6c26523daf9aa39a8e6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
