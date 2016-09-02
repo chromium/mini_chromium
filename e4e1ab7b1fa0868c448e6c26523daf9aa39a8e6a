@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "716bd99b_9c762933",
+        "filename": "base/metrics/histogram_macros.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1143760
+      },
+      "writtenOn": "2016-09-02T18:10:54Z",
+      "side": 1,
+      "message": "#undef UNUSED\n\nActually, in addition, can you pick a name that’s less likely to collide with something else, so we don’t accidentally wind up redefining/undefining someone else’s UNUSED? “Namespacing” it with an UMA_ or UMA_HISTOGRAM_ prefix is probably fine.",
+      "revId": "e4e1ab7b1fa0868c448e6c26523daf9aa39a8e6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
