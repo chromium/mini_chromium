@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "10261bad_3f98cb1e",
+        "filename": "base/metrics/persistent_histogram_allocator.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1143760
+      },
+      "writtenOn": "2016-09-16T20:02:36Z",
+      "side": 1,
+      "message": "\u003csys/types.h\u003e",
+      "revId": "e719ab496c672827b76ad3ea33926479342c5ed5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10261bad_1f9d0f0f",
+        "filename": "base/metrics/persistent_histogram_allocator.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1143760
+      },
+      "writtenOn": "2016-09-16T20:02:36Z",
+      "side": 1,
+      "message": "private: DISALLOW_COPY_AND_ASSIGN(GlobalHistogramAllocator); (and #include as needed).",
+      "revId": "e719ab496c672827b76ad3ea33926479342c5ed5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
