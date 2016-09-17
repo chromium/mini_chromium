@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "10261bad_4af3c389",
+        "filename": "base/metrics/sparse_histogram.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1143760
+      },
+      "writtenOn": "2016-09-17T15:24:31Z",
+      "side": 1,
+      "message": "Can you stick the no-op meat inside a “do {} while (false)” construct for improved safety?",
+      "revId": "ac7ded6de569a0905866cf2a659220629272db5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
