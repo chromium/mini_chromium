@@ -16,6 +16,24 @@
       "revId": "ac7ded6de569a0905866cf2a659220629272db5b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b3926b8_cb1c2584",
+        "filename": "base/metrics/sparse_histogram.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2016-09-19T16:57:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10261bad_4af3c389",
+      "revId": "ac7ded6de569a0905866cf2a659220629272db5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
