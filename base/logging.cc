@@ -279,8 +279,14 @@ LogMessage::~LogMessage() {
 #else
 #if defined(OS_WIN)
     __debugbreak();
-#else
+#elif defined(ARCH_CPU_X86_FAMILY)
     __asm__("int3");
+#elif defined(ARCH_CPU_ARMEL)
+    __asm__("bkpt 0");
+#elif defined(ARCH_CPU_ARM64)
+    __asm__("brk 0");
+#else
+#error Port.
 #endif
 #endif
   }
@@ -306,6 +312,8 @@ void LogMessage::Init(const char* function) {
 #if defined(OS_MACOSX)
   uint64_t thread;
   pthread_threadid_np(pthread_self(), &thread);
+#elif defined(OS_ANDROID)
+  pid_t thread = gettid();
 #elif defined(OS_LINUX)
   pid_t thread = syscall(__NR_gettid);
 #elif defined(OS_WIN)

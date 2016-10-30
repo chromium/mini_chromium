@@ -7,6 +7,8 @@
 
 #if defined(__APPLE__)
 #define OS_MACOSX 1
+#elif defined(__ANDROID__)
+#define OS_ANDROID 1
 #elif defined(__linux__)
 #define OS_LINUX 1
 #elif defined(_WIN32)
@@ -15,7 +17,20 @@
 #error Please add support for your platform in build/build_config.h
 #endif
 
-#if defined(OS_MACOSX) || defined(OS_LINUX)
+#if defined(OS_MACOSX)
+#include <TargetConditionals.h>
+#if defined(TARGET_OS_IOS)
+#if TARGET_OS_IOS
+#define OS_IOS 1
+#endif
+#elif defined(TARGET_OS_IPHONE)
+#if TARGET_OS_IPHONE
+#define OS_IOS 1
+#endif
+#endif
+#endif
+
+#if defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_ANDROID)
 #define OS_POSIX 1
 #endif
 
@@ -38,8 +53,28 @@
 #define ARCH_CPU_X86 1
 #define ARCH_CPU_32_BITS 1
 #define ARCH_CPU_LITTLE_ENDIAN 1
+#elif defined(__ARMEL__)
+#define ARCH_CPU_ARM_FAMILY 1
+#define ARCH_CPU_ARMEL 1
+#define ARCH_CPU_32_BITS 1
+#elif defined(__aarch64__)
+#define ARCH_CPU_ARM_FAMILY 1
+#define ARCH_CPU_ARM64 1
+#define ARCH_CPU_64_BITS 1
 #else
 #error Please add support for your architecture in build/build_config.h
+#endif
+
+#if !defined(ARCH_CPU_LITTLE_ENDIAN) && !defined(ARCH_CPU_BIG_ENDIAN)
+#if defined(__LITTLE_ENDIAN__) || \
+    (defined(__BYTE_ORDER__) && __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__)
+#define ARCH_CPU_LITTLE_ENDIAN 1
+#elif defined(__BIG_ENDIAN__) || \
+    (defined(__BYTE_ORDER__) && __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__)
+#define ARCH_CPU_BIG_ENDIAN 1
+#else
+#error Please add support for your architecture in build/build_config.h
+#endif
 #endif
 
 #if defined(OS_POSIX) && defined(COMPILER_GCC) && \
