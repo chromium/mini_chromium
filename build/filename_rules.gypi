@@ -16,6 +16,12 @@
         ['exclude', '(^|/)linux/'],
       ],
     }],
+    ['OS!="android"', {
+      'sources/': [
+        ['exclude', '_android(_test)?\\.(h|cc)$'],
+        ['exclude', '(^|/)android/'],
+      ],
+    }],
     ['OS=="win"', {
       'sources/': [
         ['exclude', '_posix(_test)?\\.(h|cc)$'],
