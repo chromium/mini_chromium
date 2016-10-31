@@ -169,6 +169,14 @@
           }],
         ],
 
+        'target_conditions': [
+          ['_type=="executable"', {
+            'ldflags': [
+              '-pie',
+            ],
+          }],
+        ],
+
       }],
 
       ['OS=="win"', {
