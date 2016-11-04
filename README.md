@@ -34,4 +34,5 @@ remain a strict subset of Chromium’s.
 [Crashpad](https://crashpad.chromium.org/) is the chief consumer of
 mini_chromium.
 
-[Mark Mentovai](mailto:mark@chromium.org)
+Mark Mentovai<br/>
+mark@chromium.org
