@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "503c1cf2_b251e153",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T19:55:04Z",
+      "side": 1,
+      "message": "Keep sorted with friends (and also maybe remove the comment, since you removed the comment from one or two others in here, and it makes it easier to put it with its friends).",
+      "revId": "efc00d405d7201d20cea3693aeb37f8cd933c25f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_d23e25ec",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T19:55:04Z",
+      "side": 1,
+      "message": "I’d still pull the definitions of cflags_objc/cflags_objcc out of is_clang, and then just do cflags_objc +\u003d blah in here, because those things really are clang-specific.",
+      "revId": "efc00d405d7201d20cea3693aeb37f8cd933c25f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
