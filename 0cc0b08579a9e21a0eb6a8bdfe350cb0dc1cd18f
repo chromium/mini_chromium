@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "503c1cf2_b178bea2",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T21:56:16Z",
+      "side": 1,
+      "message": "The default, don’t need to specify at all.",
+      "revId": "0cc0b08579a9e21a0eb6a8bdfe350cb0dc1cd18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_f159a648",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T21:56:16Z",
+      "side": 1,
+      "message": "Remove, per the previous message.",
+      "revId": "0cc0b08579a9e21a0eb6a8bdfe350cb0dc1cd18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_91901aa1",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T21:56:16Z",
+      "side": 1,
+      "message": "Then these can go too.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 33
+      },
+      "revId": "0cc0b08579a9e21a0eb6a8bdfe350cb0dc1cd18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
