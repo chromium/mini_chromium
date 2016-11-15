@@ -101,6 +101,24 @@
       "revId": "317a09d2bf29b932688fab139c3255fde3176165",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_b1971ed5",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T21:45:47Z",
+      "side": 1,
+      "message": "\u003e Isn’t this ObjC-specific?\n\nLet’s get rid of this, actually. Chromium doesn’t seem to use it in its gn build anywhere, and this warning is off by default in clang since http://llvm.org/viewvc/llvm-project?view\u003drevision\u0026revision\u003d205066.",
+      "parentUuid": "503c1cf2_d1c3c226",
+      "revId": "317a09d2bf29b932688fab139c3255fde3176165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
