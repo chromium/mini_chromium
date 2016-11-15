@@ -253,6 +253,24 @@
     },
     {
       "key": {
+        "uuid": "503c1cf2_7298f908",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T19:55:04Z",
+      "side": 1,
+      "message": "\u003e Magic. (https://cs.chromium.org/chromium/src/tools/gn/toolchain.cc?rcl\u003d1479214462\u0026l\u003d116)\n\nBut gn promised to not use magic!",
+      "parentUuid": "503c1cf2_3c6768fe",
+      "revId": "69776e58111ef6359568952e718f23f6c7cb07de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "503c1cf2_2171058a",
         "filename": "build/BUILD.gn",
         "patchSetId": 2
