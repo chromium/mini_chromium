@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "503c1cf2_d11902f4",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T21:36:20Z",
+      "side": 1,
+      "message": "Appears to be clang-only.",
+      "revId": "317a09d2bf29b932688fab139c3255fde3176165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_31014e6b",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T21:36:20Z",
+      "side": 1,
+      "message": "Looks like we didn’t actually pass this to anything, we just didn’t pass -fasm-blocks, which would have been a silly Xcode default we were overcoming, not a compiler driver default.",
+      "revId": "317a09d2bf29b932688fab139c3255fde3176165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_1151aa7f",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T21:36:20Z",
+      "side": 1,
+      "message": "I read common.gypi as saying not to pass this. We did want PIC.",
+      "revId": "317a09d2bf29b932688fab139c3255fde3176165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_b16c3e45",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T21:36:20Z",
+      "side": 1,
+      "message": "Here too, I think we just never passed -mpascal-strings.",
+      "revId": "317a09d2bf29b932688fab139c3255fde3176165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_f11fe6d2",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T21:36:20Z",
+      "side": 1,
+      "message": "Sort me.",
+      "revId": "317a09d2bf29b932688fab139c3255fde3176165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_d1c3c226",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T21:36:20Z",
+      "side": 1,
+      "message": "Isn’t this ObjC-specific?",
+      "revId": "317a09d2bf29b932688fab139c3255fde3176165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
