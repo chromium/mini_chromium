@@ -1,0 +1,180 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "503c1cf2_e1839d54",
+        "filename": "base/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T18:01:45Z",
+      "side": 1,
+      "message": "This gets applied to the build of base itself too?",
+      "revId": "69776e58111ef6359568952e718f23f6c7cb07de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_41e369ed",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T18:01:45Z",
+      "side": 1,
+      "message": "Looks like these were taken from common.gypi, which is cool, except those were sorted according to the xcode_settings key names, which is kind of arbitrary now that those aren’t here. So I’d recommend just re-sorting everything in here. It’d be nice to keep the -W flags together, for example…",
+      "revId": "69776e58111ef6359568952e718f23f6c7cb07de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_a1d8753f",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T18:01:45Z",
+      "side": 1,
+      "message": "https now",
+      "range": {
+        "startLine": 36,
+        "startChar": 37,
+        "endLine": 36,
+        "endChar": 59
+      },
+      "revId": "69776e58111ef6359568952e718f23f6c7cb07de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_a15d1509",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T18:01:45Z",
+      "side": 1,
+      "message": "This shouldn’t be is_clang, that was just an Xcode-ism. I know that it’s unlikely that we’ll use non-clang on Mac, but it’ll make it easier to pull -std\u003dc++11 out of the is_mac block in the future (as we’ll need to do shortly to get the Android build working) if it’s obvious that we do always want it on Mac and don’t need to contort things to disable it on non-Clang Mac builds.",
+      "revId": "69776e58111ef6359568952e718f23f6c7cb07de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_e1d27d63",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T18:01:45Z",
+      "side": 1,
+      "message": "This is hiding down here. Maybe cflags_c should come first.",
+      "revId": "69776e58111ef6359568952e718f23f6c7cb07de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_21b46519",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T18:01:45Z",
+      "side": 1,
+      "message": "Nobody uses this (yet?)",
+      "revId": "69776e58111ef6359568952e718f23f6c7cb07de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_8179f16f",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T18:01:45Z",
+      "side": 1,
+      "message": "What’s the thing that says that this applies to .c, objcxx applies to .mm, etc.?",
+      "revId": "69776e58111ef6359568952e718f23f6c7cb07de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_2171058a",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T18:01:45Z",
+      "side": 1,
+      "message": "CC instead of CXX, or are you matching a Chrome bug?",
+      "revId": "69776e58111ef6359568952e718f23f6c7cb07de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_41588917",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T18:01:45Z",
+      "side": 1,
+      "message": ":) 🐙",
+      "revId": "69776e58111ef6359568952e718f23f6c7cb07de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_e1143d0a",
+        "filename": "build/BUILDCONFIG.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-15T18:01:45Z",
+      "side": 1,
+      "message": "These are really looking at something other than “target” OS? Maybe I don’t understand GN’s host/target/current.",
+      "revId": "69776e58111ef6359568952e718f23f6c7cb07de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
