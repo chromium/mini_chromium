@@ -68,7 +68,7 @@
               'CLANG_CXX_LANGUAGE_STANDARD': 'c++11',  # -std=c++11
 
               # Don't link in libarclite_macosx.a, see http://crbug.com/156530.
-              'CLANG_LINK_OBJC_RUNTIME': 'NO',  # -fno-objc-link-runtime
+              'CLANG_LINK_OBJC_RUNTIME': 'NO',  # No -fobjc-link-runtime
 
               # CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS maps to
               # -Wobjc-missing-property-synthesis
