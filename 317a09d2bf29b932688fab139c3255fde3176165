@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "503c1cf2_714c76ba",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1144624
+      },
+      "writtenOn": "2016-11-15T21:50:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "503c1cf2_d11902f4",
+      "revId": "317a09d2bf29b932688fab139c3255fde3176165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "503c1cf2_31014e6b",
         "filename": "build/BUILD.gn",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2016-11-15T21:36:20Z",
       "side": 1,
       "message": "Looks like we didn’t actually pass this to anything, we just didn’t pass -fasm-blocks, which would have been a silly Xcode default we were overcoming, not a compiler driver default.",
+      "revId": "317a09d2bf29b932688fab139c3255fde3176165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_d1510253",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1144624
+      },
+      "writtenOn": "2016-11-15T21:50:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "503c1cf2_31014e6b",
       "revId": "317a09d2bf29b932688fab139c3255fde3176165",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "503c1cf2_115b6a72",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1144624
+      },
+      "writtenOn": "2016-11-15T21:50:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "503c1cf2_1151aa7f",
+      "revId": "317a09d2bf29b932688fab139c3255fde3176165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "503c1cf2_b16c3e45",
         "filename": "build/BUILD.gn",
         "patchSetId": 5
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "503c1cf2_f157e641",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1144624
+      },
+      "writtenOn": "2016-11-15T21:50:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "503c1cf2_b16c3e45",
+      "revId": "317a09d2bf29b932688fab139c3255fde3176165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "503c1cf2_f11fe6d2",
         "filename": "build/BUILD.gn",
         "patchSetId": 5
@@ -81,6 +153,24 @@
       "writtenOn": "2016-11-15T21:36:20Z",
       "side": 1,
       "message": "Sort me.",
+      "revId": "317a09d2bf29b932688fab139c3255fde3176165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_3162ee1b",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1144624
+      },
+      "writtenOn": "2016-11-15T21:50:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "503c1cf2_f11fe6d2",
       "revId": "317a09d2bf29b932688fab139c3255fde3176165",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -116,6 +206,24 @@
       "side": 1,
       "message": "\u003e Isn’t this ObjC-specific?\n\nLet’s get rid of this, actually. Chromium doesn’t seem to use it in its gn build anywhere, and this warning is off by default in clang since http://llvm.org/viewvc/llvm-project?view\u003drevision\u0026revision\u003d205066.",
       "parentUuid": "503c1cf2_d1c3c226",
+      "revId": "317a09d2bf29b932688fab139c3255fde3176165",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503c1cf2_912e5abe",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1144624
+      },
+      "writtenOn": "2016-11-15T21:50:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "503c1cf2_b1971ed5",
       "revId": "317a09d2bf29b932688fab139c3255fde3176165",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
