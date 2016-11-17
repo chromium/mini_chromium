@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b09b987b_461a9299",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-11-17T20:15:14Z",
+      "side": 1,
+      "message": "Why is it useful for this to be broken out here?",
+      "revId": "c32b36d3f4e40a563be8f7c0feafa70d62a1a1c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
