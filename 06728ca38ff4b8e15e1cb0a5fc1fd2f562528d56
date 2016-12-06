@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d744b42_cd1f4927",
+        "filename": "build/common.gypi",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-12-06T22:04:03Z",
+      "side": 1,
+      "message": "Undo this move per https://chromium.googlesource.com/chromium/src/+/fa8868418ffe9da48614de5bff07b72f97760f51/build/common.gypi#6315.",
+      "revId": "06728ca38ff4b8e15e1cb0a5fc1fd2f562528d56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
