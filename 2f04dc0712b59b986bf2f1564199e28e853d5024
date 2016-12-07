@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2d32ef87_181a5789",
+        "filename": "base/numerics/safe_conversions.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2016-12-07T22:36:50Z",
+      "side": 1,
+      "message": "mini_chromium\u0027s or base\u0027s? I guess I might as well just add base/logging.h back here and CHECK(false) here. I think base/numerics is trying to avoid dependencies on the rest of base.",
+      "parentUuid": "0d744b42_d6691a67",
+      "revId": "2f04dc0712b59b986bf2f1564199e28e853d5024",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d744b42_3685feef",
         "filename": "base/numerics/safe_conversions_impl.h",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2016-12-07T22:13:03Z",
       "side": 1,
       "message": "We don’t need both \u003climits.h\u003e and \u003cclimits\u003e. Just use \u003climits.h\u003e. Actually, use neither. Chrome added \u003cclimits\u003e in https://codereview.chromium.org/1964923002 for CHAR_BIT, but CHAR_BIT isn’t used anymore. And Chrome added \u003climits.h\u003e in a big, mechanical https://codereview.chromium.org/1538743002, but I can’t see any reason for it now.",
+      "revId": "2f04dc0712b59b986bf2f1564199e28e853d5024",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d32ef87_f828bb98",
+        "filename": "base/numerics/safe_conversions_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2016-12-07T22:36:50Z",
+      "side": 1,
+      "message": "Done, and CL here https://codereview.chromium.org/2558993002/ for base/.",
+      "parentUuid": "0d744b42_3685feef",
       "revId": "2f04dc0712b59b986bf2f1564199e28e853d5024",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
