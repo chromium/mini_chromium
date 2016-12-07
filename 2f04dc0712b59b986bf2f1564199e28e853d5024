@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d744b42_d6691a67",
+        "filename": "base/numerics/safe_conversions.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-12-07T22:13:03Z",
+      "side": 1,
+      "message": "I’d prefer for this to do what LOG(FATAL) does.",
+      "revId": "2f04dc0712b59b986bf2f1564199e28e853d5024",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d744b42_3685feef",
+        "filename": "base/numerics/safe_conversions_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2016-12-07T22:13:03Z",
+      "side": 1,
+      "message": "We don’t need both \u003climits.h\u003e and \u003cclimits\u003e. Just use \u003climits.h\u003e. Actually, use neither. Chrome added \u003cclimits\u003e in https://codereview.chromium.org/1964923002 for CHAR_BIT, but CHAR_BIT isn’t used anymore. And Chrome added \u003climits.h\u003e in a big, mechanical https://codereview.chromium.org/1538743002, but I can’t see any reason for it now.",
+      "revId": "2f04dc0712b59b986bf2f1564199e28e853d5024",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
