@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "57a6d6c4_db281699",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-01-04T22:33:40Z",
+      "side": 1,
+      "message": "Yes, this is implicit in Release/Official.",
+      "parentUuid": "f01d104e_b62a06eb",
+      "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f01d104e_f6a71e57",
         "filename": "build/BUILD.gn",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2016-11-29T19:40:22Z",
       "side": 1,
       "message": "Keep these lists sorted, unless there’s a reason for a to follow b. Although in this case, y \u003e 2, so it shouldn’t impact. (Still good to keep the comment, though!)",
+      "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57a6d6c4_1b337e09",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-01-04T22:33:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f01d104e_f6a71e57",
       "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "57a6d6c4_fb679afd",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-01-04T22:33:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f01d104e_16f03a71",
+      "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f01d104e_5651d27e",
         "filename": "build/BUILD.gn",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2016-11-29T19:40:22Z",
       "side": 1,
       "message": "Didn’t see this either, and it doesn’t look like GYP sets it.",
+      "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57a6d6c4_bb86f267",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-01-04T22:33:40Z",
+      "side": 1,
+      "message": "Looks like it\u0027s predefined https://msdn.microsoft.com/en-us/library/b0084kay.aspx. For some reason I thought it was build system-set, not compiler-set.",
+      "parentUuid": "f01d104e_5651d27e",
       "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "57a6d6c4_bbcfd2bb",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-01-04T22:33:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f01d104e_364376b1",
+      "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f01d104e_76db2ed9",
         "filename": "build/BUILD.gn",
         "patchSetId": 2
@@ -98,6 +188,24 @@
       "writtenOn": "2016-11-29T19:40:22Z",
       "side": 1,
       "message": "I asked Robert why he used CXX in the non-Windows equivalent on line 113 above, and he said that he was doing it for compatibility with what Chromium did. Now we’ve got a different flavor of inconsistency here.\n\nIdeally we’d just do what you did here, and fix line 113, and fix the toolchain in Chromium too.",
+      "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f01d104e_797c0124",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-01-04T22:33:40Z",
+      "side": 1,
+      "message": "Sorry, maybe I don\u0027t follow, but I think that\u0027s just a typo in the Mac section. The Chromium toolchain uses \"CC\" in the description for the C compiler and \"CXX\" for C++ compiler as far as I can see.",
+      "parentUuid": "f01d104e_76db2ed9",
       "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "57a6d6c4_dbcc96c9",
+        "filename": "build/win_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-01-04T22:33:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f01d104e_f6755eeb",
+      "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f01d104e_1692fae6",
         "filename": "build/win_helper.py",
         "patchSetId": 2
@@ -132,6 +258,24 @@
       "writtenOn": "2016-11-29T19:40:22Z",
       "side": 1,
       "message": "Doesn’t seem to be a point to having this be its own variable.\n\nThere might be a point to putting def main after class WinTool, though.",
+      "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57a6d6c4_fb0b1a04",
+        "filename": "build/win_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-01-04T22:33:40Z",
+      "side": 1,
+      "message": "Done (collapsed it more).",
+      "parentUuid": "f01d104e_1692fae6",
       "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "57a6d6c4_7b9f2a9d",
+        "filename": "build/win_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-01-04T22:33:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f01d104e_16511a52",
+      "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f01d104e_568c72c6",
         "filename": "build/win_helper.py",
         "patchSetId": 2
@@ -166,6 +328,24 @@
       "writtenOn": "2016-11-29T19:40:22Z",
       "side": 1,
       "message": "Why not just return it?",
+      "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57a6d6c4_9ba4ceef",
+        "filename": "build/win_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-01-04T22:33:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f01d104e_568c72c6",
       "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "57a6d6c4_5b134642",
+        "filename": "build/win_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-01-04T22:33:40Z",
+      "side": 1,
+      "message": "Microsoft tools typically send everything to stdout. I switched to let stderr go wild and free, but in practice I don\u0027t think it changes anything.",
+      "parentUuid": "f01d104e_b662061a",
+      "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f01d104e_56655234",
         "filename": "build/win_helper.py",
         "patchSetId": 2
@@ -206,6 +404,24 @@
     },
     {
       "key": {
+        "uuid": "57a6d6c4_bbb8b20e",
+        "filename": "build/win_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-01-04T22:33:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f01d104e_56655234",
+      "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f01d104e_3680d692",
         "filename": "build/win_helper.py",
         "patchSetId": 2
@@ -217,6 +433,24 @@
       "writtenOn": "2016-11-29T19:40:22Z",
       "side": 1,
       "message": "Lose the blank line at EOF.",
+      "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57a6d6c4_dbb57617",
+        "filename": "build/win_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-01-04T22:33:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f01d104e_3680d692",
       "revId": "b5d9c9d40489233ad84abc509ac4954fb413202b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
