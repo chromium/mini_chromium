@@ -42,7 +42,6 @@
           'GCC_OBJC_CALL_CXX_CDTORS': 'YES',  # -fobjc-call-cxx-cdtors
           'GCC_PRECOMPILE_PREFIX_HEADER': 'NO',
           'GCC_SYMBOLS_PRIVATE_EXTERN': 'YES',  # -fvisibility=hidden
-          'GCC_THREADSAFE_STATICS': 'NO',  # -fno-threadsafe-statics
           'GCC_TREAT_WARNINGS_AS_ERRORS': 'YES',  # -Werror
           'GCC_WARN_ABOUT_MISSING_NEWLINE': 'YES',  # -Wnewline-eof
           'OTHER_CFLAGS': [
@@ -136,7 +135,6 @@
         ],
         'cflags_cc': [
           '-fno-rtti',
-          '-fno-threadsafe-statics',
           '-fvisibility-inlines-hidden',
           '-std=c++11',
         ],
