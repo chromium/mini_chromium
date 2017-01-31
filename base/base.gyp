@@ -50,8 +50,6 @@
         'files/scoped_file.cc',
         'files/scoped_file.h',
         'format_macros.h',
-        'lazy_instance.cc',
-        'lazy_instance.h',
         'logging.cc',
         'logging.h',
         'mac/close_nocancel.cc',
