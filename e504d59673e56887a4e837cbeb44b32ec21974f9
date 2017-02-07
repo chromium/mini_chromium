@@ -16,6 +16,24 @@
       "revId": "e504d59673e56887a4e837cbeb44b32ec21974f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96824618_1932d13e",
+        "filename": "base/base.gyp",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-02-07T21:00:36Z",
+      "side": 0,
+      "message": "\u003e base/BUILD.gn too now. (Good times!)\n\nAh, right, thanks!",
+      "parentUuid": "1c5b1329_b6cb47dd",
+      "revId": "e504d59673e56887a4e837cbeb44b32ec21974f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
