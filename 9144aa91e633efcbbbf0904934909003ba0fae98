@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "314023b3_cc345ab9",
+        "filename": "base/memory/free_deleter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-02-07T19:35:09Z",
+      "side": 1,
+      "message": "Header guards in mini_chromium should be translated to begin with MINI_CHROMIUM_.",
+      "revId": "9144aa91e633efcbbbf0904934909003ba0fae98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ced51576_65e30188",
         "filename": "base/process/memory.cc",
         "patchSetId": 1
@@ -117,6 +134,57 @@
     },
     {
       "key": {
+        "uuid": "51170ddc_a85fb325",
+        "filename": "base/process/memory.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-02-07T19:35:09Z",
+      "side": 1,
+      "message": "No (c)",
+      "revId": "9144aa91e633efcbbbf0904934909003ba0fae98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "267f2ff5_819027c7",
+        "filename": "base/process/memory.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-02-07T19:35:09Z",
+      "side": 1,
+      "message": "This header’s not used, but…",
+      "revId": "9144aa91e633efcbbbf0904934909003ba0fae98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c55147b_78e5df1a",
+        "filename": "base/process/memory.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-02-07T19:35:09Z",
+      "side": 1,
+      "message": "…you need base/compiler_specific.h for WARN_UNUSED_RESULT.",
+      "revId": "9144aa91e633efcbbbf0904934909003ba0fae98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d26196f0_513b82b4",
         "filename": "base/process/memory.h",
         "patchSetId": 1
@@ -134,6 +202,24 @@
         "endLine": 26,
         "endChar": 39
       },
+      "revId": "9144aa91e633efcbbbf0904934909003ba0fae98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32924fc8_bbf944ac",
+        "filename": "base/process/memory.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-02-07T19:35:09Z",
+      "side": 1,
+      "message": "\u003e Do we need this one? I\u0027m not overly fond of Calloc.\n\nI agree.\n\nYou can also toss out all of the interface comments in here, since Chromium has the authoritative interface for anything that we carry here. That resolves the “it says functions but there’s only one function” nit.",
+      "parentUuid": "d26196f0_513b82b4",
       "revId": "9144aa91e633efcbbbf0904934909003ba0fae98",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
