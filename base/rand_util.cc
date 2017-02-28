@@ -34,7 +34,7 @@
 namespace {
 
 int GetUrandomFDInternal() {
-  int fd = HANDLE_EINTR(open("/dev/urandom", O_RDONLY));
+  int fd = HANDLE_EINTR(open("/dev/urandom", O_RDONLY | O_NOCTTY | O_CLOEXEC));
   PCHECK(fd >= 0) << "open /dev/urandom";
   return fd;
 }
