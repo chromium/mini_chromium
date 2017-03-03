@@ -61,6 +61,15 @@
 #define ARCH_CPU_ARM_FAMILY 1
 #define ARCH_CPU_ARM64 1
 #define ARCH_CPU_64_BITS 1
+#elif defined(__MIPSEL__)
+#define ARCH_CPU_MIPS_FAMILY 1
+#if !defined(__LP64__)
+#define ARCH_CPU_MIPSEL 1
+#define ARCH_CPU_32_BITS 1
+#else
+#define ARCH_CPU_MIPS64EL 1
+#define ARCH_CPU_64_BITS 1
+#endif
 #else
 #error Please add support for your architecture in build/build_config.h
 #endif
