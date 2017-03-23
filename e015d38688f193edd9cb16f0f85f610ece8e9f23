@@ -39,6 +39,48 @@
       "revId": "e015d38688f193edd9cb16f0f85f610ece8e9f23",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef32304a_a215dc19",
+        "filename": "build/common.gypi",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-03-23T18:12:35Z",
+      "side": 1,
+      "message": "\u003e Should we set a default here of whatever we expect Crashpad to require?\n\nNot really. We only want to define something when we’re working with a standalone toolchain that’s using unified headers (because its headers won’t define __ANDROID_API__) and that’s using GCC (because the Clang wrapper does define __ANDROID_API__, but GCC has no wrapper). We want to let whatever standalone toolchain the user pointed to dictate the API level.",
+      "parentUuid": "f2b1df3e_5bfa4959",
+      "revId": "e015d38688f193edd9cb16f0f85f610ece8e9f23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5f92972_5f284acf",
+        "filename": "build/common.gypi",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-03-23T18:12:35Z",
+      "side": 1,
+      "message": "\u003e I\u0027m not overly familiar with Android, but I see the unified headers are documented as \"NDK\" not \"SDK\". Is that a distinction we should make here?\n\nI think that the way that it works is that both the NDK and the SDK give you stuff (headers and libraries on one side and Java “stuff” on the other) to meet a certain Android API level. The NDK is separately-versioned, so for example, NDK r14b (current) has headers and libraries from API 9 (2.3 “Gingerbread”) through 24 (7.0 “Nougat”). Then things start to get confused because the SDK isn’t versioned in the same way as the NDK: there’s nothing like SDK r14b, there’s just, for example, the SDK for API 21, which is currently at revision 2. So naturally, people call that SDK 21, or say that the SDK version is 21.\n\nSo I plucked out the name that Chrome seemed to use for this in a past life when it used GYP, android_sdk_version, because that was supposed to ease the mental shift for people who might be familiar with it. But the GYP build in Chrome is gone, and maybe it’ll eventually be gone in here too, so this might have been a bad call. Certainly, there’s nothing to remain compatible with now.\n\nSo let’s go with android_api_level, which is really the right name for this.",
+      "parentUuid": "4b317805_910eb09c",
+      "range": {
+        "startLine": 17,
+        "startChar": 13,
+        "endLine": 17,
+        "endChar": 16
+      },
+      "revId": "e015d38688f193edd9cb16f0f85f610ece8e9f23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
