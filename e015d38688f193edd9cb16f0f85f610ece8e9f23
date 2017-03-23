@@ -81,6 +81,30 @@
       "revId": "e015d38688f193edd9cb16f0f85f610ece8e9f23",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3699fb96_da618d5d",
+        "filename": "build/common.gypi",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-03-23T18:14:02Z",
+      "side": 1,
+      "message": "SGTM.",
+      "parentUuid": "e5f92972_5f284acf",
+      "range": {
+        "startLine": 17,
+        "startChar": 13,
+        "endLine": 17,
+        "endChar": 16
+      },
+      "revId": "e015d38688f193edd9cb16f0f85f610ece8e9f23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
