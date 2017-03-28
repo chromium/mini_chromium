@@ -274,20 +274,17 @@ LogMessage::~LogMessage() {
 #endif  // OS_MACOSX
 
   if (severity_ == LOG_FATAL) {
-#ifndef NDEBUG
-    abort();
-#else
-#if defined(OS_WIN)
+#if defined(COMPILER_MSVC)
     __debugbreak();
+    __ud2();
 #elif defined(ARCH_CPU_X86_FAMILY)
-    __asm__("int3");
+    asm("int3; ud2;");
 #elif defined(ARCH_CPU_ARMEL)
-    __asm__("bkpt 0");
+    asm("bkpt #0; udf #0;");
 #elif defined(ARCH_CPU_ARM64)
-    __asm__("brk 0");
+    asm("brk #0; hlt #0;");
 #else
-#error Port.
-#endif
+    __builtin_trap();
 #endif
   }
 }
