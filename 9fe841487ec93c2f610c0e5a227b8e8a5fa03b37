@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d83b19c_83e3fe34",
+        "filename": "base/logging.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-03-28T17:18:09Z",
+      "side": 1,
+      "message": "I think Nico has added __ud2() to clang-win now. So maybe in Crashpad, we can just simplify the MSVC-alike path to\n\n__debugbreak(); __ud2();\n\ndespite all the agonizing we still have to do in base in Chromium.",
+      "revId": "9fe841487ec93c2f610c0e5a227b8e8a5fa03b37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
