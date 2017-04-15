@@ -140,6 +140,9 @@
           '-fvisibility-inlines-hidden',
           '-std=c++11',
         ],
+        'defines': [
+          '_FILE_OFFSET_BITS=64',
+        ],
         'ldflags': [
           '-fPIC',
           '-pthread',
@@ -176,10 +179,6 @@
                   '__ANDROID_API__=<(android_api_level)',
                 ],
               }],
-            ],
-          }, {  # else: OS!="android"
-            'defines': [
-              '_FILE_OFFSET_BITS=64',
             ],
           }],
         ],
