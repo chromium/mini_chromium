@@ -31,6 +31,7 @@
 #include <sys/syscall.h>
 #include <sys/types.h>
 #elif defined(OS_WIN)
+#include <intrin.h>
 #include <windows.h>
 #endif
 
