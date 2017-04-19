@@ -16,6 +16,24 @@
       "revId": "1d2a024fdb1d8df230f6fc2d332f1465a80ad101",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1c5a705_6453cbee",
+        "filename": "base/logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-04-19T22:31:36Z",
+      "side": 0,
+      "message": "Oops.",
+      "parentUuid": "6d31760c_0b1084c9",
+      "revId": "1d2a024fdb1d8df230f6fc2d332f1465a80ad101",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
