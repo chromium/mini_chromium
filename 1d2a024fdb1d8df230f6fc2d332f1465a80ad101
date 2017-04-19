@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d31760c_0b1084c9",
+        "filename": "base/logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-04-19T22:22:41Z",
+      "side": 0,
+      "message": "third_party\\mini_chromium\\mini_chromium\\base\\logging.cc(279): error C3861: \u0027__ud2\u0027: identifier not found",
+      "revId": "1d2a024fdb1d8df230f6fc2d332f1465a80ad101",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
