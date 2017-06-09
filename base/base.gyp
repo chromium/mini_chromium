@@ -69,8 +69,6 @@
         'mac/scoped_nsobject.h',
         'mac/scoped_typeref.h',
         'macros.h',
-        'memory/aligned_memory.cc',
-        'memory/aligned_memory.h',
         'memory/free_deleter.h',
         'memory/ptr_util.h',
         'memory/scoped_policy.h',
