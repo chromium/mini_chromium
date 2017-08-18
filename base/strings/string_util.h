@@ -13,6 +13,9 @@ namespace base {
 int vsnprintf(char* buffer, size_t size, const char* format, va_list arguments)
     PRINTF_FORMAT(3, 0);
 
+size_t strlcpy(char* dst, const char* src, size_t dst_size);
+size_t wcslcpy(wchar_t* dst, const wchar_t* src, size_t dst_size);
+
 }  // namespace base
 
 #if defined(OS_WIN)

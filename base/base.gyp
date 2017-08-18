@@ -90,6 +90,7 @@
         'strings/string_number_conversions.cc',
         'strings/string_number_conversions.h',
         'strings/string_piece.h',
+        'strings/string_util.cc',
         'strings/string_util.h',
         'strings/string_util_posix.h',
         'strings/string_util_win.cc',
