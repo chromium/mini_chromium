@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e097523_ebd8fe1b",
+        "filename": "base/memory/ptr_util.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1223274
+      },
+      "writtenOn": "2017-10-11T19:57:39Z",
+      "side": 1,
+      "message": "just curious, why not use std::enable_if ?",
+      "range": {
+        "startLine": 24,
+        "startChar": 7,
+        "endLine": 24,
+        "endChar": 23
+      },
+      "revId": "e12497eed074046e3f424820a1231082b7ae1b90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2132ef87_06f883cd",
+        "filename": "base/memory/ptr_util.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1223274
+      },
+      "writtenOn": "2017-10-11T19:57:39Z",
+      "side": 1,
+      "message": "nit: these are not overloads, but SFINAE enabled definitions, right? (ie. a single one will be specialized for a particular T)",
+      "range": {
+        "startLine": 53,
+        "startChar": 3,
+        "endLine": 53,
+        "endChar": 11
+      },
+      "revId": "e12497eed074046e3f424820a1231082b7ae1b90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
