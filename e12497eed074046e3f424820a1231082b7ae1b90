@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "93ee11ee_1d1019a8",
+        "filename": "base/memory/ptr_util.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-10-11T20:15:29Z",
+      "side": 1,
+      "message": "\u003e just curious, why not use std::enable_if ?\n\nI just borrowed Chromium’s implementation (from before it was rewritten to be based on std::make_unique).",
+      "parentUuid": "3e097523_ebd8fe1b",
+      "range": {
+        "startLine": 24,
+        "startChar": 7,
+        "endLine": 24,
+        "endChar": 23
+      },
+      "revId": "e12497eed074046e3f424820a1231082b7ae1b90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2132ef87_06f883cd",
         "filename": "base/memory/ptr_util.h",
         "patchSetId": 2
