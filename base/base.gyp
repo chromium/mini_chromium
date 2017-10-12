@@ -70,7 +70,6 @@
         'mac/scoped_typeref.h',
         'macros.h',
         'memory/free_deleter.h',
-        'memory/ptr_util.h',
         'memory/scoped_policy.h',
         'numerics/safe_conversions.h',
         'numerics/safe_conversions_impl.h',
