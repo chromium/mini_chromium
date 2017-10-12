@@ -66,7 +66,7 @@
 
           'conditions': [
             ['clang!=0', {
-              'CLANG_CXX_LANGUAGE_STANDARD': 'c++11',  # -std=c++11
+              'CLANG_CXX_LANGUAGE_STANDARD': 'c++14',  # -std=c++14
 
               # Don't link in libarclite_macosx.a, see http://crbug.com/156530.
               'CLANG_LINK_OBJC_RUNTIME': 'NO',  # No -fobjc-link-runtime
@@ -138,7 +138,7 @@
         'cflags_cc': [
           '-fno-rtti',
           '-fvisibility-inlines-hidden',
-          '-std=c++11',
+          '-std=c++14',
         ],
         'defines': [
           '_FILE_OFFSET_BITS=64',
