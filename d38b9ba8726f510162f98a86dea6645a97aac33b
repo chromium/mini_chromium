@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "636cff14_60e89caf",
+        "filename": "base/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-17T22:25:55Z",
+      "side": 1,
+      "message": "Isn’t there supposed to be a filter that deals with this?",
+      "revId": "d38b9ba8726f510162f98a86dea6645a97aac33b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e76610e7_bdeaf43d",
         "filename": "base/BUILD.gn",
         "patchSetId": 1
@@ -64,6 +81,23 @@
       "writtenOn": "2017-11-17T21:18:30Z",
       "side": 1,
       "message": "s/mx/zx/ and s/MX/ZX/ throughout",
+      "revId": "d38b9ba8726f510162f98a86dea6645a97aac33b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca22c573_e36397ed",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-17T22:25:55Z",
+      "side": 1,
+      "message": "I guess at some point between when this originally landed and now, we grew a bunch of Linux support that never made it into this file.\n\nYou don’t necessarily need to deal with that, but I suppose somebody should.",
       "revId": "d38b9ba8726f510162f98a86dea6645a97aac33b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
