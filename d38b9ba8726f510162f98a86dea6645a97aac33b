@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f0a4df2_d97bb5a7",
+        "filename": "base/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1177675
+      },
+      "writtenOn": "2017-11-17T21:18:30Z",
+      "side": 1,
+      "message": "Another mac file, if it matters",
+      "revId": "d38b9ba8726f510162f98a86dea6645a97aac33b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e76610e7_bdeaf43d",
+        "filename": "base/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1177675
+      },
+      "writtenOn": "2017-11-17T21:18:30Z",
+      "side": 1,
+      "message": "My version of the patch included:\n\n  } else if (is_fuchsia) {\n    # logging.cc uses zx_object_get_info\n    libs \u003d [ \"zircon\" ]\n  }",
+      "revId": "d38b9ba8726f510162f98a86dea6645a97aac33b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1a1e01a_a63f91cd",
+        "filename": "base/logging.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1177675
+      },
+      "writtenOn": "2017-11-17T21:18:30Z",
+      "side": 1,
+      "message": "s/magenta/zircon/ throughout",
+      "revId": "d38b9ba8726f510162f98a86dea6645a97aac33b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d017182e_8575b33d",
+        "filename": "base/logging.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1177675
+      },
+      "writtenOn": "2017-11-17T21:18:30Z",
+      "side": 1,
+      "message": "s/mx/zx/ and s/MX/ZX/ throughout",
+      "revId": "d38b9ba8726f510162f98a86dea6645a97aac33b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
