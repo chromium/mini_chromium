@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "29ae6c8b_9b61d89e",
+        "filename": "base/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-18T01:43:43Z",
+      "side": 1,
+      "message": "Brett\u0027s stated GN policy in Chromium is that we shouldn\u0027t add more source filters, e.g. for _fuchsia files. During the gyp transition, it was too confusing to *not* have _win/_mac magic filters, so those exist via a sort of weird GN feature. But he didn\u0027t want to add more for new platforms. So there\u0027s sort an asymmetry in how they\u0027re normally listed.\n\nmini_chromium/build/BUILDCONFIG.gn is where set_sources_assignment_filter defined for Crashpad. (But they are there now, which is why I missed the .mm file.)\n\nProbably the best thing to do is just remove that then as we\u0027re not currently relying on it, and switch to explicit conditionals for our GN files. That way we match the Fuchsia-in-Chromium code, and we wouldn\u0027t create additional complexity for consuming these GN files in a future Crashpad-in-Fuchsia build.",
+      "parentUuid": "e7d71d8c_c26abf1c",
+      "revId": "d38b9ba8726f510162f98a86dea6645a97aac33b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e76610e7_bdeaf43d",
         "filename": "base/BUILD.gn",
         "patchSetId": 1
@@ -65,6 +83,24 @@
       "writtenOn": "2017-11-17T21:18:30Z",
       "side": 1,
       "message": "My version of the patch included:\n\n  } else if (is_fuchsia) {\n    # logging.cc uses zx_object_get_info\n    libs \u003d [ \"zircon\" ]\n  }",
+      "revId": "d38b9ba8726f510162f98a86dea6645a97aac33b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26b63584_e02afb80",
+        "filename": "base/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-18T01:43:43Z",
+      "side": 1,
+      "message": "Thanks, I kind of half-copied your internal patch. In Chromium we globally added libs \u003d [ \"zircon\" ] to the compiler config. I think I\u0027ll do that here too.",
+      "parentUuid": "e76610e7_bdeaf43d",
       "revId": "d38b9ba8726f510162f98a86dea6645a97aac33b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -88,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "a0923ae9_c94494d6",
+        "filename": "base/logging.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-18T01:43:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1a1e01a_a63f91cd",
+      "revId": "d38b9ba8726f510162f98a86dea6645a97aac33b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d017182e_8575b33d",
         "filename": "base/logging.cc",
         "patchSetId": 1
@@ -105,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "20e3635d_52e679aa",
+        "filename": "base/logging.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-18T01:43:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d017182e_8575b33d",
+      "revId": "d38b9ba8726f510162f98a86dea6645a97aac33b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ca22c573_e36397ed",
         "filename": "build/BUILD.gn",
         "patchSetId": 1
@@ -116,6 +188,24 @@
       "writtenOn": "2017-11-17T22:25:55Z",
       "side": 1,
       "message": "I guess at some point between when this originally landed and now, we grew a bunch of Linux support that never made it into this file.\n\nYou don’t necessarily need to deal with that, but I suppose somebody should.",
+      "revId": "d38b9ba8726f510162f98a86dea6645a97aac33b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff1d3422_4334fdfb",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-18T01:43:43Z",
+      "side": 1,
+      "message": "I guess in the Linux build that just happens to work with base.gyp? I don\u0027t see anything Linux-specific in there anyway. Or you just mean we should try this file on Linux too?\n\n(I realized after Dave pointed out that I didn\u0027t switch mx-\u003ezx that I\u0027m actually building some weird Linux/Fuchsia hybrid, because that obviously wouldn\u0027t have compiled otherwise. So I need to dig a little deeper, but it\u0027s possible all Linux needs is an is_linux or is_posix here).",
+      "parentUuid": "ca22c573_e36397ed",
       "revId": "d38b9ba8726f510162f98a86dea6645a97aac33b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
