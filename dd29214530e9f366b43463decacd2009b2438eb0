@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "c488df2c_ac410362",
+        "filename": "base/logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1177675
+      },
+      "writtenOn": "2017-11-18T02:11:55Z",
+      "side": 1,
+      "message": "\u003e What is this really?\n\nAn int64\n\n\u003e Or: can you show me an SDK or a place I can look at headers or documentation or both?\n\nHere\u0027re the docs for the zx_object_get_info syscall, though it may refer to concepts that aren\u0027t immediately obvious: https://fuchsia.googlesource.com/zircon/+/master/docs/syscalls/object_get_info.md#zx_info_handle_basic\n\nDocs for thread objects in particular: https://fuchsia.googlesource.com/zircon/+/master/docs/objects/thread.md\n\nAnd high-level Zircon kernel concepts:\nhttps://fuchsia.googlesource.com/zircon/+/master/docs/concepts.md",
+      "parentUuid": "ec6539d8_34a7bfdb",
+      "revId": "dd29214530e9f366b43463decacd2009b2438eb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "27b0796a_567a57d1",
         "filename": "base/logging.cc",
         "patchSetId": 2
@@ -47,6 +65,24 @@
       "writtenOn": "2017-11-18T01:57:35Z",
       "side": 1,
       "message": "and how does this work, etc.?",
+      "revId": "dd29214530e9f366b43463decacd2009b2438eb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef884b5b_dc6d7689",
+        "filename": "base/logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1177675
+      },
+      "writtenOn": "2017-11-18T02:11:55Z",
+      "side": 1,
+      "message": "\u003e and how does this work, etc.?\n\nSuggested comment: \"Get the 64-bit koid (unique kernel object ID) of the current thread, which we can use as a thread ID in the logs.\"",
+      "parentUuid": "27b0796a_567a57d1",
       "revId": "dd29214530e9f366b43463decacd2009b2438eb0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
