@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "9444ac8e_0a039891",
+        "filename": "base/logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-20T22:11:50Z",
+      "side": 1,
+      "message": "\u003e \u003e What’s up with the {scope} here?\n\u003e \n\u003e I did that in my patch to ensure that the \"info\" local didn\u0027t escaped the #if block and somehow cause problems in the generic code.\n\nEh, I don’t think it’s worthwhile. We’ve got a fair number of OS-specific #ifs and don’t really sweat this unless it causes a problem.\n\nI’m happy to get a Fuchsia builder/tester set up when work has progressed to the point that it’d be green. That’ll help.",
+      "parentUuid": "69025b03_017886c6",
+      "revId": "dd29214530e9f366b43463decacd2009b2438eb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "27b0796a_567a57d1",
         "filename": "base/logging.cc",
         "patchSetId": 2
