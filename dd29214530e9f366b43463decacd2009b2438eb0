@@ -54,6 +54,41 @@
     },
     {
       "key": {
+        "uuid": "b4144bce_e725cc79",
+        "filename": "base/logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-20T19:53:31Z",
+      "side": 1,
+      "message": "\u003e Here\u0027re the docs for the zx_object_get_info syscall, though it may refer to concepts that aren\u0027t immediately obvious: https://fuchsia.googlesource.com/zircon/+/master/docs/syscalls/object_get_info.md#zx_info_handle_basic\n\u003e \n\u003e Docs for thread objects in particular: https://fuchsia.googlesource.com/zircon/+/master/docs/objects/thread.md\n\u003e \n\u003e And high-level Zircon kernel concepts:\n\u003e https://fuchsia.googlesource.com/zircon/+/master/docs/concepts.md\n\nThanks, Dave. That answered my next question too: “where can I find the source?”",
+      "parentUuid": "c488df2c_ac410362",
+      "revId": "dd29214530e9f366b43463decacd2009b2438eb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "736c9390_b808f975",
+        "filename": "base/logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-20T19:53:31Z",
+      "side": 1,
+      "message": "What’s up with the {scope} here?",
+      "revId": "dd29214530e9f366b43463decacd2009b2438eb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "27b0796a_567a57d1",
         "filename": "base/logging.cc",
         "patchSetId": 2
