@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "69025b03_017886c6",
+        "filename": "base/logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1177675
+      },
+      "writtenOn": "2017-11-20T21:39:14Z",
+      "side": 1,
+      "message": "\u003e What’s up with the {scope} here?\n\nI did that in my patch to ensure that the \"info\" local didn\u0027t escaped the #if block and somehow cause problems in the generic code.",
+      "parentUuid": "736c9390_b808f975",
+      "revId": "dd29214530e9f366b43463decacd2009b2438eb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "27b0796a_567a57d1",
         "filename": "base/logging.cc",
         "patchSetId": 2
@@ -118,6 +136,29 @@
       "side": 1,
       "message": "\u003e and how does this work, etc.?\n\nSuggested comment: \"Get the 64-bit koid (unique kernel object ID) of the current thread, which we can use as a thread ID in the logs.\"",
       "parentUuid": "27b0796a_567a57d1",
+      "revId": "dd29214530e9f366b43463decacd2009b2438eb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66f6a38c_68b66bf2",
+        "filename": "base/logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1177675
+      },
+      "writtenOn": "2017-11-20T21:39:14Z",
+      "side": 1,
+      "message": "My patch was a little fast-and-loose; if we\u0027re checking this in, we should check for failure. Not worth failing the log statement itself, so maybe something like:\n\n  zx_status_t s \u003d zx_object_get_info(...);\n  if (s \u003d\u003d ZX_OK) {\n    thread \u003d info.koid;\n  } else {\n    thread \u003d 0;  // No kernel object will have a koid of zero.\n  }",
+      "range": {
+        "startLine": 326,
+        "startChar": 4,
+        "endLine": 326,
+        "endChar": 22
+      },
       "revId": "dd29214530e9f366b43463decacd2009b2438eb0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
