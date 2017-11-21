@@ -1,6 +1,16 @@
-# Copyright 2016 The Chromium Authors. All rights reserved.
-# Use of this source code is governed by a BSD-style license that can be
-# found in the LICENSE file.
+# Copyright 2016 The Crashpad Authors. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 ################################################################################
 # DEFAULT BUILD CONFIGURATION
@@ -52,7 +62,7 @@ config("default") {
     ]
 
     cflags_c = [ "-std=c99" ]
-    cflags_cc = [ "-std=c++11" ]
+    cflags_cc = [ "-std=c++14" ]
     cflags_objc = cflags_c
     cflags_objcc = cflags_cc
 
@@ -98,9 +108,11 @@ toolchain("gcc_like_toolchain") {
   if (is_clang) {
     cc = "${clang_root}clang"
     cxx = "${clang_root}clang++"
+    ld = "${clang_root}lld"
   } else {
     cc = "gcc"
     cxx = "g++"
+    ld = "ld"
   }
 
   tool("cc") {
@@ -155,6 +167,34 @@ toolchain("gcc_like_toolchain") {
     output_prefix = "lib"
     outputs = [
       "{{output_dir}}/{{target_output_name}}{{output_extension}}",
+    ]
+  }
+
+  tool("solink_module") {
+    # TODO: Implement.
+    outputs = [
+      "{{target_output_name}}{{output_extension}}",
+    ]
+    command = "echo TODO(GN)"
+  }
+
+  tool("link") {
+    exename = "{{target_output_name}}{{output_extension}}"
+    outfile = "{{output_dir}}/$exename"
+    rspfile = "$outfile.rsp"
+
+    default_output_extension = ""
+
+    default_output_dir = "{{root_out_dir}}"
+
+    start_group_flag = "-Wl,--start-group"
+    end_group_flag = "-Wl,--end-group "
+    command = "$ld {{ldflags}} -o \"$outfile\" $start_group_flag @\"$rspfile\" {{solibs}} $end_group_flag {{libs}}"
+
+    description = "LINK $outfile"
+    rspfile_content = "{{inputs}}"
+    outputs = [
+      outfile,
     ]
   }
 
