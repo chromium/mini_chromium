@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2cd1baa3_8cdca215",
+        "filename": "base/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-21T18:53:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82c38733_60fab9e4",
+      "revId": "dd29214530e9f366b43463decacd2009b2438eb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec6539d8_34a7bfdb",
         "filename": "base/logging.cc",
         "patchSetId": 2
@@ -125,6 +143,24 @@
     },
     {
       "key": {
+        "uuid": "462775a2_8fff1275",
+        "filename": "base/logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-21T18:53:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9444ac8e_0a039891",
+      "revId": "dd29214530e9f366b43463decacd2009b2438eb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "27b0796a_567a57d1",
         "filename": "base/logging.cc",
         "patchSetId": 2
@@ -180,6 +216,48 @@
       "revId": "dd29214530e9f366b43463decacd2009b2438eb0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29c620a6_f0165813",
+        "filename": "base/logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-21T18:53:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef884b5b_dc6d7689",
+      "revId": "dd29214530e9f366b43463decacd2009b2438eb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e1a4c005_966d15d3",
+        "filename": "base/logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-21T18:53:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66f6a38c_68b66bf2",
+      "range": {
+        "startLine": 326,
+        "startChar": 4,
+        "endLine": 326,
+        "endChar": 22
+      },
+      "revId": "dd29214530e9f366b43463decacd2009b2438eb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
