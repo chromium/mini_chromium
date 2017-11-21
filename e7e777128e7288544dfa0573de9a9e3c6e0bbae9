@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "74ad5190_5722f48f",
+        "filename": "base/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-21T19:12:35Z",
+      "side": 1,
+      "message": "Move to is_win.",
+      "revId": "e7e777128e7288544dfa0573de9a9e3c6e0bbae9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5235e434_730f4558",
+        "filename": "base/logging.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-21T19:12:35Z",
+      "side": 1,
+      "message": "Do you need to initialize this at all?",
+      "revId": "e7e777128e7288544dfa0573de9a9e3c6e0bbae9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15828397_54fbeb16",
+        "filename": "base/logging.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-21T19:12:35Z",
+      "side": 1,
+      "message": "Align with zx_thread_self() on the line above.",
+      "revId": "e7e777128e7288544dfa0573de9a9e3c6e0bbae9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
