@@ -29,14 +29,12 @@ config("release") {
       "/OPT:REF",
       "/LTCG",
     ]
-    arflags = [
-      "/LTCG",
-    ]
+    arflags = [ "/LTCG" ]
   }
 }
 
 config("default") {
-  if (is_mac) {
+  if (is_mac || is_fuchsia) {
     cflags = [
       "-Wall",
       "-Wendif-labels",
@@ -98,8 +96,8 @@ config("default") {
 
 toolchain("gcc_like_toolchain") {
   if (is_clang) {
-    cc = "clang"
-    cxx = "clang++"
+    cc = "${clang_root}clang"
+    cxx = "${clang_root}clang++"
   } else {
     cc = "gcc"
     cxx = "g++"
@@ -146,7 +144,11 @@ toolchain("gcc_like_toolchain") {
   }
 
   tool("alink") {
-    command = "libtool -static {{arflags}} -o {{output}} {{inputs}}"
+    if (is_mac) {
+      command = "libtool -static {{arflags}} -o {{output}} {{inputs}}"
+    } else {
+      command = "ar rcsD {{arflags}} -o {{output}} {{inputs}}"
+    }
     description = "LIBTOOL-STATIC {{output}}"
     default_output_dir = "{{target_out_dir}}"
     default_output_extension = ".a"

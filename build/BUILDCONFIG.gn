@@ -12,13 +12,15 @@ if (current_os == "") {
 
 declare_args() {
   is_debug = false
-  is_clang = current_os == "mac"
+  is_clang = current_os == "mac" || current_os == "fuchsia"
+  clang_root = ""
 }
 
 is_mac = false
 is_win = false
 is_linux = false
 is_android = false
+is_fuchsia = false
 
 if (current_os == "mac") {
   is_mac = true
@@ -28,9 +30,11 @@ if (current_os == "mac") {
   is_android = true
 } else if (current_os == "linux") {
   is_linux = true
+} else if (current_os == "fuchsia") {
+  is_fuchsia = true
 }
 
-is_posix = is_mac || is_linux || is_android
+is_posix = is_mac || is_linux || is_android || is_fuchsia
 
 if (is_win) {
   set_default_toolchain("//build:msvc_toolchain")

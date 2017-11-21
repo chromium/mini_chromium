@@ -11,9 +11,7 @@ static_library("base") {
     "../build/build_config.h",
     "atomicops.h",
     "atomicops_internals_atomicword_compat.h",
-    "atomicops_internals_mac.h",
     "atomicops_internals_portable.h",
-    "atomicops_internals_x86_msvc.h",
     "auto_reset.h",
     "bit_cast.h",
     "compiler_specific.h",
@@ -28,22 +26,6 @@ static_library("base") {
     "format_macros.h",
     "logging.cc",
     "logging.h",
-    "mac/close_nocancel.cc",
-    "mac/foundation_util.h",
-    "mac/foundation_util.mm",
-    "mac/mach_logging.cc",
-    "mac/mach_logging.h",
-    "mac/scoped_cftyperef.h",
-    "mac/scoped_ioobject.h",
-    "mac/scoped_launch_data.h",
-    "mac/scoped_mach_port.cc",
-    "mac/scoped_mach_port.h",
-    "mac/scoped_mach_vm.cc",
-    "mac/scoped_mach_vm.h",
-    "mac/scoped_nsautorelease_pool.h",
-    "mac/scoped_nsautorelease_pool.mm",
-    "mac/scoped_nsobject.h",
-    "mac/scoped_typeref.h",
     "macros.h",
     "memory/free_deleter.h",
     "memory/ptr_util.h",
@@ -68,12 +50,9 @@ static_library("base") {
     "strings/string_piece.h",
     "strings/string_util.h",
     "strings/string_util_posix.h",
-    "strings/string_util_win.cc",
-    "strings/string_util_win.h",
     "strings/stringprintf.cc",
     "strings/stringprintf.h",
     "strings/sys_string_conversions.h",
-    "strings/sys_string_conversions_mac.mm",
     "strings/utf_string_conversion_utils.cc",
     "strings/utf_string_conversion_utils.h",
     "strings/utf_string_conversions.cc",
@@ -84,7 +63,6 @@ static_library("base") {
     "synchronization/lock.h",
     "synchronization/lock_impl.h",
     "synchronization/lock_impl_posix.cc",
-    "synchronization/lock_impl_win.cc",
     "sys_byteorder.h",
     "template_util.h",
     "third_party/icu/icu_utf.cc",
@@ -92,10 +70,30 @@ static_library("base") {
     "threading/thread_local_storage.cc",
     "threading/thread_local_storage.h",
     "threading/thread_local_storage_posix.cc",
-    "threading/thread_local_storage_win.cc",
   ]
 
   if (is_mac) {
+    sources += [
+      "atomicops_internals_mac.h",
+      "atomicops_internals_x86_msvc.h",
+      "mac/close_nocancel.cc",
+      "mac/foundation_util.h",
+      "mac/foundation_util.mm",
+      "mac/mach_logging.cc",
+      "mac/mach_logging.h",
+      "mac/scoped_cftyperef.h",
+      "mac/scoped_ioobject.h",
+      "mac/scoped_launch_data.h",
+      "mac/scoped_mach_port.cc",
+      "mac/scoped_mach_port.h",
+      "mac/scoped_mach_vm.cc",
+      "mac/scoped_mach_vm.h",
+      "mac/scoped_nsautorelease_pool.h",
+      "mac/scoped_nsautorelease_pool.mm",
+      "mac/scoped_nsobject.h",
+      "mac/scoped_typeref.h",
+      "strings/sys_string_conversions_mac.mm",
+    ]
     libs = [
       "ApplicationServices.framework",
       "CoreFoundation.framework",
@@ -104,6 +102,12 @@ static_library("base") {
       "Security.framework",
     ]
   } else if (is_win) {
+    sources += [
+      "strings/string_util_win.cc",
+      "strings/string_util_win.h",
+      "synchronization/lock_impl_win.cc",
+      "threading/thread_local_storage_win.cc",
+    ]
     libs = [ "advapi32.lib" ]
   }
 

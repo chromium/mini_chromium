@@ -13,6 +13,8 @@
 #define OS_LINUX 1
 #elif defined(_WIN32)
 #define OS_WIN 1
+#elif defined(__Fuchsia__)
+#define OS_FUCHSIA 1
 #else
 #error Please add support for your platform in build/build_config.h
 #endif
@@ -30,7 +32,8 @@
 #endif
 #endif
 
-#if defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_ANDROID)
+#if defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_ANDROID) || \
+    defined(OS_FUCHSIA)
 #define OS_POSIX 1
 #endif
 
