@@ -99,6 +99,8 @@ config("default") {
   }
 
   if (is_fuchsia) {
+    cflags += [ "-fPIC" ]
+
     if (target_cpu == "arm64") {
       cflags += [ "--target=aarch64-fuchsia" ]
       ldflags += [ "--target=aarch64-fuchsia" ]
@@ -226,16 +228,14 @@ toolchain("gcc_like_toolchain") {
     outfile = "{{output_dir}}/$exename"
     rspfile = "$outfile.rsp"
 
-    default_output_extension = ""
-
-    default_output_dir = "{{root_out_dir}}"
-
     start_group_flag = "-Wl,--start-group"
     end_group_flag = "-Wl,--end-group "
     command = "$ld {{ldflags}} -o \"$outfile\" $start_group_flag @\"$rspfile\" {{solibs}} $end_group_flag {{libs}}"
-
-    description = "LINK $outfile"
     rspfile_content = "{{inputs}}"
+    description = "LINK $outfile"
+
+    default_output_extension = ""
+    default_output_dir = "{{root_out_dir}}"
     outputs = [
       outfile,
     ]
