@@ -325,7 +325,7 @@ void LogMessage::Init(const char* function) {
   zx_koid_t thread = 0;
   zx_info_handle_basic_t info;
   if (zx_object_get_info(zx_thread_self(),
-                         MX_INFO_HANDLE_BASIC,
+                         ZX_INFO_HANDLE_BASIC,
                          &info,
                          sizeof(info),
                          nullptr,
