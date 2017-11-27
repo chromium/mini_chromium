@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9126c505_2953e103",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-27T20:30:51Z",
+      "side": 1,
+      "message": "In another change of your dozen, you were doing ld \u003d cxx. Here you’re doing something else. At the very least, there’ll be a merge conflict, but which one’s intended?",
+      "revId": "d9d78c989647c91a1cefe2ee4a8e5c555abcd318",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
