@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a621daf_5dc731f1",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-27T20:24:54Z",
+      "side": 1,
+      "message": "This is just until we get a gn that includes 5eea716fd5c7, right?\n\nIf so: either leave a comment here saying that we can remove it once we get that newer gn, OR get us a newer gn and take this out.",
+      "revId": "a2d0090e5a978d008f583b0822d6207205f5ea72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03601c45_b898d814",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-27T20:24:54Z",
+      "side": 1,
+      "message": "No longer different between is_fuchsia and not, so this can fall out of the if.",
+      "revId": "a2d0090e5a978d008f583b0822d6207205f5ea72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d5b173a_13bab27b",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-27T20:24:54Z",
+      "side": 1,
+      "message": "For that matter, why don’t we invoke the linker as g++ when !is_clang?",
+      "revId": "a2d0090e5a978d008f583b0822d6207205f5ea72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f2a6968_bcfe1621",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-27T20:24:54Z",
+      "side": 1,
+      "message": "This isn’t gonna be right for macOS. It’s OK if you’re not pretending to support macOS yet, just write a comment here.",
+      "revId": "a2d0090e5a978d008f583b0822d6207205f5ea72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
