@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "622acecd_be34a04f",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-27T21:05:06Z",
+      "side": 1,
+      "message": "No, this is permanent, 5eea716fd5c7 just fixes the documentation. The name of this flag changed a while back, but some of the docs got missed, so I was just fixing that. Specifying what to use for -l and -L will still be required though.",
+      "parentUuid": "3a621daf_5dc731f1",
+      "revId": "a2d0090e5a978d008f583b0822d6207205f5ea72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "03601c45_b898d814",
         "filename": "build/BUILD.gn",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "a2d0090e5a978d008f583b0822d6207205f5ea72",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f617c52_aa6e0e76",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-27T21:05:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03601c45_b898d814",
+      "revId": "a2d0090e5a978d008f583b0822d6207205f5ea72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "3d118b34_a8e3c7fd",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-27T21:05:06Z",
+      "side": 1,
+      "message": "No idea! Are there any non-clang platforms we might care about? Maybe I should just delete it, and assume clang, since that\u0027s more or less where Chromium and Fuchsia are headed.\n\nOtherwise though, yeah, it\u0027s probably wrong as the link and solink are doing \"-Wl,blah\".",
+      "parentUuid": "9d5b173a_13bab27b",
+      "revId": "a2d0090e5a978d008f583b0822d6207205f5ea72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f2a6968_bcfe1621",
         "filename": "build/BUILD.gn",
         "patchSetId": 5
@@ -67,6 +121,24 @@
       "revId": "a2d0090e5a978d008f583b0822d6207205f5ea72",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79d9d5d6_bfee2d8b",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-27T21:05:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f2a6968_bcfe1621",
+      "revId": "a2d0090e5a978d008f583b0822d6207205f5ea72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
