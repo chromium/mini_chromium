@@ -16,6 +16,24 @@
       "revId": "d9d78c989647c91a1cefe2ee4a8e5c555abcd318",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "666b8eec_1acbb502",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-27T21:07:21Z",
+      "side": 1,
+      "message": "Yeah, I screwed it up here, should be cxx. I hadn\u0027t gotten as far as a successful link when I wrote this one. :)",
+      "parentUuid": "9126c505_2953e103",
+      "revId": "d9d78c989647c91a1cefe2ee4a8e5c555abcd318",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
