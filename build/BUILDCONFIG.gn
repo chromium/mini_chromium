@@ -12,7 +12,6 @@ if (current_os == "") {
 
 declare_args() {
   is_debug = false
-  is_clang = current_os == "mac" || current_os == "fuchsia"
   clang_root = ""
 }
 

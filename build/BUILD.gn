@@ -16,6 +16,22 @@
 # DEFAULT BUILD CONFIGURATION
 ################################################################################
 
+if (is_fuchsia) {
+  declare_args() {
+    # Path to Fuchsia SDK.
+    fuchsia_sdk = "//third_party/fuchsia/sdk"
+    fuchsia_clang = "//third_party/fuchsia/clang"
+
+    sysroot = ""
+  }
+
+  if (current_cpu == "arm64") {
+    sysroot = fuchsia_sdk + "/sysroot/aarch64-fuchsia"
+  } else if (current_cpu == "x64") {
+    sysroot = fuchsia_sdk + "/sysroot/x86_64-fuchsia"
+  }
+}
+
 config("debug") {
 }
 
@@ -44,6 +60,7 @@ config("release") {
 }
 
 config("default") {
+  ldflags = []
   if (is_mac || is_fuchsia) {
     cflags = [
       "-Wall",
@@ -66,14 +83,12 @@ config("default") {
     cflags_objc = cflags_c
     cflags_objcc = cflags_cc
 
-    if (is_clang) {
-      cflags += [
-        "-Wexit-time-destructors",
-        "-Wheader-hygiene",
-        "-Wnewline-eof",
-        "-Wstring-conversion",
-      ]
-    }
+    cflags += [
+      "-Wexit-time-destructors",
+      "-Wheader-hygiene",
+      "-Wnewline-eof",
+      "-Wstring-conversion",
+    ]
   } else if (is_win) {
     cflags = [
       "/DNOMINMAX",
@@ -93,6 +108,31 @@ config("default") {
     ]
   }
 
+  if (is_fuchsia) {
+    if (target_cpu == "arm64") {
+      cflags += [ "--target=aarch64-fuchsia" ]
+      ldflags += [ "--target=aarch64-fuchsia" ]
+    } else if (target_cpu == "x64") {
+      cflags += [ "--target=x86_64-fuchsia" ]
+      ldflags += [ "--target=x86_64-fuchsia" ]
+    } else {
+      assert(false, "Unsupported architecture")
+    }
+
+    libs = [
+      "fdio",
+      "zircon",
+    ]
+
+    # Pass the sysroot to all C compiler variants, the assembler, and linker.
+    sysroot_flags = [ "--sysroot=" + rebase_path(sysroot, root_build_dir) ]
+    ldflags += sysroot_flags
+    cflags_c += sysroot_flags
+    cflags_cc += sysroot_flags
+    cflags_objc += sysroot_flags
+    cflags_objcc += sysroot_flags
+  }
+
   if (is_debug) {
     configs = [ ":debug" ]
   } else {
@@ -105,14 +145,17 @@ config("default") {
 ################################################################################
 
 toolchain("gcc_like_toolchain") {
-  if (is_clang) {
-    cc = "${clang_root}clang"
-    cxx = "${clang_root}clang++"
-    ld = "${clang_root}lld"
+  lib_switch = "-l"
+  lib_dir_switch = "-L"
+
+  if (is_fuchsia) {
+    cc = rebase_path(fuchsia_clang, root_build_dir) + "/bin/clang"
+    cxx = rebase_path(fuchsia_clang, root_build_dir) + "/bin/clang++"
+    ld = cxx
   } else {
-    cc = "gcc"
-    cxx = "g++"
-    ld = "ld"
+    cc = "clang"
+    cxx = "clang++"
+    ld = cxx
   }
 
   tool("cc") {
@@ -121,7 +164,7 @@ toolchain("gcc_like_toolchain") {
     depsformat = "gcc"
     description = "CXX {{output}}"
     outputs = [
-      "{{target_out_dir}}/{{source_name_part}}.o",
+      "{{target_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
     ]
   }
 
@@ -131,7 +174,7 @@ toolchain("gcc_like_toolchain") {
     depsformat = "gcc"
     description = "CXX {{output}}"
     outputs = [
-      "{{target_out_dir}}/{{source_name_part}}.o",
+      "{{target_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
     ]
   }
 
@@ -141,7 +184,7 @@ toolchain("gcc_like_toolchain") {
     depsformat = "gcc"
     description = "OBJC {{output}}"
     outputs = [
-      "{{target_out_dir}}/{{source_name_part}}.o",
+      "{{target_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
     ]
   }
 
@@ -151,7 +194,7 @@ toolchain("gcc_like_toolchain") {
     depsformat = "gcc"
     description = "OBJCXX {{output}}"
     outputs = [
-      "{{target_out_dir}}/{{source_name_part}}.o",
+      "{{target_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
     ]
   }
 
@@ -171,11 +214,21 @@ toolchain("gcc_like_toolchain") {
   }
 
   tool("solink_module") {
-    # TODO: Implement.
+    # TODO(scottmg): This will need to do -framework, etc. for macOS.
+    soname = "{{target_output_name}}{{output_extension}}"  # e.g. "libfoo.so".
+    sofile = "{{output_dir}}/$soname"
+    rspfile = sofile + ".rsp"
+
+    command = "$ld -shared {{ldflags}} -o \"$sofile\" -Wl,-soname=\"$soname\" @\"$rspfile\""
+    rspfile_content = "-Wl,--whole-archive {{inputs}} {{solibs}} -Wl,--no-whole-archive {{libs}}"
+    description = "SOLINK_MODULE $sofile"
+
+    default_output_extension = ".so"
+    default_output_dir = "{{root_out_dir}}"
+    output_prefix = "lib"
     outputs = [
-      "{{target_output_name}}{{output_extension}}",
+      sofile,
     ]
-    command = "echo TODO(GN)"
   }
 
   tool("link") {
