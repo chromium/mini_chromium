@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "16771e32_d1705734",
+        "filename": "build/BUILDCONFIG.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-27T20:50:18Z",
+      "side": 1,
+      "message": "But aren’t there other target types that we’d also want -Wexit-time-destructors for?",
+      "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
