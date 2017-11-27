@@ -16,6 +16,24 @@
       "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94aa7838_2ffb57c5",
+        "filename": "build/BUILDCONFIG.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-27T23:19:24Z",
+      "side": 1,
+      "message": "BUILDCONFIG.gn is the setup for the project, as if mini_chromium were to be built by itself. But there\u0027s currently only build files and a static library in mini_chromium so there are no other targets to set defaults for, as there\u0027s no test binaries, examples, etc. in mini_chromium.\n\nIn the Crashpad tree, there\u0027s also a BUILDCONFIG.gn (which mostly uses the configuration details from mini_chromium\u0027s build/BUILD.gn as this BUILDCONFIG.gn does). In Crashpad\u0027s we do indeed need to add //build:Wexit_time_destructors to all target types.\n\nWe might want to consider just removing this BUILDCONFIG.gn since it\u0027s probably mostly just serving to be confusing as there\u0027s not much utility to building libbase.a standalone in the mini_chromium tree.\n\nThat would still leave build/BUILD.gn containing compiler flags, etc. to be used here and shared with Crashpad, and base/BUILD.gn which has the list of files that are necessary to build base as a static library.",
+      "parentUuid": "16771e32_d1705734",
+      "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
