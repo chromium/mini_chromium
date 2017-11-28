@@ -198,6 +198,24 @@
       "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9620f130_5bf89dbe",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-28T21:08:29Z",
+      "side": 1,
+      "message": "\u003e Assuming we\u0027ll use it in Crashpad, it sort of has to go in base so that we can use it here in mini_chromium and also in Crashpad? (Anyway, I think makes sense upstream.)\n\nYeah, I agree, I was just saying that if there was no reason to have it in Chromium it could be a Crashpad special like NTSTATUS_LOG is. (Although Chromium could probably benefit from that too.)",
+      "parentUuid": "2fbee72d_3ee9e4c8",
+      "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
