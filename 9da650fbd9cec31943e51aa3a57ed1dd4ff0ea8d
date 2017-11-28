@@ -16,6 +16,24 @@
       "revId": "9da650fbd9cec31943e51aa3a57ed1dd4ff0ea8d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53e8b1e7_a412c4ed",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-28T23:27:18Z",
+      "side": 1,
+      "message": "Oh shoot, things are half-landed sorry. I believe this should stay as current_cpu.\n\nI find the two names especially confusing, but my understanding is that target_cpu is used sparingly and it means the target for the whole build.\n\nBut if you\u0027re currently building a target that\u0027s building with a non-default toolchain (e.g. for a host tool) then you\u0027d want it to be current_cpu, which will be the one that\u0027s being built for in a particular target.\n\nThe reason your gn gen failed, is that the setting of current_cpu is supposed to be accomplished by BUILDCONFIG.gn, but I haven\u0027t landed that yet (or even sent it for review): https://chromium-review.googlesource.com/c/crashpad/crashpad/+/786312/4/build/BUILDCONFIG.gn.",
+      "parentUuid": "1017b208_89205ea3",
+      "revId": "9da650fbd9cec31943e51aa3a57ed1dd4ff0ea8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
