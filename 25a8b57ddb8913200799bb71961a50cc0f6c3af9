@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4f4db4c9_1b8f5477",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-28T00:09:23Z",
+      "side": 1,
+      "message": "Oops, restored in https://chromium-review.googlesource.com/#/c/chromium/mini_chromium/+/791869.",
+      "parentUuid": "7c791fe0_a0438de4",
+      "revId": "25a8b57ddb8913200799bb71961a50cc0f6c3af9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "52c4a08e_9056da68",
         "filename": "build/BUILD.gn",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2017-11-27T20:55:44Z",
       "side": 1,
       "message": "Also not macOS-friendly, but again, maybe that’s not intended yet.",
+      "revId": "25a8b57ddb8913200799bb71961a50cc0f6c3af9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6266db3d_bc5dee28",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-28T00:09:23Z",
+      "side": 1,
+      "message": "OK, noted. I\u0027ll have to go back and do Mac as a separate task.",
+      "parentUuid": "52c4a08e_9056da68",
       "revId": "25a8b57ddb8913200799bb71961a50cc0f6c3af9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
