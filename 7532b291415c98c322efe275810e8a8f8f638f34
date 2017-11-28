@@ -180,6 +180,24 @@
       "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fbee72d_3ee9e4c8",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-28T20:28:47Z",
+      "side": 1,
+      "message": "Assuming we\u0027ll use it in Crashpad, it sort of has to go in base so that we can use it here in mini_chromium and also in Crashpad? (Anyway, I think makes sense upstream.)",
+      "parentUuid": "6980913f_baeb7b95",
+      "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

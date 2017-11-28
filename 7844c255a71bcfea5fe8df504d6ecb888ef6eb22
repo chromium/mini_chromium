@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "11a8a6d8_aaf6778e",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-28T20:28:47Z",
+      "side": 1,
+      "message": "Derp (Can\u0027t build locally in the CL with all the other in-flight CLs.)",
+      "parentUuid": "e4146428_ffd9f6f2",
+      "range": {
+        "startLine": 119,
+        "startChar": 44,
+        "endLine": 119,
+        "endChar": 52
+      },
+      "revId": "7844c255a71bcfea5fe8df504d6ecb888ef6eb22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "514f0bb1_e2dabc81",
         "filename": "base/rand_util.cc",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2017-11-28T19:46:19Z",
       "side": 1,
       "message": "I thought: “given the current situation with ZX_CPRNG_DRAW_MAX_LEN, what’s the point of having |actual| at all?”\n\nIn the example at https://fuchsia.googlesource.com/zircon/+/HEAD/docs/syscalls/cprng_draw.md, the comment says “This loop is necessary to deal with short reads from the kernel.”\n\nIf that’s true, and zx_cprng_draw can really return actual ≠ len, then this CHECK is a time bomb.\n\nThen again, looking at zircon kernel/syscalls/syscalls_zircon.cpp sys_cprng_draw(), I don’t see how that’s possible, so maybe the example’s comment is just wrong, and this call’s interface is just awkward. And in that case, if “actual \u003d\u003d output_bytes_this_pass” is really guaranteed, then this falls into the same category as my next comment and that comparison ought to be treated as a DCHECK instead of a CHECK.",
+      "range": {
+        "startLine": 122,
+        "startChar": 29,
+        "endLine": 122,
+        "endChar": 61
+      },
+      "revId": "7844c255a71bcfea5fe8df504d6ecb888ef6eb22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a544408a_1bca85e6",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-28T20:28:47Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s awkward. It also says \"If its arguments are valid, zx_cprng_draw() will succeed.\" which to me implies that as long as we clamp the request to ZX_CPRNG_DRAW_MAX_LEN, actual is pointless.\n\nThe only reason I made it a CHECK instead of a DCHECK is that we don\u0027t have any error signalling here, and having a basic rand utility function returning uninitialized data could potentially be a serious problem if it was used in any context where it was being used for crypto-type things.\n\nI\u0027ll hold off going one way or the other until Julien or Carlos has a chance to weigh in upstream.",
+      "parentUuid": "514f0bb1_e2dabc81",
       "range": {
         "startLine": 122,
         "startChar": 29,
@@ -62,6 +110,24 @@
       "revId": "7844c255a71bcfea5fe8df504d6ecb888ef6eb22",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b60b00a_51a4c98d",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-28T20:28:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18e5165d_64d532a8",
+      "revId": "7844c255a71bcfea5fe8df504d6ecb888ef6eb22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
