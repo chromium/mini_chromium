@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a2b8cb4f_c3f4b913",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-28T00:25:14Z",
+      "side": 1,
+      "message": "SEO for Zircon was just starting to get better before it was renamed; you can often still find the correct docs my searching for example for \"mx_cprng_draw\" and then changing \"magenta\" to \"zircon\" in the URL.\n\nBut they\u0027re here https://fuchsia.googlesource.com/zircon/+/HEAD/docs/syscalls/cprng_draw.md in any case.",
+      "range": {
+        "startLine": 120,
+        "startChar": 25,
+        "endLine": 120,
+        "endChar": 38
+      },
+      "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
