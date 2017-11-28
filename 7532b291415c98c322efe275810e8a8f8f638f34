@@ -144,6 +144,24 @@
       "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5715c908_532afbe9",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-28T19:09:29Z",
+      "side": 1,
+      "message": "I guess because status isn\u0027t global/tls, it needs to be a separate macro from PLOG unfortunately. Hmm... OK, this\u0027ll have to be in Chromium first then, so let me file a todo here and follow up on that separately and then roll it in here.",
+      "parentUuid": "1d08b876_56cdd04e",
+      "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
