@@ -234,6 +234,24 @@
       "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6804dca3_e07b8c8b",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-28T21:52:26Z",
+      "side": 1,
+      "message": "\u003e (I\u0027m probably being dense here, and it\u0027s not really important now that it\u0027s going into base anyway, but in case something like this comes up again...)\n\u003e \n\u003e I meant that we\u0027re in mini_chromium here\n\nDOH! My density: that’s the part that I’m missing.",
+      "parentUuid": "0ac8ddd8_baf05de6",
+      "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
