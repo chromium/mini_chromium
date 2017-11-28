@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1017b208_89205ea3",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-28T23:01:53Z",
+      "side": 1,
+      "message": "Without this change, on both macOS and Linux:\n\nERROR at //third_party/mini_chromium/mini_chromium/build/BUILD.gn:120:50: Empty directory path.\n    sysroot_flags \u003d [ \"--sysroot\u003d\" + rebase_path(sysroot, root_build_dir) ]\n                                                 ^------\nYou can\u0027t use empty strings as directories. That\u0027s just wrong.\nSee //testing/test.gni:16:3: which caused the file to be included.\n  executable(target_name) {\n  ^------------------------\n\nAll I did to configure was use “target_os \u003d \"fuchsia\" target_cpu \u003d \"x64\"” as my “gn args”. Maybe you were just trying to gn gen some smaller subset of targets?\n\nI’m confessing all of this because it seems like I might have the right change, but I don’t really know what I’m doing with GN.",
+      "revId": "9da650fbd9cec31943e51aa3a57ed1dd4ff0ea8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
