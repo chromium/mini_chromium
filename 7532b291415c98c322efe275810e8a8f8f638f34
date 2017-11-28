@@ -162,6 +162,24 @@
       "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6980913f_baeb7b95",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-28T19:46:19Z",
+      "side": 1,
+      "message": "\u003e I guess because status isn\u0027t global/tls, it needs to be a separate macro from PLOG unfortunately.\n\nYeah, this’ll work more like MACH_LOG and NTSTATUS_LOG.\n\nIt doesn’t *have* to be in Chromium. NTSTATUS_LOG isn’t, for example. But if it’s going to be useful in Chromium too, then yeah, it makes sense to do it there first.",
+      "parentUuid": "5715c908_532afbe9",
+      "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

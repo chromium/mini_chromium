@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4146428_ffd9f6f2",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-28T19:46:19Z",
+      "side": 1,
+      "message": "output_bytes_this_pass",
+      "range": {
+        "startLine": 119,
+        "startChar": 44,
+        "endLine": 119,
+        "endChar": 52
+      },
+      "revId": "7844c255a71bcfea5fe8df504d6ecb888ef6eb22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "514f0bb1_e2dabc81",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-28T19:46:19Z",
+      "side": 1,
+      "message": "I thought: “given the current situation with ZX_CPRNG_DRAW_MAX_LEN, what’s the point of having |actual| at all?”\n\nIn the example at https://fuchsia.googlesource.com/zircon/+/HEAD/docs/syscalls/cprng_draw.md, the comment says “This loop is necessary to deal with short reads from the kernel.”\n\nIf that’s true, and zx_cprng_draw can really return actual ≠ len, then this CHECK is a time bomb.\n\nThen again, looking at zircon kernel/syscalls/syscalls_zircon.cpp sys_cprng_draw(), I don’t see how that’s possible, so maybe the example’s comment is just wrong, and this call’s interface is just awkward. And in that case, if “actual \u003d\u003d output_bytes_this_pass” is really guaranteed, then this falls into the same category as my next comment and that comparison ought to be treated as a DCHECK instead of a CHECK.",
+      "range": {
+        "startLine": 122,
+        "startChar": 29,
+        "endLine": 122,
+        "endChar": 61
+      },
+      "revId": "7844c255a71bcfea5fe8df504d6ecb888ef6eb22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18e5165d_64d532a8",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-28T19:46:19Z",
+      "side": 1,
+      "message": "I like how you’ve protected the subtraction below!\n\nFor this to trip, there’d have to be a bug in Zircon or a library layer between here and Zircon. That’s pretty unlikely and not worth checking for except in a debug build.\n\nAlso, the _GE variant ought to be just fine here, since the two operands are the same type.\n\nSo: DCHECK_GE(output_length, actual) ?",
+      "revId": "7844c255a71bcfea5fe8df504d6ecb888ef6eb22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
