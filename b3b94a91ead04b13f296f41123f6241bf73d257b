@@ -34,6 +34,24 @@
       "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fbb9f3d_e2c8df2f",
+        "filename": "build/BUILDCONFIG.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1144624
+      },
+      "writtenOn": "2017-11-28T15:43:38Z",
+      "side": 1,
+      "message": "I don\u0027t know if we can get away with fully removing mini_chromium\u0027s BUILDCONFIG.gn because we\u0027ll need the is_OS variables. But I support the idea of it being as minimal as possible since mini_chromium is a library for projects to build on top of.",
+      "parentUuid": "94aa7838_2ffb57c5",
+      "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
