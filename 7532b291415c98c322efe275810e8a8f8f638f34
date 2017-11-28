@@ -216,6 +216,24 @@
       "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ac8ddd8_baf05de6",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-28T21:27:10Z",
+      "side": 1,
+      "message": "\u003e \u003e Assuming we\u0027ll use it in Crashpad, it sort of has to go in base so that we can use it here in mini_chromium and also in Crashpad? (Anyway, I think makes sense upstream.)\n\u003e \n\u003e Yeah, I agree, I was just saying that if there was no reason to have it in Chromium it could be a Crashpad special like NTSTATUS_LOG is. (Although Chromium could probably benefit from that too.)\n\n(I\u0027m probably being dense here, and it\u0027s not really important now that it\u0027s going into base anyway, but in case something like this comes up again...)\n\nI meant that we\u0027re in mini_chromium here, so in order to have mini_chromium/base/rand_util.cc use ZX_LOG, where could ZX_LOG live, if not in base? And then we can\u0027t put it solely in mini_chromium/base otherwise Crashpad wouldn\u0027t build when in Chromium.\n\n... Oh, are you\u0027re thinking because Crashpad doesn\u0027t currently build on Fuchsia in Chromium, we\u0027d be OK? Then ZX_LOG could be an extension to the base API, as it\u0027ll never actually build against Chromium base. I guess that\u0027s a (slightly confusing) possibility, but I\u0027m not totally sure whether we\u0027ll end up building Crashpad only as an Fuchsia-OS-service thing, or whether we also might want Crashpad as component in Chromium similar to Windows and Mac.",
+      "parentUuid": "9620f130_5bf89dbe",
+      "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
