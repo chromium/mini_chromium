@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b10865bc_19e3c8b7",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-28T18:58:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dee19571_d2714207",
+      "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d314c785_ee271637",
         "filename": "base/rand_util.cc",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "296d6213_bc07d39e",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-28T18:58:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d314c785_ee271637",
+      "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "69333b1c_50a38fb0",
         "filename": "base/rand_util.cc",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2017-11-28T16:59:14Z",
       "side": 1,
       "message": "Seems weird that the syscall interface puts this requirement on the caller, because ZX_CPRNG_DRAW_MAX_LEN becomes a caller-side constant meaning that (1) it can never be lowered on the kernel side and (2) even if it’s raised on the kernel side, older clients won’t be able to take advantage, and (3) even if it’s raised on the kernel side, care needs to be taken in the SDK to preserve compatibility with older kernels.\n\nIf that’s the interface today, then that’s that, and the code you wrote is correct. But you’re more plugged in to Fuchsia development: is this the kind of issue that we should be bringing up with them (or fixing ourselves) as it comes up?",
+      "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "098c1d9a_aa14bb0f",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-28T18:58:16Z",
+      "side": 1,
+      "message": "It\u0027s a good question, I was just more or less following the example in the docs, but the evolution question makes sense to me.\n\nI filed ZX-1419 upstream. Unfortunately Fuchsia\u0027s bugtracker is still internal even though the code is public, supposed to be resolved ... some day.",
+      "parentUuid": "69333b1c_50a38fb0",
       "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
