@@ -34,6 +34,24 @@
       "revId": "9da650fbd9cec31943e51aa3a57ed1dd4ff0ea8d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b36c7d2d_47a129ed",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-28T23:40:16Z",
+      "side": 1,
+      "message": "OK, then I\u0027ll land patch set 1. Since none of this works yet, I\u0027ll leave the DEPS roll out of the Crashpad side (but maybe will file and link to a bug about being able to use \"cipd ensure\" as I want). Hopefully when we catch up with each other, it\u0027ll all work perfectly.",
+      "parentUuid": "53e8b1e7_a412c4ed",
+      "revId": "9da650fbd9cec31943e51aa3a57ed1dd4ff0ea8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
