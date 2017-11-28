@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "dee19571_d2714207",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-28T16:59:14Z",
+      "side": 1,
+      "message": "Fix the indentation.\n\nBut you don’t need a new local variable for this, you can reuse the parameter as the OS_WIN block below does.",
+      "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d314c785_ee271637",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-28T16:59:14Z",
+      "side": 1,
+      "message": "Since the signedness appears irrelevant, let’s leave it off to keep things concise (and to avoid making things appear that it’s relevant). And since the Windows implementation already does essentially the same thing, let’s recycle the naming used there (or rename things there to match what’s here). That’ll help readers of each implementation understand which parts are analogous.",
+      "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69333b1c_50a38fb0",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-28T16:59:14Z",
+      "side": 1,
+      "message": "Seems weird that the syscall interface puts this requirement on the caller, because ZX_CPRNG_DRAW_MAX_LEN becomes a caller-side constant meaning that (1) it can never be lowered on the kernel side and (2) even if it’s raised on the kernel side, older clients won’t be able to take advantage, and (3) even if it’s raised on the kernel side, care needs to be taken in the SDK to preserve compatibility with older kernels.\n\nIf that’s the interface today, then that’s that, and the code you wrote is correct. But you’re more plugged in to Fuchsia development: is this the kind of issue that we should be bringing up with them (or fixing ourselves) as it comes up?",
+      "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a2b8cb4f_c3f4b913",
         "filename": "base/rand_util.cc",
         "patchSetId": 1
@@ -19,6 +70,23 @@
         "endLine": 120,
         "endChar": 38
       },
+      "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d08b876_56cdd04e",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-28T16:59:14Z",
+      "side": 1,
+      "message": "We should probably have a ZX_LOG family, including ZX_CHECK, for things like this. It should use zx_status_get_string() and also show the number, like we do with errno/GetLastError() for PLOG, etc.",
       "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
