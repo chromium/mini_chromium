@@ -106,6 +106,24 @@
       "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9859d5f_fde5f8cf",
+        "filename": "build/BUILDCONFIG.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-29T20:08:32Z",
+      "side": 1,
+      "message": "Alrighty! It sounds like we\u0027re all in agreement. I also agree it would be nice in theory to have available a nice small standalone base library with a GN compiler setup available for lots of platforms. But if it\u0027s not being maintained/used/tested separately it\u0027s not worth trying to maintain a hypothetical build for it.\n\nWith that in mind, I\u0027m going to delete this BUILDCONFIG.gn, as well as the root .gn that refers to it. For now we\u0027ll keep build/BUILD.gn here? I could see an argument that it should move to Crashpad too though.",
+      "parentUuid": "030c4ea5_e47a3d57",
+      "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
