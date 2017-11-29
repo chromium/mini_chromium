@@ -88,6 +88,24 @@
       "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "030c4ea5_e47a3d57",
+        "filename": "build/BUILDCONFIG.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-29T16:15:41Z",
+      "side": 1,
+      "message": "\u003e I think we\u0027re just talking past each other because I agree with what you wrote. I\u0027m in favor of not having a standalone mini_chromium build.\n\nIn principle, I’d like to have a standalone mini_chromium build. But the reality is that it’s not going to be tested, so it’ll wind up not working, and at that point, it’s not really worth having at all. If we wind up with an important consumer that wants it, we can deal with it at that point.",
+      "parentUuid": "f8b258ed_a774f942",
+      "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
