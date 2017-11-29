@@ -109,7 +109,7 @@ void RandBytes(void* output, size_t output_length) {
   }
 
 #if defined(OS_FUCHSIA)
-  char* output_ptr = reinterpret_cast<unsigned char*>(output);
+  char* output_ptr = reinterpret_cast<char*>(output);
   while (output_length > 0) {
     // The syscall has a maximum number of bytes that can be read at once.
     // TODO(scottmg): See ZX-1419, where this may be changed.
@@ -117,7 +117,8 @@ void RandBytes(void* output, size_t output_length) {
         std::min(output_length, static_cast<size_t>(ZX_CPRNG_DRAW_MAX_LEN));
 
     size_t actual;
-    zx_status_t status = zx_cprng_draw(cur, requested_bytes_this_pass, &actual);
+    zx_status_t status =
+        zx_cprng_draw(output_ptr, requested_bytes_this_pass, &actual);
     // TODO(scottmg): Add ZX_CHECK, et al. and then use it here. See
     // https://crbug.com/789213.
     CHECK(status == ZX_OK);
