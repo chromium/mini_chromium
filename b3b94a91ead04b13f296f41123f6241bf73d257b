@@ -52,6 +52,24 @@
       "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b2c9562_726d86e3",
+        "filename": "build/BUILDCONFIG.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-11-29T00:48:17Z",
+      "side": 1,
+      "message": "I\u0027m not sure if I\u0027m getting confused or we all just have different visions of how this might work. :)\n\nHere\u0027s where I\u0027m at at the moment:\n- mini_chromium build/BUILDCONFIG.gn configures mini_chromium\u0027s build referring to its build/BUILD.gn.\n- Crashpad build/BUILDCONFIG.gn configures Crashpad\u0027s build, *also* referring to mini_chromium\u0027s build/BUILD.gn.\n- In a Crashpad build, mini_chromium/build/BUILDCONFIG.gn isn\u0027t referenced at all. So the only thing that mini_chromium\u0027s build/BUILDCONFIG.gn is useful for is doing a standalone build of mini_chromium\u0027s libbase.a, or as an example for a new project to copy and start from.\n\nSo I think it could be deleted without any effect other than breaking the standalone mini_chromium build which I don\u0027t think we care about. If I did that, then I\u0027d also delete mini_chromium\u0027s root .gn file.\n\nIn any case, I can take or leave the change to or removal of this file, but the gmock-in-Crashpad build needs to move the -W flag out into a separate config in build/BUILD.gn.",
+      "parentUuid": "9fbb9f3d_e2c8df2f",
+      "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
