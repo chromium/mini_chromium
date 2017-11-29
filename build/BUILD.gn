@@ -74,7 +74,6 @@ config("default") {
     cflags_objcc = cflags_cc
 
     cflags += [
-      "-Wexit-time-destructors",
       "-Wheader-hygiene",
       "-Wnewline-eof",
       "-Wstring-conversion",
@@ -129,6 +128,12 @@ config("default") {
     configs = [ ":debug" ]
   } else {
     configs = [ ":release" ]
+  }
+}
+
+config("Wexit_time_destructors") {
+  if (is_clang) {
+    cflags = [ "-Wexit-time-destructors" ]
   }
 }
 
