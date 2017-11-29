@@ -252,6 +252,23 @@
       "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0cc88ea6_95d1be57",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001558
+      },
+      "writtenOn": "2017-11-29T00:56:56Z",
+      "side": 1,
+      "message": "This is currently incorrect. The kernel doesn\u0027t guarantee that read_len \u003d\u003d actual. This is just like read in POSIX (except it doesn\u0027t fail as long as you pass something valid). You are required to loop until you\u0027ve draw read_len().\n\n(Note: this interface seems to confuse people, so we\u0027ll change it and hide the loop (and ZX_CPRNG_DRAW_MAX_LEN) in the VDSO. But please implement this loop until then).\n\nhttps://fuchsia.googlesource.com/zircon/+/HEAD/docs/syscalls/cprng_draw.md provides example code for how to draw.\n\nDiscussion in ZX-1419",
+      "revId": "7532b291415c98c322efe275810e8a8f8f638f34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
