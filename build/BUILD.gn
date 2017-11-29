@@ -143,11 +143,17 @@ toolchain("gcc_like_toolchain") {
   if (is_fuchsia) {
     cc = rebase_path(fuchsia_clang, root_build_dir) + "/bin/clang"
     cxx = rebase_path(fuchsia_clang, root_build_dir) + "/bin/clang++"
+    ar = rebase_path(fuchsia_clang, root_build_dir) + "/bin/llvm-ar"
     ld = cxx
   } else {
     cc = "clang"
     cxx = "clang++"
     ld = cxx
+
+    if (!is_mac) {
+      # macOS uses libtool instead of ar.
+      ar = "ar"
+    }
   }
 
   tool("cc") {
@@ -194,7 +200,7 @@ toolchain("gcc_like_toolchain") {
     if (is_mac) {
       command = "libtool -static {{arflags}} -o {{output}} {{inputs}}"
     } else {
-      command = "ar rcsD {{arflags}} -o {{output}} {{inputs}}"
+      command = "$ar rcsD {{arflags}} {{output}} {{inputs}}"
     }
     description = "LIBTOOL-STATIC {{output}}"
     default_output_dir = "{{target_out_dir}}"
