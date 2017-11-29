@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8e47e69_58160f90",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1001558
+      },
+      "writtenOn": "2017-11-29T01:19:03Z",
+      "side": 0,
+      "message": "Maybe rename output_bytes_this_pass to \"requested_bytes_this_pass\" or similar (since it\u0027s not a guaranteed output)?",
+      "revId": "5a1c5f82ce75eff8e9897928a747db699dcdf337",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
