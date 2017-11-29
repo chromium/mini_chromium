@@ -9,8 +9,8 @@
 if (is_fuchsia) {
   declare_args() {
     # Path to Fuchsia SDK.
-    fuchsia_sdk = "//third_party/fuchsia/sdk"
-    fuchsia_clang = "//third_party/fuchsia/clang"
+    fuchsia_sdk = "//third_party/fuchsia/sdk/linux-amd64"
+    fuchsia_clang = "//third_party/fuchsia/clang/" + host_os + "-amd64"
 
     sysroot = ""
   }
