@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21fd6035_d9f41aca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-29T01:31:36Z",
+      "side": 1,
+      "message": "Reference ZX-1419 here too, since that’s where this was discussed and explained.",
+      "revId": "62594011eee457ee7515a887ceb87902d04d474b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccd21d5e_e5694c99",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-29T01:31:36Z",
+      "side": 1,
+      "message": "Also add a TODO pointing to ZX-1419 so that we have a reminder to clean this up once the Zircon vDSO assumes the responsibility for looping.",
+      "revId": "62594011eee457ee7515a887ceb87902d04d474b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
