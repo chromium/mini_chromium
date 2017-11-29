@@ -124,6 +124,24 @@
       "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36cee9b3_31af7642",
+        "filename": "build/BUILDCONFIG.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-11-29T21:11:10Z",
+      "side": 1,
+      "message": "\u003e Alrighty! It sounds like we\u0027re all in agreement. I also agree it would be nice in theory to have available a nice small standalone base library with a GN compiler setup available for lots of platforms.\n\nHere’s one way we could wind up in that world:\n\n1. Wait ’til you finish moving the world around here and we have something working for our five interesting platforms.\n2. Wait for the someone to mention wanting a cut-back toolchain on gn-dev or whatever the right list is.\n3. Point them to what you’ve done for Crashpad, and casually steer the conversation to “y’know, we could extract our toolchain to make it easier for others to use.”\n4. Do that and let mini_chromium be a consumer too.\n\nRobert tells me that (2) happens all the time, so it wouldn’t even be much waiting.",
+      "parentUuid": "c9859d5f_fde5f8cf",
+      "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
