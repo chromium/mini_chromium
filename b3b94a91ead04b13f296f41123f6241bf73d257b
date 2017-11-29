@@ -70,6 +70,24 @@
       "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8b258ed_a774f942",
+        "filename": "build/BUILDCONFIG.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1144624
+      },
+      "writtenOn": "2017-11-29T15:53:05Z",
+      "side": 1,
+      "message": "I think we\u0027re just talking past each other because I agree with what you wrote. I\u0027m in favor of not having a standalone mini_chromium build.",
+      "parentUuid": "7b2c9562_726d86e3",
+      "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
