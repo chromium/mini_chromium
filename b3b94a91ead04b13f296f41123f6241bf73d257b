@@ -142,6 +142,24 @@
       "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20358fe1_d6e427ad",
+        "filename": "build/BUILDCONFIG.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1144624
+      },
+      "writtenOn": "2017-11-30T20:00:35Z",
+      "side": 1,
+      "message": "I think if mini_chromium carried tests (and had a waterfall to run them), keeping a BUILDCONFIG would maybe make more sense. Mark\u0027s Steps 1-4 SGTM, and we can always move things around later.\n\nAnd yes this is a topic that does come up on gn-dev a bit. Most recently it was https://groups.google.com/a/chromium.org/forum/#!searchin/gn-dev/toolchain|sort:date/gn-dev/KiJrafKN9Ro/UuowyaYFBgAJ. Someone did extract Chromium\u0027s toolchain to https://github.com/timniederhausen/gn-build, but it\u0027s got all the baggage we\u0027re trying to avoid.",
+      "parentUuid": "36cee9b3_31af7642",
+      "revId": "b3b94a91ead04b13f296f41123f6241bf73d257b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
