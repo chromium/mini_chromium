@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b00c5386_51cc3597",
+        "filename": "base/rand_util.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-01T01:48:24Z",
+      "side": 1,
+      "message": "Crashpad (and by extension, mini_chromium) style is just \u003c\u003c \"zx_cprng_draw\";. The rest of the message makes it obvious that something went wrong, and it saves some smallish amount of space to stick to this everywhere.",
+      "revId": "f609089390cd700d00fcc8492209c75525070a34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
