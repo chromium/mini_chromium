@@ -109,6 +109,11 @@ static_library("base") {
       "threading/thread_local_storage_win.cc",
     ]
     libs = [ "advapi32.lib" ]
+  } else if (is_fuchsia) {
+    sources += [
+      "fuchsia/fuchsia_logging.cc",
+      "fuchsia/fuchsia_logging.h",
+    ]
   }
 
   public_configs = [ ":base_public_config" ]

@@ -17,6 +17,7 @@
 
 #if defined(OS_FUCHSIA)
 #include <zircon/syscalls.h>
+#include "base/fuchsia/fuchsia_logging.h"
 #elif defined(OS_POSIX)
 #include "base/posix/eintr_wrapper.h"
 #elif defined(OS_WIN)
@@ -119,9 +120,7 @@ void RandBytes(void* output, size_t output_length) {
     size_t actual;
     zx_status_t status =
         zx_cprng_draw(output_ptr, requested_bytes_this_pass, &actual);
-    // TODO(scottmg): Add ZX_CHECK, et al. and then use it here. See
-    // https://crbug.com/789213.
-    CHECK(status == ZX_OK);
+    ZX_CHECK(status == ZX_OK, status) << "zx_cprng_draw failed";
 
     DCHECK_GE(output_length, actual);
     output_length -= actual;
