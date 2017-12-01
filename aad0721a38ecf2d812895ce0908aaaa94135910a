@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cab54c6e_024b6f3a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-01T18:04:23Z",
+      "side": 1,
+      "message": "Didn’t realize we had that shortener set up. I’m gonna use it from now on!",
+      "range": {
+        "startLine": 9,
+        "startChar": 12,
+        "endLine": 9,
+        "endChar": 38
+      },
+      "revId": "aad0721a38ecf2d812895ce0908aaaa94135910a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
