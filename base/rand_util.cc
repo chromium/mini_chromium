@@ -120,7 +120,7 @@ void RandBytes(void* output, size_t output_length) {
     size_t actual;
     zx_status_t status =
         zx_cprng_draw(output_ptr, requested_bytes_this_pass, &actual);
-    ZX_CHECK(status == ZX_OK, status) << "zx_cprng_draw failed";
+    ZX_CHECK(status == ZX_OK, status) << "zx_cprng_draw";
 
     DCHECK_GE(output_length, actual);
     output_length -= actual;
