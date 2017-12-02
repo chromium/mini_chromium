@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "666c71a5_c45e0041",
+        "filename": "base/posix/eintr_wrapper.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-02T01:46:14Z",
+      "side": 1,
+      "message": "Make these (x) to match Chromium. It may be significant in some really weird situations.",
+      "revId": "9bbcece28e5397a4a6ff57e027046c442888554c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
