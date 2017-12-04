@@ -16,6 +16,24 @@
       "revId": "9bbcece28e5397a4a6ff57e027046c442888554c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bcf5f75_b3e7fd40",
+        "filename": "base/posix/eintr_wrapper.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-04T17:31:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "666c71a5_c45e0041",
+      "revId": "9bbcece28e5397a4a6ff57e027046c442888554c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
