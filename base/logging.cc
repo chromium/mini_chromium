@@ -88,6 +88,25 @@ std::string SystemErrorCodeToString(unsigned long error_code) {
 }
 #endif  // OS_WIN
 
+#if defined(OS_FUCHSIA)
+zx_koid_t GetKoidForHandle(zx_handle_t handle) {
+  // Get the 64-bit koid (unique kernel object ID) of the given handle.
+  zx_koid_t koid = 0;
+  zx_info_handle_basic_t info;
+  if (zx_object_get_info(handle,
+                         ZX_INFO_HANDLE_BASIC,
+                         &info,
+                         sizeof(info),
+                         nullptr,
+                         nullptr) == ZX_OK) {
+    // If this fails, there's not much that can be done. As this is used only
+    // for logging, leave it as 0, which is not a valid koid.
+    koid = info.koid;
+  }
+  return koid;
+}
+#endif  // OS_FUCHSIA
+
 LogMessage::LogMessage(const char* function,
                        const char* file_path,
                        int line,
@@ -304,7 +323,9 @@ void LogMessage::Init(const char* function) {
     file_name.assign(file_name.substr(last_slash + 1));
   }
 
-#if defined(OS_POSIX)
+#if defined(OS_FUCHSIA)
+  zx_koid_t pid = GetKoidForHandle(zx_process_self());
+#elif defined(OS_POSIX)
   pid_t pid = getpid();
 #elif defined(OS_WIN)
   DWORD pid = GetCurrentProcessId();
@@ -320,20 +341,7 @@ void LogMessage::Init(const char* function) {
 #elif defined(OS_WIN)
   DWORD thread = GetCurrentThreadId();
 #elif defined(OS_FUCHSIA)
-  // Get the 64-bit koid (unique kernel object ID) of the current thread, which
-  // can be used as a thread ID.
-  zx_koid_t thread = 0;
-  zx_info_handle_basic_t info;
-  if (zx_object_get_info(zx_thread_self(),
-                         ZX_INFO_HANDLE_BASIC,
-                         &info,
-                         sizeof(info),
-                         nullptr,
-                         nullptr) == ZX_OK) {
-    // If this fails, there's not much that can be done. Leave the logging
-    // thread id as "0", which is not a valid koid.
-    thread = info.koid;
-  }
+  zx_koid_t thread = GetKoidForHandle(zx_thread_self());
 #endif
 
   stream_ << '['
