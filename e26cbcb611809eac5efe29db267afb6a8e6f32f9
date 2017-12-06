@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "303fdc96_00a1e624",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-06T21:30:32Z",
+      "side": 1,
+      "message": "In Chromium this is a full recursive mirror and is a bunch of goop in the Python helper, but in Crashpad it\u0027s only used to copy the crashpad_handler binary for renaming from .com to .exe, so we can get away with this simple one. (Maybe. I haven\u0027t actually gotten far enough to test that theory yet on Windows.)",
+      "revId": "e26cbcb611809eac5efe29db267afb6a8e6f32f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
