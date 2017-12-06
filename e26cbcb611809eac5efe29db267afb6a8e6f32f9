@@ -34,6 +34,24 @@
       "revId": "e26cbcb611809eac5efe29db267afb6a8e6f32f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2209423d_f4fe78dd",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-06T21:59:58Z",
+      "side": 1,
+      "message": "Aha, ok. I hadn\u0027t looked at it too closely yet, other than it was erroring out, missing this tool. Maybe we can do something that avoids needing this tool when it gets to building.",
+      "parentUuid": "d0a7268d_86886e13",
+      "revId": "e26cbcb611809eac5efe29db267afb6a8e6f32f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
