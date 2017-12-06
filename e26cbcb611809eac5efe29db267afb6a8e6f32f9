@@ -16,6 +16,24 @@
       "revId": "e26cbcb611809eac5efe29db267afb6a8e6f32f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0a7268d_86886e13",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-06T21:50:22Z",
+      "side": 1,
+      "message": "\u003e In Chromium this is a full recursive mirror and is a bunch of goop in the Python helper, but in Crashpad it\u0027s only used to copy the crashpad_handler binary for renaming from .com to .exe, so we can get away with this simple one.\n\nIn the GN build, it’s actually renaming crashpad_handler_com.com to crashpad_handler.com. I did this a little differently in the GN build for…well, I had a good reason at the time, but I guess I didn’t capture it in a comment. I may have just been trying to avoid having crashpad_handler.com appear in the filesystem at its final path in a not-quite-completely-editbinned state.\n\nNo action required, I just thought you might be interested to see how I cooked it, in case you had other ideas.",
+      "parentUuid": "303fdc96_00a1e624",
+      "revId": "e26cbcb611809eac5efe29db267afb6a8e6f32f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
