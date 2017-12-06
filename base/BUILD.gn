@@ -20,7 +20,6 @@ static_library("base") {
     "files/file_path.cc",
     "files/file_path.h",
     "files/file_util.h",
-    "files/file_util_posix.cc",
     "files/scoped_file.cc",
     "files/scoped_file.h",
     "format_macros.h",
@@ -34,9 +33,6 @@ static_library("base") {
     "numerics/safe_conversions_impl.h",
     "numerics/safe_math.h",
     "numerics/safe_math_impl.h",
-    "posix/eintr_wrapper.h",
-    "posix/safe_strerror.cc",
-    "posix/safe_strerror.h",
     "process/memory.cc",
     "process/memory.h",
     "rand_util.cc",
@@ -49,7 +45,6 @@ static_library("base") {
     "strings/string_number_conversions.h",
     "strings/string_piece.h",
     "strings/string_util.h",
-    "strings/string_util_posix.h",
     "strings/stringprintf.cc",
     "strings/stringprintf.h",
     "strings/sys_string_conversions.h",
@@ -58,19 +53,29 @@ static_library("base") {
     "strings/utf_string_conversions.cc",
     "strings/utf_string_conversions.h",
     "synchronization/condition_variable.h",
-    "synchronization/condition_variable_posix.cc",
     "synchronization/lock.cc",
     "synchronization/lock.h",
     "synchronization/lock_impl.h",
-    "synchronization/lock_impl_posix.cc",
     "sys_byteorder.h",
     "template_util.h",
     "third_party/icu/icu_utf.cc",
     "third_party/icu/icu_utf.h",
     "threading/thread_local_storage.cc",
     "threading/thread_local_storage.h",
-    "threading/thread_local_storage_posix.cc",
   ]
+
+  if (is_posix) {
+    sources += [
+      "files/file_util_posix.cc",
+      "posix/eintr_wrapper.h",
+      "posix/safe_strerror.cc",
+      "posix/safe_strerror.h",
+      "strings/string_util_posix.h",
+      "synchronization/condition_variable_posix.cc",
+      "synchronization/lock_impl_posix.cc",
+      "threading/thread_local_storage_posix.cc",
+    ]
+  }
 
   if (is_mac) {
     sources += [
