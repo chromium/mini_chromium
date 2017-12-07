@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd89aa85_3b0fdc1b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-07T16:16:21Z",
+      "side": 1,
+      "message": "You can spill over on the transcript above, but wrap your own lines at 72 in git commit messages so that the log doesn’t get all terrible.",
+      "revId": "21105227cb24e79996de66ee6a7118f03a068685",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "420fd11b_52115eb2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-07T16:16:21Z",
+      "side": 1,
+      "message": "-no_warning_for_no_symbols was new in Xcode 6 (2014). It may just be that when this was last visited in Chromium, it still needed to deal with older Xcodes.\n\nfilter_libtool.py filters more useless messages than just what -no_warning_for_no_symbols does. It also does more than just filter libtool output. ZERO_AR_DATE probably doesn’t matter to us, but the unconditional touch of the output file may have been done for an important reason. Robert put this in Chromium for the GN build, maybe he remembers.",
+      "revId": "21105227cb24e79996de66ee6a7118f03a068685",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
