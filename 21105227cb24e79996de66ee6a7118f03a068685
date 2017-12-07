@@ -51,6 +51,24 @@
       "revId": "21105227cb24e79996de66ee6a7118f03a068685",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95bfb2ec_0043febc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-07T18:42:26Z",
+      "side": 1,
+      "message": "\u003e It does appear that I added it, but in reality, it was actually Scott circa 2015: \n\nThat’s so funny! Sometimes it seems like the three of us are the only people who work on any of this stuff.",
+      "parentUuid": "65ee2067_aae04229",
+      "revId": "21105227cb24e79996de66ee6a7118f03a068685",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
