@@ -33,6 +33,24 @@
       "revId": "21105227cb24e79996de66ee6a7118f03a068685",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65ee2067_aae04229",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1144624
+      },
+      "writtenOn": "2017-12-07T18:35:30Z",
+      "side": 1,
+      "message": "It does appear that I added it, but in reality, it was actually Scott circa 2015: https://chromium.googlesource.com/external/gyp/+/104e21ecf6f28c47d2e729d572aa790b85225ee0. It was really originally from https://codereview.chromium.org/699083004/.\n\nI can\u0027t really say if it\u0027s still necessary, though. Chromium could definitely switch to -no_warning_for_no_symbols, but we still need filter_libtool.py for the other message spam and the date-zeroing.",
+      "parentUuid": "420fd11b_52115eb2",
+      "revId": "21105227cb24e79996de66ee6a7118f03a068685",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
