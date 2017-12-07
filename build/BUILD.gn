@@ -203,7 +203,7 @@ toolchain("gcc_like_toolchain") {
 
   tool("alink") {
     if (is_mac) {
-      command = "libtool -static {{arflags}} -o {{output}} {{inputs}}"
+      command = "libtool -static -no_warning_for_no_symbols {{arflags}} -o {{output}} {{inputs}}"
     } else {
       command = "$ar rcsD {{arflags}} {{output}} {{inputs}}"
     }
