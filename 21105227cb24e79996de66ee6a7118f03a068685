@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c5e6e44f_92f99b44",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-08T00:46:41Z",
+      "side": 1,
+      "message": "Normally I use git cl desc, and have my editor set to 72-wrap, but sometimes I get lazy and use the web ui and then my column spidey-sense isn\u0027t too accurate. :)",
+      "parentUuid": "bd89aa85_3b0fdc1b",
+      "revId": "21105227cb24e79996de66ee6a7118f03a068685",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "420fd11b_52115eb2",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "\u003e It does appear that I added it, but in reality, it was actually Scott circa 2015: \n\nThat’s so funny! Sometimes it seems like the three of us are the only people who work on any of this stuff.",
       "parentUuid": "65ee2067_aae04229",
+      "revId": "21105227cb24e79996de66ee6a7118f03a068685",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1b3ce6e_a5247f52",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-08T00:46:41Z",
+      "side": 1,
+      "message": "Hah, hilarious, I have no recollection of that whatsoever. It looks like the touch is to fix mtime, but only when ZERO_AR_DATE is set? So, I\u0027d guess that we might be OK without it?\n\nI guess I\u0027ll add this flag for now, and then probably a mac_helper.py later for other spam when we hit it, if that sounds OK.",
+      "parentUuid": "95bfb2ec_0043febc",
       "revId": "21105227cb24e79996de66ee6a7118f03a068685",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
