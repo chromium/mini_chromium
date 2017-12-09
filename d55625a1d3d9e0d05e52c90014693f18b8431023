@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0106f009_fcc176c0",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-09T04:12:10Z",
+      "side": 1,
+      "message": "This list was sorted to begin with, let’s keep it that way.",
+      "revId": "d55625a1d3d9e0d05e52c90014693f18b8431023",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1421de7f_a1ec61f9",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-09T04:12:10Z",
+      "side": 1,
+      "message": "Let’s go in order of conceptual stages: compiler \u003c assembler \u003c archiver \u003c linker. Same in the next block.",
+      "revId": "d55625a1d3d9e0d05e52c90014693f18b8431023",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccc2eee0_bac80b86",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-09T04:12:10Z",
+      "side": 1,
+      "message": "solink_module is for loadable modules as opposed to shared libraries intended to be linked against directly, right? If so, don’t want this to vary between Mac and non-Mac. Nobody should get a “lib” prefix by default to match the GYP build and particularly the test code’s expectations. The “lib” prefix is only for shared libraries intended to be linked against (which I think is tool(\"solink\"), no module?)\n\nIf Chromium’s GN build behaves differently and we’ve got to maintain compatibility with that, then we’ll have to figure out some way to deal. Setting output_prefix \u003d \"\" explicitly in our own targets, perhaps?",
+      "revId": "d55625a1d3d9e0d05e52c90014693f18b8431023",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "099f5996_eda1aa3e",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-09T04:12:10Z",
+      "side": 1,
+      "message": "We’d want this for Android for sure, and probably the rest of Linux too. Does Chromium do this differently/per-OS?",
+      "revId": "d55625a1d3d9e0d05e52c90014693f18b8431023",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
