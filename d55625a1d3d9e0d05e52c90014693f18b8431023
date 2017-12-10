@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f8733945_b1c84313",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-10T03:59:12Z",
+      "side": 1,
+      "message": "Oops, I pasted and gn formatted assuming it\u0027d sort, but I suppose it makes sense that cflags aren\u0027t sorted because they could have -I something order-sensitive.",
+      "parentUuid": "0106f009_fcc176c0",
+      "revId": "d55625a1d3d9e0d05e52c90014693f18b8431023",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1421de7f_a1ec61f9",
         "filename": "build/BUILD.gn",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "d55625a1d3d9e0d05e52c90014693f18b8431023",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b86ab823_5c69caa5",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-10T03:59:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1421de7f_a1ec61f9",
+      "revId": "d55625a1d3d9e0d05e52c90014693f18b8431023",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "84238945_d9bf1dbf",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-10T03:59:12Z",
+      "side": 1,
+      "message": "I guess this probably didn\u0027t work on Fuchsia either, I just didn\u0027t notice yet because various tests were failing for other reasons.\n\nIt does seem that Chromium sets lib for both solink and solink_module: https://cs.chromium.org/chromium/src/build/toolchain/gcc_toolchain.gni?rcl\u003dc40a6ce516cb542ed97bb7a8c81bd0626bc9ed7e\u0026l\u003d485\n\n...\n\nThat makes me puzzled how how crashpad_tests worked on Mac in Chromium crashpad_tests though. It seems like https://cs.chromium.org/chromium/src/third_party/crashpad/crashpad/snapshot/crashpad_info_client_options_test.cc?rcl\u003dc40a6ce516cb542ed97bb7a8c81bd0626bc9ed7e\u0026l\u003d145 should return crashpad_snapshot_test_module.so. And it does, and indeed the built file matches that name.\n\n...\n\nHuh, output_prefix is set in solink_module for Chromium, but it doesn\u0027t actually do anything. But it does here in mini_chromium. I have no idea why.\n\n...\n\nI found output_prefix_override and thought maybe that was the cause (a magic GN variable that tells it not to use output_prefix on a per target basis), but I don\u0027t see that being set.\n\nHrm.",
+      "parentUuid": "ccc2eee0_bac80b86",
+      "revId": "d55625a1d3d9e0d05e52c90014693f18b8431023",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "099f5996_eda1aa3e",
         "filename": "build/BUILD.gn",
         "patchSetId": 3
@@ -67,6 +121,24 @@
       "revId": "d55625a1d3d9e0d05e52c90014693f18b8431023",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5838c1ff_8cc66e91",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-10T03:59:12Z",
+      "side": 1,
+      "message": "Poking around a little, I don\u0027t think Mac Chromium does this. Instead, what I should have is -fPIC in compilation, which I assume does the right thing at link time then depending on whether it\u0027s in a shared library or a PIE executable. At least it seems to work OK on Mac this way.",
+      "parentUuid": "099f5996_eda1aa3e",
+      "revId": "d55625a1d3d9e0d05e52c90014693f18b8431023",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
