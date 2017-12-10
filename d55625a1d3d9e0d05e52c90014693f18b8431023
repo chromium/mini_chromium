@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "50c2925c_1c1d17e3",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-10T14:50:37Z",
+      "side": 1,
+      "message": "\u003e I guess this probably didn\u0027t work on Fuchsia either, I just didn\u0027t notice yet because various tests were failing for other reasons.\n\u003e \n\u003e It does seem that Chromium sets lib for both solink and solink_module: https://cs.chromium.org/chromium/src/build/toolchain/gcc_toolchain.gni?rcl\u003dc40a6ce516cb542ed97bb7a8c81bd0626bc9ed7e\u0026l\u003d485\n\u003e \n\u003e ...\n\u003e \n\u003e That makes me puzzled how how crashpad_tests worked on Mac in Chromium crashpad_tests though. It seems like https://cs.chromium.org/chromium/src/third_party/crashpad/crashpad/snapshot/crashpad_info_client_options_test.cc?rcl\u003dc40a6ce516cb542ed97bb7a8c81bd0626bc9ed7e\u0026l\u003d145 should return crashpad_snapshot_test_module.so. And it does, and indeed the built file matches that name.\n\u003e \n\u003e ...\n\u003e \n\u003e Huh, output_prefix is set in solink_module for Chromium, but it doesn\u0027t actually do anything. But it does here in mini_chromium. I have no idea why.\n\u003e \n\u003e ...\n\u003e \n\u003e I found output_prefix_override and thought maybe that was the cause (a magic GN variable that tells it not to use output_prefix on a per target basis), but I don\u0027t see that being set.\n\u003e \n\u003e Hrm.\n\nCould it be that output_prefix isn’t set in tool(\"solink_module\") in https://chromium.googlesource.com/chromium/src/+/02378e677739f2bedc13fd375ae73973b247c351/build/toolchain/mac/BUILD.gn#313?\n\nIt’s not great that Chromium’s build/toolchain/mac/BUILD.gn basically duplicates build/toolchain/gcc_toolchain.gni. There’s a TODO at https://chromium.googlesource.com/chromium/src/+/02378e677739f2bedc13fd375ae73973b247c351/build/toolchain/mac/BUILD.gn#5 to deal with that.\n\nI do think that in contrast to shared_library/solink, for loadable_module/solink_module, there shouldn’t be a “lib” prefix by default, but we’d need to make that change in Chromium in order to do it here. The prefix is bogus, it’s only needed for the -l linker convention, but loadable_modules don’t normally need to be found by the linker in that way. If that’s hard or there’s resistance, then I guess we’ll wind up needing to specify output_prefix \u003d \"\" in all of these targets ourselves.\n\nI guess that’s why this works for macOS, and we’d have discovered that it didn’t work for any other gcc_toolchain OS as soon as we got it working, which is about where we are now.",
+      "parentUuid": "84238945_d9bf1dbf",
+      "revId": "d55625a1d3d9e0d05e52c90014693f18b8431023",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "099f5996_eda1aa3e",
         "filename": "build/BUILD.gn",
         "patchSetId": 3
