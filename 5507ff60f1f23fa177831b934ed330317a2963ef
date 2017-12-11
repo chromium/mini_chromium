@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c75c95d9_57220a67",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-11T16:13:52Z",
+      "side": 1,
+      "message": "This is already the default on macOS, let’s not do this part of the change for now.\n\nhttps://chromium.googlesource.com/chromium/src/+/ad37d800206b48bd41a9163599b5f9184358ee52/build/config/compiler/BUILD.gn#315 (doesn’t mention is_mac).",
+      "revId": "5507ff60f1f23fa177831b934ed330317a2963ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
