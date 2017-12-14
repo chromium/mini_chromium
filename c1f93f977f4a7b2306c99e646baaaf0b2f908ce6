@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e04d7de_dba29742",
+        "filename": "base/metrics/histogram_functions.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-14T19:34:21Z",
+      "side": 1,
+      "message": "Add me to base/BUILD.gn and base/base.gyp too.",
+      "revId": "c1f93f977f4a7b2306c99e646baaaf0b2f908ce6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
