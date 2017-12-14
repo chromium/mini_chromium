@@ -52,6 +52,24 @@
       "revId": "c1f93f977f4a7b2306c99e646baaaf0b2f908ce6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ba9a19c_0f183609",
+        "filename": "base/metrics/histogram_functions.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002410
+      },
+      "writtenOn": "2017-12-14T20:24:00Z",
+      "side": 1,
+      "message": "Ok, added the others, except for sparse_histogram.h.  I skipped that one because we should remove it after this CL lands and crashpad is updated.",
+      "parentUuid": "fcd66c24_c3fe07fa",
+      "revId": "c1f93f977f4a7b2306c99e646baaaf0b2f908ce6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
