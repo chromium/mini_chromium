@@ -16,6 +16,24 @@
       "revId": "bd42e1b2f98013ea1eefd9717d0dda32c104b33b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bcea693_fc2fdafc",
+        "filename": "build/sysroot.gni",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-15T23:18:26Z",
+      "side": 1,
+      "message": "Can you add a short # comment above sysroot, mac_sdk, and mac_sdk_min? That\u0027s what shows up in gn args out/x --list.",
+      "parentUuid": "ec5ae6f0_ef5520c8",
+      "revId": "bd42e1b2f98013ea1eefd9717d0dda32c104b33b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
