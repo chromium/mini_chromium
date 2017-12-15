@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec5ae6f0_ef5520c8",
+        "filename": "build/sysroot.gni",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-15T22:56:01Z",
+      "side": 1,
+      "message": "Chromium uses mac_sdk_path for this, but I see no great reason to maintain compatibility with that when sdkroot is the more sensible name used on other platforms, and when mac_sdk_path causes sdkroot to be set properly in Chromium anyway.",
+      "revId": "bd42e1b2f98013ea1eefd9717d0dda32c104b33b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
