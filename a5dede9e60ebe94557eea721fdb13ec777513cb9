@@ -16,6 +16,24 @@
       "revId": "a5dede9e60ebe94557eea721fdb13ec777513cb9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "110c98f9_f17c4d98",
+        "filename": "build/sysroot.gni",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-18T18:24:01Z",
+      "side": 1,
+      "message": "\u003e In Chromium, this will be through the DEVELOPER_DIR env variable, so that\u0027ll need to be handled in the python script.\n\nWe won’t use any of this in Chromium, which has its own complete toolchain already. But --developer-dir is basically just a setenv, so I’ll add it to this script to make it a little easier to plug it into a hermetic toolchain in case we ever want to do that here.",
+      "parentUuid": "f2d295e0_a94493b0",
+      "revId": "a5dede9e60ebe94557eea721fdb13ec777513cb9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
