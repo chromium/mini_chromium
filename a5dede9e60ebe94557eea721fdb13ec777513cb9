@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2d295e0_a94493b0",
+        "filename": "build/sysroot.gni",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1144624
+      },
+      "writtenOn": "2017-12-18T16:41:12Z",
+      "side": 1,
+      "message": "In Chromium, this will be through the DEVELOPER_DIR env variable, so that\u0027ll need to be handled in the python script.",
+      "revId": "a5dede9e60ebe94557eea721fdb13ec777513cb9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
