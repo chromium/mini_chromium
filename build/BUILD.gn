@@ -28,9 +28,20 @@ config("debug") {
 config("release") {
   defines = [ "NDEBUG" ]
 
-  if (is_mac) {
+  if (is_posix) {
     cflags = [ "-O3" ]
-    ldflags = [ "-Wl,-dead_strip" ]
+    if (is_mac) {
+      ldflags = [ "-Wl,-dead_strip" ]
+    } else {
+      cflags += [
+        "-fdata-sections",
+        "-ffunction-sections",
+      ]
+      ldflags = [
+        "-Wl,-O1",
+        "-Wl,--gc-sections",
+      ]
+    }
   } else if (is_win) {
     cflags = [
       "/GL",  # LTCG.
@@ -54,7 +65,7 @@ config("default") {
 
   asmflags = []
   ldflags = []
-  if (is_mac || is_fuchsia) {
+  if (is_posix) {
     cflags = [
       "-Wall",
       "-Wendif-labels",
