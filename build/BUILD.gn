@@ -6,19 +6,28 @@
 # DEFAULT BUILD CONFIGURATION
 ################################################################################
 
-if (is_fuchsia) {
+import("sysroot.gni")
+
+if (is_mac) {
+  declare_args() {
+    # The minimum runtime macOS version that built products are expected to run
+    # on. If empty, the toolchain will choose its own default, typically the
+    # older of the SDK version and the build host’s OS version.
+    mac_deployment_target = "10.9"
+  }
+} else if (is_fuchsia) {
   declare_args() {
     # Path to Fuchsia SDK.
     fuchsia_sdk = "//third_party/fuchsia/sdk/linux-amd64"
     fuchsia_clang = "//third_party/fuchsia/clang/" + host_os + "-amd64"
-
-    sysroot = ""
   }
 
-  if (current_cpu == "arm64") {
-    sysroot = fuchsia_sdk + "/sysroot/aarch64-fuchsia"
-  } else if (current_cpu == "x64") {
-    sysroot = fuchsia_sdk + "/sysroot/x86_64-fuchsia"
+  if (sysroot == "") {
+    if (current_cpu == "arm64") {
+      sysroot = fuchsia_sdk + "/sysroot/aarch64-fuchsia"
+    } else if (current_cpu == "x64") {
+      sysroot = fuchsia_sdk + "/sysroot/x86_64-fuchsia"
+    }
   }
 }
 
@@ -50,6 +59,9 @@ config("release") {
 }
 
 config("default") {
+  common_flags = []
+
+  asmflags = []
   ldflags = []
   if (is_mac || is_fuchsia) {
     cflags = [
@@ -79,6 +91,29 @@ config("default") {
       "-Wnewline-eof",
       "-Wstring-conversion",
     ]
+
+    if (sysroot != "") {
+      if (sysroot == rebase_path(sysroot)) {
+        # If it’s already system-absolute, leave it alone.
+        sysroot_path = sysroot
+      } else {
+        sysroot_path = rebase_path(sysroot, root_build_dir)
+      }
+      if (is_mac) {
+        common_flags += [
+          "-isysroot",
+          sysroot_path,
+        ]
+      } else {
+        common_flags += [ "--sysroot=" + sysroot_path ]
+      }
+    }
+  }
+
+  if (is_mac) {
+    if (mac_deployment_target != "") {
+      common_flags += [ "-mmacosx-version-min=" + mac_deployment_target ]
+    }
   } else if (is_win) {
     cflags = [
       "/DNOMINMAX",
@@ -96,9 +131,7 @@ config("default") {
       "/wd4702",  # Unreachable code.
       "/wd4996",  # 'X' was declared deprecated.
     ]
-  }
-
-  if (is_fuchsia) {
+  } else if (is_fuchsia) {
     cflags += [ "-fPIC" ]
 
     if (target_cpu == "arm64") {
@@ -115,15 +148,11 @@ config("default") {
       "fdio",
       "zircon",
     ]
-
-    # Pass the sysroot to all C compiler variants, the assembler, and linker.
-    sysroot_flags = [ "--sysroot=" + rebase_path(sysroot, root_build_dir) ]
-    ldflags += sysroot_flags
-    cflags_c += sysroot_flags
-    cflags_cc += sysroot_flags
-    cflags_objc += sysroot_flags
-    cflags_objcc += sysroot_flags
   }
+
+  cflags += common_flags
+  asmflags += common_flags
+  ldflags += common_flags
 
   if (is_debug) {
     configs = [ ":debug" ]
