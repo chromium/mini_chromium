@@ -2,6 +2,8 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import("../build/is_posix.gni")
+
 config("base_public_config") {
   include_dirs = [ ".." ]
 }
@@ -66,7 +68,7 @@ static_library("base") {
     "threading/thread_local_storage.h",
   ]
 
-  if (is_posix) {
+  if (mini_chromium_is_posix) {
     sources += [
       "files/file_util_posix.cc",
       "posix/eintr_wrapper.h",
