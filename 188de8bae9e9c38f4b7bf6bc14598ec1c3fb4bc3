@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b329978b_9aa042e2",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-18T23:43:55Z",
+      "side": 1,
+      "message": "This doesn’t hurt Fuchsia but may not be necessary either. I’ve got to investigate more.",
+      "revId": "188de8bae9e9c38f4b7bf6bc14598ec1c3fb4bc3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
