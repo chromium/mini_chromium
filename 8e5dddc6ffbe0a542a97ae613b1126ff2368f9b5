@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7c8ca92_81c2abfc",
+        "filename": "build/sysroot.gni",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-18T19:57:00Z",
+      "side": 1,
+      "message": "I changed this from current_cpu to target_cpu, because that seemed correct for working with target_sysroot. But without any sort of functioning cross toolchain here, I can’t really test to see whether this is correct or not.",
+      "revId": "8e5dddc6ffbe0a542a97ae613b1126ff2368f9b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
