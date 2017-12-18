@@ -6,21 +6,21 @@ if (is_mac || is_fuchsia) {
   declare_args() {
     # A directory containing the system’s header files and libraries. If empty,
     # a suitable default will be chosen.
-    sysroot = ""
+    target_sysroot = ""
   }
 }
 
 if (is_mac) {
   declare_args() {
-    # The version of the macOS SDK to use. If sysroot is empty, this will inform
-    # which SDK version will be chosen. If mac_sdk is also empty, a suitable
-    # default will be chosen. See also mac_sdk_min.
+    # The version of the macOS SDK to use. If |target_sysroot| is empty, this
+    # will inform which SDK version will be chosen. If |mac_sdk| is also empty,
+    # a suitable default will be chosen. See also |mac_sdk_min|.
     mac_sdk = ""
 
     # The minimum version of the macOS system SDK to use. SDK versions older
-    # than this will be rejected. If sysroot and mac_sdk are both empty, the
-    # oldest SDK that’s at least this version will be chosen. If empty, the
-    # system’s default SDK will be chosen.
+    # than this will be rejected. If |target_sysroot| and |mac_sdk| are both
+    # empty, the oldest SDK that’s at least this version will be chosen. If
+    # empty, the system’s default SDK will be chosen.
     mac_sdk_min = ""
   }
 
@@ -37,10 +37,10 @@ if (is_mac) {
       mac_sdk_min,
     ]
   }
-  if (sysroot != "") {
+  if (target_sysroot != "") {
     find_mac_sdk_args += [
       "--path",
-      sysroot,
+      target_sysroot,
     ]
   }
 
@@ -48,5 +48,24 @@ if (is_mac) {
       exec_script("find_mac_sdk.py", find_mac_sdk_args, "list lines")
 
   mac_sdk = find_mac_sdk_output[0]
-  sysroot = find_mac_sdk_output[1]
+  target_sysroot = find_mac_sdk_output[1]
+} else if (is_fuchsia) {
+  declare_args() {
+    # Path to the Fuchsia SDK.
+    fuchsia_sdk = "//third_party/fuchsia/sdk/linux-amd64"
+  }
+
+  if (target_sysroot == "") {
+    if (target_cpu == "arm64") {
+      target_sysroot = fuchsia_sdk + "/sysroot/aarch64-fuchsia"
+    } else if (target_cpu == "x64") {
+      target_sysroot = fuchsia_sdk + "/sysroot/x86_64-fuchsia"
+    }
+  }
+}
+
+if (current_os == target_os && current_cpu == target_cpu) {
+  sysroot = target_sysroot
+} else {
+  sysroot = ""
 }

@@ -17,17 +17,8 @@ if (is_mac) {
   }
 } else if (is_fuchsia) {
   declare_args() {
-    # Path to Fuchsia SDK.
-    fuchsia_sdk = "//third_party/fuchsia/sdk/linux-amd64"
+    # Path to the Fuchsia Clang toolchain.
     fuchsia_clang = "//third_party/fuchsia/clang/" + host_os + "-amd64"
-  }
-
-  if (sysroot == "") {
-    if (current_cpu == "arm64") {
-      sysroot = fuchsia_sdk + "/sysroot/aarch64-fuchsia"
-    } else if (current_cpu == "x64") {
-      sysroot = fuchsia_sdk + "/sysroot/x86_64-fuchsia"
-    }
   }
 }
 
