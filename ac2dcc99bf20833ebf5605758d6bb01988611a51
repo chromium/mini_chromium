@@ -22,6 +22,30 @@
       "revId": "ac2dcc99bf20833ebf5605758d6bb01988611a51",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a8a3bc8_020700b1",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-19T18:36:29Z",
+      "side": 1,
+      "message": "\u003e Do we want alink in the output dir? I don\u0027t normally think of the .libs as being final artifacts in our case.\n\nThat’s what I thought at first too, but then I realized that default_output_dir \u003d target_out_dir a few lines above. So this really is what we want most of the time, with the benefit of allowing it to be overridden by a target that wants to ship an .a or .lib.",
+      "parentUuid": "e5d04101_8fc0cae0",
+      "range": {
+        "startLine": 262,
+        "startChar": 9,
+        "endLine": 262,
+        "endChar": 19
+      },
+      "revId": "ac2dcc99bf20833ebf5605758d6bb01988611a51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
