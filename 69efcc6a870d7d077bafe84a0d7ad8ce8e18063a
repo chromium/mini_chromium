@@ -34,6 +34,24 @@
       "revId": "69efcc6a870d7d077bafe84a0d7ad8ce8e18063a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fc49605_5f3b5392",
+        "filename": "build/debug.gni",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-19T21:04:33Z",
+      "side": 1,
+      "message": "Back to plain is_debug now.",
+      "parentUuid": "0303520a_efcc4292",
+      "revId": "69efcc6a870d7d077bafe84a0d7ad8ce8e18063a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
