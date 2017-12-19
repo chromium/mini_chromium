@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59065b1b_76ce84a9",
+        "filename": "build/debug.gni",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-19T20:24:19Z",
+      "side": 1,
+      "message": "Not so sure about needing to namespace this one.",
+      "revId": "69efcc6a870d7d077bafe84a0d7ad8ce8e18063a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
