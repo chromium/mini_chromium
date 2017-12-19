@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "54b67fd5_b59d8146",
+        "filename": "base/base_files.gni",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-19T22:37:01Z",
+      "side": 1,
+      "message": "\u003e I\u0027m not sure now though. I think we should go one way or the other: Either don\u0027t rely on a global set_defaults at all, and control how we build everything, or accept whatever the project\u0027s BUILDCONFIG.gn gives us, and just use things by name. At the moment we\u0027re stuck in the middle where we use what the project gives us, but also want to customize test() and want to remove a specific warning, both of which seem difficult to do.\n\nWell, yeah, I guess we do want both.\n\nUSUALLY, I think that it’s correct when fitting into someone else’s build to respect their settings and things as closely as possible.\n\nOccasionally, we’ll want to do something custom, like the two things that you mentioned. In those cases, I thought that our solution was to check crashpad_is_in_* and masquerade among the locals. That seemed to be working for customizing test(), I thought. If there was a name conflict with our host project in non-standalone builds, maybe we need to call our side crashpad_test.\n\nThe warning thing may be trickier, but as long as everyone has some config that we can subtract, then I guess it’s a matter of doing that, rather than trying to route everything through our own configs so that we can subtract just the one local one we know about.",
+      "parentUuid": "142ea90b_21885cea",
+      "revId": "8de1ff307ffc8d9b820fe2a5fffe6fff420d7daa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8c512fa6_7471a5b2",
         "filename": "base/base_files.gni",
         "patchSetId": 6
