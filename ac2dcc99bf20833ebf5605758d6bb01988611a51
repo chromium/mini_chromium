@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5d04101_8fc0cae0",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-19T18:31:07Z",
+      "side": 1,
+      "message": "Do we want alink in the output dir? I don\u0027t normally think of the .libs as being final artifacts in our case.",
+      "range": {
+        "startLine": 262,
+        "startChar": 9,
+        "endLine": 262,
+        "endChar": 19
+      },
+      "revId": "ac2dcc99bf20833ebf5605758d6bb01988611a51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
