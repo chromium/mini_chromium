@@ -229,9 +229,9 @@ toolchain("gcc_like_toolchain") {
     depfile = "{{output}}.d"
     command = "$cc -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} -c {{source}} -o {{output}}"
     depsformat = "gcc"
-    description = "CXX {{output}}"
+    description = "CC {{output}}"
     outputs = [
-      "{{target_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
+      "{{source_out_dir}}/{{label_name}}.{{source_name_part}}.o",
     ]
   }
 
@@ -241,28 +241,30 @@ toolchain("gcc_like_toolchain") {
     depsformat = "gcc"
     description = "CXX {{output}}"
     outputs = [
-      "{{target_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
+      "{{source_out_dir}}/{{label_name}}.{{source_name_part}}.o",
     ]
   }
 
-  tool("objc") {
-    depfile = "{{output}}.d"
-    command = "$cc -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_objc}} -c {{source}} -o {{output}}"
-    depsformat = "gcc"
-    description = "OBJC {{output}}"
-    outputs = [
-      "{{target_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
-    ]
-  }
+  if (is_mac) {
+    tool("objc") {
+      depfile = "{{output}}.d"
+      command = "$cc -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_objc}} -c {{source}} -o {{output}}"
+      depsformat = "gcc"
+      description = "OBJC {{output}}"
+      outputs = [
+        "{{source_out_dir}}/{{label_name}}.{{source_name_part}}.o",
+      ]
+    }
 
-  tool("objcxx") {
-    depfile = "{{output}}.d"
-    command = "$cxx -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_objcc}} -c {{source}} -o {{output}}"
-    depsformat = "gcc"
-    description = "OBJCXX {{output}}"
-    outputs = [
-      "{{target_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
-    ]
+    tool("objcxx") {
+      depfile = "{{output}}.d"
+      command = "$cxx -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_objcc}} -c {{source}} -o {{output}}"
+      depsformat = "gcc"
+      description = "OBJCXX {{output}}"
+      outputs = [
+        "{{source_out_dir}}/{{label_name}}.{{source_name_part}}.o",
+      ]
+    }
   }
 
   tool("asm") {
@@ -271,7 +273,7 @@ toolchain("gcc_like_toolchain") {
     depsformat = "gcc"
     description = "ASM {{output}}"
     outputs = [
-      "{{target_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
+      "{{source_out_dir}}/{{label_name}}.{{source_name_part}}.o",
     ]
   }
 
@@ -281,7 +283,7 @@ toolchain("gcc_like_toolchain") {
     } else {
       command = "$ar rcsD {{arflags}} {{output}} {{inputs}}"
     }
-    description = "LIBTOOL-STATIC {{output}}"
+    description = "AR {{output}}"
     default_output_dir = "{{target_out_dir}}"
     default_output_extension = ".a"
     output_prefix = "lib"
@@ -294,7 +296,6 @@ toolchain("gcc_like_toolchain") {
     # TODO(scottmg): This will need to do -framework, etc. for macOS.
     soname = "{{target_output_name}}{{output_extension}}"  # e.g. "libfoo.so".
     sofile = "{{output_dir}}/$soname"
-    rspfile = sofile + ".rsp"
 
     soname_flag = ""
     start_whole_flag = ""
@@ -307,13 +308,11 @@ toolchain("gcc_like_toolchain") {
       end_whole_flag = "-Wl,--no-whole-archive "
     }
     command =
-        "$ld -shared {{ldflags}} -o \"$sofile\" $soname_flag @\"$rspfile\""
-    rspfile_content =
-        "$start_whole_flag {{inputs}} {{solibs}} $end_whole_flag {{libs}}"
+        "$ld -shared {{ldflags}} -o \"$sofile\" $soname_flag $start_whole_flag {{inputs}} {{solibs}} $end_whole_flag {{libs}}"
     description = "SOLINK_MODULE $sofile"
 
-    default_output_extension = ".so"
     default_output_dir = "{{root_out_dir}}"
+    default_output_extension = ".so"
 
     outputs = [
       sofile,
@@ -323,7 +322,6 @@ toolchain("gcc_like_toolchain") {
   tool("link") {
     exename = "{{target_output_name}}{{output_extension}}"
     outfile = "{{output_dir}}/$exename"
-    rspfile = "$outfile.rsp"
 
     start_group_flag = ""
     end_group_flag = ""
@@ -331,12 +329,11 @@ toolchain("gcc_like_toolchain") {
       start_group_flag = "-Wl,--start-group"
       end_group_flag = "-Wl,--end-group"
     }
-    command = "$ld {{ldflags}} -o \"$outfile\" $start_group_flag @\"$rspfile\" {{solibs}} $end_group_flag {{libs}}"
-    rspfile_content = "{{inputs}}"
+    command = "$ld {{ldflags}} -o \"$outfile\" $start_group_flag {{inputs}} {{solibs}} $end_group_flag {{libs}}"
     description = "LINK $outfile"
 
-    default_output_extension = ""
     default_output_dir = "{{root_out_dir}}"
+    default_output_extension = ""
     outputs = [
       outfile,
     ]
@@ -365,7 +362,7 @@ toolchain("msvc_toolchain") {
     depsformat = "msvc"
     description = "CC {{output}}"
     outputs = [
-      "{{source_out_dir}}/{{target_output_name}}.{{source_name_part}}.obj",
+      "{{source_out_dir}}/{{label_name}}.{{source_name_part}}.obj",
     ]
   }
 
@@ -375,35 +372,38 @@ toolchain("msvc_toolchain") {
     depsformat = "msvc"
     description = "CXX {{output}}"
     outputs = [
-      "{{source_out_dir}}/{{target_output_name}}.{{source_name_part}}.obj",
+      "{{source_out_dir}}/{{label_name}}.{{source_name_part}}.obj",
     ]
   }
 
   tool("alink") {
     command = "$python_path $helper_path link-wrapper $ar /nologo /out:{{output}} {{arflags}} {{inputs}}"
-    description = "LIB {{output}}"
+    description = "AR {{output}}"
     outputs = [
-      "{{target_out_dir}}/{{target_output_name}}{{output_extension}}",
+      "{{output_dir}}/{{target_output_name}}{{output_extension}}",
     ]
+    default_output_dir = "{{target_out_dir}}"
     default_output_extension = ".lib"
     output_prefix = ""
   }
 
   tool("solink_module") {
     outputs = [
-      "{{root_out_dir}}/{{target_output_name}}{{output_extension}}",
+      "{{output_dir}}/{{target_output_name}}{{output_extension}}",
     ]
     command = "$python_path $helper_path link-wrapper $ld /nologo /DLL /OUT:{{output}} {{ldflags}} {{inputs}} {{solibs}} {{libs}}"
-    description = "LINK_MODULE {{output}}"
+    description = "SOLINK_MODULE {{output}}"
+    default_output_dir = "{{root_out_dir}}"
     default_output_extension = ".dll"
   }
 
   tool("link") {
     outputs = [
-      "{{root_out_dir}}/{{target_output_name}}{{output_extension}}",
+      "{{output_dir}}/{{target_output_name}}{{output_extension}}",
     ]
     command = "$python_path $helper_path link-wrapper $ld /nologo /OUT:{{output}} {{ldflags}} {{inputs}} {{solibs}} {{libs}}"
     description = "LINK {{output}}"
+    default_output_dir = "{{root_out_dir}}"
     default_output_extension = ".exe"
   }
 
