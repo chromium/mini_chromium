@@ -34,6 +34,24 @@
       "revId": "188de8bae9e9c38f4b7bf6bc14598ec1c3fb4bc3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92fefbcd_5ab347bf",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-19T17:10:46Z",
+      "side": 1,
+      "message": "\u003e The --as-needed might be problematic, I don\u0027t know without trying but in small binaries, fdio might not initialize, which will end up meaning stdio disappears into the void: https://cs.chromium.org/chromium/src/build/config/fuchsia/BUILD.gn?rcl\u003d36bd3373234197bcb14571d2c2ce8fdf38419c05\u0026l\u003d53 .\n\nGood point, thanks. I did a simple printf test and found that it didn’t print anything unless linked against fdio. Turns out that Zircon’s libc has a bunch of weak ENOSYS stubs for things like this, so it links but doesn’t do what probably anyone is expecting.\n\nhttps://fuchsia.googlesource.com/zircon/+/8401cffb546c00e3a016b3c975453e96f76e9374/third_party/ulib/musl/stubs/iostubs.c\n\n\u003e We set noexecstack in Chromium https://cs.chromium.org/chromium/src/build/config/compiler/BUILD.gn?rcl\u003d36bd3373234197bcb14571d2c2ce8fdf38419c05\u0026l\u003d370 ... but mostly only because I copied other platforms, I don\u0027t know that it\u0027s important.\n\nI found that -z noexecstack isn’t necessary for Fuchsia, not because of any intentional decision made for Fuchsia, but because it uses LLVM lld instead of binutils ld or gold. lld takes the modern stance that stacks are not executable by default.\n\nhttps://llvm.org/viewvc/llvm-project/lld/trunk/ELF/InputFiles.cpp?revision\u003d320817\u0026view\u003dmarkup#l546\n\nStill, I’m leaving -z noexecstack because it doesn’t hurt and because someone might want to hook up Fuchsia with a linker that uses a different default someday.",
+      "parentUuid": "863bb7a3_7f3ddbf4",
+      "revId": "188de8bae9e9c38f4b7bf6bc14598ec1c3fb4bc3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
