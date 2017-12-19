@@ -117,7 +117,9 @@ config("default") {
     if (mac_deployment_target != "") {
       common_flags += [ "-mmacosx-version-min=" + mac_deployment_target ]
     }
-  } else if (is_win) {
+  }
+
+  if (is_win) {
     cflags = [
       "/DNOMINMAX",
       "/DUNICODE",
@@ -134,9 +136,14 @@ config("default") {
       "/wd4702",  # Unreachable code.
       "/wd4996",  # 'X' was declared deprecated.
     ]
-  } else if (is_fuchsia) {
-    cflags += [ "-fPIC" ]
+  }
 
+  if (is_linux) {
+    defines = [ "_FILE_OFFSET_BITS=64" ]
+    common_flags += [ "-pthread" ]
+  }
+
+  if (is_fuchsia) {
     if (target_cpu == "arm64") {
       cflags += [ "--target=aarch64-fuchsia" ]
       ldflags += [ "--target=aarch64-fuchsia" ]
@@ -147,9 +154,25 @@ config("default") {
       assert(false, "Unsupported architecture")
     }
 
+    # fdio is listed in ldflags instead of libs because it’s important for it to
+    # be loaded in Fuchsia processes that expect POSIX-like file descriptor
+    # semantics, even if they don’t explicitly reference anything in the fdio
+    # library. To avoid inadvertently losing the runtime dependency, it must
+    # come before -Wl,--as-needed below.
+    ldflags += [ "-lfdio" ]
+
     libs = [
-      "fdio",
       "zircon",
+    ]
+  }
+
+  if (mini_chromium_is_posix && !is_mac) {
+    cflags += [ "-fPIC" ]
+    ldflags += [
+      # This must follow Fuchsia’s fdio library above.
+      "-Wl,--as-needed",
+
+      "-Wl,-z,noexecstack",
     ]
   }
 
@@ -161,6 +184,12 @@ config("default") {
     configs = [ ":debug" ]
   } else {
     configs = [ ":release" ]
+  }
+}
+
+config("executable") {
+  if (is_linux) {
+    ldflags = [ "-pie" ]
   }
 }
 

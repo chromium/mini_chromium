@@ -2,7 +2,9 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-if (is_mac || is_fuchsia) {
+import("is_posix.gni")
+
+if (mini_chromium_is_posix) {
   declare_args() {
     # A directory containing the system’s header files and libraries. If empty,
     # a suitable default will be chosen.
