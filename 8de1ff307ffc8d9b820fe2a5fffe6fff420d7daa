@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "142ea90b_21885cea",
+        "filename": "base/base_files.gni",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-19T22:31:31Z",
+      "side": 1,
+      "message": "The only reason it\u0027s this awkward way is to avoid having to keep set_defaults in BUILDCONFIG.gn. I thought that was a good idea at first because it gives us control over exactly how all our targets are built.\n\nI\u0027m not sure now though. I think we should go one way or the other: Either don\u0027t rely on a global set_defaults at all, and control how we build everything, or accept whatever the project\u0027s BUILDCONFIG.gn gives us, and just use things by name. At the moment we\u0027re stuck in the middle where we use what the project gives us, but also want to customize test() and want to remove a specific warning, both of which seem difficult to do.",
+      "parentUuid": "c0013a1b_245fdb27",
+      "revId": "8de1ff307ffc8d9b820fe2a5fffe6fff420d7daa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8c512fa6_7471a5b2",
         "filename": "base/base_files.gni",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2017-12-19T21:28:28Z",
       "side": 1,
       "message": "I don’t like these system-absolute rebases, can you perhaps rebase to root_out_dir?",
+      "revId": "8de1ff307ffc8d9b820fe2a5fffe6fff420d7daa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d17479c0_108bef65",
+        "filename": "base/base_files.gni",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-19T22:31:31Z",
+      "side": 1,
+      "message": "I\u0027ll remove these if we decide to keep it, the rebase_path is nicer if it\u0027s out in the caller in a foreach.",
+      "parentUuid": "8c512fa6_7471a5b2",
       "revId": "8de1ff307ffc8d9b820fe2a5fffe6fff420d7daa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "f5e0e711_e974debe",
+        "filename": "build/compiler.gni",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-19T22:31:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2a4f2be_9e100b83",
+      "revId": "8de1ff307ffc8d9b820fe2a5fffe6fff420d7daa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99412a47_ea528f37",
         "filename": "build/platforms.gni",
         "patchSetId": 6
@@ -67,6 +121,24 @@
       "revId": "8de1ff307ffc8d9b820fe2a5fffe6fff420d7daa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6901ef03_c89b675b",
+        "filename": "build/platforms.gni",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-19T22:31:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99412a47_ea528f37",
+      "revId": "8de1ff307ffc8d9b820fe2a5fffe6fff420d7daa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
