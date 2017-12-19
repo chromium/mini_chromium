@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c0013a1b_245fdb27",
+        "filename": "base/base_files.gni",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-19T21:28:28Z",
+      "side": 1,
+      "message": "Is this really the right direction? It seems kind of different than the big variable move that this change was trying to achieve.\n\nHow does having these lists make things better than having live targets in base/BUILD.gn?",
+      "revId": "8de1ff307ffc8d9b820fe2a5fffe6fff420d7daa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c512fa6_7471a5b2",
+        "filename": "base/base_files.gni",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-19T21:28:28Z",
+      "side": 1,
+      "message": "I don’t like these system-absolute rebases, can you perhaps rebase to root_out_dir?",
+      "revId": "8de1ff307ffc8d9b820fe2a5fffe6fff420d7daa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2a4f2be_9e100b83",
+        "filename": "build/compiler.gni",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-19T21:28:28Z",
+      "side": 1,
+      "message": "In that same vein as debug.gni, this is a weird name to have available as a user tunable. Do we need for it to be in declare_args(), or can it just be a non-tunable?",
+      "revId": "8de1ff307ffc8d9b820fe2a5fffe6fff420d7daa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99412a47_ea528f37",
+        "filename": "build/platforms.gni",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2017-12-19T21:28:28Z",
+      "side": 1,
+      "message": "Maybe just platform.gni, everything else is singular.",
+      "revId": "8de1ff307ffc8d9b820fe2a5fffe6fff420d7daa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
