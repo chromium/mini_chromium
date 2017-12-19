@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04adee0c_5c2c058a",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-19T00:09:19Z",
+      "side": 1,
+      "message": "mini_chromium_is_posix now that I raced you. :)",
+      "range": {
+        "startLine": 115,
+        "startChar": 6,
+        "endLine": 115,
+        "endChar": 14
+      },
+      "revId": "3e4ec002b6f9683b7ea40dd44d5c84f6fd5d4cb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55a858c8_8a103a40",
+        "filename": "build/sysroot.gni",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2017-12-19T00:09:19Z",
+      "side": 1,
+      "message": "Same.",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 12
+      },
+      "revId": "3e4ec002b6f9683b7ea40dd44d5c84f6fd5d4cb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
