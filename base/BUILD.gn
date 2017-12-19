@@ -2,7 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import("../build/is_posix.gni")
+import("../build/platform.gni")
 
 config("base_public_config") {
   include_dirs = [ ".." ]
@@ -81,7 +81,7 @@ static_library("base") {
     ]
   }
 
-  if (is_mac) {
+  if (mini_chromium_is_mac) {
     sources += [
       "atomicops_internals_mac.h",
       "atomicops_internals_x86_msvc.h",
@@ -110,7 +110,7 @@ static_library("base") {
       "IOKit.framework",
       "Security.framework",
     ]
-  } else if (is_win) {
+  } else if (mini_chromium_is_win) {
     sources += [
       "strings/string_util_win.cc",
       "strings/string_util_win.h",
@@ -118,7 +118,7 @@ static_library("base") {
       "threading/thread_local_storage_win.cc",
     ]
     libs = [ "advapi32.lib" ]
-  } else if (is_fuchsia) {
+  } else if (mini_chromium_is_fuchsia) {
     sources += [
       "fuchsia/fuchsia_logging.cc",
       "fuchsia/fuchsia_logging.h",

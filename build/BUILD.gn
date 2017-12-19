@@ -6,17 +6,18 @@
 # DEFAULT BUILD CONFIGURATION
 ################################################################################
 
-import("is_posix.gni")
+import("compiler.gni")
+import("platform.gni")
 import("sysroot.gni")
 
-if (is_mac) {
+if (mini_chromium_is_mac) {
   declare_args() {
     # The minimum runtime macOS version that built products are expected to run
     # on. If empty, the toolchain will choose its own default, typically the
     # older of the SDK version and the build host’s OS version.
     mac_deployment_target = "10.9"
   }
-} else if (is_fuchsia) {
+} else if (mini_chromium_is_fuchsia) {
   declare_args() {
     # Path to the Fuchsia Clang toolchain.
     fuchsia_clang = "//third_party/fuchsia/clang/" + host_os + "-amd64"
@@ -31,7 +32,7 @@ config("release") {
 
   if (mini_chromium_is_posix) {
     cflags = [ "-O3" ]
-    if (is_mac) {
+    if (mini_chromium_is_mac) {
       ldflags = [ "-Wl,-dead_strip" ]
     } else {
       cflags += [
@@ -43,7 +44,7 @@ config("release") {
         "-Wl,--gc-sections",
       ]
     }
-  } else if (is_win) {
+  } else if (mini_chromium_is_win) {
     cflags = [
       "/GL",  # LTCG.
       "/O2",
@@ -102,7 +103,7 @@ config("default") {
       } else {
         sysroot_path = rebase_path(sysroot, root_build_dir)
       }
-      if (is_mac) {
+      if (mini_chromium_is_mac) {
         common_flags += [
           "-isysroot",
           sysroot_path,
@@ -113,13 +114,13 @@ config("default") {
     }
   }
 
-  if (is_mac) {
+  if (mini_chromium_is_mac) {
     if (mac_deployment_target != "") {
       common_flags += [ "-mmacosx-version-min=" + mac_deployment_target ]
     }
   }
 
-  if (is_win) {
+  if (mini_chromium_is_win) {
     cflags = [
       "/DNOMINMAX",
       "/DUNICODE",
@@ -138,12 +139,12 @@ config("default") {
     ]
   }
 
-  if (is_linux) {
+  if (mini_chromium_is_linux) {
     defines = [ "_FILE_OFFSET_BITS=64" ]
     common_flags += [ "-pthread" ]
   }
 
-  if (is_fuchsia) {
+  if (mini_chromium_is_fuchsia) {
     if (target_cpu == "arm64") {
       cflags += [ "--target=aarch64-fuchsia" ]
       ldflags += [ "--target=aarch64-fuchsia" ]
@@ -166,7 +167,7 @@ config("default") {
     ]
   }
 
-  if (mini_chromium_is_posix && !is_mac) {
+  if (mini_chromium_is_posix && !mini_chromium_is_mac) {
     cflags += [ "-fPIC" ]
     ldflags += [
       # This must follow Fuchsia’s fdio library above.
@@ -188,13 +189,13 @@ config("default") {
 }
 
 config("executable") {
-  if (is_linux) {
+  if (mini_chromium_is_linux) {
     ldflags = [ "-pie" ]
   }
 }
 
 config("Wexit_time_destructors") {
-  if (is_clang) {
+  if (mini_chromium_is_clang) {
     cflags = [ "-Wexit-time-destructors" ]
   }
 }
@@ -207,7 +208,7 @@ toolchain("gcc_like_toolchain") {
   lib_switch = "-l"
   lib_dir_switch = "-L"
 
-  if (is_fuchsia) {
+  if (mini_chromium_is_fuchsia) {
     cc = rebase_path(fuchsia_clang, root_build_dir) + "/bin/clang"
     cxx = rebase_path(fuchsia_clang, root_build_dir) + "/bin/clang++"
     asm = cxx
@@ -219,7 +220,7 @@ toolchain("gcc_like_toolchain") {
     asm = cxx
     ld = cxx
 
-    if (!is_mac) {
+    if (!mini_chromium_is_mac) {
       # macOS uses libtool instead of ar.
       ar = "ar"
     }
@@ -245,7 +246,7 @@ toolchain("gcc_like_toolchain") {
     ]
   }
 
-  if (is_mac) {
+  if (mini_chromium_is_mac) {
     tool("objc") {
       depfile = "{{output}}.d"
       command = "$cc -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_objc}} -c {{source}} -o {{output}}"
@@ -278,7 +279,7 @@ toolchain("gcc_like_toolchain") {
   }
 
   tool("alink") {
-    if (is_mac) {
+    if (mini_chromium_is_mac) {
       command = "libtool -static -no_warning_for_no_symbols {{arflags}} -o {{output}} {{inputs}}"
     } else {
       command = "$ar rcsD {{arflags}} {{output}} {{inputs}}"
@@ -300,7 +301,7 @@ toolchain("gcc_like_toolchain") {
     soname_flag = ""
     start_whole_flag = ""
     end_whole_flag = ""
-    if (is_mac) {
+    if (mini_chromium_is_mac) {
       soname_flag = "-Wl,-install_name,\"$soname\""
     } else {
       soname_flag = "-Wl,-soname=\"$soname\""
@@ -325,7 +326,7 @@ toolchain("gcc_like_toolchain") {
 
     start_group_flag = ""
     end_group_flag = ""
-    if (!is_mac) {
+    if (!mini_chromium_is_mac) {
       start_group_flag = "-Wl,--start-group"
       end_group_flag = "-Wl,--end-group"
     }
