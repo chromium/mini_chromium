@@ -161,10 +161,6 @@ config("default") {
     # library. To avoid inadvertently losing the runtime dependency, it must
     # come before -Wl,--as-needed below.
     ldflags += [ "-lfdio" ]
-
-    libs = [
-      "zircon",
-    ]
   }
 
   if (mini_chromium_is_posix && !mini_chromium_is_mac) {

@@ -123,6 +123,8 @@ static_library("base") {
       "fuchsia/fuchsia_logging.cc",
       "fuchsia/fuchsia_logging.h",
     ]
+
+    libs = [ "zircon" ]
   }
 
   public_configs = [ ":base_public_config" ]
