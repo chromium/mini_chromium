@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61cee45d_4ed03d83",
+        "filename": "base/fuchsia/scoped_zx_handle.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-01-17T19:36:16Z",
+      "side": 1,
+      "message": "#include \"base/fuchsia/fuchsia_logging.h\" instead of \"base/logging.h\" and use ZX_CHECK(status \u003d\u003d ZX_OK, status) \u003c\u003c \"zx_handle_close\" ?",
+      "revId": "88d933e379cdc991cdd6e9635177eaae74fb9fd4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
