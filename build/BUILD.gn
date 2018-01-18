@@ -278,7 +278,7 @@ toolchain("gcc_like_toolchain") {
     if (mini_chromium_is_mac) {
       command = "libtool -static -no_warning_for_no_symbols {{arflags}} -o {{output}} {{inputs}}"
     } else {
-      command = "$ar rcsD {{arflags}} {{output}} {{inputs}}"
+      command = "rm -f {{output}}; $ar rcsD {{arflags}} {{output}} {{inputs}}"
     }
     description = "AR {{output}}"
     default_output_dir = "{{target_out_dir}}"
