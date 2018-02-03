@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25f47592_1f086500",
+        "filename": "base/compiler_specific.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-03T02:24:48Z",
+      "side": 1,
+      "message": "I’d actually prepare for the future here, and have the first branch be\n\n#if __cplusplus \u003e\u003d 201703L  // C++17\n#define FALLTHROUGH [[fallthrough]\n#elif defined(__clang__)\n…\n\neven if Chromium wants to be pokey (and Nico did say that he was intentionally being pokey).",
+      "revId": "fddfab0107414afd6e7176e7149c160684be89f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "406746a7_7666c756",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-03T02:24:48Z",
+      "side": 1,
+      "message": "Let’s not hide a compiler among the OSes. Move down?",
+      "revId": "fddfab0107414afd6e7176e7149c160684be89f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
