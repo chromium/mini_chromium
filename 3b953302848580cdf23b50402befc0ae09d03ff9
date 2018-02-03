@@ -16,6 +16,24 @@
       "revId": "3b953302848580cdf23b50402befc0ae09d03ff9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "889dde53_dfa0ced6",
+        "filename": "base/compiler_specific.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-02-03T03:31:29Z",
+      "side": 1,
+      "message": "Crap. Well, at least we don\u0027t have a C++17 compiler yet. :(",
+      "parentUuid": "a61d523b_e13ff1f9",
+      "revId": "3b953302848580cdf23b50402befc0ae09d03ff9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
