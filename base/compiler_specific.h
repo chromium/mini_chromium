@@ -79,7 +79,7 @@
 
 // Macro for telling -Wimplicit-fallthrough that a fallthrough is intentional.
 #if __cplusplus >= 201703L  // C++17
-#define FALLTHROUGH [[fallthrough]
+#define FALLTHROUGH [[fallthrough]]
 #elif defined(__clang__)
 #define FALLTHROUGH [[clang::fallthrough]]
 #else
