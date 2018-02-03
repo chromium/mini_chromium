@@ -79,6 +79,7 @@
               'WARNING_CFLAGS': [
                 '-Wexit-time-destructors',
                 '-Wheader-hygiene',
+                '-Wimplicit-fallthrough',
                 '-Wno-selector-type-mismatch',
                 '-Wsign-compare',
                 '-Wstring-conversion',
@@ -155,6 +156,7 @@
             'cflags': [
               '-Wexit-time-destructors',
               '-Wheader-hygiene',
+              '-Wimplicit-fallthrough',
               '-Wsign-compare',
               '-Wstring-conversion',
             ],

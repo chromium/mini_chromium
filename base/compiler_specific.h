@@ -77,4 +77,13 @@
 #define HAS_FEATURE(FEATURE) 0
 #endif
 
+// Macro for telling -Wimplicit-fallthrough that a fallthrough is intentional.
+#if __cplusplus >= 201703L  // C++17
+#define FALLTHROUGH [[fallthrough]
+#elif defined(__clang__)
+#define FALLTHROUGH [[clang::fallthrough]]
+#else
+#define FALLTHROUGH
+#endif
+
 #endif  // MINI_CHROMIUM_BASE_COMPILER_SPECIFIC_H_

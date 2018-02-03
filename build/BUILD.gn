@@ -173,6 +173,10 @@ config("default") {
     ]
   }
 
+  if (mini_chromium_is_clang) {
+    cflags += [ "-Wimplicit-fallthrough" ]
+  }
+
   cflags += common_flags
   asmflags += common_flags
   ldflags += common_flags
