@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "616c9a66_632772fc",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1223274
+      },
+      "writtenOn": "2018-02-05T22:59:43Z",
+      "side": 1,
+      "message": "why is this needed? (it will likely slow down the build)",
+      "range": {
+        "startLine": 131,
+        "startChar": 8,
+        "endLine": 131,
+        "endChar": 10
+      },
+      "revId": "2d64ed1a5054b1c33ce252a6a99d0f57f0460c8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6d0f626_3e1c5bf9",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1223274
+      },
+      "writtenOn": "2018-02-05T22:59:43Z",
+      "side": 1,
+      "message": "why the _c/_cc suffixes?",
+      "range": {
+        "startLine": 378,
+        "startChar": 48,
+        "endLine": 378,
+        "endChar": 50
+      },
+      "revId": "2d64ed1a5054b1c33ce252a6a99d0f57f0460c8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
