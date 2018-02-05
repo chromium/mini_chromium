@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "207fd093_5c401356",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1223274
+      },
+      "writtenOn": "2018-02-05T23:59:17Z",
+      "side": 1,
+      "message": "ah, thanks. (I was told that ninja is a perfect, well oiled build machine :)",
+      "parentUuid": "8f1e5ebc_6c5560f1",
+      "range": {
+        "startLine": 131,
+        "startChar": 8,
+        "endLine": 131,
+        "endChar": 10
+      },
+      "revId": "2d64ed1a5054b1c33ce252a6a99d0f57f0460c8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f6d0f626_3e1c5bf9",
         "filename": "build/BUILD.gn",
         "patchSetId": 2
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "The pdbs of files for .c and files for .cc are incompatible with each other.\n\nIt\u0027s not documented (and annoyingly Microsoft didn\u0027t add a forwarder for their most recent bug database reorg), but https://bugs.chromium.org/p/chromium/issues/detail?id\u003d142362 has some historical information.",
       "parentUuid": "f6d0f626_3e1c5bf9",
+      "range": {
+        "startLine": 378,
+        "startChar": 48,
+        "endLine": 378,
+        "endChar": 50
+      },
+      "revId": "2d64ed1a5054b1c33ce252a6a99d0f57f0460c8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "24c71b7b_b6639b6d",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1223274
+      },
+      "writtenOn": "2018-02-05T23:59:17Z",
+      "side": 1,
+      "message": "precompiled headers which are included from both C and C++ files? that should not work regardless or the PDBs, am I wrong?\n\nPS. yes, MS bug databases are not exactly open :(",
+      "parentUuid": "5b7e3059_679c8ff8",
       "range": {
         "startLine": 378,
         "startChar": 48,
