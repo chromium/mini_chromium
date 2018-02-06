@@ -16,6 +16,24 @@
       "revId": "1ae607396ea5025e96d124e380b08afa827f2688",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fe49382_6c280754",
+        "filename": "build/win_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-02-06T22:25:47Z",
+      "side": 1,
+      "message": "That\u0027d be great. It looks like Chromium just has hardcoded locations, I think because the original versions of 2017 only had the COM method, and there was no vswhere (or it wasn\u0027t always installed or something? I forget.)\n\nIn any case, there\u0027s no 2017 on the bots yet, so I thought I would just focus on getting 2015 working and going there first.",
+      "parentUuid": "8685a23f_ac6eec81",
+      "revId": "1ae607396ea5025e96d124e380b08afa827f2688",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
