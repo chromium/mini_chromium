@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "6e450d52_263167e6",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-02-06T00:44:25Z",
+      "side": 1,
+      "message": "It\u0027s fast, but it\u0027s not necessarily expressive. At least we don\u0027t have to wait for it to interpret complicated XML scripts. :)\n\n(I think we could probably use pools to express this, but I hunted down the bug where I looked into this for old-times sake where it seemed that we wouldn\u0027t any benefit: https://bugs.chromium.org/p/chromium/issues/detail?id\u003d501051#c7 Maybe you\u0027ll see something there that I did wrong, but at the time it seemed that mspdbsrv was a better fit for our build.)",
+      "parentUuid": "207fd093_5c401356",
+      "range": {
+        "startLine": 131,
+        "startChar": 8,
+        "endLine": 131,
+        "endChar": 10
+      },
+      "revId": "2d64ed1a5054b1c33ce252a6a99d0f57f0460c8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f6d0f626_3e1c5bf9",
         "filename": "build/BUILD.gn",
         "patchSetId": 2
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "precompiled headers which are included from both C and C++ files? that should not work regardless or the PDBs, am I wrong?\n\nPS. yes, MS bug databases are not exactly open :(",
       "parentUuid": "5b7e3059_679c8ff8",
+      "range": {
+        "startLine": 378,
+        "startChar": 48,
+        "endLine": 378,
+        "endChar": 50
+      },
+      "revId": "2d64ed1a5054b1c33ce252a6a99d0f57f0460c8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "42cd498d_1d7feed2",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-02-06T00:44:25Z",
+      "side": 1,
+      "message": "\u003e precompiled headers which are included from both C and C++ files? that should not work regardless or the PDBs, am I wrong?\n\nIt\u0027s been a while, but...\n\nIt looks like from the old bug that we never shared precompiled .obj, so they were always compiled from precompile.h to precompile_c.obj and precompile_cc.obj separately. But, because the pdb was per-target, .c and .cc were sharing a .pdb. It seemed to be that when the precompile .obj was being built at the same time as a compilation of the opposite type, that the compiler errored out. Separating .c and .cc to separate .pdbs avoided the problem.\n\nSo, it could be that the trigger is .pch, I\u0027m not sure. I don\u0027t recall if there were comments on the old version of https://connect.microsoft.com/VisualStudio/feedback/details/809791/occasionally-cl-errors-out-with-c1xx-fatal-error-c1033-cannot-open-program-database-something-pdb or not now.\n\nIn any case, it could be that the trigger is the pch, and since we\u0027re not using pchs here we could have both use the same pdb. But I think it\u0027s best to keep them separate in case we decide to add pch later, and there\u0027s not a lot of downside other than some minor complexity here.\n\n\u003e \n\u003e PS. yes, MS bug databases are not exactly open :(",
+      "parentUuid": "24c71b7b_b6639b6d",
       "range": {
         "startLine": 378,
         "startChar": 48,
