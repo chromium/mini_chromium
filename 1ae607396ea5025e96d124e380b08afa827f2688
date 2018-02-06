@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8685a23f_ac6eec81",
+        "filename": "build/win_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-06T22:15:04Z",
+      "side": 1,
+      "message": "I’ve got something that uses vswhere tucked away somewhere, we ought to be able to integrate that later.",
+      "revId": "1ae607396ea5025e96d124e380b08afa827f2688",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
