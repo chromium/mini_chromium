@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0dee061e_f564fb6d",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-02-06T18:41:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae15d110_43b4ed21",
+      "range": {
+        "startLine": 376,
+        "startChar": 41,
+        "endLine": 376,
+        "endChar": 48
+      },
+      "revId": "9186d903162d76d3da099030f3694e6ebfbba9a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "26ae6ac2_c841b2b0",
         "filename": "build/BUILD.gn",
         "patchSetId": 4
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "cc89c7c0_946585cc",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-02-06T18:41:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26ae6ac2_c841b2b0",
+      "revId": "9186d903162d76d3da099030f3694e6ebfbba9a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "022c2338_cc14ac33",
         "filename": "build/win_helper.py",
         "patchSetId": 4
@@ -53,6 +95,24 @@
       "writtenOn": "2018-02-06T16:11:56Z",
       "side": 1,
       "message": "Ugh, and there’s no # NOLICENSECHECK? Split-up strings make it harder to find things.",
+      "revId": "9186d903162d76d3da099030f3694e6ebfbba9a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b6d907f5_8afb1c1e",
+        "filename": "build/win_helper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-02-06T18:41:10Z",
+      "side": 1,
+      "message": "Oh, I copied this from Chromium, we don\u0027t need it in Crashpad. (Well, we\u0027ll probably get a presubmit warning during Chromium rolls but that ship\u0027s sailed anyway.)",
+      "parentUuid": "022c2338_cc14ac33",
       "revId": "9186d903162d76d3da099030f3694e6ebfbba9a3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
