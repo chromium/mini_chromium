@@ -128,8 +128,10 @@ config("default") {
       "/D_CRT_SECURE_NO_WARNINGS",
       "/D_HAS_EXCEPTIONS=0",
       "/D_UNICODE",
+      "/FS",
       "/W4",
       "/WX",
+      "/Zi",
       "/bigobj",  # Support larger number of sections in obj file.
       "/wd4100",  # Unreferenced formal parameter.
       "/wd4127",  # Conditional expression is constant.
@@ -378,7 +380,8 @@ toolchain("msvc_toolchain") {
 
   tool("cc") {
     depfile = "{{output}}.d"
-    command = "$cc /nologo /showIncludes {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} /c {{source}} /Fo{{output}}"
+    pdbname = "{{source_out_dir}}/{{label_name}}_c.pdb"
+    command = "$cc /nologo /showIncludes {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} /c {{source}} /Fo{{output}} /Fd\"$pdbname\""
     depsformat = "msvc"
     description = "CC {{output}}"
     outputs = [
@@ -388,7 +391,8 @@ toolchain("msvc_toolchain") {
 
   tool("cxx") {
     depfile = "{{output}}.d"
-    command = "$cxx /nologo /showIncludes {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} /c {{source}} /Fo{{output}}"
+    pdbname = "{{source_out_dir}}/{{label_name}}_cc.pdb"
+    command = "$cxx /nologo /showIncludes {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} /c {{source}} /Fo{{output}} /Fd\"$pdbname\""
     depsformat = "msvc"
     description = "CXX {{output}}"
     outputs = [
