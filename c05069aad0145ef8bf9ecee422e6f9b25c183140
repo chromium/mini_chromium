@@ -16,6 +16,24 @@
       "revId": "c05069aad0145ef8bf9ecee422e6f9b25c183140",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f1b27af_e3bf4554",
+        "filename": "build/win_helper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-02-07T19:05:33Z",
+      "side": 1,
+      "message": "Ah, that\u0027s much better, I should have let you do this. Switched.\n\nI confirmed that running \"vswhere -latest -property installationPath\" on a machine that has no installation (theoretically possible as I don\u0027t think Microsoft Visual Studio\\Installer would be removed if you installed 2017 and then uninstalled it) returns an empty string as opposed to doing something wacky.",
+      "parentUuid": "cf8f339c_7b368e5d",
+      "revId": "c05069aad0145ef8bf9ecee422e6f9b25c183140",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
