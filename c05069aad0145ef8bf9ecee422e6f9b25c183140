@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf8f339c_7b368e5d",
+        "filename": "build/win_helper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-07T18:37:45Z",
+      "side": 1,
+      "message": "Rather than using and parsing json, I just capture the output of vswhere -property installationPath.\n\nActually, I use vswhere -latest -property installationPath. It seemed like I might get more than one path if more than one instance of VS was installed, or like it might not be the latest one. That’s where -latest came in.",
+      "revId": "c05069aad0145ef8bf9ecee422e6f9b25c183140",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
