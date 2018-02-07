@@ -68,7 +68,7 @@ def _FormatAsEnvironmentBlock(envvar_dict):
   return block
 
 
-def _GenerateEnvironmentFiles(install_dir, out_dir):
+def _GenerateEnvironmentFiles(install_dir, out_dir, script_path):
   """It's not sufficient to have the absolute path to the compiler, linker, etc.
   on Windows, as those tools rely on .dlls being in the PATH. We also need to
   support both x86 and x64 compilers. Different architectures require a
@@ -82,7 +82,7 @@ def _GenerateEnvironmentFiles(install_dir, out_dir):
   result = []
   for arch in archs:
     # Extract environment variables for subprocesses.
-    args = [os.path.join(install_dir, 'VC\\vcvarsall.bat')]
+    args = [os.path.join(install_dir, script_path)]
     args.extend((arch, '&&', 'set'))
     popen = subprocess.Popen(
         args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
@@ -155,8 +155,17 @@ class WinTool(object):
     return popen.returncode
 
   def _GetVisualStudioInstallDirOrDie(self):
-    # Only Visual Studio 2015 is supported currently.
-    result = ''
+    # Try the VS2017.2+ way first. Note that earlier VS2017s will not be found.
+    vswhere_path = os.path.join(os.environ.get('ProgramFiles(x86)'),
+        'Microsoft Visual Studio', 'Installer', 'vswhere.exe')
+    if os.path.exists(vswhere_path):
+      installation_path = subprocess.check_output(
+          [vswhere_path, '-latest', '-property', 'installationPath']).strip()
+      if installation_path:
+        return (installation_path,
+                os.path.join('VC', 'Auxiliary', 'Build', 'vcvarsall.bat'))
+
+    # Otherwise, try VS2015.
     version = '14.0'
     keys = [r'HKLM\Software\Microsoft\VisualStudio\%s' % version,
             r'HKLM\Software\Wow6432Node\Microsoft\VisualStudio\%s' % version]
@@ -164,16 +173,15 @@ class WinTool(object):
       path = _RegistryGetValue(key, 'InstallDir')
       if not path:
         continue
-      return os.path.normpath(os.path.join(path, '..', '..'))
+      return (os.path.normpath(os.path.join(path, '..', '..')),
+              os.path.join('VC', 'vcvarsall.bat'))
 
-    # TODO(scottmg): Add something for 2017 here.
-
-    if not result:
-      raise Exception('Visual Studio installation dir not found')
+    raise Exception('Visual Studio installation dir not found')
 
   def ExecGetVisualStudioData(self, outdir, *args):
-    install_dir = self._GetVisualStudioInstallDirOrDie()
-    x86_file, x64_file = _GenerateEnvironmentFiles(install_dir, outdir)
+    install_dir, script_path = self._GetVisualStudioInstallDirOrDie()
+    x86_file, x64_file = _GenerateEnvironmentFiles(
+        install_dir, outdir, script_path)
     result = '''install_dir = "%s"
 x86_environment_file = "%s"
 x64_environment_file = "%s"''' % (install_dir, x86_file, x64_file)
