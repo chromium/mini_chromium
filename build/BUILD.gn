@@ -367,111 +367,113 @@ toolchain("gcc_like_toolchain") {
   }
 }
 
-helper_path = rebase_path("win_helper.py")
-toolchain_data = exec_script(helper_path,
-                             [
-                               "get-visual-studio-data",
-                               rebase_path(root_build_dir),
-                             ],
-                             "scope")
+if (mini_chromium_is_win) {
+  helper_path = rebase_path("win_helper.py")
+  toolchain_data = exec_script(helper_path,
+                               [
+                                 "get-visual-studio-data",
+                                 rebase_path(root_build_dir),
+                               ],
+                               "scope")
 
-# Required arguments:
-# - environment_file: Path to saved environment file (see win_helper.py).
-# - current_cpu: The cpu to target with this toolchain.
-template("msvc_toolchain") {
-  toolchain("msvc_toolchain_$target_name") {
-    # @rsp files are not used for simplicity, and because mini_chromium and
-    # Crashpad shouldn't require them in any configurations.
-    cc = "cl.exe"
-    cxx = "cl.exe"
-    ar = "lib.exe"
-    ld = "link.exe"
-    env = invoker.environment_file
+  # Required arguments:
+  # - environment_file: Path to saved environment file (see win_helper.py).
+  # - current_cpu: The cpu to target with this toolchain.
+  template("msvc_toolchain") {
+    toolchain("msvc_toolchain_$target_name") {
+      # @rsp files are not used for simplicity, and because mini_chromium and
+      # Crashpad shouldn't require them in any configurations.
+      cc = "cl.exe"
+      cxx = "cl.exe"
+      ar = "lib.exe"
+      ld = "link.exe"
+      env = invoker.environment_file
 
-    tool("cc") {
-      depfile = "{{output}}.d"
-      pdbname = "{{source_out_dir}}/{{label_name}}_c.pdb"
-      command = "ninja -t msvc -e $env -- $cc /nologo /showIncludes {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} /c {{source}} /Fo{{output}} /Fd\"$pdbname\""
-      depsformat = "msvc"
-      description = "CC {{output}}"
-      outputs = [
-        "{{source_out_dir}}/{{label_name}}.{{source_name_part}}.obj",
-      ]
-    }
-
-    tool("cxx") {
-      depfile = "{{output}}.d"
-      pdbname = "{{source_out_dir}}/{{label_name}}_cc.pdb"
-      command = "ninja -t msvc -e $env -- $cxx /nologo /showIncludes {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} /c {{source}} /Fo{{output}} /Fd\"$pdbname\""
-      depsformat = "msvc"
-      description = "CXX {{output}}"
-      outputs = [
-        "{{source_out_dir}}/{{label_name}}.{{source_name_part}}.obj",
-      ]
-    }
-
-    tool("alink") {
-      command = "$python_path $helper_path link-wrapper $env $ar /nologo /out:{{output}} {{arflags}} {{inputs}}"
-      description = "AR {{output}}"
-      outputs = [
-        "{{output_dir}}/{{target_output_name}}{{output_extension}}",
-      ]
-      default_output_dir = "{{target_out_dir}}"
-      default_output_extension = ".lib"
-      output_prefix = ""
-    }
-
-    tool("solink_module") {
-      outputs = [
-        "{{output_dir}}/{{target_output_name}}{{output_extension}}",
-      ]
-      command = "$python_path $helper_path link-wrapper $env $ld /nologo /DLL /OUT:{{output}} {{ldflags}} {{inputs}} {{solibs}} {{libs}}"
-      description = "SOLINK_MODULE {{output}}"
-      default_output_dir = "{{root_out_dir}}"
-      default_output_extension = ".dll"
-    }
-
-    tool("link") {
-      outputs = [
-        "{{output_dir}}/{{target_output_name}}{{output_extension}}",
-      ]
-      command = "$python_path $helper_path link-wrapper $env $ld /nologo /OUT:{{output}} {{ldflags}} {{inputs}} {{solibs}} {{libs}}"
-      description = "LINK {{output}}"
-      default_output_dir = "{{root_out_dir}}"
-      default_output_extension = ".exe"
-    }
-
-    tool("asm") {
-      if (invoker.current_cpu == "x64") {
-        ml = "ml64.exe"
-      } else {
-        ml = "ml.exe"
+      tool("cc") {
+        depfile = "{{output}}.d"
+        pdbname = "{{source_out_dir}}/{{label_name}}_c.pdb"
+        command = "ninja -t msvc -e $env -- $cc /nologo /showIncludes {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} /c {{source}} /Fo{{output}} /Fd\"$pdbname\""
+        depsformat = "msvc"
+        description = "CC {{output}}"
+        outputs = [
+          "{{source_out_dir}}/{{label_name}}.{{source_name_part}}.obj",
+        ]
       }
-      command = "$python_path $helper_path asm-wrapper $env $ml {{defines}} {{include_dirs}} {{asmflags}} /c /Fo{{output}} {{source}}"
-      description = "ASM {{output}}"
-      outputs = [
-        "{{source_out_dir}}/{{label_name}}.{{source_name_part}}.obj",
-      ]
-    }
 
-    tool("stamp") {
-      command = "$python_path $helper_path stamp {{output}}"
-      description = "STAMP {{output}}"
-    }
+      tool("cxx") {
+        depfile = "{{output}}.d"
+        pdbname = "{{source_out_dir}}/{{label_name}}_cc.pdb"
+        command = "ninja -t msvc -e $env -- $cxx /nologo /showIncludes {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} /c {{source}} /Fo{{output}} /Fd\"$pdbname\""
+        depsformat = "msvc"
+        description = "CXX {{output}}"
+        outputs = [
+          "{{source_out_dir}}/{{label_name}}.{{source_name_part}}.obj",
+        ]
+      }
 
-    tool("copy") {
-      command = "cmd /c copy /y {{source}} {{output}} >nul"
-      description = "COPY {{source}} {{output}}"
+      tool("alink") {
+        command = "$python_path $helper_path link-wrapper $env $ar /nologo /out:{{output}} {{arflags}} {{inputs}}"
+        description = "AR {{output}}"
+        outputs = [
+          "{{output_dir}}/{{target_output_name}}{{output_extension}}",
+        ]
+        default_output_dir = "{{target_out_dir}}"
+        default_output_extension = ".lib"
+        output_prefix = ""
+      }
+
+      tool("solink_module") {
+        outputs = [
+          "{{output_dir}}/{{target_output_name}}{{output_extension}}",
+        ]
+        command = "$python_path $helper_path link-wrapper $env $ld /nologo /DLL /OUT:{{output}} {{ldflags}} {{inputs}} {{solibs}} {{libs}}"
+        description = "SOLINK_MODULE {{output}}"
+        default_output_dir = "{{root_out_dir}}"
+        default_output_extension = ".dll"
+      }
+
+      tool("link") {
+        outputs = [
+          "{{output_dir}}/{{target_output_name}}{{output_extension}}",
+        ]
+        command = "$python_path $helper_path link-wrapper $env $ld /nologo /OUT:{{output}} {{ldflags}} {{inputs}} {{solibs}} {{libs}}"
+        description = "LINK {{output}}"
+        default_output_dir = "{{root_out_dir}}"
+        default_output_extension = ".exe"
+      }
+
+      tool("asm") {
+        if (invoker.current_cpu == "x64") {
+          ml = "ml64.exe"
+        } else {
+          ml = "ml.exe"
+        }
+        command = "$python_path $helper_path asm-wrapper $env $ml {{defines}} {{include_dirs}} {{asmflags}} /c /Fo{{output}} {{source}}"
+        description = "ASM {{output}}"
+        outputs = [
+          "{{source_out_dir}}/{{label_name}}.{{source_name_part}}.obj",
+        ]
+      }
+
+      tool("stamp") {
+        command = "$python_path $helper_path stamp {{output}}"
+        description = "STAMP {{output}}"
+      }
+
+      tool("copy") {
+        command = "cmd /c copy /y {{source}} {{output}} >nul"
+        description = "COPY {{source}} {{output}}"
+      }
     }
   }
-}
 
-msvc_toolchain("x64") {
-  environment_file = toolchain_data.x64_environment_file
-  current_cpu = "x64"
-}
+  msvc_toolchain("x64") {
+    environment_file = toolchain_data.x64_environment_file
+    current_cpu = "x64"
+  }
 
-msvc_toolchain("x86") {
-  environment_file = toolchain_data.x86_environment_file
-  current_cpu = "x86"
+  msvc_toolchain("x86") {
+    environment_file = toolchain_data.x86_environment_file
+    current_cpu = "x86"
+  }
 }
