@@ -156,11 +156,9 @@ config("default") {
 
   if (mini_chromium_is_fuchsia) {
     if (target_cpu == "arm64") {
-      cflags += [ "--target=aarch64-fuchsia" ]
-      ldflags += [ "--target=aarch64-fuchsia" ]
+      common_flags += [ "--target=aarch64-fuchsia" ]
     } else if (target_cpu == "x64") {
-      cflags += [ "--target=x86_64-fuchsia" ]
-      ldflags += [ "--target=x86_64-fuchsia" ]
+      common_flags += [ "--target=x86_64-fuchsia" ]
     } else {
       assert(false, "Unsupported architecture")
     }
