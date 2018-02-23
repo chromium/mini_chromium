@@ -17,10 +17,15 @@ if (mini_chromium_is_mac) {
     # older of the SDK version and the build host’s OS version.
     mac_deployment_target = "10.9"
   }
+} else if (mini_chromium_is_linux) {
+  declare_args() {
+    # Path to the Clang toolchain. If unset, uses the system-installed Clang.
+    clang_path = ""
+  }
 } else if (mini_chromium_is_fuchsia) {
   declare_args() {
     # Path to the Fuchsia Clang toolchain.
-    fuchsia_clang = "//third_party/fuchsia/clang/" + host_os + "-amd64"
+    clang_path = "//third_party/fuchsia/clang/" + host_os + "-amd64"
   }
 }
 
@@ -228,11 +233,11 @@ toolchain("gcc_like_toolchain") {
   lib_switch = "-l"
   lib_dir_switch = "-L"
 
-  if (mini_chromium_is_fuchsia) {
-    cc = rebase_path(fuchsia_clang, root_build_dir) + "/bin/clang"
-    cxx = rebase_path(fuchsia_clang, root_build_dir) + "/bin/clang++"
+  if ((mini_chromium_is_linux || mini_chromium_is_fuchsia) && clang_path != "") {
+    cc = rebase_path(clang_path, root_build_dir) + "/bin/clang"
+    cxx = rebase_path(clang_path, root_build_dir) + "/bin/clang++"
     asm = cxx
-    ar = rebase_path(fuchsia_clang, root_build_dir) + "/bin/llvm-ar"
+    ar = rebase_path(clang_path, root_build_dir) + "/bin/llvm-ar"
     ld = cxx
   } else {
     cc = "clang"
