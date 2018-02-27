@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b125d47e_813f10d2",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-27T21:08:09Z",
+      "side": 1,
+      "message": "Man, this is OLD.",
+      "range": {
+        "startLine": 162,
+        "startChar": 38,
+        "endLine": 162,
+        "endChar": 43
+      },
+      "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80d6800a_b1cb9f9e",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-27T21:08:09Z",
+      "side": 1,
+      "message": "I don’t like this for the general case. If it’s absolutely necessary for the bots, then that’s fine, but I don’t want to have to deal with this weirdo stuff in normal builds on proper up-to-date systems.",
+      "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
