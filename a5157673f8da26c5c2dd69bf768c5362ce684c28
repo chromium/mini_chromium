@@ -57,6 +57,58 @@
       "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9cf6c4f_36b8f69b",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-27T21:17:43Z",
+      "side": 1,
+      "message": "\u003e Hmm, OK. I don\u0027t really want to add yet-another-weird flag either since we\u0027re already up to needing to set:\n\u003e \n\u003e clang_path \u003d \"//third_party/linux/clang/linux-amd64\"\n\u003e target_sysroot \u003d \"//third_party/linux/sysroot\"\n\u003e enable_http_transport_libcurl \u003d false\n\u003e \n\u003e Would you settle for linking libstdc++ statically when target_sysroot is set on Linux?\n\nI don’t really like that either. (1) it’s pretty unexpected, and (2) this static thing is a hack and it will cause problems*. I’d only be OK with it if it’s scoped so narrowly as to solve a very specific problem**.",
+      "parentUuid": "edb13ffc_62c6975b",
+      "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba222a8c_e6d5ca39",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-27T21:17:43Z",
+      "side": 1,
+      "message": "*For example, how do you know that this is even the right C++ library? It might be libc++, for example.",
+      "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fc78fa2_ff079fa3",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-27T21:17:43Z",
+      "side": 1,
+      "message": "**Maybe we should rethink the problem, though. Based on the comment, you’re saying that we need to maintain compatibility with 14.04. If the sysroot we’re picking up now doesn’t really let us do that, maybe it’s not the right sysroot.",
+      "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
