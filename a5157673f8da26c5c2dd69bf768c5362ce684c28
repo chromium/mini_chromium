@@ -78,6 +78,24 @@
     },
     {
       "key": {
+        "uuid": "5d689218_227c3af5",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-02-27T21:30:17Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s all goofy. :(",
+      "parentUuid": "e9cf6c4f_36b8f69b",
+      "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ba222a8c_e6d5ca39",
         "filename": "build/BUILD.gn",
         "patchSetId": 2
@@ -106,6 +124,24 @@
       "writtenOn": "2018-02-27T21:17:43Z",
       "side": 1,
       "message": "**Maybe we should rethink the problem, though. Based on the comment, you’re saying that we need to maintain compatibility with 14.04. If the sysroot we’re picking up now doesn’t really let us do that, maybe it’s not the right sysroot.",
+      "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d433c572_1ca9fc5c",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-02-27T21:30:17Z",
+      "side": 1,
+      "message": "Yeah, that\u0027s the part I\u0027m having trouble with too. It seems odd that Chromium claims 14.04, but we don\u0027t actually have a 14.04-compatible sysroot to build against, but that sort of manages to work because we use libc++.\n\nLooking back, it seems that we dropped the Jessie (\u003d\u003d Debian 8) sysroots fairly recently: https://chromium-review.googlesource.com/c/chromium/src/+/767615. I guess I\u0027ll see if we can build against those instead, as that should satisfy our requirements more accurately.",
+      "parentUuid": "6fc78fa2_ff079fa3",
       "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
