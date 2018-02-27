@@ -39,6 +39,24 @@
       "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edb13ffc_62c6975b",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-02-27T21:12:39Z",
+      "side": 1,
+      "message": "Hmm, OK. I don\u0027t really want to add yet-another-weird flag either since we\u0027re already up to needing to set:\n\nclang_path \u003d \"//third_party/linux/clang/linux-amd64\"\ntarget_sysroot \u003d \"//third_party/linux/sysroot\"\nenable_http_transport_libcurl \u003d false\n\nWould you settle for linking libstdc++ statically when target_sysroot is set on Linux?",
+      "parentUuid": "80d6800a_b1cb9f9e",
+      "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
