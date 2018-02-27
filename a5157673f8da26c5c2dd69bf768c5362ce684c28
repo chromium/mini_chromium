@@ -145,6 +145,24 @@
       "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "045b33e9_88474b6f",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-02-27T21:35:17Z",
+      "side": 1,
+      "message": "Apparently not, it doesn\u0027t have make_unique in usr/include/c++/.\n\nI dunno. I guess a \"link_libstdcpp_statically\" hack flag. Bleh.",
+      "parentUuid": "d433c572_1ca9fc5c",
+      "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
