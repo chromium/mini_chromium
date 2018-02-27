@@ -163,6 +163,24 @@
       "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c617a50f_3f8478fb",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-02-27T21:46:39Z",
+      "side": 1,
+      "message": "I guess this comes down to it not really being possible to (dynamically) use C++14 on 14.04.\n\nSo I guess another option is that we could switch back to -std\u003dc++11, but that seems sad (and I\u0027m not sure how much work would be involved.)",
+      "parentUuid": "045b33e9_88474b6f",
+      "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
