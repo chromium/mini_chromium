@@ -46,6 +46,30 @@
       "revId": "902a29fe61f27bfa249ce60d076bad5cdc3ae9cc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60834068_8095a2e8",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 6
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1172779
+      },
+      "writtenOn": "2018-02-27T18:45:49Z",
+      "side": 1,
+      "message": "I can take care of it. I just wanted to make sure I wasn\u0027t missing some greater strategy. :)",
+      "parentUuid": "a1c714ee_ef817035",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 70
+      },
+      "revId": "902a29fe61f27bfa249ce60d076bad5cdc3ae9cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
