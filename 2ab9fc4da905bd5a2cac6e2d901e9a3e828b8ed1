@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f9067b1_abc6599b",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-27T23:07:27Z",
+      "side": 1,
+      "message": "It says this (libstdc++)…",
+      "range": {
+        "startLine": 25,
+        "startChar": 27,
+        "endLine": 25,
+        "endChar": 36
+      },
+      "revId": "2ab9fc4da905bd5a2cac6e2d901e9a3e828b8ed1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88568013_b0405676",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-27T23:07:27Z",
+      "side": 1,
+      "message": "…and it’s named that way too…",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 29
+      },
+      "revId": "2ab9fc4da905bd5a2cac6e2d901e9a3e828b8ed1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6c02325_41b504ae",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-27T23:07:27Z",
+      "side": 1,
+      "message": "…and this comment even repeats it…",
+      "range": {
+        "startLine": 170,
+        "startChar": 66,
+        "endLine": 170,
+        "endChar": 75
+      },
+      "revId": "2ab9fc4da905bd5a2cac6e2d901e9a3e828b8ed1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88a96c49_4c3b5914",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-27T23:07:27Z",
+      "side": 1,
+      "message": "…but you’re really using libc++.",
+      "range": {
+        "startLine": 174,
+        "startChar": 9,
+        "endLine": 174,
+        "endChar": 17
+      },
+      "revId": "2ab9fc4da905bd5a2cac6e2d901e9a3e828b8ed1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
