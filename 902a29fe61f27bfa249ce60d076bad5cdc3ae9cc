@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "888c9733_1eb17d23",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 6
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1172779
+      },
+      "writtenOn": "2018-02-27T17:41:20Z",
+      "side": 1,
+      "message": "This flag was added here and removed from a couple of Crashpad\u0027s directory specific BUILD.gn files.\n\nIt looks like the flag is missing when building in chromium on win-msvc-rel.\nhttps://chromium-review.googlesource.com/c/chromium/src/+/935486/5\n\nIs this the right place for flags? Are they supposed to be the same flags you would get when building with chromium?",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 70
+      },
+      "revId": "902a29fe61f27bfa249ce60d076bad5cdc3ae9cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
