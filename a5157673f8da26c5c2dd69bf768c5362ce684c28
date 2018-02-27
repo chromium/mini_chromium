@@ -181,6 +181,24 @@
       "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f768204a_1125b006",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-27T23:05:12Z",
+      "side": 1,
+      "message": "\u003e I dunno. I guess a \"link_libstdcpp_statically\" hack flag. Bleh.\n\nI think, given the constraints, that’s the winner that nobody was rooting for.",
+      "parentUuid": "c617a50f_3f8478fb",
+      "revId": "a5157673f8da26c5c2dd69bf768c5362ce684c28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
