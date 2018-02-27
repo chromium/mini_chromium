@@ -22,6 +22,30 @@
       "revId": "902a29fe61f27bfa249ce60d076bad5cdc3ae9cc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1c714ee_ef817035",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 6
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-02-27T18:42:07Z",
+      "side": 1,
+      "message": "Shoot, no, this was dumb. I was just thinking I just wanted to make this flag *more* global (which this does for Crashpad), but wasn\u0027t thinking about the Chromium build (which uses the other BUILD.gn files, but not this global one, which is in-Crashpad-only).\n\nDo you want me to revert/re-add the disables in the other files? Or are you already shepherding it through? (You could probably just add the few missing /wds in the chromium tree CL to get the roll through and then \"upstream\" afterwards).",
+      "parentUuid": "888c9733_1eb17d23",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 70
+      },
+      "revId": "902a29fe61f27bfa249ce60d076bad5cdc3ae9cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
