@@ -88,6 +88,24 @@
     },
     {
       "key": {
+        "uuid": "9d10c874_b29dd48c",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-02-28T18:37:03Z",
+      "side": 1,
+      "message": "ld.lld doesn\u0027t seem to care for that...\n\n/usr/local/google/work/cp2/crashpad/out/lin/../../third_party/linux/clang/linux-amd64/bin/ld.lld: error: unknown argument: -static-libstdc++\n\nHere\u0027s what --help says: https://gist.github.com/sgraham/f312216df00033ab1051329ca00027f8\n\nSkimming through that now to see if there\u0027s something similar...",
+      "parentUuid": "b2f21e2c_949e76e4",
+      "revId": "2ab9fc4da905bd5a2cac6e2d901e9a3e828b8ed1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "88a96c49_4c3b5914",
         "filename": "build/BUILD.gn",
         "patchSetId": 4
