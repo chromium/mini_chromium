@@ -115,6 +115,30 @@
       "revId": "2ab9fc4da905bd5a2cac6e2d901e9a3e828b8ed1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "305384ff_eb06a109",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-28T02:15:34Z",
+      "side": 1,
+      "message": "\u003e Oh, really? I thought -l just meant add a \"lib\" prefix and look for it on the libpath, so this would find \"libstdc++\". Is \"c++\" special cased somehow?\n\nI\u0027m just misreading things all over the place.\n\nBut the distinction raises an interesting question: if we use -stdlib libc++ for both compile and link, does that help?",
+      "parentUuid": "acba476d_6ee0ac91",
+      "range": {
+        "startLine": 174,
+        "startChar": 9,
+        "endLine": 174,
+        "endChar": 17
+      },
+      "revId": "2ab9fc4da905bd5a2cac6e2d901e9a3e828b8ed1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
