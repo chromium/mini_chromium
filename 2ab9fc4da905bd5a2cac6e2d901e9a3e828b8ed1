@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "6682d4bc_c04f5ec0",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-02-28T19:06:32Z",
+      "side": 1,
+      "message": "We\u0027re using clang++ as the linker. I have no idea why no -Wl, I find the (lack of) command line documentation for these tools totally insane. \n\nHere\u0027s with -Wl:\n\nscottmg@around:/work/cp2/crashpad$ ninja -C out/lin crashpad_client_test\nninja: Entering directory `out/lin\u0027\n[0-\u003e1/1 ~1] Regenerating ninja files\n[1-\u003e1/2 ~1] LINK ./crashpad_handler\nFAILED: crashpad_handler \n../../third_party/linux/clang/linux-amd64/bin/clang++ -Wl,-static-libstdc++ -Wl,--as-needed -Wl,-z,noexecstack --sysroot\u003d../../third_party/linux/sysroot -pthread -pie -o \"./crashpad_handler\" -Wl,--start-group obj/handler/crashpad_handler.main.o obj/tools/tool_support.tool_support.o obj/handler/libhandler.a obj/compat/libcompat.a obj/client/libclient.a obj/third_party/mini_chromium/mini_chromium/base/libbase.a obj/util/libutil.a obj/minidump/libminidump.a obj/snapshot/libsnapshot.a  -Wl,--end-group -lz\n/usr/local/google/work/cp2/crashpad/out/lin/../../third_party/linux/clang/linux-amd64/bin/ld.lld: error: unknown argument: -static-libstdc++\nclang-7.0: error: linker command failed with exit code 1 (use -v to see invocation)\nninja: build stopped: subcommand failed.\n\n\nand without -Wl:\n\nscottmg@around:/work/cp2/crashpad$ ninja -C out/lin crashpad_client_test -v -j1\nninja: Entering directory `out/lin\u0027\n[0-\u003e1/1 ~1] ../../../buildtools/linux64/gn --root\u003d../.. -q gen .\n[0-\u003e1/1 ~1] ../../third_party/linux/clang/linux-amd64/bin/clang++ -static-libstdc++ -Wl,--as-needed -Wl,-z,noexecstack --sysroot\u003d../../third_party/linux/sysroot -pthread -pie -o \"./crashpad_handler\" -Wl,--start-group obj/handler/crashpad_handler.main.o obj/tools/tool_support.tool_support.o obj/handler/libhandler.a obj/compat/libcompat.a obj/client/libclient.a obj/third_party/mini_chromium/mini_chromium/base/libbase.a obj/util/libutil.a obj/minidump/libminidump.a obj/snapshot/libsnapshot.a  -Wl,--end-group -lz\nscottmg@around:/work/cp2/crashpad$ ldd out/lin/crashpad_client_test\n\tlinux-vdso.so.1 (0x00007ffc787c9000)\n\tlibm.so.6 \u003d\u003e /lib/x86_64-linux-gnu/libm.so.6 (0x00007fdaaa985000)\n\tlibgcc_s.so.1 \u003d\u003e /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fdaaa76e000)\n\tlibpthread.so.0 \u003d\u003e /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fdaaa551000)\n\tlibc.so.6 \u003d\u003e /lib/x86_64-linux-gnu/libc.so.6 (0x00007fdaaa1b2000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007fdaaaefa000)",
+      "parentUuid": "f9e4b03e_30a6a8af",
+      "revId": "2ab9fc4da905bd5a2cac6e2d901e9a3e828b8ed1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "88a96c49_4c3b5914",
         "filename": "build/BUILD.gn",
         "patchSetId": 4
