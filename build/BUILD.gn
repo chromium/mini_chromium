@@ -21,6 +21,9 @@ if (mini_chromium_is_mac) {
   declare_args() {
     # Path to the Clang toolchain. If unset, uses the system-installed Clang.
     clang_path = ""
+
+    # If set, link against libstdc++ statically.
+    link_libstdcpp_statically = false
   }
 } else if (mini_chromium_is_fuchsia) {
   declare_args() {
@@ -157,6 +160,17 @@ config("default") {
   if (mini_chromium_is_linux) {
     defines = [ "_FILE_OFFSET_BITS=64" ]
     common_flags += [ "-pthread" ]
+
+    if (link_libstdcpp_statically) {
+      # The sysroot being built against is based on Stretch, which is newer than
+      # the libstdc++ that's on Trusty (14.04) which is the Chromium minspec.
+      # This minspec determines what the available buildbots are. Chromium
+      # doesn't have a problem with libstdc++ despite this, because it links
+      # against a local copy of libc++ instead. As this build file only affects
+      # the standalone Crashpad build, when this flag is set link libstdc++
+      # statically to avoid the problem on the bots.
+      ldflags += [ "-static-libstdc++" ]
+    }
   }
 
   if (mini_chromium_is_fuchsia) {
