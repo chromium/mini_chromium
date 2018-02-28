@@ -124,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "f9e4b03e_30a6a8af",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-28T18:59:46Z",
+      "side": 1,
+      "message": "\u003e Oh, it doesn\u0027t want \"-Wl,\" apparently.\n\nAre we invoking ld.lld directly or letting the compiler driver do it for us? The driver should have stripped away the “-Wl,”.",
+      "parentUuid": "84e45c33_8ede8d42",
+      "revId": "2ab9fc4da905bd5a2cac6e2d901e9a3e828b8ed1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "88a96c49_4c3b5914",
         "filename": "build/BUILD.gn",
         "patchSetId": 4
