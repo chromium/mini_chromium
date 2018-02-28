@@ -71,6 +71,23 @@
     },
     {
       "key": {
+        "uuid": "b2f21e2c_949e76e4",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-02-28T14:59:21Z",
+      "side": 1,
+      "message": "Instead of these three arguments, I think we can just do\n\n  ldflags +\u003d [\n    \"-Wl,-static-libstdc++\",\n  ]\n\nThat should tell the compiler driver to do “-Bstatic -lstdc++ -Bdynamic” for us, which means that we won’t wind up with a freaky linker invocation that mentions -lstdc++ twice. It should also deal with -stdlib\u003dlibc++ better if anyone ever tries that.",
+      "revId": "2ab9fc4da905bd5a2cac6e2d901e9a3e828b8ed1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "88a96c49_4c3b5914",
         "filename": "build/BUILD.gn",
         "patchSetId": 4
