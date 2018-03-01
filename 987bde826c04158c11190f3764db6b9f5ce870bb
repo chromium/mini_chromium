@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5079b4a_b44de1a5",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-03-01T03:57:33Z",
+      "side": 0,
+      "message": "Since I don’t see /wd4530 anywhere in https://chromium.googlesource.com/crashpad/crashpad/+/dec23bef576966dc03f60179d39cc32d5414ddfb, will we need to add it to Crashpad in spots where it’s triggered? Or are we clean against that now?",
+      "revId": "987bde826c04158c11190f3764db6b9f5ce870bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
