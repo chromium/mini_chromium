@@ -143,12 +143,9 @@ config("default") {
       "/bigobj",  # Support larger number of sections in obj file.
       "/wd4100",  # Unreferenced formal parameter.
       "/wd4127",  # Conditional expression is constant.
-      "/wd4201",  # Nonstandard extension used: nameless struct/union.
       "/wd4324",  # Structure was padded due to alignment specifier.
       "/wd4351",  # New behavior: elements of array will be default initialized.
-      "/wd4530",  # Exceptions disabled.
       "/wd4577",  # 'noexcept' used with no exception handling mode specified.
-      "/wd4702",  # Unreachable code.
       "/wd4996",  # 'X' was declared deprecated.
     ]
 
