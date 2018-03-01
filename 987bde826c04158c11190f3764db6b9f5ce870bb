@@ -16,6 +16,24 @@
       "revId": "987bde826c04158c11190f3764db6b9f5ce870bb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "603cb352_7e797386",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1172779
+      },
+      "writtenOn": "2018-03-01T04:22:52Z",
+      "side": 0,
+      "message": "Yep, that\u0027s my expectation.\nI\u0027m not sure where all it\u0027s needed yet, but assuming I understand the flag description right, it might just be gtest.",
+      "parentUuid": "e5079b4a_b44de1a5",
+      "revId": "987bde826c04158c11190f3764db6b9f5ce870bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
