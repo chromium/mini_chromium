@@ -106,6 +106,24 @@
       "revId": "0dbfc246fa960fcf1434db4af43e14c82940fd6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6aea04de_c049d260",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2018-04-04T21:20:18Z",
+      "side": 1,
+      "message": "I\u0027d still suggest using the ref:goma rather than ref:latest for the CIPD package. That\u0027s the one deployed to goma but also used in Fuchsia so that\u0027s the one we would consider \"stable\" from our point of view.",
+      "parentUuid": "5846612d_f88787d7",
+      "revId": "0dbfc246fa960fcf1434db4af43e14c82940fd6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
