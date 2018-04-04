@@ -16,6 +16,24 @@
       "revId": "1c7ec3830e308039733ef4b7afb064fea42912a9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7351314e_9c70a0e6",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-04-04T21:28:04Z",
+      "side": 1,
+      "message": "I did that at first thinking the same thing, but clang doesn\u0027t care for that:\n\n../../third_party/linux/clang/linux-amd64/bin/clang++ -MMD -MF obj/minidump/minidump_test.minidump_string_writer_test.o.d -D_FILE_OFFSET_BITS\u003d64 -I../.. -I../../compat/linux -I../../compat/non_win -I../../third_party/gtest/gtest/googletest/include -I../../third_party/mini_chromium/mini_chromium -Wall -Wendif-labels -Werror -Wextra -Wno-missing-field-initializers -Wno-unused-parameter -Wsign-compare -fno-exceptions -fno-rtti -fno-strict-aliasing -fobjc-call-cxx-cdtors -fstack-protector-all -fvisibility-inlines-hidden -fvisibility\u003dhidden -Wheader-hygiene -Wnewline-eof -Wstring-conversion -rtlib\u003dlibgcc -stdlib\u003dlibstdc++ -fPIC -Wimplicit-fallthrough --sysroot\u003d../../third_party/linux/sysroot -pthread -Wexit-time-destructors -std\u003dc++14 -c ../../minidump/minidump_string_writer_test.cc -o obj/minidump/minidump_test.minidump_string_writer_test.o\nclang-7: error: argument unused during compilation: \u0027-rtlib\u003dlibgcc\u0027 [-Werror,-Wunused-command-line-argument]\n\n\n(Unless there\u0027s a different spelling for cflags?)",
+      "parentUuid": "9958973c_3ca27cc2",
+      "revId": "1c7ec3830e308039733ef4b7afb064fea42912a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
