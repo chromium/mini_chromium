@@ -88,6 +88,24 @@
       "revId": "0dbfc246fa960fcf1434db4af43e14c82940fd6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5846612d_f88787d7",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-04-04T21:13:16Z",
+      "side": 1,
+      "message": "Thanks!\n\nNo problem, we were a bit sneaky in reusing this binary.\n\nWe\u0027re not using goma in Crashpad when built standalone, as it\u0027s only ~200-300 .cc files anyway it\u0027s not a big deal.",
+      "parentUuid": "11660ade_c07f3975",
+      "revId": "0dbfc246fa960fcf1434db4af43e14c82940fd6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
