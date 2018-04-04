@@ -34,6 +34,24 @@
       "revId": "1c7ec3830e308039733ef4b7afb064fea42912a9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa8fe66f_bea923e9",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2018-04-04T21:36:11Z",
+      "side": 1,
+      "message": "-rtlib is a link-time only flag at the moment, the assumption is that all runtime libraries implement the same ABI and are interchangeable.",
+      "parentUuid": "7351314e_9c70a0e6",
+      "revId": "1c7ec3830e308039733ef4b7afb064fea42912a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
