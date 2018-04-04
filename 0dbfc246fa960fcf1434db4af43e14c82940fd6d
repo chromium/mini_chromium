@@ -34,6 +34,24 @@
       "revId": "0dbfc246fa960fcf1434db4af43e14c82940fd6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1b298c4_dbe7f819",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-04-04T20:56:48Z",
+      "side": 1,
+      "message": "I\u0027m guessing probably https://reviews.llvm.org/D39930 given the timing and the \"even on the host platform\" part of the commit message.\n\nPetr, we\u0027re abusing the Fuchsia clang binary because it was an available cipd package to do Linux builds too. Do you happen to know what the correct invocation is to link against libstdc++ is? (This is required because Chromium has really old minspec, and no libc++ in the sysroot.)",
+      "parentUuid": "ac5d6b9d_c7da0509",
+      "revId": "0dbfc246fa960fcf1434db4af43e14c82940fd6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
