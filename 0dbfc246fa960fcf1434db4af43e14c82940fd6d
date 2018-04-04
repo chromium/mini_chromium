@@ -16,6 +16,24 @@
       "revId": "0dbfc246fa960fcf1434db4af43e14c82940fd6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac5d6b9d_c7da0509",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2018-04-04T20:51:57Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s for the _Unwind_ functions, and yeah, it seems gross. I got it from https://libcxx.llvm.org/docs/UsingLibcxx.html#using-libc-on-linux.\n\nTrying to figure out what change in clang actually made this break now to see if that\u0027s enlightening...",
+      "parentUuid": "83bca803_10bce407",
+      "revId": "0dbfc246fa960fcf1434db4af43e14c82940fd6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
