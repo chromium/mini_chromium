@@ -4,7 +4,7 @@
 
 import("platform.gni")
 
-if (mini_chromium_is_posix) {
+if (mini_chromium_is_posix || mini_chromium_is_fuchsia) {
   declare_args() {
     # A directory containing the system’s header files and libraries. If empty,
     # a suitable default will be chosen.
@@ -66,7 +66,7 @@ if (mini_chromium_is_mac) {
   }
 }
 
-if (mini_chromium_is_posix &&
+if ((mini_chromium_is_posix || mini_chromium_is_fuchsia) &&
     (current_os == target_os && current_cpu == target_cpu)) {
   sysroot = target_sysroot
 } else {

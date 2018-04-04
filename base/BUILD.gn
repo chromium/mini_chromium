@@ -68,7 +68,7 @@ static_library("base") {
     "threading/thread_local_storage.h",
   ]
 
-  if (mini_chromium_is_posix) {
+  if (mini_chromium_is_posix || mini_chromium_is_fuchsia) {
     sources += [
       "files/file_util_posix.cc",
       "posix/eintr_wrapper.h",

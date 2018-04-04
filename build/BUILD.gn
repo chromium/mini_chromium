@@ -38,7 +38,7 @@ config("debug") {
 config("release") {
   defines = [ "NDEBUG" ]
 
-  if (mini_chromium_is_posix) {
+  if (mini_chromium_is_posix || mini_chromium_is_fuchsia) {
     cflags = [ "-O3" ]
     if (mini_chromium_is_mac) {
       ldflags = [ "-Wl,-dead_strip" ]
@@ -75,7 +75,7 @@ config("default") {
 
   asmflags = []
   ldflags = []
-  if (mini_chromium_is_posix) {
+  if (mini_chromium_is_posix || mini_chromium_is_fuchsia) {
     cflags = [
       "-Wall",
       "-Wendif-labels",
@@ -187,7 +187,8 @@ config("default") {
     ldflags += [ "-lfdio" ]
   }
 
-  if (mini_chromium_is_posix && !mini_chromium_is_mac) {
+  if ((mini_chromium_is_posix && !mini_chromium_is_mac) ||
+      mini_chromium_is_fuchsia) {
     cflags += [ "-fPIC" ]
     ldflags += [
       # This must follow Fuchsia’s fdio library above.

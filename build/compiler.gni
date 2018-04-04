@@ -4,4 +4,4 @@
 
 import("platform.gni")
 
-mini_chromium_is_clang = mini_chromium_is_posix
+mini_chromium_is_clang = mini_chromium_is_posix || mini_chromium_is_fuchsia
