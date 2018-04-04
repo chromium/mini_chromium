@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9958973c_3ca27cc2",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-04-04T21:26:22Z",
+      "side": 1,
+      "message": "This could conceivably affect code generation, not just runtime library selection, and should be presented as a cflag, not just an ldflag. There’s really no reason to expect full binary compatibility across different runtime libraries.\n\nIn the current clang, it looks like there isn’t any compile-time effect except for mingw, but in theory it could happen for any target. Best to play it safe.",
+      "revId": "1c7ec3830e308039733ef4b7afb064fea42912a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
