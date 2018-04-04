@@ -166,7 +166,12 @@ config("default") {
       # against a local copy of libc++ instead. As this build file only affects
       # the standalone Crashpad build, when this flag is set link libstdc++
       # statically to avoid the problem on the bots.
-      ldflags += [ "-static-libstdc++" ]
+      cflags += [ "-stdlib=libstdc++" ]
+      ldflags += [
+        "-rtlib=libgcc",
+        "-static-libstdc++",
+        "-stdlib=libstdc++",
+      ]
     }
   }
 
