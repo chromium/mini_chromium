@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce98853f_70473183",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-04-04T18:09:57Z",
+      "side": 1,
+      "message": "Bug: chromium:812974\n\n(since this isn’t in the Chromium project)",
+      "revId": "483e1d783641fd3bd12bcdc4ead78a5b914585aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
