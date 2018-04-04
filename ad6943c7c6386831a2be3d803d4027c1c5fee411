@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3716fafe_01e318b7",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-04-04T19:50:15Z",
+      "side": 1,
+      "message": "1. Be consistent and put the Fuchsia stuff last, as you did everywhere else.\n\n2. This isn’t canonically formatted, evident because it runs longer than 80 columns. Run “git cl format” to fix.",
+      "revId": "ad6943c7c6386831a2be3d803d4027c1c5fee411",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
