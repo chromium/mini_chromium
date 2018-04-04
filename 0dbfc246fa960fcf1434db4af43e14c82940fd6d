@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83bca803_10bce407",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-04-04T19:35:33Z",
+      "side": 1,
+      "message": "This is the only part that makes me wince. Was this for the _Unwind_* symbols, or something else?\n\nThis library should really be left to the compiler driver, it’d be nice to figure out why it’s needed but not being specified given the c and ld flags we’re using. Might be a buglet in the compiler driver, y’know?",
+      "revId": "0dbfc246fa960fcf1434db4af43e14c82940fd6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
