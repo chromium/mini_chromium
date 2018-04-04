@@ -52,6 +52,24 @@
       "revId": "1c7ec3830e308039733ef4b7afb064fea42912a9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43e4a6e2_e88d9abc",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2018-04-04T21:40:06Z",
+      "side": 1,
+      "message": "\u003e -rtlib is a link-time only flag at the moment, the assumption is that all runtime libraries implement the same ABI and are interchangeable.\n\nThat’s not true on all platforms. See the mingw example I gave: toolchains::MinGW::AddClangSystemIncludeArgs().",
+      "parentUuid": "aa8fe66f_bea923e9",
+      "revId": "1c7ec3830e308039733ef4b7afb064fea42912a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
