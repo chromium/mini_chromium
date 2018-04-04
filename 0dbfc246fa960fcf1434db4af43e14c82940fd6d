@@ -70,6 +70,24 @@
       "revId": "0dbfc246fa960fcf1434db4af43e14c82940fd6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11660ade_c07f3975",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1002225
+      },
+      "writtenOn": "2018-04-04T21:10:42Z",
+      "side": 1,
+      "message": "Yes -rtlib\u003dlibgcc is what you want. I wasn\u0027t aware of you using our Clang, otherwise I\u0027d have given you a heads up. Does it mean that you aren\u0027t using goma for host build?",
+      "parentUuid": "6b0d1648_bf9318e9",
+      "revId": "0dbfc246fa960fcf1434db4af43e14c82940fd6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
