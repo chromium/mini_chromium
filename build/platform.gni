@@ -21,4 +21,4 @@ if (current_os == "mac") {
 }
 
 mini_chromium_is_posix = mini_chromium_is_mac || mini_chromium_is_linux ||
-                         mini_chromium_is_android || mini_chromium_is_fuchsia
+                         mini_chromium_is_android
