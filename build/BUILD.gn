@@ -120,6 +120,24 @@ config("default") {
         common_flags += [ "--sysroot=" + sysroot_path ]
       }
     }
+
+    if (mini_chromium_is_fuchsia) {
+      common_flags += [
+        # The Fuchsia SDK no longer dumps everything in the sysroot, preferring
+        # the layout described in
+        # https://fuchsia.googlesource.com/docs/+/master/development/sdk/layout.md.
+        # Eventually /sysroot will be replaced by /pkg/system, but this work is
+        # not yet complete.
+        "-isystem",
+        rebase_path(fuchsia_sdk + "/pkg/crypto/include", root_build_dir),
+        "-isystem",
+        rebase_path(fuchsia_sdk + "/pkg/launchpad/include", root_build_dir),
+        "-isystem",
+        rebase_path(fuchsia_sdk + "/pkg/ssl/include", root_build_dir),
+      ]
+
+      lib_dirs = [ fuchsia_sdk + "/arch/$target_cpu/lib" ]
+    }
   }
 
   if (mini_chromium_is_mac) {
