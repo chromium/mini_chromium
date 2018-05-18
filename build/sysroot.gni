@@ -58,11 +58,7 @@ if (mini_chromium_is_mac) {
   }
 
   if (target_sysroot == "") {
-    if (target_cpu == "arm64") {
-      target_sysroot = fuchsia_sdk + "/sysroot/aarch64-fuchsia"
-    } else if (target_cpu == "x64") {
-      target_sysroot = fuchsia_sdk + "/sysroot/x86_64-fuchsia"
-    }
+    target_sysroot = fuchsia_sdk + "/arch/$target_cpu/sysroot"
   }
 }
 
