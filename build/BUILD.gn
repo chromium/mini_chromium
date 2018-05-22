@@ -131,6 +131,8 @@ config("default") {
         "-isystem",
         rebase_path(fuchsia_sdk + "/pkg/crypto/include", root_build_dir),
         "-isystem",
+        rebase_path(fuchsia_sdk + "/pkg/fdio/include", root_build_dir),
+        "-isystem",
         rebase_path(fuchsia_sdk + "/pkg/launchpad/include", root_build_dir),
         "-isystem",
         rebase_path(fuchsia_sdk + "/pkg/ssl/include", root_build_dir),
