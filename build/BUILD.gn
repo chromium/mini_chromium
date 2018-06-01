@@ -177,6 +177,13 @@ config("default") {
   if (mini_chromium_is_linux) {
     defines = [ "_FILE_OFFSET_BITS=64" ]
     common_flags += [ "-pthread" ]
+    # This is currently required by the clang toolchain build that DEPS uses
+    # from the Fuchsia team. Only a static libc++ is provided, and it requires
+    # both -ldl and -pthread. (-pthread was already needed by mini_chromium and
+    # Crashpad). Eventually, the clang build should automatically add these
+    # when needed, but it does not do that yet, so manually add libdl here for
+    # now.
+    libs = [ "dl" ]
 
     if (link_libstdcpp_statically) {
       # The sysroot being built against is based on Stretch, which is newer than
@@ -208,8 +215,12 @@ config("default") {
     # be loaded in Fuchsia processes that expect POSIX-like file descriptor
     # semantics, even if they don’t explicitly reference anything in the fdio
     # library. To avoid inadvertently losing the runtime dependency, it must
-    # come before -Wl,--as-needed below.
-    ldflags += [ "-lfdio" ]
+    # come before -Wl,--as-needed below. fdio needs zircon (and zircon needs to
+    # be in every process anyway).
+    ldflags += [
+      "-lfdio",
+      "-lzircon",
+    ]
   }
 
   if ((mini_chromium_is_posix && !mini_chromium_is_mac) ||
