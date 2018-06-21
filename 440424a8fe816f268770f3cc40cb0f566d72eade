@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6520f32b_8eae8e1c",
+        "filename": "build/win_helper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1172779
+      },
+      "writtenOn": "2018-06-21T18:19:39Z",
+      "side": 1,
+      "message": "Is it kosher to be referring to paths outside mini_chromium? Is this possible to inject?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 70
+      },
+      "revId": "440424a8fe816f268770f3cc40cb0f566d72eade",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
