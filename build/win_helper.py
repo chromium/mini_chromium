@@ -11,24 +11,6 @@ import subprocess
 import sys
 
 
-def _RegistryGetValue(key, value):
-  """Use the _winreg module to obtain the value of a registry key.
-
-  Args:
-    key: The registry key.
-    value: The particular registry value to read.
-  Return:
-    contents of the registry key's value, or None on failure.
-  """
-  try:
-    root, subkey = key.split('\\', 1)
-    assert root == 'HKLM'  # Only need HKLM for now.
-    with _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, subkey) as hkey:
-      return _winreg.QueryValueEx(hkey, value)[0]
-  except WindowsError:
-    return None
-
-
 def _ExtractImportantEnvironment(output_of_set):
   """Extracts environment variables required for the toolchain to run from
   a textual dump output by the cmd.exe 'set' command."""
@@ -83,7 +65,10 @@ def _GenerateEnvironmentFiles(install_dir, out_dir, script_path):
   for arch in archs:
     # Extract environment variables for subprocesses.
     args = [os.path.join(install_dir, script_path)]
-    args.extend((arch, '&&', 'set'))
+    script_arch_name = arch
+    if script_path.endswith('SetEnv.cmd') and arch == 'amd64':
+      script_arch_name = '/x64'
+    args.extend((script_arch_name, '&&', 'set'))
     popen = subprocess.Popen(
         args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     variables, _ = popen.communicate()
@@ -155,7 +140,8 @@ class WinTool(object):
     return popen.returncode
 
   def _GetVisualStudioInstallDirOrDie(self):
-    # Try the VS2017.2+ way first. Note that earlier VS2017s will not be found.
+    # Try vswhere, which will find VS2017.2+. Note that earlier VS2017s will not
+    # be found.
     vswhere_path = os.path.join(os.environ.get('ProgramFiles(x86)'),
         'Microsoft Visual Studio', 'Installer', 'vswhere.exe')
     if os.path.exists(vswhere_path):
@@ -165,21 +151,17 @@ class WinTool(object):
         return (installation_path,
                 os.path.join('VC', 'Auxiliary', 'Build', 'vcvarsall.bat'))
 
-    # Otherwise, try VS2015.
-    version = '14.0'
-    keys = [r'HKLM\Software\Microsoft\VisualStudio\%s' % version,
-            r'HKLM\Software\Wow6432Node\Microsoft\VisualStudio\%s' % version]
-    for key in keys:
-      path = _RegistryGetValue(key, 'InstallDir')
-      if not path:
-        continue
-      return (os.path.normpath(os.path.join(path, '..', '..')),
-              os.path.join('VC', 'vcvarsall.bat'))
-
     raise Exception('Visual Studio installation dir not found')
 
-  def ExecGetVisualStudioData(self, outdir, *args):
-    install_dir, script_path = self._GetVisualStudioInstallDirOrDie()
+  def ExecGetVisualStudioData(self, outdir, toolchain_path):
+    # Use an explicitly specified toolchain path, if provided and found.
+    setenv_path = os.path.join('win_sdk', 'bin', 'SetEnv.cmd')
+    if os.path.exists(os.path.join(toolchain_path, setenv_path)):
+      install_dir, script_path = toolchain_path, setenv_path
+    else:
+      # Otherwise, try to autodetect.
+      install_dir, script_path = self._GetVisualStudioInstallDirOrDie()
+
     x86_file, x64_file = _GenerateEnvironmentFiles(
         install_dir, outdir, script_path)
     result = '''install_dir = "%s"

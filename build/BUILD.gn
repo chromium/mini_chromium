@@ -30,6 +30,14 @@ if (mini_chromium_is_mac) {
     # Path to the Fuchsia Clang toolchain.
     clang_path = "//third_party/fuchsia/clang/" + host_os + "-amd64"
   }
+} else if (mini_chromium_is_win) {
+  declare_args() {
+    # Path to the Windows toolchain. If "<autodetect>", discovery of the
+    # system-installed toolchain will be attempted. Otherwise,
+    # win_sdk\bin\SetEnv.cmd inside this path will be used to configure the
+    # Windows toolchain.
+    win_toolchain_path = "<autodetect>"
+  }
 }
 
 config("debug") {
@@ -424,6 +432,7 @@ if (mini_chromium_is_win) {
                                [
                                  "get-visual-studio-data",
                                  rebase_path(root_build_dir),
+                                 rebase_path(win_toolchain_path),
                                ],
                                "scope")
 
