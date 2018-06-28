@@ -110,19 +110,7 @@ void RandBytes(void* output, size_t output_length) {
   }
 
 #if defined(OS_FUCHSIA)
-  char* output_ptr = reinterpret_cast<char*>(output);
-  while (output_length > 0) {
-    // The syscall has a maximum number of bytes that can be read at once.
-    // TODO(scottmg): See ZX-1419, where this may be changed.
-    const size_t bytes_this_pass =
-        std::min(output_length, static_cast<size_t>(ZX_CPRNG_DRAW_MAX_LEN));
-
-    zx_status_t status = zx_cprng_draw_new(output_ptr, bytes_this_pass);
-    ZX_CHECK(status == ZX_OK, status) << "zx_cprng_draw_new";
-
-    output_length -= bytes_this_pass;
-    output_ptr += bytes_this_pass;
-  }
+  zx_cprng_draw(output, output_length);
 #elif defined(OS_POSIX)
   int fd = GetUrandomFD();
   bool success = ReadFromFD(fd, static_cast<char*>(output), output_length);
