@@ -139,28 +139,36 @@ class WinTool(object):
         print line
     return popen.returncode
 
-  def _GetVisualStudioInstallDirOrDie(self):
-    # Try vswhere, which will find VS2017.2+. Note that earlier VS2017s will not
-    # be found.
-    vswhere_path = os.path.join(os.environ.get('ProgramFiles(x86)'),
-        'Microsoft Visual Studio', 'Installer', 'vswhere.exe')
-    if os.path.exists(vswhere_path):
-      installation_path = subprocess.check_output(
-          [vswhere_path, '-latest', '-property', 'installationPath']).strip()
-      if installation_path:
-        return (installation_path,
-                os.path.join('VC', 'Auxiliary', 'Build', 'vcvarsall.bat'))
-
-    raise Exception('Visual Studio installation dir not found')
-
   def ExecGetVisualStudioData(self, outdir, toolchain_path):
-    # Use an explicitly specified toolchain path, if provided and found.
     setenv_path = os.path.join('win_sdk', 'bin', 'SetEnv.cmd')
-    if os.path.exists(os.path.join(toolchain_path, setenv_path)):
-      install_dir, script_path = toolchain_path, setenv_path
-    else:
-      # Otherwise, try to autodetect.
-      install_dir, script_path = self._GetVisualStudioInstallDirOrDie()
+
+    def explicit():
+      if os.path.exists(os.path.join(toolchain_path, setenv_path)):
+        return toolchain_path, setenv_path
+
+    def env():
+      from_env = os.environ.get('VSINSTALLDIR')
+      if from_env and os.path.exists(os.path.join(from_env, setenv_path)):
+        return from_env, setenv_path
+
+    def autodetect():
+      # Try vswhere, which will find VS2017.2+. Note that earlier VS2017s will
+      # not be found.
+      vswhere_path = os.path.join(os.environ.get('ProgramFiles(x86)'),
+          'Microsoft Visual Studio', 'Installer', 'vswhere.exe')
+      if os.path.exists(vswhere_path):
+        installation_path = subprocess.check_output(
+            [vswhere_path, '-latest', '-property', 'installationPath']).strip()
+        if installation_path:
+          return (installation_path,
+                  os.path.join('VC', 'Auxiliary', 'Build', 'vcvarsall.bat'))
+
+    def fail(): raise Exception('Visual Studio installation dir not found')
+
+    # Use an explicitly specified toolchain path, if provided and found.
+    # Otherwise, try using a standard environment variable. Finally, try
+    # autodetecting using vswhere.
+    install_dir, script_path = (explicit() or env() or autodetect() or fail())
 
     x86_file, x64_file = _GenerateEnvironmentFiles(
         install_dir, outdir, script_path)
