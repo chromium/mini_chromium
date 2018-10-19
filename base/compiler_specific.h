@@ -9,10 +9,6 @@
 
 #if defined(COMPILER_MSVC)
 
-// MSVC_SUPPRESS_WARNING disables warning |n| for the remainder of the line and
-// for the next line of the source file.
-#define MSVC_SUPPRESS_WARNING(n) __pragma(warning(suppress:n))
-
 // MSVC_PUSH_DISABLE_WARNING pushes |n| onto a stack of warnings to be disabled.
 // The warning remains disabled until popped by MSVC_POP_WARNING.
 #define MSVC_PUSH_DISABLE_WARNING(n) __pragma(warning(push)) \
@@ -23,7 +19,6 @@
 
 #else  // Not MSVC
 
-#define MSVC_SUPPRESS_WARNING(n)
 #define MSVC_PUSH_DISABLE_WARNING(n)
 #define MSVC_POP_WARNING()
 
