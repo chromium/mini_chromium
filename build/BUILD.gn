@@ -137,11 +137,7 @@ config("default") {
         # Eventually /sysroot will be replaced by /pkg/system, but this work is
         # not yet complete.
         "-isystem",
-        rebase_path(fuchsia_sdk + "/pkg/crypto/include", root_build_dir),
-        "-isystem",
         rebase_path(fuchsia_sdk + "/pkg/fdio/include", root_build_dir),
-        "-isystem",
-        rebase_path(fuchsia_sdk + "/pkg/ssl/include", root_build_dir),
       ]
 
       lib_dirs = [ fuchsia_sdk + "/arch/$target_cpu/lib" ]
