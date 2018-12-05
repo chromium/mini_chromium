@@ -60,7 +60,7 @@ def _GenerateEnvironmentFiles(install_dir, out_dir, script_path):
   environment, and then do not prefix the compiler with an absolute path,
   instead preferring something like "cl.exe" in the rule which will then run
   whichever the environment setup has put in the path."""
-  archs = ('x86', 'amd64')
+  archs = ('x86', 'amd64', 'arm64')
   result = []
   for arch in archs:
     # Extract environment variables for subprocesses.
@@ -68,6 +68,8 @@ def _GenerateEnvironmentFiles(install_dir, out_dir, script_path):
     script_arch_name = arch
     if script_path.endswith('SetEnv.cmd') and arch == 'amd64':
       script_arch_name = '/x64'
+    if arch == 'arm64':
+      script_arch_name = 'x86_arm64'
     args.extend((script_arch_name, '&&', 'set'))
     popen = subprocess.Popen(
         args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
@@ -170,11 +172,12 @@ class WinTool(object):
     # autodetecting using vswhere.
     install_dir, script_path = (explicit() or env() or autodetect() or fail())
 
-    x86_file, x64_file = _GenerateEnvironmentFiles(
+    x86_file, x64_file, arm64_file = _GenerateEnvironmentFiles(
         install_dir, outdir, script_path)
     result = '''install_dir = "%s"
 x86_environment_file = "%s"
-x64_environment_file = "%s"''' % (install_dir, x86_file, x64_file)
+x64_environment_file = "%s"
+arm64_environment_file = "%s"''' % (install_dir, x86_file, x64_file, arm64_file)
     print result
     return 0
 

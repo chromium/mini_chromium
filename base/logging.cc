@@ -299,7 +299,13 @@ LogMessage::~LogMessage() {
   if (severity_ == LOG_FATAL) {
 #if defined(COMPILER_MSVC)
     __debugbreak();
+#if defined(ARCH_CPU_X86_FAMILY)
     __ud2();
+#elif defined(ARCH_CPU_ARM64)
+    __hlt(0);
+#else
+#error Unsupported Windows Arch
+#endif
 #elif defined(ARCH_CPU_X86_FAMILY)
     asm("int3; ud2;");
 #elif defined(ARCH_CPU_ARMEL)

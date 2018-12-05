@@ -499,8 +499,10 @@ if (mini_chromium_is_win) {
       tool("asm") {
         if (invoker.current_cpu == "x64") {
           ml = "ml64.exe"
-        } else {
+        } else if (invoker.current_cpu == "x86") {
           ml = "ml.exe"
+        } else if (invoker.current_cpu == "arm64"){
+          ml = "armasm64.exe"
         }
         command = "$python_path $helper_path asm-wrapper $env $ml {{defines}} {{include_dirs}} {{asmflags}} /c /Fo{{output}} {{source}}"
         description = "ASM {{output}}"
@@ -529,5 +531,10 @@ if (mini_chromium_is_win) {
   msvc_toolchain("x86") {
     environment_file = toolchain_data.x86_environment_file
     current_cpu = "x86"
+  }
+
+  msvc_toolchain("arm64") {
+    environment_file = toolchain_data.arm64_environment_file
+    current_cpu = "arm64"
   }
 }

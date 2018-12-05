@@ -85,8 +85,6 @@ static_library("base") {
 
   if (mini_chromium_is_mac) {
     sources += [
-      "atomicops_internals_mac.h",
-      "atomicops_internals_x86_msvc.h",
       "mac/close_nocancel.cc",
       "mac/foundation_util.h",
       "mac/foundation_util.mm",
