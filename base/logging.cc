@@ -72,8 +72,13 @@ std::string SystemErrorCodeToString(unsigned long error_code) {
   wchar_t msgbuf[256];
   DWORD flags = FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS |
                 FORMAT_MESSAGE_MAX_WIDTH_MASK;
-  DWORD len = FormatMessage(
-      flags, nullptr, error_code, 0, msgbuf, base::size(msgbuf), nullptr);
+  DWORD len = FormatMessage(flags,
+                            nullptr,
+                            error_code,
+                            0,
+                            msgbuf,
+                            static_cast<DWORD>(base::size(msgbuf)),
+                            nullptr);
   if (len) {
     // Most system messages end in a period and a space. Remove the space if
     // it’s there, because the following StringPrintf() includes one.

@@ -45,7 +45,7 @@ static void StringAppendVT(StringType* dst,
   }
 
   // Repeatedly increase buffer size until it fits.
-  int mem_length = size(stack_buf);
+  size_t mem_length = size(stack_buf);
   while (true) {
     if (result < 0) {
 #if !defined(OS_WIN)
