@@ -83,7 +83,7 @@ static void StringAppendVT(StringType* dst,
     result = vsnprintfT(&mem_buf[0], mem_length, format, ap_copy);
     va_end(ap_copy);
 
-    if ((result >= 0) && (result < mem_length)) {
+    if ((result >= 0) && static_cast<unsigned int>(result) < mem_length) {
       // It fit.
       dst->append(&mem_buf[0], result);
       return;
