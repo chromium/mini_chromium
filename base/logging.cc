@@ -38,6 +38,7 @@
 #include <zircon/syscalls.h>
 #endif
 
+#include "base/stl_util.h"
 #include "base/strings/string_util.h"
 #include "base/strings/stringprintf.h"
 #include "base/strings/utf_string_conversions.h"
@@ -72,7 +73,7 @@ std::string SystemErrorCodeToString(unsigned long error_code) {
   DWORD flags = FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS |
                 FORMAT_MESSAGE_MAX_WIDTH_MASK;
   DWORD len = FormatMessage(
-      flags, nullptr, error_code, 0, msgbuf, arraysize(msgbuf), nullptr);
+      flags, nullptr, error_code, 0, msgbuf, base::size(msgbuf), nullptr);
   if (len) {
     // Most system messages end in a period and a space. Remove the space if
     // it’s there, because the following StringPrintf() includes one.
@@ -224,7 +225,7 @@ LogMessage::~LogMessage() {
     // By default, messages are only readable by the admin group. Explicitly
     // make them readable by the user generating the messages.
     char euid_string[12];
-    snprintf(euid_string, arraysize(euid_string), "%d", geteuid());
+    snprintf(euid_string, base::size(euid_string), "%d", geteuid());
     asl_set(asl_message.get(), ASL_KEY_READ_UID, euid_string);
 
     // Map Chrome log severities to ASL log levels.

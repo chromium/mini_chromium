@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "base/macros.h"
+#include "base/stl_util.h"
 
 namespace base {
 
@@ -32,7 +32,7 @@ void safe_strerror_r(int err, char* buf, size_t len) {
 
 std::string safe_strerror(int err) {
   char buf[256];
-  safe_strerror_r(err, buf, arraysize(buf));
+  safe_strerror_r(err, buf, size(buf));
   return std::string(buf);
 }
 
