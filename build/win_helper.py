@@ -11,6 +11,24 @@ import subprocess
 import sys
 
 
+def _RegistryGetValue(key, value):
+  """Use the _winreg module to obtain the value of a registry key.
+
+  Args:
+    key: The registry key.
+    value: The particular registry value to read.
+  Return:
+    contents of the registry key's value, or None on failure.
+  """
+  try:
+    root, subkey = key.split('\\', 1)
+    assert root == 'HKLM'  # Only need HKLM for now.
+    with _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, subkey) as hkey:
+      return _winreg.QueryValueEx(hkey, value)[0]
+  except WindowsError:
+    return None
+
+
 def _ExtractImportantEnvironment(output_of_set):
   """Extracts environment variables required for the toolchain to run from
   a textual dump output by the cmd.exe 'set' command."""
@@ -164,6 +182,17 @@ class WinTool(object):
         if installation_path:
           return (installation_path,
                   os.path.join('VC', 'Auxiliary', 'Build', 'vcvarsall.bat'))
+
+      # Otherwise, try VS2015.
+      version = '14.0'
+      keys = [r'HKLM\Software\Microsoft\VisualStudio\%s' % version,
+              r'HKLM\Software\Wow6432Node\Microsoft\VisualStudio\%s' % version]
+      for key in keys:
+        path = _RegistryGetValue(key, 'InstallDir')
+        if not path:
+          continue
+        return (os.path.normpath(os.path.join(path, os.pardir, os.pardir)),
+                os.path.join('VC', 'vcvarsall.bat'))
 
     def fail(): raise Exception('Visual Studio installation dir not found')
 
