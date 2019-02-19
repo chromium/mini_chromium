@@ -89,6 +89,7 @@ config("default") {
       "-Wendif-labels",
       "-Werror",
       "-Wextra",
+      "-Wextra-semi",
       "-Wno-missing-field-initializers",
       "-Wno-unused-parameter",
       "-Wsign-compare",

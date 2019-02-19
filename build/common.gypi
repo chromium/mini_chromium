@@ -78,6 +78,7 @@
               'GCC_VERSION': 'com.apple.compilers.llvm.clang.1_0',
               'WARNING_CFLAGS': [
                 '-Wexit-time-destructors',
+                '-Wextra-semi',
                 '-Wheader-hygiene',
                 '-Wimplicit-fallthrough',
                 '-Wno-selector-type-mismatch',
@@ -155,6 +156,7 @@
           ['clang!=0', {
             'cflags': [
               '-Wexit-time-destructors',
+              '-Wextra-semi',
               '-Wheader-hygiene',
               '-Wimplicit-fallthrough',
               '-Wsign-compare',
