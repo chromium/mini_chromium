@@ -54,7 +54,7 @@ if (mini_chromium_is_mac) {
 } else if (mini_chromium_is_fuchsia) {
   declare_args() {
     # Path to the Fuchsia SDK.
-    fuchsia_sdk = "//third_party/fuchsia/sdk/linux-amd64"
+    fuchsia_sdk = "//third_party/fuchsia/sdk/$host_os-amd64"
   }
 
   if (target_sysroot == "") {
