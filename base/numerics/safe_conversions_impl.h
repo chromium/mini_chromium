@@ -5,6 +5,7 @@
 #ifndef MINI_CHROMIUM_BASE_NUMERICS_SAFE_CONVERSIONS_IMPL_H_
 #define MINI_CHROMIUM_BASE_NUMERICS_SAFE_CONVERSIONS_IMPL_H_
 
+#include <stddef.h>
 #include <stdint.h>
 
 #include <limits>
