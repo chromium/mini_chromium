@@ -9,11 +9,17 @@
 #include <string.h>
 
 #include "base/stl_util.h"
+#include "build/build_config.h"
+
+#if defined(OS_ANDROID)
+#include <android/api-level.h>
+#endif
 
 namespace base {
 
 void safe_strerror_r(int err, char* buf, size_t len) {
-#if defined(__GLIBC__)
+#if defined(__GLIBC__) || \
+   (defined(OS_ANDROID) && defined(_GNU_SOURCE) && __ANDROID_API__ >= 23)
   char* ret = strerror_r(err, buf, len);
   if (ret != buf) {
     snprintf(buf, len, "%s", ret);
