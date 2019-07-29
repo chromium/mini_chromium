@@ -246,9 +246,9 @@
         'msvs_disabled_warnings': [
           4100,  # Unreferenced formal parameter.
           4127,  # Conditional expression is constant.
+          4324,  # Structure was padded due to alignment specifier.
           4351,  # New behavior: elements of array will be default initialized.
-          4530,  # Exceptions are disabled.
-          4702,  # Unreachable code. https://crbug.com/346399
+          4577,  # 'noexcept' used with no exception handling mode specified.
           4996,  # 'X' was declared deprecated.
         ],
         'defines': [
