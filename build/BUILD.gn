@@ -245,10 +245,6 @@ config("default") {
     ]
   }
 
-  if (mini_chromium_is_clang) {
-    cflags += [ "-Wimplicit-fallthrough" ]
-  }
-
   cflags += common_flags
   asmflags += common_flags
   ldflags += common_flags
@@ -270,6 +266,13 @@ config("Wexit_time_destructors") {
   if (mini_chromium_is_clang) {
     cflags = [ "-Wexit-time-destructors" ]
   }
+}
+
+config("Wimplicit_fallthrough") {
+  if (mini_chromium_is_clang) {
+    cflags = [ "-Wimplicit-fallthrough" ]
+  }
+
 }
 
 config("win_console") {
