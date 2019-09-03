@@ -51,6 +51,43 @@ if (mini_chromium_is_mac) {
 
   mac_sdk = find_mac_sdk_output[0]
   target_sysroot = find_mac_sdk_output[1]
+} else if (mini_chromium_is_ios) {
+  declare_args() {
+    # The version of the iOS SDK to use. If |target_sysroot| is empty, this
+    # will inform which SDK version will be chosen.
+    ios_sdk = ""
+  }
+
+  ios_sdk_platform = ""
+  if (current_cpu == "x64") {
+    ios_sdk_platform = "iphonesimulator"
+  } else if (current_cpu == "arm64") {
+    ios_sdk_platform = "iphoneos"
+  }
+  assert(ios_sdk_platform != "")
+
+  find_ios_sdk_args = [
+    "--platform",
+    ios_sdk_platform,
+  ]
+  if (ios_sdk != "") {
+    find_ios_sdk_args += [
+      "--exact",
+      ios_sdk,
+    ]
+  }
+  if (target_sysroot != "") {
+    find_mac_sdk_args += [
+      "--path",
+      target_sysroot,
+    ]
+  }
+
+  find_ios_sdk_output =
+      exec_script("find_mac_sdk.py", find_ios_sdk_args, "list lines")
+
+  ios_sdk = find_ios_sdk_output[0]
+  target_sysroot = find_ios_sdk_output[1]
 } else if (mini_chromium_is_fuchsia) {
   declare_args() {
     # Path to the Fuchsia SDK.

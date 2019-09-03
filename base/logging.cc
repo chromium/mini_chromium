@@ -18,15 +18,29 @@
 #endif  // OS_POSIX
 
 #if defined(OS_MACOSX)
+// In macOS 10.12 and iOS 10.0 and later ASL (Apple System Log) was deprecated
+// in favor of OS_LOG (Unified Logging).
 #include <AvailabilityMacros.h>
-#include <CoreFoundation/CoreFoundation.h>
-#include <pthread.h>
+#if defined(OS_IOS)
+#if !defined(__IPHONE_10_0) || __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_10_0
+#define USE_ASL
+#endif
+#else  // !defined(OS_IOS)
 #if !defined(MAC_OS_X_VERSION_10_12) || \
     MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_12
+#define USE_ASL
+#endif
+#endif  // defined(OS_IOS)
+
+#if defined(USE_ASL)
 #include <asl.h>
 #else
 #include <os/log.h>
-#endif
+#endif  // USE_ASL
+
+#include <CoreFoundation/CoreFoundation.h>
+#include <pthread.h>
+
 #elif defined(OS_LINUX)
 #include <sys/syscall.h>
 #include <sys/types.h>
@@ -197,8 +211,7 @@ LogMessage::~LogMessage() {
       }
     }
 
-#if !defined(MAC_OS_X_VERSION_10_12) || \
-    MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_12
+#if defined(USE_ASL)
     // Use ASL when this might run on pre-10.12 systems. Unified Logging
     // (os_log) was introduced in 10.12.
 

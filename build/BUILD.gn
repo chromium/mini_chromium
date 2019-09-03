@@ -17,6 +17,13 @@ if (mini_chromium_is_mac) {
     # older of the SDK version and the build host’s OS version.
     mac_deployment_target = "10.9"
   }
+} else if (mini_chromium_is_ios) {
+  declare_args() {
+    # The minimum runtime iOS version that built products are expected to run
+    # on.  If empty, the toolchain will choose its own default, typically the
+    # most recent OS version.
+    ios_deployment_target = "12.0"
+  }
 } else if (mini_chromium_is_linux) {
   declare_args() {
     # Path to the Clang toolchain. If unset, uses the system-installed Clang.
@@ -48,7 +55,7 @@ config("release") {
 
   if (mini_chromium_is_posix || mini_chromium_is_fuchsia) {
     cflags = [ "-O3" ]
-    if (mini_chromium_is_mac) {
+    if (mini_chromium_is_mac || mini_chromium_is_ios) {
       ldflags = [ "-Wl,-dead_strip" ]
     } else {
       cflags += [
@@ -120,7 +127,7 @@ config("default") {
       } else {
         sysroot_path = rebase_path(sysroot, root_build_dir)
       }
-      if (mini_chromium_is_mac) {
+      if (mini_chromium_is_mac || mini_chromium_is_ios) {
         common_flags += [
           "-isysroot",
           sysroot_path,
@@ -130,11 +137,22 @@ config("default") {
       }
     }
 
-    if (mini_chromium_is_mac) {
+    if (mini_chromium_is_mac || mini_chromium_is_ios) {
       if (current_cpu == "x86") {
-        common_flags += ["-arch", "i386"]
+        common_flags += [
+          "-arch",
+          "i386",
+        ]
       } else if (current_cpu == "x64") {
-        common_flags += ["-arch", "x86_64"]
+        common_flags += [
+          "-arch",
+          "x86_64",
+        ]
+      } else if (current_cpu == "arm64") {
+        common_flags += [
+          "-arch",
+          "arm64",
+        ]
       }
     }
 
@@ -156,6 +174,17 @@ config("default") {
   if (mini_chromium_is_mac) {
     if (mac_deployment_target != "") {
       common_flags += [ "-mmacosx-version-min=" + mac_deployment_target ]
+    }
+  }
+
+  if (mini_chromium_is_ios) {
+    if (ios_deployment_target != "") {
+      if (current_cpu == "x64") {
+        common_flags +=
+            [ "-mios-simulator-version-min=" + ios_deployment_target ]
+      } else if (current_cpu == "arm64") {
+        common_flags += [ "-mios-version-min=" + ios_deployment_target ]
+      }
     }
   }
 
@@ -188,6 +217,7 @@ config("default") {
   if (mini_chromium_is_linux) {
     defines = [ "_FILE_OFFSET_BITS=64" ]
     common_flags += [ "-pthread" ]
+
     # This is currently required by the clang toolchain build that DEPS uses
     # from the Fuchsia team. Only a static libc++ is provided, and it requires
     # both -ldl and -pthread. (-pthread was already needed by mini_chromium and
@@ -234,8 +264,8 @@ config("default") {
     ]
   }
 
-  if ((mini_chromium_is_posix && !mini_chromium_is_mac) ||
-      mini_chromium_is_fuchsia) {
+  if ((mini_chromium_is_posix && !mini_chromium_is_mac &&
+       !mini_chromium_is_ios) || mini_chromium_is_fuchsia) {
     cflags += [ "-fPIC" ]
     ldflags += [
       # This must follow Fuchsia’s fdio library above.
@@ -307,7 +337,7 @@ toolchain("gcc_like_toolchain") {
     asm = cxx
     ld = cxx
 
-    if (!mini_chromium_is_mac) {
+    if (!mini_chromium_is_mac && !mini_chromium_is_ios) {
       # macOS uses libtool instead of ar.
       ar = "ar"
     }
@@ -333,7 +363,7 @@ toolchain("gcc_like_toolchain") {
     ]
   }
 
-  if (mini_chromium_is_mac) {
+  if (mini_chromium_is_mac || mini_chromium_is_ios) {
     tool("objc") {
       depfile = "{{output}}.d"
       command = "$cc -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_objc}} -c {{source}} -o {{output}}"
@@ -366,7 +396,7 @@ toolchain("gcc_like_toolchain") {
   }
 
   tool("alink") {
-    if (mini_chromium_is_mac) {
+    if (mini_chromium_is_mac || mini_chromium_is_ios) {
       command = "libtool -static -no_warning_for_no_symbols {{arflags}} -o {{output}} {{inputs}}"
     } else {
       command = "rm -f {{output}}; $ar rcsD {{arflags}} {{output}} {{inputs}}"
@@ -388,7 +418,7 @@ toolchain("gcc_like_toolchain") {
     soname_flag = ""
     start_whole_flag = ""
     end_whole_flag = ""
-    if (mini_chromium_is_mac) {
+    if (mini_chromium_is_mac || mini_chromium_is_ios) {
       soname_flag = "-Wl,-install_name,\"$soname\""
     } else {
       soname_flag = "-Wl,-soname=\"$soname\""
@@ -412,7 +442,7 @@ toolchain("gcc_like_toolchain") {
 
     start_group_flag = ""
     end_group_flag = ""
-    if (!mini_chromium_is_mac) {
+    if (!mini_chromium_is_mac && !mini_chromium_is_ios) {
       start_group_flag = "-Wl,--start-group"
       end_group_flag = "-Wl,--end-group"
     }
