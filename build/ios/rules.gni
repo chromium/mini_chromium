@@ -77,6 +77,7 @@ template("ios_app_bundle") {
   }
 
   executable(_generate_executable_target) {
+    visibility = [ ":$_target_name" ]
     forward_variables_from(invoker,
                            "*",
                            [
@@ -137,20 +138,6 @@ template("ios_app_bundle") {
 
   _bundle_executable_path = get_label_info(":$_generate_executable_target",
                                            "target_out_dir") + "/$_output_name"
-  _bundle_executable_target = target_name + "_bundle_executable"
-  bundle_data(_bundle_executable_target) {
-    visibility = [ ":$_target_name" ]
-    forward_variables_from(invoker, [ "testonly" ])
-    sources = [
-      _bundle_executable_path,
-    ]
-    outputs = [
-      "{{bundle_executable_dir}}/$_output_name",
-    ]
-    public_deps = [
-      ":$_generate_executable_target",
-    ]
-  }
 
   create_bundle(_target_name) {
     forward_variables_from(invoker,
@@ -172,6 +159,33 @@ template("ios_app_bundle") {
     bundle_resources_dir = bundle_contents_dir
     bundle_executable_dir = bundle_contents_dir
 
+    code_signing_script =
+        "//third_party/mini_chromium/mini_chromium/build/ios/codesign.py"
+    code_signing_sources = [ _bundle_executable_path ]
+    code_signing_outputs = [ "$bundle_executable_dir/$_output_name" ]
+
+    _enable_code_signing = ios_enable_code_signing && !use_ios_simulator
+    if (_enable_code_signing) {
+      code_signing_outputs +=
+          [ "$bundle_contents_dir/_CodeSignature/CodeResources" ]
+    }
+
+    code_signing_args = [
+      "code-sign-bundle",
+      "-t=" + ios_sdk_name,
+      "-i=" + ios_code_signing_identity,
+      "-b=" + rebase_path(_bundle_executable_path, root_build_dir),
+    ]
+    code_signing_args += [ rebase_path(bundle_root_dir, root_build_dir) ]
+    if (!_enable_code_signing) {
+      code_signing_args += [ "--disable-code-signature" ]
+    }
+
+    _entitlements_path =
+        "//third_party/mini_chromium/mini_chromium/build/ios/entitlements.plist"
+    code_signing_args +=
+        [ "-e=" + rebase_path(_entitlements_path, root_build_dir) ]
+
     xcode_extra_attributes = {
       IPHONEOS_DEPLOYMENT_TARGET = ios_deployment_target
     }
@@ -186,8 +200,8 @@ template("ios_app_bundle") {
       deps = []
     }
     deps += [
-      ":$_bundle_executable_target",
       ":$_bundle_info_plist_target",
+      ":$_generate_executable_target",
     ]
   }
 }
