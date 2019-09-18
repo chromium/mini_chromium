@@ -18,12 +18,7 @@ if (mini_chromium_is_mac) {
     mac_deployment_target = "10.9"
   }
 } else if (mini_chromium_is_ios) {
-  declare_args() {
-    # The minimum runtime iOS version that built products are expected to run
-    # on.  If empty, the toolchain will choose its own default, typically the
-    # most recent OS version.
-    ios_deployment_target = "12.0"
-  }
+  import("ios/ios_sdk.gni")
 } else if (mini_chromium_is_linux) {
   declare_args() {
     # Path to the Clang toolchain. If unset, uses the system-installed Clang.
@@ -302,7 +297,6 @@ config("Wimplicit_fallthrough") {
   if (mini_chromium_is_clang) {
     cflags = [ "-Wimplicit-fallthrough" ]
   }
-
 }
 
 config("win_console") {
@@ -382,6 +376,20 @@ toolchain("gcc_like_toolchain") {
       outputs = [
         "{{source_out_dir}}/{{label_name}}.{{source_name_part}}.o",
       ]
+    }
+
+    tool("copy_bundle_data") {
+      _copydir = "mkdir -p {{output}} && cd {{source}} && " +
+                 "pax -rwl . \"\$OLDPWD\"/{{output}}"
+      copy_command = "ln -f {{source}} {{output}} 2>/dev/null || (rm -rf {{output}} && cp -af {{source}} {{output}})"
+      command = "rm -rf {{output}} && if [[ -d {{source}} ]]; then " +
+                _copydir + "; else " + copy_command + "; fi"
+
+      description = "COPY_BUNDLE_DATA {{source}} {{output}}"
+    }
+
+    tool("compile_xcassets") {
+      command = "/bin/true"
     }
   }
 

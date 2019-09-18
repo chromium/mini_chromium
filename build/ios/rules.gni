@@ -1,0 +1,193 @@
+# Copyright 2015 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("ios_sdk.gni")
+
+template("info_plist") {
+  assert(defined(invoker.plist_template),
+         "A template plist file must be specified for $target_name")
+  assert(defined(invoker.executable_name),
+         "The executable_name must be specified for $target_name")
+
+  _plist_template = invoker.plist_template
+  _executable_name = invoker.executable_name
+  _output_name = "$target_gen_dir/$target_name.plist"
+
+  _format = "binary1"
+  _substitutions = [
+    "BUILD_MACHINE_OS_BUILD=$machine_os_build",
+    "EXECUTABLE_NAME=$_executable_name",
+    "GCC_VERSION=com.apple.compilers.llvm.clang.1_0",
+    "PRODUCT_NAME=$_executable_name",
+    "XCODE_BUILD=$xcode_build",
+    "XCODE_VERSION=$xcode_version",
+    "IOS_DEPLOYMENT_TARGET=$ios_deployment_target",
+    "IOS_BUNDLE_ID_PREFIX=$ios_app_bundle_id_prefix",
+    "IOS_PLATFORM_BUILD=$ios_platform_build",
+    "IOS_PLATFORM_NAME=$ios_sdk_name",
+    "IOS_PLATFORM_VERSION=$ios_sdk_version",
+    "IOS_SDK_BUILD=$ios_sdk_build",
+    "IOS_SDK_NAME=$ios_sdk_name$ios_sdk_version",
+    "IOS_SUPPORTED_PLATFORM=$ios_sdk_platform",
+    "GTEST_BUNDLE_ID_SUFFIX=$_executable_name",
+  ]
+
+  action(target_name) {
+    forward_variables_from(invoker,
+                           [
+                             "testonly",
+                             "visibility",
+                           ])
+    script = "//third_party/mini_chromium/mini_chromium/build/ios/plist_util.py"
+    sources = [
+      _plist_template,
+    ]
+    outputs = [
+      _output_name,
+    ]
+    args = [
+      "substitute",
+      "-f=" + _format,
+      "-o=" + rebase_path(_output_name, root_build_dir),
+      "-t=" + rebase_path(_plist_template, root_build_dir),
+    ]
+    foreach(_substitution, _substitutions) {
+      args += [ "-s=$_substitution" ]
+    }
+  }
+}
+
+template("ios_app_bundle") {
+  _output_name = target_name
+  _target_name = target_name
+  _plist_template = invoker.plist_template
+
+  _executable_sources_target = _target_name + "_executable_sources"
+  _generate_executable_target = _target_name + "_generate_executable"
+  source_set(_executable_sources_target) {
+    forward_variables_from(invoker,
+                           "*",
+                           [
+                             "bundle_deps",
+                             "visibility",
+                             "plist_template",
+                           ])
+    visibility = [ ":$_generate_executable_target" ]
+  }
+
+  executable(_generate_executable_target) {
+    forward_variables_from(invoker,
+                           "*",
+                           [
+                             "bundle_deps",
+                             "sources",
+                             "visibility",
+                             "plist_template",
+                           ])
+    if (!defined(deps)) {
+      deps = []
+    }
+    deps += [ ":$_executable_sources_target" ]
+
+    if (!defined(libs)) {
+      libs = []
+    }
+    libs += [ "UIKit.framework" ]
+
+    if (!defined(ldflags)) {
+      ldflags = []
+    }
+    ldflags += [
+      "-Xlinker",
+      "-rpath",
+      "-Xlinker",
+      "@executable_path/Frameworks",
+      "-Xlinker",
+      "-objc_abi_version",
+      "-Xlinker",
+      "2",
+    ]
+
+    output_name = _output_name
+    output_prefix_override = true
+    output_dir = "$target_out_dir"
+  }
+
+  _generate_info_plist_target = target_name + "_generate_info_plist"
+  _bundle_info_plist_target = target_name + "_bundle_info_plist"
+  info_plist(_generate_info_plist_target) {
+    visibility = [ ":$_bundle_info_plist_target" ]
+    forward_variables_from(invoker, [ "testonly" ])
+    executable_name = _output_name
+    plist_template = _plist_template
+  }
+
+  bundle_data(_bundle_info_plist_target) {
+    visibility = [ ":$_target_name" ]
+    forward_variables_from(invoker, [ "testonly" ])
+    sources = get_target_outputs(":$_generate_info_plist_target")
+    outputs = [
+      "{{bundle_contents_dir}}/Info.plist",
+    ]
+    public_deps = [
+      ":$_generate_info_plist_target",
+    ]
+  }
+
+  _bundle_executable_path = get_label_info(":$_generate_executable_target",
+                                           "target_out_dir") + "/$_output_name"
+  _bundle_executable_target = target_name + "_bundle_executable"
+  bundle_data(_bundle_executable_target) {
+    visibility = [ ":$_target_name" ]
+    forward_variables_from(invoker, [ "testonly" ])
+    sources = [
+      _bundle_executable_path,
+    ]
+    outputs = [
+      "{{bundle_executable_dir}}/$_output_name",
+    ]
+    public_deps = [
+      ":$_generate_executable_target",
+    ]
+  }
+
+  create_bundle(_target_name) {
+    forward_variables_from(invoker,
+                           [
+                             "data_deps",
+                             "deps",
+                             "public_configs",
+                             "public_deps",
+                             "testonly",
+                             "visibility",
+                           ])
+    product_type = "com.apple.product-type.application"
+
+    _bundle_gen_dir = root_out_dir
+    _bundle_extension = ".app"
+
+    bundle_root_dir = "$_bundle_gen_dir/$_output_name$_bundle_extension"
+    bundle_contents_dir = bundle_root_dir
+    bundle_resources_dir = bundle_contents_dir
+    bundle_executable_dir = bundle_contents_dir
+
+    xcode_extra_attributes = {
+      IPHONEOS_DEPLOYMENT_TARGET = ios_deployment_target
+    }
+
+    if (defined(invoker.bundle_deps)) {
+      if (!defined(deps)) {
+        deps = []
+      }
+      deps += invoker.bundle_deps
+    }
+    if (!defined(deps)) {
+      deps = []
+    }
+    deps += [
+      ":$_bundle_executable_target",
+      ":$_bundle_info_plist_target",
+    ]
+  }
+}
