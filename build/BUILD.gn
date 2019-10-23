@@ -104,7 +104,7 @@ config("default") {
       "-fvisibility=hidden",
     ]
 
-    cflags_c = [ "-std=c99" ]
+    cflags_c = [ "-std=c11" ]
     cflags_cc = [ "-std=c++14" ]
     cflags_objc = cflags_c
     cflags_objcc = cflags_cc
