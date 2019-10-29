@@ -188,6 +188,8 @@ template("ios_app_bundle") {
 
     xcode_extra_attributes = {
       IPHONEOS_DEPLOYMENT_TARGET = ios_deployment_target
+      CODE_SIGN_STYLE = "Manual"
+      CODE_SIGN_IDENTITY = ""
     }
 
     if (defined(invoker.bundle_deps)) {

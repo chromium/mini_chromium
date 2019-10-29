@@ -137,6 +137,8 @@ static_library("base") {
     ]
     libs = [
       "CoreFoundation.framework",
+      "CoreGraphics.framework",
+      "CoreText.framework",
       "Foundation.framework",
       "Security.framework",
     ]
