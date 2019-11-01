@@ -287,6 +287,14 @@ config("executable") {
   }
 }
 
+config("ios_enable_arc") {
+  if (mini_chromium_is_ios) {
+    common_flags = [ "-fobjc-arc" ]
+    cflags_objc = common_flags
+    cflags_objcc = common_flags
+  }
+}
+
 config("Wexit_time_destructors") {
   if (mini_chromium_is_clang) {
     cflags = [ "-Wexit-time-destructors" ]
