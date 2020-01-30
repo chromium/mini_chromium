@@ -43,6 +43,9 @@ if (mini_chromium_is_mac) {
 }
 
 config("debug") {
+  if (!mini_chromium_is_win) {
+    cflags = [ "-g" ]
+  }
 }
 
 config("release") {
