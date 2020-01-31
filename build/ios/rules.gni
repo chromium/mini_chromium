@@ -52,8 +52,7 @@ template("create_signed_bundle") {
     code_signing_sources = [ _bundle_executable_path ]
     code_signing_outputs = [ "$bundle_executable_dir/$_output_name" ]
 
-    _enable_code_signing = ios_enable_code_signing && !use_ios_simulator
-    if (_enable_code_signing) {
+    if (ios_enable_code_signing) {
       code_signing_outputs +=
           [ "$bundle_contents_dir/_CodeSignature/CodeResources" ]
     }
@@ -72,7 +71,7 @@ template("create_signed_bundle") {
       "-b=" + rebase_path(_bundle_executable_path, root_build_dir),
     ]
     code_signing_args += [ rebase_path(bundle_root_dir, root_build_dir) ]
-    if (!_enable_code_signing) {
+    if (!ios_enable_code_signing) {
       code_signing_args += [ "--disable-code-signature" ]
     }
     if (defined(invoker.extra_system_frameworks)) {
