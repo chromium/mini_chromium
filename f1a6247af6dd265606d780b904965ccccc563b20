@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2e6713a_25065cc1",
+        "filename": "build/ios/rules.gni",
+        "patchSetId": 5
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2020-01-31T17:36:08Z",
+      "side": 1,
+      "message": "I like to keep these tighter:\n\n      \u0027-Wl,-rpath,@executable_path/Frameworks\u0027,\n      \u0027-Wl,-objc_abi_version,2\u0027,",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 251,
+        "endChar": 0
+      },
+      "revId": "f1a6247af6dd265606d780b904965ccccc563b20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
