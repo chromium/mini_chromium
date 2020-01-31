@@ -22,6 +22,30 @@
       "revId": "f1a6247af6dd265606d780b904965ccccc563b20",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "640a49e9_28c7afb7",
+        "filename": "build/ios/rules.gni",
+        "patchSetId": 5
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1000119
+      },
+      "writtenOn": "2020-01-31T17:44:13Z",
+      "side": 1,
+      "message": "Done, here and below.",
+      "parentUuid": "e2e6713a_25065cc1",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 251,
+        "endChar": 0
+      },
+      "revId": "f1a6247af6dd265606d780b904965ccccc563b20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
