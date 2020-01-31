@@ -210,6 +210,7 @@ template("ios_app_bundle") {
                            "*",
                            [
                              "bundle_deps",
+                             "extra_system_frameworks",
                              "visibility",
                              "plist_templates",
                              "plist_extra_substitutions",
@@ -223,6 +224,7 @@ template("ios_app_bundle") {
                            "*",
                            [
                              "bundle_deps",
+                             "extra_system_frameworks",
                              "sources",
                              "visibility",
                              "plist_templates",
@@ -242,14 +244,8 @@ template("ios_app_bundle") {
       ldflags = []
     }
     ldflags += [
-      "-Xlinker",
-      "-rpath",
-      "-Xlinker",
-      "@executable_path/Frameworks",
-      "-Xlinker",
-      "-objc_abi_version",
-      "-Xlinker",
-      "2",
+      "-Wl,-rpath,@executable_path/Frameworks",
+      "-Wl,-objc_abi_version,2",
     ]
 
     output_name = _output_name
@@ -289,8 +285,10 @@ template("ios_app_bundle") {
   create_signed_bundle(_target_name) {
     forward_variables_from(invoker,
                            [
+                             "bundle_deps",
                              "data_deps",
                              "deps",
+                             "extra_system_frameworks",
                              "public_configs",
                              "public_deps",
                              "testonly",
@@ -459,6 +457,61 @@ template("ios_xctest_bundle") {
     ]
     outputs = [
       "{{bundle_contents_dir}}/PlugIns/$_output_name.xctest",
+    ]
+  }
+}
+
+template("ios_xctest_test") {
+  # Invokers must specify their own target for the xctest module.
+  assert(defined(invoker.xctest_module_target),
+         "xctest_module_target is required.")
+
+  _target_name = target_name
+  _output_name = target_name
+
+  _xctest_target = _target_name + "_module"
+  _xctest_output = _output_name + "_module"
+
+  _host_target = _target_name
+  _host_output = _output_name
+
+  _xctest_module_target = invoker.xctest_module_target
+
+  ios_xctest_bundle(_xctest_target) {
+    output_name = _xctest_output
+    product_type = _ios_xcode_xctest_bundle_id
+    host_target = _host_target
+    xcode_test_application_name = _host_output
+
+    deps = [ _xctest_module_target ]
+  }
+
+  ios_app_bundle(_host_target) {
+    forward_variables_from(invoker, "*", [ "testonly" ])
+    testonly = true
+
+    # Xcode needs the following frameworks installed in the application (and
+    # signed) for the XCTest to run, so install them using
+    # extra_system_frameworks.
+    _ios_platform_library = "$ios_sdk_platform_path/Developer/Library"
+    extra_system_frameworks = [
+      "$_ios_platform_library/Frameworks/XCTest.framework",
+      "$ios_sdk_platform_path/Developer/Library/PrivateFrameworks/XCTAutomationSupport.framework",
+      "$ios_sdk_platform_path/Developer/usr/lib/libXCTestBundleInject.dylib",
+    ]
+
+    _xctest_bundle = _xctest_target + "_bundle"
+    if (!defined(bundle_deps)) {
+      bundle_deps = []
+    }
+    bundle_deps += [ ":$_xctest_bundle" ]
+
+    if (!defined(ldflags)) {
+      ldflags = []
+    }
+    ldflags += [
+      "-Wl,-rpath,@executable_path/Frameworks",
+      "-Wl,-rpath,@loader_path/Frameworks",
     ]
   }
 }
