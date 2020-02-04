@@ -502,6 +502,8 @@ if (mini_chromium_is_win) {
       cxx = "cl.exe"
       ar = "lib.exe"
       ld = "link.exe"
+      lib_switch = ""
+      lib_dir_switch = "/LIBPATH:"
       env = invoker.environment_file
 
       tool("cc") {
