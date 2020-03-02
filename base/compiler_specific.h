@@ -7,23 +7,6 @@
 
 #include "build/build_config.h"
 
-#if defined(COMPILER_MSVC)
-
-// MSVC_PUSH_DISABLE_WARNING pushes |n| onto a stack of warnings to be disabled.
-// The warning remains disabled until popped by MSVC_POP_WARNING.
-#define MSVC_PUSH_DISABLE_WARNING(n) __pragma(warning(push)) \
-                                     __pragma(warning(disable:n))
-
-// Pop effects of innermost MSVC_PUSH_* macro.
-#define MSVC_POP_WARNING() __pragma(warning(pop))
-
-#else  // Not MSVC
-
-#define MSVC_PUSH_DISABLE_WARNING(n)
-#define MSVC_POP_WARNING()
-
-#endif  // COMPILER_MSVC
-
 // Annotate a variable indicating it's ok if the variable is not used.
 // (Typically used to silence a compiler warning when the assignment
 // is important for some other reason.)
