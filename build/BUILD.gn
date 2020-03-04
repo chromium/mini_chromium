@@ -42,6 +42,42 @@ if (mini_chromium_is_mac) {
   }
 }
 
+declare_args() {
+  # Extra flags passed to the C compiler.
+  # Space-separated string of flags.
+  # "cflags" are passed to all invocations of the C, C++, Objective-C, and
+  # Objective-C++ compilers.
+  extra_cflags = ""
+
+  # Extra flags passed to the C compiler.
+  # Space-separated string of flags.
+  extra_cflags_c = ""
+
+  # Extra flags passed to the C++ compiler.
+  # Space-separated string of flags.
+  extra_cflags_cc = ""
+
+  # Extra flags passed to the Objective-C compiler.
+  # Space-separated string of flags.
+  extra_cflags_objc = ""
+
+  # Extra flags passed to the Objective-C++ compiler.
+  # Space-separated string of flags.
+  extra_cflags_objcc = ""
+
+  # Extra flags passed to the linker.
+  # Space-separated string of flags.
+  # These flags are passed on the command-line to the linker and generally
+  # specify various linking options.
+  extra_ldflags = ""
+
+  # Extra arguments passed to static_library archiver
+  # Space-separated string of flags.
+  # A list of flags passed to the archive/lib command that creates static
+  # libraries.
+  extra_arflags = ""
+}
+
 config("debug") {
   if (!mini_chromium_is_win) {
     cflags = [ "-g" ]
@@ -348,9 +384,45 @@ toolchain("gcc_like_toolchain") {
     }
   }
 
+  if (defined(extra_cflags) && extra_cflags != "") {
+    extra_cflags = " " + extra_cflags
+  } else {
+    extra_cflags = ""
+  }
+  if (defined(extra_cflags_c) && extra_cflags_c != "") {
+    extra_cflags_c = " " + extra_cflags_c
+  } else {
+    extra_cflags_c = ""
+  }
+  if (defined(extra_cflags_cc) && extra_cflags_cc != "") {
+    extra_cflags_cc = " " + extra_cflags_cc
+  } else {
+    extra_cflags_cc = ""
+  }
+  if (defined(extra_cflags_objc) && extra_cflags_objc != "") {
+    extra_cflags_objc = " " + extra_cflags_objc
+  } else {
+    extra_cflags_objc = ""
+  }
+  if (defined(extra_cflags_objcc) && extra_cflags_objcc != "") {
+    extra_cflags_objcc = " " + extra_cflags_objcc
+  } else {
+    extra_cflags_objcc = ""
+  }
+  if (defined(extra_ldflags) && extra_ldflags != "") {
+    extra_ldflags = " " + extra_ldflags
+  } else {
+    extra_ldflags = ""
+  }
+  if (defined(extra_arflags) && extra_arflags != "") {
+    extra_arflags = " " + extra_arflags
+  } else {
+    extra_arflags = ""
+  }
+
   tool("cc") {
     depfile = "{{output}}.d"
-    command = "$cc -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} -c {{source}} -o {{output}}"
+    command = "$cc -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}}${extra_cflags}${extra_cflags_c} -c {{source}} -o {{output}}"
     depsformat = "gcc"
     description = "CC {{output}}"
     outputs = [
@@ -360,7 +432,7 @@ toolchain("gcc_like_toolchain") {
 
   tool("cxx") {
     depfile = "{{output}}.d"
-    command = "$cxx -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_cc}} -c {{source}} -o {{output}}"
+    command = "$cxx -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_cc}}${extra_cflags}${extra_cflags_cc} -c {{source}} -o {{output}}"
     depsformat = "gcc"
     description = "CXX {{output}}"
     outputs = [
@@ -371,7 +443,7 @@ toolchain("gcc_like_toolchain") {
   if (mini_chromium_is_mac || mini_chromium_is_ios) {
     tool("objc") {
       depfile = "{{output}}.d"
-      command = "$cc -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_objc}} -c {{source}} -o {{output}}"
+      command = "$cc -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_objc}}${extra_cflags}${extra_cflags_objc} -c {{source}} -o {{output}}"
       depsformat = "gcc"
       description = "OBJC {{output}}"
       outputs = [
@@ -381,7 +453,7 @@ toolchain("gcc_like_toolchain") {
 
     tool("objcxx") {
       depfile = "{{output}}.d"
-      command = "$cxx -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_objcc}} -c {{source}} -o {{output}}"
+      command = "$cxx -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_objcc}}${extra_cflags}${extra_cflags_objcc} -c {{source}} -o {{output}}"
       depsformat = "gcc"
       description = "OBJCXX {{output}}"
       outputs = [
@@ -416,9 +488,9 @@ toolchain("gcc_like_toolchain") {
 
   tool("alink") {
     if (mini_chromium_is_mac || mini_chromium_is_ios) {
-      command = "libtool -static -no_warning_for_no_symbols {{arflags}} -o {{output}} {{inputs}}"
+      command = "libtool -static -no_warning_for_no_symbols {{arflags}}${extra_arflags} -o {{output}} {{inputs}}"
     } else {
-      command = "rm -f {{output}}; $ar rcsD {{arflags}} {{output}} {{inputs}}"
+      command = "rm -f {{output}}; $ar rcsD {{arflags}}${extra_arflags} {{output}} {{inputs}}"
     }
     description = "AR {{output}}"
     default_output_dir = "{{target_out_dir}}"
@@ -444,7 +516,7 @@ toolchain("gcc_like_toolchain") {
       start_whole_flag = "-Wl,--whole-archive"
       end_whole_flag = "-Wl,--no-whole-archive "
     }
-    command = "$ld -shared {{ldflags}} -o \"$sofile\" $soname_flag $start_whole_flag {{inputs}} {{solibs}} $end_whole_flag {{libs}}"
+    command = "$ld -shared {{ldflags}}${extra_ldflags} -o \"$sofile\" $soname_flag $start_whole_flag {{inputs}} {{solibs}} $end_whole_flag {{libs}}"
     description = "SOLINK_MODULE $sofile"
 
     default_output_dir = "{{root_out_dir}}"
@@ -465,7 +537,7 @@ toolchain("gcc_like_toolchain") {
       start_group_flag = "-Wl,--start-group"
       end_group_flag = "-Wl,--end-group"
     }
-    command = "$ld {{ldflags}} -o \"$outfile\" $start_group_flag {{inputs}} {{solibs}} $end_group_flag {{libs}}"
+    command = "$ld {{ldflags}}${extra_ldflags} -o \"$outfile\" $start_group_flag {{inputs}} {{solibs}} $end_group_flag {{libs}}"
     description = "LINK $outfile"
 
     default_output_dir = "{{root_out_dir}}"
@@ -506,10 +578,36 @@ if (mini_chromium_is_win) {
       lib_dir_switch = "/LIBPATH:"
       env = invoker.environment_file
 
+      if (defined(invoker.extra_cflags) && invoker.extra_cflags != "") {
+        extra_cflags = " " + invoker.extra_cflags
+      } else {
+        extra_cflags = ""
+      }
+      if (defined(invoker.extra_cflags_c) && invoker.extra_cflags_c != "") {
+        extra_cflags_c = " " + invoker.extra_cflags_c
+      } else {
+        extra_cflags_c = ""
+      }
+      if (defined(invoker.extra_cflags_cc) && invoker.extra_cflags_cc != "") {
+        extra_cflags_cc = " " + invoker.extra_cflags_cc
+      } else {
+        extra_cflags_cc = ""
+      }
+      if (defined(invoker.extra_ldflags) && invoker.extra_ldflags != "") {
+        extra_ldflags = " " + invoker.extra_ldflags
+      } else {
+        extra_ldflags = ""
+      }
+      if (defined(invoker.extra_arflags) && invoker.extra_arflags != "") {
+        extra_arflags = " " + invoker.extra_arflags
+      } else {
+        extra_arflags = ""
+      }
+
       tool("cc") {
         depfile = "{{output}}.d"
         pdbname = "{{target_out_dir}}/{{label_name}}_c.pdb"
-        command = "ninja -t msvc -e $env -- $cc /nologo /showIncludes {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} /c {{source}} /Fo{{output}} /Fd\"$pdbname\""
+        command = "ninja -t msvc -e $env -- $cc /nologo /showIncludes {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}}${extra_cflags}${extra_cflags_c} /c {{source}} /Fo{{output}} /Fd\"$pdbname\""
         depsformat = "msvc"
         description = "CC {{output}}"
         outputs = [
@@ -520,7 +618,7 @@ if (mini_chromium_is_win) {
       tool("cxx") {
         depfile = "{{output}}.d"
         pdbname = "{{target_out_dir}}/{{label_name}}_cc.pdb"
-        command = "ninja -t msvc -e $env -- $cxx /nologo /showIncludes {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} /c {{source}} /Fo{{output}} /Fd\"$pdbname\""
+        command = "ninja -t msvc -e $env -- $cxx /nologo /showIncludes {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}}${extra_cflags}${extra_cflags_cc} /c {{source}} /Fo{{output}} /Fd\"$pdbname\""
         depsformat = "msvc"
         description = "CXX {{output}}"
         outputs = [
@@ -529,7 +627,7 @@ if (mini_chromium_is_win) {
       }
 
       tool("alink") {
-        command = "$python_path $helper_path link-wrapper $env $ar /nologo /out:{{output}} {{arflags}} {{inputs}}"
+        command = "$python_path $helper_path link-wrapper $env $ar /nologo /out:{{output}} {{arflags}}${extra_arflags} {{inputs}}"
         description = "AR {{output}}"
         outputs = [
           "{{output_dir}}/{{target_output_name}}{{output_extension}}",
@@ -543,7 +641,7 @@ if (mini_chromium_is_win) {
         outputs = [
           "{{output_dir}}/{{target_output_name}}{{output_extension}}",
         ]
-        command = "$python_path $helper_path link-wrapper $env $ld /nologo /DLL /OUT:{{output}} {{ldflags}} {{inputs}} {{solibs}} {{libs}}"
+        command = "$python_path $helper_path link-wrapper $env $ld /nologo /DLL /OUT:{{output}} {{ldflags}}${extra_ldflags} {{inputs}} {{solibs}} {{libs}}"
         description = "SOLINK_MODULE {{output}}"
         default_output_dir = "{{root_out_dir}}"
         default_output_extension = ".dll"
@@ -553,7 +651,7 @@ if (mini_chromium_is_win) {
         outputs = [
           "{{output_dir}}/{{target_output_name}}{{output_extension}}",
         ]
-        command = "$python_path $helper_path link-wrapper $env $ld /nologo /OUT:{{output}} {{ldflags}} {{inputs}} {{solibs}} {{libs}}"
+        command = "$python_path $helper_path link-wrapper $env $ld /nologo /OUT:{{output}} {{ldflags}}${extra_ldflags} {{inputs}} {{solibs}} {{libs}}"
         description = "LINK {{output}}"
         default_output_dir = "{{root_out_dir}}"
         default_output_extension = ".exe"
