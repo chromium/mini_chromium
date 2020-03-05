@@ -399,16 +399,6 @@ toolchain("gcc_like_toolchain") {
   } else {
     extra_cflags_cc = ""
   }
-  if (defined(extra_cflags_objc) && extra_cflags_objc != "") {
-    extra_cflags_objc = " " + extra_cflags_objc
-  } else {
-    extra_cflags_objc = ""
-  }
-  if (defined(extra_cflags_objcc) && extra_cflags_objcc != "") {
-    extra_cflags_objcc = " " + extra_cflags_objcc
-  } else {
-    extra_cflags_objcc = ""
-  }
   if (defined(extra_ldflags) && extra_ldflags != "") {
     extra_ldflags = " " + extra_ldflags
   } else {
@@ -441,6 +431,17 @@ toolchain("gcc_like_toolchain") {
   }
 
   if (mini_chromium_is_mac || mini_chromium_is_ios) {
+    if (defined(extra_cflags_objc) && extra_cflags_objc != "") {
+      extra_cflags_objc = " " + extra_cflags_objc
+    } else {
+      extra_cflags_objc = ""
+    }
+    if (defined(extra_cflags_objcc) && extra_cflags_objcc != "") {
+      extra_cflags_objcc = " " + extra_cflags_objcc
+    } else {
+      extra_cflags_objcc = ""
+    }
+
     tool("objc") {
       depfile = "{{output}}.d"
       command = "$cc -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_objc}}${extra_cflags}${extra_cflags_objc} -c {{source}} -o {{output}}"
