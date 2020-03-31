@@ -16,17 +16,32 @@ template("create_signed_bundle") {
          "product_type must be defined for $target_name")
   assert(defined(invoker.bundle_extension),
          "bundle_extension must be defined for $target_name")
-  assert(defined(invoker.bundle_executable_path),
-         "bundle_executable_path must be defined for $target_name")
+  assert(defined(invoker.bundle_binary_target) !=
+             defined(invoker.bundle_executable_path),
+         "Only one of bundle_binary_target or bundle_executable_path may be " +
+             "specified for $target_name")
   if (defined(invoker.xcode_test_application_name)) {
     assert(
         invoker.product_type == _ios_xcode_xctest_bundle_id ||
             invoker.product_type == _ios_xcode_xcuitest_bundle_id,
-        "xcode_test_application_name can be only defined for Xcode unit or ui test target.")
+        "xcode_test_application_name can be only defined for Xcode unit or " +
+            "ui test target.")
+  }
+
+  if (defined(invoker.bundle_executable_path)) {
+    _bundle_executable_path = invoker.bundle_executable_path
+  } else {
+    _bundle_binary_target = invoker.bundle_binary_target
+    _bundle_binary_output = get_label_info(_bundle_binary_target, "name")
+    if (defined(invoker.bundle_binary_output)) {
+      _bundle_binary_output = invoker.bundle_binary_output
+    }
+    _bundle_executable_path =
+        get_label_info(_bundle_binary_target, "target_out_dir") +
+        "/$_bundle_binary_output"
   }
 
   _output_name = invoker.output_name
-  _bundle_executable_path = invoker.bundle_executable_path
   _bundle_gen_dir = root_out_dir
   _bundle_extension = invoker.bundle_extension
 
@@ -98,6 +113,14 @@ template("create_signed_bundle") {
       }
     }
 
+    if (!defined(public_deps)) {
+      public_deps = []
+    }
+
+    if (defined(invoker.bundle_binary_target)) {
+      public_deps += [ invoker.bundle_binary_target ]
+    }
+
     if (defined(invoker.bundle_deps)) {
       if (!defined(deps)) {
         deps = []
@@ -153,9 +176,7 @@ template("info_plist") {
 
     sources = _plist_templates
 
-    outputs = [
-      _merged_plist_output_name,
-    ]
+    outputs = [ _merged_plist_output_name ]
     args = [
              "merge",
              "-f=xml1",
@@ -170,12 +191,8 @@ template("info_plist") {
                              "visibility",
                            ])
     script = "//third_party/mini_chromium/mini_chromium/build/ios/plist_util.py"
-    sources = [
-      _merged_plist_output_name,
-    ]
-    outputs = [
-      _output_name,
-    ]
+    sources = [ _merged_plist_output_name ]
+    outputs = [ _output_name ]
     args = [
       "substitute",
       "-f=" + _format,
@@ -185,9 +202,7 @@ template("info_plist") {
     foreach(_substitution, _substitutions) {
       args += [ "-s=$_substitution" ]
     }
-    deps = [
-      ":$_merge_plist_target",
-    ]
+    deps = [ ":$_merge_plist_target" ]
   }
 }
 
@@ -271,12 +286,8 @@ template("ios_app_bundle") {
     visibility = [ ":$_target_name" ]
     forward_variables_from(invoker, [ "testonly" ])
     sources = get_target_outputs(":$_generate_info_plist_target")
-    outputs = [
-      "{{bundle_contents_dir}}/Info.plist",
-    ]
-    public_deps = [
-      ":$_generate_info_plist_target",
-    ]
+    outputs = [ "{{bundle_contents_dir}}/Info.plist" ]
+    public_deps = [ ":$_generate_info_plist_target" ]
   }
 
   _bundle_executable_path = get_label_info(":$_generate_executable_target",
@@ -343,9 +354,7 @@ template("ios_xctest_bundle") {
     testonly = true
     visibility = [ ":$_target_name" ]
 
-    deps = [
-      ":$_loadable_module_source",
-    ]
+    deps = [ ":$_loadable_module_source" ]
     configs +=
         [ "//third_party/mini_chromium/mini_chromium/build/ios:xctest_config" ]
 
@@ -383,14 +392,10 @@ template("ios_xctest_bundle") {
     testonly = true
     visibility = [ ":$_target_name" ]
 
-    public_deps = [
-      ":$_info_plist_target",
-    ]
+    public_deps = [ ":$_info_plist_target" ]
 
     sources = get_target_outputs(":$_info_plist_target")
-    outputs = [
-      "{{bundle_contents_dir}}/Info.plist",
-    ]
+    outputs = [ "{{bundle_contents_dir}}/Info.plist" ]
   }
 
   _xctest_bundle = _target_name + "_bundle"
@@ -435,12 +440,8 @@ template("ios_xctest_bundle") {
       }
     }
 
-    deps = [
-      ":$_info_plist_bundle",
-    ]
-    public_deps = [
-      ":$_loadable_module_target",
-    ]
+    deps = [ ":$_info_plist_bundle" ]
+    public_deps = [ ":$_loadable_module_target" ]
   }
 
   bundle_data(_xctest_bundle) {
@@ -449,15 +450,9 @@ template("ios_xctest_bundle") {
     testonly = true
     visibility = [ ":$host_target" ]
 
-    public_deps = [
-      ":$_target_name",
-    ]
-    sources = [
-      "$root_out_dir/$_output_name.xctest",
-    ]
-    outputs = [
-      "{{bundle_contents_dir}}/PlugIns/$_output_name.xctest",
-    ]
+    public_deps = [ ":$_target_name" ]
+    sources = [ "$root_out_dir/$_output_name.xctest" ]
+    outputs = [ "{{bundle_contents_dir}}/PlugIns/$_output_name.xctest" ]
   }
 }
 
@@ -529,6 +524,23 @@ template("ios_xcuitest_test_runner_bundle") {
   _xctrunner_path =
       "$ios_sdk_platform_path/Developer/Library/Xcode/Agents/XCTRunner.app"
 
+  # When creating the test runner for an XCUITest, the arm64e slice of the binary
+  # must be removed (at least until the app ships with arm64e slice which is not
+  # yet supported by Apple).
+  action("xctest_runner_without_arm64e") {
+    testonly = true
+    script =
+        "//third_party/mini_chromium/mini_chromium/build/ios/strip_arm64e.py"
+    sources = [ "$_xctrunner_path/XCTRunner" ]
+    outputs = [ "$target_out_dir/XCTRunner" ]
+    args = [
+      "--output",
+      rebase_path(outputs[0], root_build_dir),
+      "--input",
+      rebase_path(sources[0], root_build_dir),
+    ]
+  }
+
   _info_plist_target = _target_name + "_info_plist"
   _info_plist_bundle = _target_name + "_info_plist_bundle"
   info_plist(_info_plist_target) {
@@ -550,14 +562,10 @@ template("ios_xcuitest_test_runner_bundle") {
     testonly = true
     visibility = [ ":$_target_name" ]
 
-    public_deps = [
-      ":$_info_plist_target",
-    ]
+    public_deps = [ ":$_info_plist_target" ]
 
     sources = get_target_outputs(":$_info_plist_target")
-    outputs = [
-      "{{bundle_contents_dir}}/Info.plist",
-    ]
+    outputs = [ "{{bundle_contents_dir}}/Info.plist" ]
   }
 
   _pkginfo_bundle = _target_name + "_pkginfo_bundle"
@@ -565,20 +573,17 @@ template("ios_xcuitest_test_runner_bundle") {
     testonly = true
     visibility = [ ":$_target_name" ]
 
-    sources = [
-      "$_xctrunner_path/PkgInfo",
-    ]
+    sources = [ "$_xctrunner_path/PkgInfo" ]
 
-    outputs = [
-      "{{bundle_contents_dir}}/PkgInfo",
-    ]
+    outputs = [ "{{bundle_contents_dir}}/PkgInfo" ]
   }
 
   _xctest_bundle = invoker.xctest_bundle
   create_signed_bundle(_target_name) {
     testonly = true
 
-    bundle_executable_path = "$_xctrunner_path/XCTRunner"
+    bundle_binary_target = ":xctest_runner_without_arm64e"
+    bundle_binary_output = "XCTRunner"
     bundle_extension = ".app"
     product_type = "com.apple.product-type.application"
 
@@ -598,7 +603,6 @@ template("ios_xcuitest_test_runner_bundle") {
     }
     bundle_deps += [
       ":$_info_plist_bundle",
-
       ":$_pkginfo_bundle",
       ":$_xctest_bundle",
     ]
@@ -617,9 +621,7 @@ template("ios_xcuitest_test") {
   group(_xcuitest_target) {
     testonly = true
 
-    deps = [
-      ":$_xcuitest_runner_target",
-    ]
+    deps = [ ":$_xcuitest_runner_target" ]
   }
 
   _xcuitest_module_output = _xcuitest_target
