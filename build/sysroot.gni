@@ -56,7 +56,7 @@ if (mini_chromium_is_mac) {
   target_sysroot = ios_sdk_path
 } else if (mini_chromium_is_fuchsia) {
   # Declares fuchsia_sdk.
-  import("//third_party/fuchsia/sdk/build/config/config.gni")
+  import("//third_party/fuchsia/sdk/$host_os-amd64/build/config/config.gni")
   if (target_sysroot == "") {
     target_sysroot = fuchsia_sdk + "/arch/$target_cpu/sysroot"
   }
