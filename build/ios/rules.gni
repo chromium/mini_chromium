@@ -250,10 +250,10 @@ template("ios_app_bundle") {
     }
     deps += [ ":$_executable_sources_target" ]
 
-    if (!defined(libs)) {
-      libs = []
+    if (!defined(frameworks)) {
+      frameworks = []
     }
-    libs += [ "UIKit.framework" ]
+    frameworks += [ "UIKit.framework" ]
 
     if (!defined(ldflags)) {
       ldflags = []
