@@ -17,7 +17,7 @@
 #include "base/posix/safe_strerror.h"
 #endif  // OS_POSIX
 
-#if defined(OS_MACOSX)
+#if defined(OS_APPLE)
 // In macOS 10.12 and iOS 10.0 and later ASL (Apple System Log) was deprecated
 // in favor of OS_LOG (Unified Logging).
 #include <AvailabilityMacros.h>
@@ -166,7 +166,7 @@ LogMessage::~LogMessage() {
   fprintf(stderr, "%s", str_newline.c_str());
   fflush(stderr);
 
-#if defined(OS_MACOSX)
+#if defined(OS_APPLE)
   const bool log_to_system = []() {
     struct stat stderr_stat;
     if (fstat(fileno(stderr), &stderr_stat) == -1) {
@@ -313,7 +313,7 @@ LogMessage::~LogMessage() {
   }
 #elif defined(OS_WIN)
   OutputDebugString(base::UTF8ToUTF16(str_newline).c_str());
-#endif  // OS_MACOSX
+#endif  // OS_*
 
   if (severity_ == LOG_FATAL) {
 #if defined(COMPILER_MSVC)
@@ -356,7 +356,7 @@ void LogMessage::Init(const char* function) {
   DWORD pid = GetCurrentProcessId();
 #endif
 
-#if defined(OS_MACOSX)
+#if defined(OS_APPLE)
   uint64_t thread;
   pthread_threadid_np(pthread_self(), &thread);
 #elif defined(OS_ANDROID)

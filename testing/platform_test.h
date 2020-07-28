@@ -9,7 +9,7 @@
 #include "build/build_config.h"
 #include "gtest/gtest.h"
 
-#if defined(OS_MACOSX)
+#if defined(OS_APPLE)
 #import <Foundation/Foundation.h>
 
 // The implementation is in this header because mini_chromium does not directly
@@ -34,6 +34,6 @@ class PlatformTest : public testing::Test {
 };
 #else
 using PlatformTest = testing::Test;
-#endif  // OS_MACOSX
+#endif  // OS_APPLE
 
 #endif  // MINI_CHROMIUM_TESTING_PLATFORM_TEST_H_

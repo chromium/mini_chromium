@@ -6,8 +6,9 @@
 #define MINI_CHROMIUM_BASE_SYS_BYTEORDER_H_
 
 #include "base/macros.h"
+#include "build/build_config.h"
 
-#if defined(OS_MACOSX)
+#if defined(OS_APPLE)
 #include <libkern/OSByteOrder.h>
 #elif defined(OS_WIN)
 #include <stdlib.h>
@@ -18,7 +19,7 @@
 namespace base {
 
 inline uint16_t ByteSwap(uint16_t x) {
-#if defined(OS_MACOSX)
+#if defined(OS_APPLE)
   return OSSwapInt16(x);
 #elif defined(OS_WIN)
   return _byteswap_ushort(x);
@@ -28,7 +29,7 @@ inline uint16_t ByteSwap(uint16_t x) {
 }
 
 inline uint32_t ByteSwap(uint32_t x) {
-#if defined(OS_MACOSX)
+#if defined(OS_APPLE)
   return OSSwapInt32(x);
 #elif defined(OS_WIN)
   return _byteswap_ulong(x);
@@ -38,7 +39,7 @@ inline uint32_t ByteSwap(uint32_t x) {
 }
 
 inline uint64_t ByteSwap(uint64_t x) {
-#if defined(OS_MACOSX)
+#if defined(OS_APPLE)
   return OSSwapInt64(x);
 #elif defined(OS_WIN)
   return _byteswap_uint64(x);

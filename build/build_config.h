@@ -6,9 +6,6 @@
 #define MINI_CHROMIUM_BUILD_BUILD_CONFIG_H_
 
 #if defined(__APPLE__)
-// TODO(https://crbug.com/1105907): Migrate off of OS_MACOSX to an appropriate
-// combination of OS_MAC, OS_IOS, and OS_APPLE.
-#define OS_MACOSX 1
 #define OS_APPLE 1
 #elif defined(__ANDROID__)
 #define OS_ANDROID 1
