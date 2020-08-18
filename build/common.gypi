@@ -59,9 +59,10 @@
             # Don't warn about unused function parameters.
             '-Wno-unused-parameter',
 
-            # Don't warn about the "struct foo f = {0};" initialization
-            # pattern.
+            # Don't warn about the "struct foo f = {0};" initialization pattern.
             '-Wno-missing-field-initializers',
+
+            '-Wvla',
           ],
 
           'conditions': [
@@ -136,6 +137,7 @@
           '-Wextra',
           '-Wno-unused-parameter',
           '-Wno-missing-field-initializers',
+          '-Wvla',
         ],
         'cflags_cc': [
           '-fno-rtti',

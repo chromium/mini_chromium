@@ -131,9 +131,13 @@ config("default") {
       "-Werror",
       "-Wextra",
       "-Wextra-semi",
+      "-Wheader-hygiene",
+      "-Wnewline-eof",
       "-Wno-missing-field-initializers",
       "-Wno-unused-parameter",
       "-Wsign-compare",
+      "-Wstring-conversion",
+      "-Wvla",
       "-fno-exceptions",
       "-fno-rtti",
       "-fno-strict-aliasing",  # See https://crbug.com/32204
@@ -147,12 +151,6 @@ config("default") {
     cflags_cc = [ "-std=c++14" ]
     cflags_objc = cflags_c
     cflags_objcc = cflags_cc
-
-    cflags += [
-      "-Wheader-hygiene",
-      "-Wnewline-eof",
-      "-Wstring-conversion",
-    ]
 
     if (sysroot != "") {
       if (sysroot == rebase_path(sysroot)) {
