@@ -4,10 +4,6 @@
 
 import("../build/platform.gni")
 
-config("base_public_config") {
-  include_dirs = [ ".." ]
-}
-
 static_library("base") {
   sources = [
     "../build/build_config.h",
@@ -163,8 +159,6 @@ static_library("base") {
 
     libs = [ "zircon" ]
   }
-
-  public_configs = [ ":base_public_config" ]
 
   if (mini_chromium_is_fuchsia) {
     # TODO(https://bugs.fuchsia.dev/p/fuchsia/issues/detail?id=58162):

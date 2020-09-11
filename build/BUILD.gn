@@ -122,6 +122,8 @@ config("release") {
 config("default") {
   common_flags = []
 
+  include_dirs = [ ".." ]
+
   asmflags = []
   ldflags = []
   if (mini_chromium_is_posix || mini_chromium_is_fuchsia) {
