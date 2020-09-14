@@ -362,7 +362,7 @@ void LogMessage::Init(const char* function) {
 #elif defined(OS_ANDROID)
   pid_t thread = gettid();
 #elif defined(OS_LINUX)
-  pid_t thread = syscall(__NR_gettid);
+  pid_t thread = static_cast<pid_t>(syscall(__NR_gettid));
 #elif defined(OS_WIN)
   DWORD thread = GetCurrentThreadId();
 #elif defined(OS_FUCHSIA)
