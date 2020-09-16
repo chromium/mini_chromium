@@ -16,6 +16,46 @@
       "revId": "ae8e216ad73a550a9cf7dbb8195117df22dc1d5e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0bae1c5e_fa66acc7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2020-09-16T20:40:30Z",
+      "side": 1,
+      "message": "I guess this is tolerable.",
+      "revId": "ae8e216ad73a550a9cf7dbb8195117df22dc1d5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9d0f32a_022d1c9e",
+        "filename": "base/logging.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2020-09-16T20:40:30Z",
+      "side": 1,
+      "message": "Can you at least static_cast to the correct typedef?",
+      "range": {
+        "startLine": 365,
+        "startChar": 29,
+        "endLine": 365,
+        "endChar": 32
+      },
+      "revId": "ae8e216ad73a550a9cf7dbb8195117df22dc1d5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
