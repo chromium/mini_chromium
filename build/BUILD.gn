@@ -78,6 +78,10 @@ declare_args() {
   extra_arflags = ""
 }
 
+source_set("build") {
+  sources = [ "build_config.h" ]
+}
+
 config("debug") {
   if (!mini_chromium_is_win) {
     cflags = [ "-g" ]

@@ -6,7 +6,6 @@ import("../build/platform.gni")
 
 static_library("base") {
   sources = [
-    "../build/build_config.h",
     "atomicops.h",
     "atomicops_internals_atomicword_compat.h",
     "atomicops_internals_portable.h",
@@ -159,4 +158,6 @@ static_library("base") {
 
     libs = [ "zircon" ]
   }
+
+  public_deps = [ "../build" ]
 }
