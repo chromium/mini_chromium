@@ -554,7 +554,7 @@ toolchain("gcc_like_toolchain") {
 }
 
 if (mini_chromium_is_win) {
-  helper_path = rebase_path("win_helper.py")
+  helper_path = rebase_path("../win_helper.py")
   toolchain_data = exec_script(helper_path,
                                [
                                  "get-visual-studio-data",
