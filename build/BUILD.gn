@@ -6,6 +6,11 @@
 # that it requires, which in turn conflict with settings from BUILDCONFIG.gn
 # when building in other trees.
 
+config("mini_chromium_config") {
+  include_dirs = [ ".." ]
+}
+
 source_set("build") {
   sources = [ "build_config.h" ]
+  public_configs = [ ":mini_chromium_config" ]
 }

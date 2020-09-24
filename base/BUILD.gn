@@ -159,5 +159,7 @@ static_library("base") {
     libs = [ "zircon" ]
   }
 
+  public_configs = [ "../build:mini_chromium_config" ]
+
   public_deps = [ "../build" ]
 }
