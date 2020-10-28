@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db99fc81_8bbc8496",
+        "filename": "base/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2020-10-28T20:56:03Z",
+      "side": 1,
+      "message": "libs \u003d [ \"log\" ], right?",
+      "revId": "4386e21d65e2a5f8e8e9505af48a681c6a322b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
