@@ -384,7 +384,7 @@ template("ios_xctest_bundle") {
     }
     extra_substitutions = [
       "XCTEST_BUNDLE_PRINCIPAL_CLASS=${_principal_class}",
-      "MODULE_BUNDLE_ID=gtest.$_output_name",
+      "MODULE_BUNDLE_ID=googletest.$_output_name",
     ]
   }
 
