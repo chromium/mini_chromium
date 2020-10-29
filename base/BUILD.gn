@@ -162,4 +162,8 @@ static_library("base") {
   public_configs = [ "../build:mini_chromium_config" ]
 
   public_deps = [ "../build" ]
+
+  if (mini_chromium_is_android) {
+    libs = [ "log" ]
+  }
 }
