@@ -259,6 +259,18 @@ config("default") {
     defines = [ "_FILE_OFFSET_BITS=64" ]
     common_flags += [ "-pthread" ]
 
+    if (current_cpu == "x86") {
+      common_flags += [
+        "-m32",
+      ]
+    } else if (current_cpu == "x64") {
+      common_flags += [
+        "-m64",
+      ]
+    } else {
+      assert(false, "Unsupported architecture")
+    }
+
     # This is currently required by the clang toolchain build that DEPS uses
     # from the Fuchsia team. Only a static libc++ is provided, and it requires
     # both -ldl and -pthread. (-pthread was already needed by mini_chromium and
