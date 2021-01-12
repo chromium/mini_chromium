@@ -6,11 +6,31 @@
 # that it requires, which in turn conflict with settings from BUILDCONFIG.gn
 # when building in other trees.
 
+import("./buildflag_header.gni")
+import("./platform.gni")
+
 config("mini_chromium_config") {
-  include_dirs = [ ".." ]
+  include_dirs = [
+    "..",
+    root_gen_dir
+  ]
 }
 
 source_set("build") {
   sources = [ "build_config.h" ]
   public_configs = [ ":mini_chromium_config" ]
+}
+
+source_set("buildflag_header_h") {
+  sources = [ "buildflag.h" ]
+}
+
+buildflag_header("chromeos_buildflags") {
+  header = "chromeos_buildflags.h"
+  header_dir = "build"
+
+  flags = [
+    "IS_CHROMEOS_LACROS=$mini_chromium_is_chromeos_lacros",
+    "IS_CHROMEOS_ASH=$mini_chromium_is_chromeos_ash",
+  ]
 }
