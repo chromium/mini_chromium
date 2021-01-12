@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b79332c0_73cba7e6",
+        "filename": "build/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2021-01-12T15:41:23Z",
+      "side": 1,
+      "message": "mini_chromium keeps platformy stuff like this in build/platform.gni. Also, it prefixes everything with mini_chromium_ as a form of namespacing. Without that, we eventually started developing collisions.\n\nCan either or both of those be done for chromeos-lacros and chromeos-ash?",
+      "revId": "d6c94e992b05da8969dd447b8a5ace012ce36d91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
