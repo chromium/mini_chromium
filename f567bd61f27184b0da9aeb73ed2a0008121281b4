@@ -33,6 +33,24 @@
       "message": "Thanks.\n\nDo the LaCrOs/ash settings ever make sense outside of Chromium? If so, we might prefer just to not do this in mini_chromium at all, but to handle it in Crashpad with is-in-Chromium checks wrapping the LaCrOs/ash checks.\n\nIf it doesn’t make sense to do it that way, LGTM to this.",
       "revId": "f567bd61f27184b0da9aeb73ed2a0008121281b4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33e5c6a9_09940b97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1172779
+      },
+      "writtenOn": "2021-01-12T20:50:02Z",
+      "side": 1,
+      "message": "I considered doing something like that or providing a pre-generated header that always disables ash/lacros outside chromium. It is not necessary for the standalone build to be able to build lacros/ash versions of Crashpad but:\n1. The buildfile support seemed like it might continue being useful for other thigns in the future.\n2. It was easy and allows me to do convenient things like verifying compilation for lacros/ash with less copying between chromium and crashpad.\n\nI think it would only make sense to build a lacros/ash version of crashpad outside chromium as a convenient way of developing and testing that configuration since you\u0027d need a Chromium OS system to install it on.",
+      "parentUuid": "c8e0b285_e03ce77c",
+      "revId": "f567bd61f27184b0da9aeb73ed2a0008121281b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
