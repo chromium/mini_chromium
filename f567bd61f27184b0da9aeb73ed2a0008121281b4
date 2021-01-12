@@ -16,6 +16,23 @@
       "message": "Thanks!",
       "revId": "f567bd61f27184b0da9aeb73ed2a0008121281b4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8e0b285_e03ce77c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2021-01-12T20:31:31Z",
+      "side": 1,
+      "message": "Thanks.\n\nDo the LaCrOs/ash settings ever make sense outside of Chromium? If so, we might prefer just to not do this in mini_chromium at all, but to handle it in Crashpad with is-in-Chromium checks wrapping the LaCrOs/ash checks.\n\nIf it doesn’t make sense to do it that way, LGTM to this.",
+      "revId": "f567bd61f27184b0da9aeb73ed2a0008121281b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
