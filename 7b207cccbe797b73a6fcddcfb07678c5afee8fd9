@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb552872_1d2ea3da",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2021-01-19T23:17:30Z",
+      "side": 1,
+      "message": "No [base] in mini_chromium, which is all base.",
+      "revId": "7b207cccbe797b73a6fcddcfb07678c5afee8fd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "13d31c62_1d9de190",
@@ -32,6 +49,23 @@
       "side": 1,
       "message": "Rolling this change into crashpad will require landing https://crrev.com/c/2637704 first, so that the remaining references to base::c16memcmp, base::c16len and base::c16memcpy are dropped.",
       "parentUuid": "13d31c62_1d9de190",
+      "revId": "7b207cccbe797b73a6fcddcfb07678c5afee8fd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a698de4c_50520f5d",
+        "filename": "base/strings/string16.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2021-01-19T23:17:30Z",
+      "side": 1,
+      "message": "using char16 \u003d char16_t;\n\nSame on the next line, and please also fix up lines 18–19 above.",
       "revId": "7b207cccbe797b73a6fcddcfb07678c5afee8fd9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
