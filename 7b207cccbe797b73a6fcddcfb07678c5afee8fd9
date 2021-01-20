@@ -127,6 +127,30 @@
       },
       "revId": "7b207cccbe797b73a6fcddcfb07678c5afee8fd9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24f486e7_9bba9521",
+        "filename": "base/strings/string16.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2021-01-20T13:24:31Z",
+      "side": 1,
+      "message": "\u003e Somewhat relatedly: Crashpad doesn\u0027t actually log string16s directly. What do you think about just removing this (and all of string16.cc)?\n\nI think we need to keep it.\n\nWe don’t ever log a base::string16 directly, but I think we added this because we do log base::char16* (or wchar_t*). Without this, those log statements will be silently accepted, but they’ll be logged as pointers. The overload, in conjunction with the implicit conversion to base::string16, allows them to be logged as strings, as intended.",
+      "parentUuid": "644a7ce7_f7f52da4",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 27
+      },
+      "revId": "7b207cccbe797b73a6fcddcfb07678c5afee8fd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
