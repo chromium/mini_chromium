@@ -45,6 +45,30 @@
       },
       "revId": "eefb7720a2c40b605a4c517a74ddd286fec0dd60",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5556e28f_336a827f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1456088
+      },
+      "writtenOn": "2021-02-25T22:34:23Z",
+      "side": 1,
+      "message": "Thanks for the review! This is the exact usage that led me to this change.\n\nI can\u0027t seem to submit CLs in Chromium, can you submit for me?",
+      "parentUuid": "eb294eff_fac30e10",
+      "range": {
+        "startLine": 10,
+        "startChar": 8,
+        "endLine": 11,
+        "endChar": 62
+      },
+      "revId": "eefb7720a2c40b605a4c517a74ddd286fec0dd60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
