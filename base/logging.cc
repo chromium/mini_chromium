@@ -111,7 +111,7 @@ std::string SystemErrorCodeToString(unsigned long error_code) {
       msgbuf[len - 1] = '\0';
     }
     return base::StringPrintf("%s (%u)",
-                              base::UTF16ToUTF8(msgbuf).c_str(), error_code);
+                              base::WideToUTF8(msgbuf).c_str(), error_code);
   }
   return base::StringPrintf("Error %u while retrieving error %u",
                             GetLastError(),
@@ -327,7 +327,7 @@ LogMessage::~LogMessage() {
 #endif
     }
 #elif defined(OS_WIN)
-    OutputDebugString(base::UTF8ToUTF16(str_newline).c_str());
+    OutputDebugString(base::UTF8ToWide(str_newline).c_str());
 #elif defined(OS_ANDROID)
     android_LogPriority priority =
         (severity_ < 0) ? ANDROID_LOG_VERBOSE : ANDROID_LOG_UNKNOWN;
