@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8e9bf36_4d08650d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1179305
+      },
+      "writtenOn": "2021-03-08T19:47:26Z",
+      "side": 1,
+      "message": "Hey mark@, this addresses compilation errors on Windows caused by the switch to std::u16string. I believe this should be all, but I unfortunately wasn\u0027t able yet to build a standalone crashpad on Windows.",
+      "revId": "7c40f6148dd3fb90356c9fc4ba26e78572ee7551",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
