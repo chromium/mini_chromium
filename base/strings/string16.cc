@@ -4,10 +4,6 @@
 
 #include "base/strings/string16.h"
 
-#include <string.h>
-
-#if defined(WCHAR_T_IS_UTF32)
-
 #include <ostream>
 
 #include "base/strings/utf_string_conversions.h"
@@ -15,5 +11,3 @@
 std::ostream& operator<<(std::ostream& out, const std::u16string& str) {
   return out << base::UTF16ToUTF8(str);
 }
-
-#endif  // WCHAR_T_IS_UTF32
