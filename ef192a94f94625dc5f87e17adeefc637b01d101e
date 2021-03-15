@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d81f729_50fca6f4",
+        "filename": "base/logging.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1179305
+      },
+      "writtenOn": "2021-03-15T11:59:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6a567e_a5375124",
+      "range": {
+        "startLine": 501,
+        "startChar": 14,
+        "endLine": 501,
+        "endChar": 24
+      },
+      "revId": "ef192a94f94625dc5f87e17adeefc637b01d101e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8eaa2a0d_bfed2767",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-03-15T11:01:29Z",
       "side": 1,
       "message": "std:: not necessary in namespace std.",
+      "range": {
+        "startLine": 313,
+        "startChar": 25,
+        "endLine": 313,
+        "endChar": 55
+      },
+      "revId": "ef192a94f94625dc5f87e17adeefc637b01d101e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c522ffec_099113ea",
+        "filename": "base/logging.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1179305
+      },
+      "writtenOn": "2021-03-15T11:59:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8eaa2a0d_bfed2767",
       "range": {
         "startLine": 313,
         "startChar": 25,
