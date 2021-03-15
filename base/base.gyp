@@ -102,8 +102,6 @@
         'scoped_clear_last_error.h',
         'scoped_generic.h',
         'stl_util.h',
-        'strings/string16.cc',
-        'strings/string16.h',
         'strings/string_number_conversions.cc',
         'strings/string_number_conversions.h',
         'strings/string_piece.h',

@@ -8,6 +8,7 @@
 #include <stdlib.h>
 
 #include <iomanip>
+#include <ostream>
 
 #if defined(OS_POSIX)
 #include <paths.h>
@@ -496,3 +497,7 @@ ErrnoLogMessage::~ErrnoLogMessage() {
 #endif  // OS_POSIX
 
 }  // namespace logging
+
+std::ostream& std::operator<<(std::ostream& out, const std::u16string& str) {
+  return out << base::UTF16ToUTF8(str);
+}

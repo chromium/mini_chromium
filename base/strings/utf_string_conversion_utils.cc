@@ -41,7 +41,7 @@ bool ReadUnicodeCharacter(const char* src,
   return IsValidCodepoint(code_point);
 }
 
-bool ReadUnicodeCharacter(const char16* src,
+bool ReadUnicodeCharacter(const char16_t* src,
                           int32_t src_len,
                           int32_t* char_index,
                           uint32_t* code_point) {
@@ -78,7 +78,7 @@ size_t WriteUnicodeCharacter(uint32_t code_point, std::string* output) {
   return char_offset - original_char_offset;
 }
 
-size_t WriteUnicodeCharacter(uint32_t code_point, string16* output) {
+size_t WriteUnicodeCharacter(uint32_t code_point, std::u16string* output) {
   return WriteUTF16Character(code_point, output);
 }
 
@@ -97,7 +97,7 @@ void PrepareForUTF8Output(const CHAR* src,
 }
 
 template void PrepareForUTF8Output(const wchar_t*, size_t, std::string*);
-template void PrepareForUTF8Output(const char16*, size_t, std::string*);
+template void PrepareForUTF8Output(const char16_t*, size_t, std::string*);
 
 template<typename STRING>
 void PrepareForUTF16Or32Output(const char* src,
@@ -113,6 +113,6 @@ void PrepareForUTF16Or32Output(const char* src,
   }
 }
 
-template void PrepareForUTF16Or32Output(const char*, size_t, string16*);
+template void PrepareForUTF16Or32Output(const char*, size_t, std::u16string*);
 
 }  // namespace base

@@ -309,4 +309,8 @@ const LogSeverity LOG_0 = LOG_ERROR;
 #undef assert
 #define assert(condition) DLOG_ASSERT(condition)
 
+namespace std {
+ostream& operator<<(ostream& out, const u16string& str);
+}  // namespace std
+
 #endif  // MINI_CHROMIUM_BASE_LOGGING_H_
