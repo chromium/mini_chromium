@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c617c7a5_2090898c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1179305
+      },
+      "writtenOn": "2021-03-15T10:39:56Z",
+      "side": 1,
+      "message": "Hi Mark, PTAL.",
+      "revId": "ef192a94f94625dc5f87e17adeefc637b01d101e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54c0fdca_25b2b4a6",
+        "filename": "base/logging.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1179305
+      },
+      "writtenOn": "2021-03-15T10:39:56Z",
+      "side": 1,
+      "message": "Since crashpad doesn\u0027t actually use this I thought about just dropping it. However, Chromium does define this in base/logging.h [1], so I moved it here for consistency.\n\n[1] https://source.chromium.org/chromium/chromium/src/+/master:base/logging.h;l\u003d742-743;drc\u003df8e9c30c7e59d1269fdf00da1e6e2a77d78d565d",
+      "range": {
+        "startLine": 312,
+        "startChar": 0,
+        "endLine": 314,
+        "endChar": 19
+      },
+      "revId": "ef192a94f94625dc5f87e17adeefc637b01d101e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
