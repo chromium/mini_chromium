@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "850cbe18_36b3f49b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2021-05-06T20:13:17Z",
+      "side": 1,
+      "message": "This will need a DEPS roll in the main Crashpad repo to take effect.",
+      "revId": "e8433299f1f3546b3536dcc15e69cf253cea60e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
