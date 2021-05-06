@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90048a48_e6a41f63",
+        "filename": "build/buildflag_header.gni",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2021-05-06T19:51:26Z",
+      "side": 1,
+      "message": "It feels pretty weird to use write_file rather than a response file, so this at least needs a comment describing the problem and a link to the upstream bug.",
+      "revId": "86cdb12eb9ba161963f753aa85cba685aa714aa5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
