@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03ab3563_929f6510",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1174099
+      },
+      "writtenOn": "2021-05-13T21:03:25Z",
+      "side": 1,
+      "message": "LG with Joshua’s comment resolved.",
+      "revId": "5947d3cb683b3cf19f83445ce1b3c6fe60f27d4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfd330f4_24590443",
