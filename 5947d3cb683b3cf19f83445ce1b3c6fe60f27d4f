@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfd330f4_24590443",
+        "filename": "base/logging.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1172779
+      },
+      "writtenOn": "2021-05-13T21:02:31Z",
+      "side": 1,
+      "message": "#if",
+      "range": {
+        "startLine": 41,
+        "startChar": 1,
+        "endLine": 41,
+        "endChar": 3
+      },
+      "revId": "5947d3cb683b3cf19f83445ce1b3c6fe60f27d4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
