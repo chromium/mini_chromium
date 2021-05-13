@@ -22,6 +22,30 @@
       },
       "revId": "b925ebb785ffe0a961a242b887ae75fa99fd8a2d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "405ef5a6_35e6603a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2021-05-13T21:00:51Z",
+      "side": 1,
+      "message": "Done (unless you want to keep it open until we implement LOG_TO_SYSTEM_DEBUG_LOG)",
+      "parentUuid": "74d19e8e_80cc0f39",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 18
+      },
+      "revId": "b925ebb785ffe0a961a242b887ae75fa99fd8a2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
