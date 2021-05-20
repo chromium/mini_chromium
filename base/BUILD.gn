@@ -153,8 +153,6 @@ static_library("base") {
       "fuchsia/fuchsia_logging.cc",
       "fuchsia/fuchsia_logging.h",
     ]
-
-    libs = [ "zircon" ]
   }
 
   public_configs = [ "../build:mini_chromium_config" ]

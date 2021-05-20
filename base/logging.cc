@@ -48,9 +48,6 @@
 #elif defined(OS_WIN)
 #include <intrin.h>
 #include <windows.h>
-#elif defined(OS_FUCHSIA)
-#include <zircon/process.h>
-#include <zircon/syscalls.h>
 #elif defined(OS_ANDROID)
 #include <android/log.h>
 #endif
@@ -119,25 +116,6 @@ std::string SystemErrorCodeToString(unsigned long error_code) {
                             error_code);
 }
 #endif  // OS_WIN
-
-#if defined(OS_FUCHSIA)
-zx_koid_t GetKoidForHandle(zx_handle_t handle) {
-  // Get the 64-bit koid (unique kernel object ID) of the given handle.
-  zx_koid_t koid = 0;
-  zx_info_handle_basic_t info;
-  if (zx_object_get_info(handle,
-                         ZX_INFO_HANDLE_BASIC,
-                         &info,
-                         sizeof(info),
-                         nullptr,
-                         nullptr) == ZX_OK) {
-    // If this fails, there's not much that can be done. As this is used only
-    // for logging, leave it as 0, which is not a valid koid.
-    koid = info.koid;
-  }
-  return koid;
-}
-#endif  // OS_FUCHSIA
 
 LogMessage::LogMessage(const char* function,
                        const char* file_path,
@@ -384,9 +362,7 @@ void LogMessage::Init(const char* function) {
     file_name.assign(file_name.substr(last_slash + 1));
   }
 
-#if defined(OS_FUCHSIA)
-  zx_koid_t pid = GetKoidForHandle(zx_process_self());
-#elif defined(OS_POSIX)
+#if defined(OS_POSIX) && !defined(OS_FUCHSIA)
   pid_t pid = getpid();
 #elif defined(OS_WIN)
   DWORD pid = GetCurrentProcessId();
@@ -401,18 +377,22 @@ void LogMessage::Init(const char* function) {
   pid_t thread = static_cast<pid_t>(syscall(__NR_gettid));
 #elif defined(OS_WIN)
   DWORD thread = GetCurrentThreadId();
-#elif defined(OS_FUCHSIA)
-  zx_koid_t thread = GetKoidForHandle(zx_thread_self());
 #endif
 
-  stream_ << '['
-          << pid
+  stream_ << '[';
+  // On Fuchsia, the platform is responsible for adding the process id and
+  // thread id, not the process itself.
+#if !defined(OS_FUCHSIA)
+  stream_ <<  pid
           << ':'
           << thread
           << ':'
           << std::setfill('0');
+#endif
 
-#if defined(OS_POSIX)
+  // On Fuchsia, the platform is responsible for adding the log timestamp,
+  // not the process itself.
+#if defined(OS_POSIX) && !defined(OS_FUCHSIA)
   timeval tv;
   gettimeofday(&tv, nullptr);
   tm local_time;
@@ -425,7 +405,8 @@ void LogMessage::Init(const char* function) {
           << std::setw(2) << local_time.tm_min
           << std::setw(2) << local_time.tm_sec
           << '.'
-          << std::setw(6) << tv.tv_usec;
+          << std::setw(6) << tv.tv_usec
+          << ':';
 #elif defined(OS_WIN)
   SYSTEMTIME local_time;
   GetLocalTime(&local_time);
@@ -437,10 +418,9 @@ void LogMessage::Init(const char* function) {
           << std::setw(2) << local_time.wMinute
           << std::setw(2) << local_time.wSecond
           << '.'
-          << std::setw(3) << local_time.wMilliseconds;
+          << std::setw(3) << local_time.wMilliseconds
+          << ':';
 #endif
-
-  stream_ << ':';
 
   if (severity_ >= 0) {
     stream_ << log_severity_names[severity_];
