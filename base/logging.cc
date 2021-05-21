@@ -50,6 +50,8 @@
 #include <windows.h>
 #elif defined(OS_ANDROID)
 #include <android/log.h>
+#elif defined(OS_FUCHSIA)
+#include <lib/syslog/global.h>
 #endif
 
 #include "base/cxx17_backports.h"
@@ -326,6 +328,34 @@ LogMessage::~LogMessage() {
     }
     // The Android system may truncate the string if it's too long.
     __android_log_write(priority, "chromium", str_newline.c_str());
+#elif defined(OS_FUCHSIA)
+  fx_log_severity_t fx_severity;
+  switch (severity_) {
+    case LOG_INFO:
+      fx_severity = FX_LOG_INFO;
+      break;
+    case LOG_WARNING:
+      fx_severity = FX_LOG_WARNING;
+      break;
+    case LOG_ERROR:
+      fx_severity = FX_LOG_ERROR;
+      break;
+    case LOG_FATAL:
+      fx_severity = FX_LOG_FATAL;
+      break;
+    default:
+      fx_severity = FX_LOG_INFO;
+      break;
+  }
+  // Temporarily remove the trailing newline from |str_newline|'s C-string
+  // representation, since fx_logger will add a newline of its own.
+  str_newline.pop_back();
+  // Ideally the tag would be the same as the caller, but this is not supported
+  // right now.
+  fx_logger_log_with_source(fx_log_get_logger(), fx_severity, /*tag=*/nullptr,
+                            file_path_, line_,
+                            str_newline.c_str() + message_start_);
+  str_newline.push_back('\n');
 #endif  // OS_*
   }
 
@@ -379,11 +409,11 @@ void LogMessage::Init(const char* function) {
   DWORD thread = GetCurrentThreadId();
 #endif
 
-  stream_ << '[';
   // On Fuchsia, the platform is responsible for adding the process id and
   // thread id, not the process itself.
 #if !defined(OS_FUCHSIA)
-  stream_ <<  pid
+  stream_ << '['
+          << pid
           << ':'
           << thread
           << ':'
@@ -422,17 +452,27 @@ void LogMessage::Init(const char* function) {
           << ':';
 #endif
 
-  if (severity_ >= 0) {
-    stream_ << log_severity_names[severity_];
-  } else {
-    stream_ << "VERBOSE" << -severity_;
-  }
+  // On Fuchsia, ~LogMessage() will add the severity, filename and line
+  // number when LOG_TO_SYSTEM_DEBUG_LOG is enabled, but not on
+  // LOG_TO_STDERR so if LOG_TO_STDERR is enabled, print them here with
+  // potentially repetition if LOG_TO_SYSTEM_DEBUG_LOG is also enabled.
+#if defined(OS_FUCHSIA)
+  if ((g_logging_destination & LOG_TO_STDERR)) {
+#endif
+    if (severity_ >= 0) {
+      stream_ << log_severity_names[severity_];
+    } else {
+      stream_ << "VERBOSE" << -severity_;
+    }
 
-  stream_ << ' '
-          << file_name
-          << ':'
-          << line_
-          << "] ";
+    stream_ << ' '
+            << file_name
+            << ':'
+            << line_
+            << "] ";
+#if defined(OS_FUCHSIA)
+  }
+#endif
 
   message_start_ = stream_.str().size();
 }

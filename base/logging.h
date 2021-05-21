@@ -35,11 +35,10 @@ enum : LoggingDestination {
 
   LOG_TO_ALL = LOG_TO_FILE | LOG_TO_SYSTEM_DEBUG_LOG | LOG_TO_STDERR,
 
-// On Windows, use a file next to the exe.
-// On POSIX (and Fuchsia) platforms, where it may not even be possible to locate
-// the executable on disk, use stderr.
 #if defined(OS_WIN)
   LOG_DEFAULT = LOG_TO_FILE,
+#elif defined(OS_FUCHSIA)
+  LOG_DEFAULT = LOG_TO_SYSTEM_DEBUG_LOG,
 #elif defined(OS_POSIX)
   LOG_DEFAULT = LOG_TO_SYSTEM_DEBUG_LOG | LOG_TO_STDERR,
 #endif

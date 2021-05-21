@@ -153,6 +153,12 @@ static_library("base") {
       "fuchsia/fuchsia_logging.cc",
       "fuchsia/fuchsia_logging.h",
     ]
+
+    if (defined(is_fuchsia_tree) && is_fuchsia_tree) {
+      deps = [ "//zircon/system/ulib/syslog" ]
+    } else {
+      deps = [ "//third_party/fuchsia/sdk/$host_os-amd64/pkg/syslog" ]
+    }
   }
 
   public_configs = [ "../build:mini_chromium_config" ]
