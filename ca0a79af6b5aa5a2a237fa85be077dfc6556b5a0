@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "30e1032f_9c6933d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2021-05-21T15:54:04Z",
+      "side": 1,
+      "message": "Thanks for tidying these up, just a few questions.",
+      "revId": "ca0a79af6b5aa5a2a237fa85be077dfc6556b5a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "d70ec95e_d79b0768",
         "filename": "base/BUILD.gn",
         "patchSetId": 3
@@ -19,6 +36,63 @@
         "startChar": 0,
         "endLine": 157,
         "endChar": 54
+      },
+      "revId": "ca0a79af6b5aa5a2a237fa85be077dfc6556b5a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deb05df5_13307395",
+        "filename": "base/logging.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2021-05-21T15:54:04Z",
+      "side": 1,
+      "message": "It looks like there\u0027s other possibilities for LOG_xyz (in particular, LOG_ERROR_REPORT), so fx_severity should be initialized or a default: case added to the switch.",
+      "revId": "ca0a79af6b5aa5a2a237fa85be077dfc6556b5a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f49c12a_fc619bbf",
+        "filename": "base/logging.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2021-05-21T15:54:04Z",
+      "side": 1,
+      "message": "I can\u0027t tell from the header, is the logger line-based or stream-based? (i.e. should it be str_newline or without the newline)?",
+      "revId": "ca0a79af6b5aa5a2a237fa85be077dfc6556b5a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4462c144_e74abdbe",
+        "filename": "base/logging.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2021-05-21T15:54:04Z",
+      "side": 1,
+      "message": "I know this part wasn\u0027t you, but since the comment is wrong for POSIX anyway (it\u0027s both DEBUG_LOG and stderr) maybe just delete the whole thing. \n\nOr if you think it\u0027s useful, could you mention something about POSIX (I think Mac \u0026 Android use their syslogs in addition to the stderr output we would want for Linux, etc.)",
+      "range": {
+        "startLine": 41,
+        "startChar": 27,
+        "endLine": 41,
+        "endChar": 33
       },
       "revId": "ca0a79af6b5aa5a2a237fa85be077dfc6556b5a0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
