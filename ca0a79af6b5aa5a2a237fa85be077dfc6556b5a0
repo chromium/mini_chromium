@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d70ec95e_d79b0768",
+        "filename": "base/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1306103
+      },
+      "writtenOn": "2021-05-21T00:32:00Z",
+      "side": 1,
+      "message": "I don\u0027t think there is a mini_chromium_is_in_fuchsia and not sure if it\u0027s worth defining it in platform.gni.",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 54
+      },
+      "revId": "ca0a79af6b5aa5a2a237fa85be077dfc6556b5a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
