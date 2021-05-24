@@ -22,6 +22,30 @@
       },
       "revId": "4c5eeac22e934b857e41fbf5a701fb78176820af",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdbcf251_8c616fa6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1306103
+      },
+      "writtenOn": "2021-05-24T16:11:26Z",
+      "side": 1,
+      "message": "On Fuchsia, the viewer is responsible for turning the uptime into real time, e.g., `fx log --clock UTC`. I am not sure making Crashpad (or mini_chromium) different is worth it. We had a bit of back and forth in fxbug.dev/41033 before deciding against encoding it in the log messages themselves.",
+      "parentUuid": "e225f841_65b6e739",
+      "range": {
+        "startLine": 13,
+        "startChar": 54,
+        "endLine": 13,
+        "endChar": 76
+      },
+      "revId": "4c5eeac22e934b857e41fbf5a701fb78176820af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
