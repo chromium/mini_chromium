@@ -58,6 +58,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "780da84b_a888ba40",
+        "filename": "base/logging.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1306103
+      },
+      "writtenOn": "2021-05-25T01:40:43Z",
+      "side": 1,
+      "message": "Done\n\nTotally missed the initialization on Android :-)",
+      "parentUuid": "deb05df5_13307395",
+      "revId": "ca0a79af6b5aa5a2a237fa85be077dfc6556b5a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f49c12a_fc619bbf",
@@ -77,6 +95,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d06e6a69_6e18c0e5",
+        "filename": "base/logging.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1306103
+      },
+      "writtenOn": "2021-05-25T01:40:43Z",
+      "side": 1,
+      "message": "While the upstream Chromium is a little more sophisticated (with the removal of the newline and the message_start_ offset) [1], when testing, I didn\u0027t see an extra newline so I wasn\u0027t sure what was happening.\n\n[1] https://source.chromium.org/chromium/chromium/src/+/main:base/logging.cc;l\u003d807-813;drc\u003d24427036e2b43d9eac2e0758de780df24d7c2acc",
+      "parentUuid": "8f49c12a_fc619bbf",
+      "revId": "ca0a79af6b5aa5a2a237fa85be077dfc6556b5a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4462c144_e74abdbe",
         "filename": "base/logging.h",
         "patchSetId": 3
@@ -88,6 +124,30 @@
       "writtenOn": "2021-05-21T15:54:04Z",
       "side": 1,
       "message": "I know this part wasn\u0027t you, but since the comment is wrong for POSIX anyway (it\u0027s both DEBUG_LOG and stderr) maybe just delete the whole thing. \n\nOr if you think it\u0027s useful, could you mention something about POSIX (I think Mac \u0026 Android use their syslogs in addition to the stderr output we would want for Linux, etc.)",
+      "range": {
+        "startLine": 41,
+        "startChar": 27,
+        "endLine": 41,
+        "endChar": 33
+      },
+      "revId": "ca0a79af6b5aa5a2a237fa85be077dfc6556b5a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac3d35ae_eb07356b",
+        "filename": "base/logging.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1306103
+      },
+      "writtenOn": "2021-05-25T01:40:43Z",
+      "side": 1,
+      "message": "Done.\n\nI think it was copied from Chromium: https://source.chromium.org/chromium/chromium/src/+/main:base/logging.h;l\u003d194-197;drc\u003dd29fc436d1245e58e476c6ab07cf6c144684fef0",
+      "parentUuid": "4462c144_e74abdbe",
       "range": {
         "startLine": 41,
         "startChar": 27,
