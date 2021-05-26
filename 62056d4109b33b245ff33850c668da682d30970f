@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70fd2dee_fd0ad2b7",
+        "filename": "base/logging.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2021-05-26T18:23:50Z",
+      "side": 1,
+      "message": "Looks like this got borked in the rebase?",
+      "revId": "62056d4109b33b245ff33850c668da682d30970f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0580172_ca3b4d8a",
+        "filename": "base/logging.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2021-05-26T18:23:50Z",
+      "side": 1,
+      "message": "nit; extra space",
+      "range": {
+        "startLine": 457,
+        "startChar": 44,
+        "endLine": 457,
+        "endChar": 45
+      },
+      "revId": "62056d4109b33b245ff33850c668da682d30970f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5618eb0_54a3b736",
+        "filename": "base/logging.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2021-05-26T18:23:50Z",
+      "side": 1,
+      "message": "Isn\u0027t that only true when it\u0027s going to the logger, but wouldn\u0027t be if going to stderr? (bleh, too many options 😞)",
+      "revId": "62056d4109b33b245ff33850c668da682d30970f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
