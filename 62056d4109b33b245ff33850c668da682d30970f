@@ -116,6 +116,24 @@
       },
       "revId": "62056d4109b33b245ff33850c668da682d30970f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9f47afb_b13677b9",
+        "filename": "base/logging.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2021-05-26T18:44:10Z",
+      "side": 1,
+      "message": "Sorry, maybe now I\u0027m more confused, but what if the code configures with something other than LOG_DEFAULT and sets it to LOG_TO_STDERR. Wouldn\u0027t we lose the severity then?",
+      "parentUuid": "b14d630e_2ddcf131",
+      "revId": "62056d4109b33b245ff33850c668da682d30970f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
