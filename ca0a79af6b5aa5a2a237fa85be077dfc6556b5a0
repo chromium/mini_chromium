@@ -113,6 +113,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c83dd84e_690b4fbf",
+        "filename": "base/logging.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1144260
+      },
+      "writtenOn": "2021-05-26T17:41:46Z",
+      "side": 1,
+      "message": "\"sophisticated\" is a strange spelling of \"convoluted\". o_O So that means we do want a non-newline string here, if we\u0027re going straight to the logger, right?",
+      "parentUuid": "d06e6a69_6e18c0e5",
+      "revId": "ca0a79af6b5aa5a2a237fa85be077dfc6556b5a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4462c144_e74abdbe",
         "filename": "base/logging.h",
         "patchSetId": 3
