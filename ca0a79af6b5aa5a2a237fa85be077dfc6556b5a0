@@ -129,6 +129,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fb98434_96057725",
+        "filename": "base/logging.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1306103
+      },
+      "writtenOn": "2021-05-26T18:12:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c83dd84e_690b4fbf",
+      "revId": "ca0a79af6b5aa5a2a237fa85be077dfc6556b5a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4462c144_e74abdbe",
