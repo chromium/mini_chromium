@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cb30623e_f7f45e5a",
+        "filename": "base/logging.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1306103
+      },
+      "writtenOn": "2021-05-26T18:40:47Z",
+      "side": 1,
+      "message": "No. There is nothing printed within the [] on Fuchsia anymore so I am removing the [] altogether.",
+      "parentUuid": "70fd2dee_fd0ad2b7",
+      "revId": "62056d4109b33b245ff33850c668da682d30970f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b0580172_ca3b4d8a",
         "filename": "base/logging.cc",
         "patchSetId": 5
@@ -54,6 +72,48 @@
       "writtenOn": "2021-05-26T18:23:50Z",
       "side": 1,
       "message": "Isn\u0027t that only true when it\u0027s going to the logger, but wouldn\u0027t be if going to stderr? (bleh, too many options 😞)",
+      "revId": "62056d4109b33b245ff33850c668da682d30970f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b14d630e_2ddcf131",
+        "filename": "base/logging.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1306103
+      },
+      "writtenOn": "2021-05-26T18:40:47Z",
+      "side": 1,
+      "message": "That\u0027s correct. I am actually surprised that the other POSIX platforms don\u0027t mind the repetition. Clarified.",
+      "parentUuid": "d5618eb0_54a3b736",
+      "revId": "62056d4109b33b245ff33850c668da682d30970f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95c1b627_e1cccd7c",
+        "filename": "base/logging.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1306103
+      },
+      "writtenOn": "2021-05-26T18:40:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0580172_ca3b4d8a",
+      "range": {
+        "startLine": 457,
+        "startChar": 44,
+        "endLine": 457,
+        "endChar": 45
+      },
       "revId": "62056d4109b33b245ff33850c668da682d30970f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
