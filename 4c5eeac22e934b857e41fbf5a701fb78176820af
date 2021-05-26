@@ -63,6 +63,24 @@
       "message": "I find this a bit hard to read. Could you change it so that there\u0027s only one level of #if/#else:\n\n  stream_ \u003c\u003c \u0027[\u0027\n  #if !defined(OS_FUCHSIA)\n          \u003c\u003c pid\n          \u003c\u003c \u0027:\u0027\n          \u003c\u003c thread\n          \u003c\u003c \u0027:\u0027\n  #endif\n          \u003c\u003c std::setfill(\u00270\u0027);\n\nand then below OS_POSIX \u0026\u0026 !OS_FUCHSIA to exclude the date/time, if that\u0027s what you want.",
       "revId": "4c5eeac22e934b857e41fbf5a701fb78176820af",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b724f401_4b34ac4e",
+        "filename": "base/logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1306103
+      },
+      "writtenOn": "2021-05-26T17:52:32Z",
+      "side": 1,
+      "message": "Done\n\nI excluded the \"\u003c\u003c std::setfill(\u00270\u0027);\" on Fuchsia given that we don\u0027t use the std::setw().",
+      "parentUuid": "9f3ecd20_c6b9334e",
+      "revId": "4c5eeac22e934b857e41fbf5a701fb78176820af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
