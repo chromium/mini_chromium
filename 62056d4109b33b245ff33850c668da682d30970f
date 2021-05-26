@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0490c33_0e31e0c9",
+        "filename": "base/logging.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1306103
+      },
+      "writtenOn": "2021-05-26T19:09:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cb30623e_f7f45e5a",
+      "revId": "62056d4109b33b245ff33850c668da682d30970f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0580172_ca3b4d8a",
@@ -132,6 +150,24 @@
       "side": 1,
       "message": "Sorry, maybe now I\u0027m more confused, but what if the code configures with something other than LOG_DEFAULT and sets it to LOG_TO_STDERR. Wouldn\u0027t we lose the severity then?",
       "parentUuid": "b14d630e_2ddcf131",
+      "revId": "62056d4109b33b245ff33850c668da682d30970f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9959580a_4e09ed6c",
+        "filename": "base/logging.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1306103
+      },
+      "writtenOn": "2021-05-26T19:09:05Z",
+      "side": 1,
+      "message": "Switched to a runtime check. Wdyt?",
+      "parentUuid": "b9f47afb_b13677b9",
       "revId": "62056d4109b33b245ff33850c668da682d30970f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
