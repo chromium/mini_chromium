@@ -16,6 +16,24 @@
       "message": "nit; indent to match being inside the `if ((g_logging_destination \u0026 LOG_TO_STDERR)) {` block, unless clang-format de-indented it for some reason.",
       "revId": "3cbc87cb05e8646279e4ee3349e0cac517ee62c9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7987fe8e_ddf5c065",
+        "filename": "base/logging.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1306103
+      },
+      "writtenOn": "2021-05-26T20:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "322de00e_8903e24f",
+      "revId": "3cbc87cb05e8646279e4ee3349e0cac517ee62c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
