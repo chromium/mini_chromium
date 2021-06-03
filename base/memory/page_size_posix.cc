@@ -2,12 +2,14 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include "base/process/process_metrics.h"
+#include "base/memory/page_size.h"
+
+#include <unistd.h>
 
 namespace base {
 
 size_t GetPageSize() {
-  return 4 * 1024;
+  return getpagesize();
 }
 
 }  // namespace base
