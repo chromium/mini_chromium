@@ -4,6 +4,8 @@
 
 #include "base/threading/thread_local_storage.h"
 
+#include <string.h>
+
 #include "base/atomicops.h"
 #include "base/logging.h"
 
