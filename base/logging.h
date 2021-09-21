@@ -14,7 +14,6 @@
 
 #include "base/check.h"
 #include "base/check_op.h"
-#include "base/macros.h"
 #include "base/notreached.h"
 #include "build/build_config.h"
 
@@ -106,6 +105,10 @@ class LogMessage {
              const char* file_path,
              int line,
              std::string* result);
+
+  LogMessage(const LogMessage&) = delete;
+  LogMessage& operator=(const LogMessage&) = delete;
+
   ~LogMessage();
 
   std::ostream& stream() { return stream_; }
@@ -118,8 +121,6 @@ class LogMessage {
   size_t message_start_;
   const int line_;
   LogSeverity severity_;
-
-  DISALLOW_COPY_AND_ASSIGN(LogMessage);
 };
 
 class LogMessageVoidify {
@@ -137,12 +138,14 @@ class Win32ErrorLogMessage : public LogMessage {
                        int line,
                        LogSeverity severity,
                        unsigned long err);
+
+  Win32ErrorLogMessage(const Win32ErrorLogMessage&) = delete;
+  Win32ErrorLogMessage& operator=(const Win32ErrorLogMessage&) = delete;
+
   ~Win32ErrorLogMessage();
 
  private:
   unsigned long err_;
-
-  DISALLOW_COPY_AND_ASSIGN(Win32ErrorLogMessage);
 };
 #elif defined(OS_POSIX)
 class ErrnoLogMessage : public LogMessage {
@@ -152,12 +155,14 @@ class ErrnoLogMessage : public LogMessage {
                   int line,
                   LogSeverity severity,
                   int err);
+
+  ErrnoLogMessage(const ErrnoLogMessage&) = delete;
+  ErrnoLogMessage& operator=(const ErrnoLogMessage&) = delete;
+
   ~ErrnoLogMessage();
 
  private:
   int err_;
-
-  DISALLOW_COPY_AND_ASSIGN(ErrnoLogMessage);
 };
 #endif
 
