@@ -653,3 +653,10 @@ template("ios_xcuitest_test") {
     forward_variables_from(invoker, [ "bundle_deps" ])
   }
 }
+
+template("ios_test_runner_xcuitest") {
+  ios_xcuitest_test(target_name) {
+    forward_variables_from(invoker, "*", ["data_deps"])
+  }
+}
+
