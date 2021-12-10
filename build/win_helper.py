@@ -160,16 +160,23 @@ class WinTool(object):
     return popen.returncode
 
   def ExecGetVisualStudioData(self, outdir, toolchain_path):
-    setenv_path = os.path.join('win_sdk', 'bin', 'SetEnv.cmd')
+    setenv_paths = [
+      # cipd packaged SDKs from 10.0.19041.0 onwards.
+      os.path.join('Windows Kits', '10', 'bin', 'SetEnv.cmd'),
+      # cipd packaged SDKs prior to 10.0.19041.0.
+      os.path.join('win_sdk', 'bin', 'SetEnv.cmd'),
+    ]
 
     def explicit():
-      if os.path.exists(os.path.join(toolchain_path, setenv_path)):
-        return toolchain_path, setenv_path
+      for setenv_path in setenv_paths:
+        if os.path.exists(os.path.join(toolchain_path, setenv_path)):
+          return toolchain_path, setenv_path
 
     def env():
       from_env = os.environ.get('VSINSTALLDIR')
-      if from_env and os.path.exists(os.path.join(from_env, setenv_path)):
-        return from_env, setenv_path
+      for setenv_path in setenv_paths:
+        if from_env and os.path.exists(os.path.join(from_env, setenv_path)):
+          return from_env, setenv_path
 
     def autodetect():
       # Try vswhere, which will find VS2017.2+. Note that earlier VS2017s will
