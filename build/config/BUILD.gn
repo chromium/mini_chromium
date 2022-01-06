@@ -153,7 +153,7 @@ config("default") {
     ]
 
     cflags_c = [ "-std=c11" ]
-    cflags_cc = [ "-std=c++14" ]
+    cflags_cc = [ "-std=c++17" ]
     cflags_objc = cflags_c
     cflags_objcc = cflags_cc
 
@@ -254,6 +254,8 @@ config("default") {
       "/wd4577",  # 'noexcept' used with no exception handling mode specified.
       "/wd4996",  # 'X' was declared deprecated.
     ]
+
+    cflags_cc = [ "/std:c++17" ]
 
     ldflags += [ "/DEBUG" ]
 
