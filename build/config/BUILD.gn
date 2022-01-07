@@ -255,7 +255,10 @@ config("default") {
       "/wd4996",  # 'X' was declared deprecated.
     ]
 
-    cflags_cc = [ "/std:c++17" ]
+    cflags_cc = [
+      "/std:c++17",
+      "/Zc:__cplusplus",
+    ]
 
     ldflags += [ "/DEBUG" ]
 
@@ -667,7 +670,7 @@ if (mini_chromium_is_win) {
       tool("cxx") {
         depfile = "{{output}}.d"
         pdbname = "{{target_out_dir}}/{{label_name}}_cc.pdb"
-        command = "ninja -t msvc -e $env -- $cxx /nologo /showIncludes {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}}${extra_cflags}${extra_cflags_cc} /c {{source}} /Fo{{output}} /Fd\"$pdbname\""
+        command = "ninja -t msvc -e $env -- $cxx /nologo /showIncludes {{defines}} {{include_dirs}} {{cflags}} {{cflags_cc}}${extra_cflags}${extra_cflags_cc} /c {{source}} /Fo{{output}} /Fd\"$pdbname\""
         depsformat = "msvc"
         description = "CXX {{output}}"
         outputs =
