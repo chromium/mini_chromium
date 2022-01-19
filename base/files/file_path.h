@@ -113,10 +113,10 @@
 // enabled and disabled independently, to aid testing.  These #defines are
 // here so that the same setting can be used in both the implementation and
 // in the unit test.
-#if defined(OS_WIN)
+#if BUILDFLAG(IS_WIN)
 #define FILE_PATH_USES_DRIVE_LETTERS
 #define FILE_PATH_USES_WIN_SEPARATORS
-#endif  // OS_WIN
+#endif  // BUILDFLAG(IS_WIN)
 
 namespace base {
 
@@ -124,16 +124,16 @@ namespace base {
 // pathnames on different platforms.
 class FilePath {
  public:
-#if defined(OS_POSIX)
+#if BUILDFLAG(IS_POSIX)
   // On most platforms, native pathnames are char arrays, and the encoding
   // may or may not be specified.  On Mac OS X, native pathnames are encoded
   // in UTF-8.
   typedef std::string StringType;
-#elif defined(OS_WIN)
+#elif BUILDFLAG(IS_WIN)
   // On Windows, for Unicode-aware applications, native pathnames are wchar_t
   // arrays encoded in UTF-16.
   typedef std::wstring StringType;
-#endif  // OS_WIN
+#endif  // BUILDFLAG(IS_WIN)
 
   typedef StringType::value_type CharType;
 
@@ -230,14 +230,14 @@ extern void PrintTo(const base::FilePath& path, std::ostream* out);
 
 // Macros for string literal initialization of FilePath::CharType[], and for
 // using a FilePath::CharType[] in a printf-style format string.
-#if defined(OS_POSIX)
+#if BUILDFLAG(IS_POSIX)
 #define FILE_PATH_LITERAL(x) x
 #define PRFilePath "s"
 #define PRFilePathLiteral "%s"
-#elif defined(OS_WIN)
+#elif BUILDFLAG(IS_WIN)
 #define FILE_PATH_LITERAL(x) L ## x
 #define PRFilePath "ls"
 #define PRFilePathLiteral L"%ls"
-#endif  // OS_WIN
+#endif  // BUILDFLAG(IS_WIN)
 
 #endif  // MINI_CHROMIUM_BASE_FILES_FILE_PATH_H_
