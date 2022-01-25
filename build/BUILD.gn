@@ -19,7 +19,7 @@ config("mini_chromium_config") {
 source_set("build") {
   sources = [ "build_config.h" ]
   public_configs = [ ":mini_chromium_config" ]
-  deps = [ ":buildflag_header_h" ]
+  public_deps = [ ":buildflag_header_h" ]
 }
 
 source_set("buildflag_header_h") {
