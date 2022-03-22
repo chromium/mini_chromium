@@ -109,10 +109,20 @@ template("create_signed_bundle") {
                        "_",
                        "-")
 
+    _ios_provisioning_profile_info =
+        exec_script(code_signing_script,
+                    [
+                      "find-provisioning-profile",
+                      "-b=" + _xcode_product_bundle_id,
+                    ],
+                    "json")
+
     xcode_extra_attributes = {
       IPHONEOS_DEPLOYMENT_TARGET = ios_deployment_target
+      CODE_SIGN_IDENTITY = "iPhone Developer"
+      DEVELOPMENT_TEAM = _ios_provisioning_profile_info.team_identifier
+      PROVISIONING_PROFILE_SPECIFIER = _ios_provisioning_profile_info.name
       CODE_SIGN_STYLE = "Manual"
-      CODE_SIGN_IDENTITY = ""
       PRODUCT_BUNDLE_IDENTIFIER = _xcode_product_bundle_id
 
       if (defined(invoker.xcode_extra_attributes)) {
