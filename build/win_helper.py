@@ -1,8 +1,8 @@
-#!/usr/bin/env python
-
 # Copyright 2017 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
+
+from __future__ import print_function
 
 import _winreg
 import os
@@ -142,7 +142,7 @@ class WinTool(object):
       if (not line.startswith('   Creating library ') and
           not line.startswith('Generating code') and
           not line.startswith('Finished generating code')):
-        print line
+        print(line)
     return link.returncode
 
   def ExecAsmWrapper(self, arch, *args):
@@ -156,7 +156,7 @@ class WinTool(object):
           not line.startswith('Microsoft (R) Macro Assembler') and
           not line.startswith(' Assembling: ') and
           line):
-        print line
+        print(line)
     return popen.returncode
 
   def ExecGetVisualStudioData(self, outdir, toolchain_path):
@@ -216,7 +216,7 @@ class WinTool(object):
 x86_environment_file = "%s"
 x64_environment_file = "%s"
 arm64_environment_file = "%s"''' % (install_dir, x86_file, x64_file, arm64_file)
-    print result
+    print(result)
     return 0
 
   def ExecStamp(self, path):
