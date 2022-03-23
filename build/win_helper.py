@@ -2,9 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-from __future__ import print_function
-
-import _winreg
+import winreg
 import os
 import re
 import subprocess
@@ -12,7 +10,7 @@ import sys
 
 
 def _RegistryGetValue(key, value):
-  """Use the _winreg module to obtain the value of a registry key.
+  """Use the winreg module to obtain the value of a registry key.
 
   Args:
     key: The registry key.
@@ -23,8 +21,8 @@ def _RegistryGetValue(key, value):
   try:
     root, subkey = key.split('\\', 1)
     assert root == 'HKLM'  # Only need HKLM for now.
-    with _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, subkey) as hkey:
-      return _winreg.QueryValueEx(hkey, value)[0]
+    with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, subkey) as hkey:
+      return winreg.QueryValueEx(hkey, value)[0]
   except WindowsError:
     return None
 
