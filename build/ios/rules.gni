@@ -558,6 +558,10 @@ template("ios_xcuitest_test_runner_bundle") {
     ]
   }
 
+  # Bundle identifier should respect rfc1034, so replace "_" with "-".
+  _bundle_identifier = "$ios_app_bundle_id_prefix.chrome." +
+                       string_replace(_output_name, "_", "-")
+
   _info_plist_target = _target_name + "_info_plist"
   _info_plist_bundle = _target_name + "_info_plist_bundle"
   info_plist(_info_plist_target) {
@@ -573,6 +577,7 @@ template("ios_xcuitest_test_runner_bundle") {
       # "CFBundleName".
       "//third_party/mini_chromium/mini_chromium/build/ios/XCTRunnerAddition+Info.plist",
     ]
+    extra_substitutions = [ "BUNDLE_IDENTIFIER=$_bundle_identifier" ]
   }
 
   bundle_data(_info_plist_bundle) {
@@ -613,6 +618,15 @@ template("ios_xcuitest_test_runner_bundle") {
       "$ios_sdk_platform_path/Developer/Library/Frameworks/XCTest.framework",
       "$ios_sdk_platform_path/Developer/Library/PrivateFrameworks/XCTAutomationSupport.framework",
     ]
+
+    if (xcode_version_int >= 1300) {
+      extra_system_frameworks += [
+        "$ios_sdk_platform_path/Developer/Library/PrivateFrameworks/XCTestCore.framework",
+        "$ios_sdk_platform_path/Developer/Library/PrivateFrameworks/XCUIAutomation.framework",
+        "$ios_sdk_platform_path/Developer/Library/PrivateFrameworks/XCUnit.framework",
+        "$ios_sdk_platform_path/Developer/usr/lib/libXCTestSwiftSupport.dylib",
+      ]
+    }
 
     bundle_deps = []
     if (defined(invoker.bundle_deps)) {

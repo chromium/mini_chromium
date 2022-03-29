@@ -225,10 +225,10 @@ config("default") {
 
   if (mini_chromium_is_ios) {
     if (ios_deployment_target != "") {
-      if (current_cpu == "x64") {
+      if (target_environment == "simulator") {
         common_flags +=
             [ "-mios-simulator-version-min=" + ios_deployment_target ]
-      } else if (current_cpu == "arm64") {
+      } else if (target_environment == "device") {
         common_flags += [ "-mios-version-min=" + ios_deployment_target ]
       }
     }
