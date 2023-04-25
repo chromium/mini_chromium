@@ -6,7 +6,8 @@
 
 #include <ctype.h>
 
-#include "base/cxx17_backports.h"
+#include <algorithm>
+
 #include "base/logging.h"
 
 namespace base {

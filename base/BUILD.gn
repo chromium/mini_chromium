@@ -14,7 +14,6 @@ static_library("base") {
     "check.h",
     "check_op.h",
     "compiler_specific.h",
-    "cxx17_backports.h",
     "debug/alias.cc",
     "debug/alias.h",
     "files/file_path.cc",

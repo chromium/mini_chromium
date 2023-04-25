@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <algorithm>
 #include <iomanip>
 #include <ostream>
 
@@ -54,7 +55,6 @@
 #include <lib/syslog/global.h>
 #endif
 
-#include "base/cxx17_backports.h"
 #include "base/strings/string_util.h"
 #include "base/strings/stringprintf.h"
 #include "base/strings/utf_string_conversions.h"

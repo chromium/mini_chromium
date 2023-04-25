@@ -6,9 +6,9 @@
 
 #include <stdarg.h>
 
+#include <algorithm>
 #include <vector>
 
-#include "base/cxx17_backports.h"
 #include "base/logging.h"
 #include "base/scoped_clear_last_error.h"
 #include "base/strings/string_util.h"

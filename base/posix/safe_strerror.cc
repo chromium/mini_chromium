@@ -8,7 +8,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "base/cxx17_backports.h"
+#include <algorithm>
+
 #include "build/build_config.h"
 
 #if BUILDFLAG(IS_ANDROID)
