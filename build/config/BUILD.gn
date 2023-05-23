@@ -277,6 +277,10 @@ config("default") {
       common_flags += [
         "-m64",
       ]
+    } else if (current_cpu == "riscv64") {
+      common_flags += [
+        "--target=riscv64-linux-gnu",
+      ]
     } else {
       assert(false, "Unsupported architecture")
     }
