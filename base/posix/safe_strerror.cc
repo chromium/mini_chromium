@@ -8,8 +8,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <algorithm>
-
 #include "build/build_config.h"
 
 #if BUILDFLAG(IS_ANDROID)
@@ -39,7 +37,7 @@ void safe_strerror_r(int err, char* buf, size_t len) {
 
 std::string safe_strerror(int err) {
   char buf[256];
-  safe_strerror_r(err, buf, size(buf));
+  safe_strerror_r(err, buf, std::size(buf));
   return std::string(buf);
 }
 

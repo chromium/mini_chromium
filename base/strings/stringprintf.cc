@@ -6,7 +6,6 @@
 
 #include <stdarg.h>
 
-#include <algorithm>
 #include <vector>
 
 #include "base/logging.h"
@@ -35,16 +34,16 @@ static void StringAppendVT(StringType* dst,
   va_copy(ap_copy, ap);
 
   ScopedClearLastError clear_errno;
-  int result = vsnprintfT(stack_buf, size(stack_buf), format, ap_copy);
+  int result = vsnprintfT(stack_buf, std::size(stack_buf), format, ap_copy);
   va_end(ap_copy);
 
-  if (result >= 0 && result < static_cast<int>(size(stack_buf))) {
+  if (result >= 0 && result < static_cast<int>(std::size(stack_buf))) {
     dst->append(stack_buf, result);
     return;
   }
 
   // Repeatedly increase buffer size until it fits.
-  size_t mem_length = size(stack_buf);
+  size_t mem_length = std::size(stack_buf);
   while (true) {
     if (result < 0) {
 #if !BUILDFLAG(IS_WIN)
