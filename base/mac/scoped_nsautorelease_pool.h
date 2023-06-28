@@ -7,21 +7,13 @@
 
 #include "build/build_config.h"
 
-#if BUILDFLAG(IS_APPLE)
-#if defined(__OBJC__)
-@class NSAutoreleasePool;
-#else  // __OBJC__
-class NSAutoreleasePool;
-#endif  // __OBJC__
-#endif  // BUILDFLAG(IS_APPLE)
-
 namespace base {
 namespace mac {
 
-// On the Mac, ScopedNSAutoreleasePool allocates an NSAutoreleasePool when
-// instantiated and sends it a -drain message when destroyed.  This allows an
-// autorelease pool to be maintained in ordinary C++ code without bringing in
-// any direct Objective-C dependency.
+// On the Mac, ScopedNSAutoreleasePool creates an autorelease pool when
+// instantiated and pops it when destroyed.  This allows an autorelease pool to
+// be maintained in ordinary C++ code without bringing in any direct Objective-C
+// dependency.
 //
 // On other platforms, ScopedNSAutoreleasePool is an empty object with no
 // effects.  This allows it to be used directly in cross-platform code without
@@ -45,7 +37,7 @@ class ScopedNSAutoreleasePool {
   // no longer needed.
   void Recycle();
  private:
-  NSAutoreleasePool* autorelease_pool_;
+  void* autorelease_pool_;
 #endif  // BUILDFLAG(IS_APPLE)
 };
 

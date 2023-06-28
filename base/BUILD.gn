@@ -87,6 +87,7 @@ static_library("base") {
 
   if (mini_chromium_is_mac) {
     sources += [
+      "apple/bridging.h",
       "mac/close_nocancel.cc",
       "mac/foundation_util.h",
       "mac/foundation_util.mm",
@@ -101,7 +102,6 @@ static_library("base") {
       "mac/scoped_mach_vm.h",
       "mac/scoped_nsautorelease_pool.h",
       "mac/scoped_nsautorelease_pool.mm",
-      "mac/scoped_nsobject.h",
       "mac/scoped_typeref.h",
       "strings/sys_string_conversions_mac.mm",
     ]
@@ -114,6 +114,7 @@ static_library("base") {
     ]
   } else if (mini_chromium_is_ios) {
     sources += [
+      "apple/bridging.h",
       "mac/foundation_util.h",
       "mac/foundation_util.mm",
       "mac/mach_logging.cc",
@@ -125,7 +126,6 @@ static_library("base") {
       "mac/scoped_mach_vm.h",
       "mac/scoped_nsautorelease_pool.h",
       "mac/scoped_nsautorelease_pool.mm",
-      "mac/scoped_nsobject.h",
       "mac/scoped_typeref.h",
       "strings/sys_string_conversions_mac.mm",
     ]
@@ -162,6 +162,10 @@ static_library("base") {
   public_configs = [ "../build:mini_chromium_config" ]
 
   public_deps = [ "../build" ]
+
+  if (mini_chromium_is_apple) {
+    public_configs += [ "../build/config:apple_enable_arc" ]
+  }
 
   if (mini_chromium_is_android) {
     libs = [ "log" ]
