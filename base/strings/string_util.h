@@ -5,15 +5,9 @@
 #ifndef MINI_CHROMIUM_BASE_STRINGS_STRING_UTIL_H_
 #define MINI_CHROMIUM_BASE_STRINGS_STRING_UTIL_H_
 
+#include "base/check_op.h"
 #include "base/compiler_specific.h"
-#include "base/logging.h"
 #include "build/build_config.h"
-
-#if BUILDFLAG(IS_WIN)
-#include "base/strings/string_util_win.h"
-#elif BUILDFLAG(IS_POSIX)
-#include "base/strings/string_util_posix.h"
-#endif
 
 namespace base {
 
@@ -48,5 +42,11 @@ inline typename string_type::value_type* WriteInto(string_type* str,
 }
 
 }  // namespace base
+
+#if BUILDFLAG(IS_WIN)
+#include "base/strings/string_util_win.h"
+#elif BUILDFLAG(IS_POSIX)
+#include "base/strings/string_util_posix.h"
+#endif
 
 #endif  // MINI_CHROMIUM_BASE_STRINGS_STRING_UTIL_H_
