@@ -69,6 +69,7 @@ static_library("base") {
     "third_party/icu/icu_utf.h",
     "threading/thread_local_storage.cc",
     "threading/thread_local_storage.h",
+    "types/cxx23_to_underlying.h",
   ]
 
   if (mini_chromium_is_posix || mini_chromium_is_fuchsia) {
