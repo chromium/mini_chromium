@@ -432,6 +432,8 @@ toolchain("gcc_like_toolchain") {
       tool_prefix = "i686-linux-android"
     } else if (target_cpu == "x64") {
       tool_prefix = "x86_64-linux-android"
+    } else if (target_cpu == "riscv64") {
+      tool_prefix = "riscv64-linux-android"
     }
 
     if (target_cpu == "arm") {
