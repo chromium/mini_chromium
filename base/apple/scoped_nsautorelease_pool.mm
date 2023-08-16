@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include "base/mac/scoped_nsautorelease_pool.h"
+#include "base/apple/scoped_nsautorelease_pool.h"
 
 #include "base/logging.h"
 
@@ -16,7 +16,7 @@ void objc_autoreleasePoolPop(void* pool);
 }
 
 namespace base {
-namespace mac {
+namespace apple {
 
 ScopedNSAutoreleasePool::ScopedNSAutoreleasePool()
     : autorelease_pool_(objc_autoreleasePoolPush()) {}
@@ -32,5 +32,5 @@ void ScopedNSAutoreleasePool::Recycle() {
   autorelease_pool_ = objc_autoreleasePoolPush();
 }
 
-}  // namespace mac
+}  // namespace apple
 }  // namespace base

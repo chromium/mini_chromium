@@ -86,56 +86,43 @@ static_library("base") {
     ]
   }
 
+  if (mini_chromium_is_apple) {
+    sources += [
+      "apple/bridging.h",
+      "apple/mach_logging.cc",
+      "apple/mach_logging.h",
+      "apple/scoped_mach_port.cc",
+      "apple/scoped_mach_port.h",
+      "apple/scoped_mach_vm.cc",
+      "apple/scoped_mach_vm.h",
+      "apple/scoped_nsautorelease_pool.h",
+      "apple/scoped_nsautorelease_pool.mm",
+      "apple/scoped_typeref.h",
+      "mac/foundation_util.h",
+      "mac/foundation_util.mm",
+      "mac/scoped_cftyperef.h",
+      "strings/sys_string_conversions_mac.mm",
+    ]
+    frameworks = [
+      "CoreFoundation.framework",
+      "Foundation.framework",
+      "Security.framework",
+    ]
+  }
   if (mini_chromium_is_mac) {
     sources += [
-      "apple/bridging.h",
       "mac/close_nocancel.cc",
-      "mac/foundation_util.h",
-      "mac/foundation_util.mm",
-      "mac/mach_logging.cc",
-      "mac/mach_logging.h",
-      "mac/scoped_cftyperef.h",
       "mac/scoped_ioobject.h",
       "mac/scoped_launch_data.h",
-      "mac/scoped_mach_port.cc",
-      "mac/scoped_mach_port.h",
-      "mac/scoped_mach_vm.cc",
-      "mac/scoped_mach_vm.h",
-      "mac/scoped_nsautorelease_pool.h",
-      "mac/scoped_nsautorelease_pool.mm",
-      "mac/scoped_typeref.h",
-      "strings/sys_string_conversions_mac.mm",
     ]
-    frameworks = [
+    frameworks += [
       "ApplicationServices.framework",
-      "CoreFoundation.framework",
-      "Foundation.framework",
       "IOKit.framework",
-      "Security.framework",
     ]
   } else if (mini_chromium_is_ios) {
-    sources += [
-      "apple/bridging.h",
-      "mac/foundation_util.h",
-      "mac/foundation_util.mm",
-      "mac/mach_logging.cc",
-      "mac/mach_logging.h",
-      "mac/scoped_cftyperef.h",
-      "mac/scoped_mach_port.cc",
-      "mac/scoped_mach_port.h",
-      "mac/scoped_mach_vm.cc",
-      "mac/scoped_mach_vm.h",
-      "mac/scoped_nsautorelease_pool.h",
-      "mac/scoped_nsautorelease_pool.mm",
-      "mac/scoped_typeref.h",
-      "strings/sys_string_conversions_mac.mm",
-    ]
-    frameworks = [
-      "CoreFoundation.framework",
+    frameworks += [
       "CoreGraphics.framework",
       "CoreText.framework",
-      "Foundation.framework",
-      "Security.framework",
     ]
   } else if (mini_chromium_is_win) {
     sources += [

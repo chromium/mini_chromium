@@ -2,13 +2,13 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef MINI_CHROMIUM_BASE_MAC_SCOPED_NSAUTORELEASE_POOL_H_
-#define MINI_CHROMIUM_BASE_MAC_SCOPED_NSAUTORELEASE_POOL_H_
+#ifndef MINI_CHROMIUM_BASE_APPLE_SCOPED_NSAUTORELEASE_POOL_H_
+#define MINI_CHROMIUM_BASE_APPLE_SCOPED_NSAUTORELEASE_POOL_H_
 
 #include "build/build_config.h"
 
 namespace base {
-namespace mac {
+namespace apple {
 
 // On the Mac, ScopedNSAutoreleasePool creates an autorelease pool when
 // instantiated and pops it when destroyed.  This allows an autorelease pool to
@@ -22,7 +22,7 @@ class ScopedNSAutoreleasePool {
  public:
 #if !BUILDFLAG(IS_APPLE)
   ScopedNSAutoreleasePool() {}
-  void Recycle() { }
+  void Recycle() {}
 #else  // BUILDFLAG(IS_APPLE)
   ScopedNSAutoreleasePool();
 
@@ -36,12 +36,13 @@ class ScopedNSAutoreleasePool {
   // Only use then when you're certain the items currently in the pool are
   // no longer needed.
   void Recycle();
+
  private:
   void* autorelease_pool_;
 #endif  // BUILDFLAG(IS_APPLE)
 };
 
-}  // namespace mac
+}  // namespace apple
 }  // namespace base
 
-#endif  // MINI_CHROMIUM_BASE_MAC_SCOPED_NSAUTORELEASE_POOL_H_
+#endif  // MINI_CHROMIUM_BASE_APPLE_SCOPED_NSAUTORELEASE_POOL_H_

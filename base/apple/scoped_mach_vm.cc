@@ -2,10 +2,10 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include "base/mac/scoped_mach_vm.h"
+#include "base/apple/scoped_mach_vm.h"
 
 namespace base {
-namespace mac {
+namespace apple {
 
 void ScopedMachVM::reset(vm_address_t address, vm_size_t size) {
   DCHECK(address % PAGE_SIZE == 0);
@@ -13,9 +13,8 @@ void ScopedMachVM::reset(vm_address_t address, vm_size_t size) {
 
   if (size_) {
     if (address_ < address) {
-      vm_deallocate(mach_task_self(),
-                    address_,
-                    std::min(size_, address - address_));
+      vm_deallocate(
+          mach_task_self(), address_, std::min(size_, address - address_));
     }
     if (address_ + size_ > address + size) {
       vm_address_t deallocate_start = std::max(address_, address + size);
@@ -29,5 +28,5 @@ void ScopedMachVM::reset(vm_address_t address, vm_size_t size) {
   size_ = size;
 }
 
-}  // namespace mac
+}  // namespace apple
 }  // namespace base

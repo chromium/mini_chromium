@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include "base/mac/mach_logging.h"
+#include "base/apple/mach_logging.h"
 
 #include <iomanip>
 #include <string>
@@ -34,13 +34,10 @@ MachLogMessage::MachLogMessage(const char* function,
                                int line,
                                LogSeverity severity,
                                mach_error_t mach_err)
-    : LogMessage(function, file_path, line, severity),
-      mach_err_(mach_err) {
-}
+    : LogMessage(function, file_path, line, severity), mach_err_(mach_err) {}
 
 MachLogMessage::~MachLogMessage() {
-  stream() << ": "
-           << mach_error_string(mach_err_)
+  stream() << ": " << mach_error_string(mach_err_)
            << FormatMachErrorNumber(mach_err_);
 }
 
@@ -52,12 +49,10 @@ BootstrapLogMessage::BootstrapLogMessage(const char* function,
                                          LogSeverity severity,
                                          kern_return_t bootstrap_err)
     : LogMessage(function, file_path, line, severity),
-      bootstrap_err_(bootstrap_err) {
-}
+      bootstrap_err_(bootstrap_err) {}
 
 BootstrapLogMessage::~BootstrapLogMessage() {
-  stream() << ": "
-           << bootstrap_strerror(bootstrap_err_);
+  stream() << ": " << bootstrap_strerror(bootstrap_err_);
 
   switch (bootstrap_err_) {
     case BOOTSTRAP_SUCCESS:

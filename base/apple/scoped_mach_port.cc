@@ -2,12 +2,12 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include "base/mac/scoped_mach_port.h"
+#include "base/apple/scoped_mach_port.h"
 
-#include "base/mac/mach_logging.h"
+#include "base/apple/mach_logging.h"
 
 namespace base {
-namespace mac {
+namespace apple {
 namespace internal {
 
 void SendRightTraits::Free(mach_port_t port) {
@@ -28,5 +28,5 @@ void PortSetTraits::Free(mach_port_t port) {
 }
 
 }  // namespace internal
-}  // namespace mac
+}  // namespace apple
 }  // namespace base

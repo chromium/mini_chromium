@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef MINI_CHROMIUM_BASE_MAC_SCOPED_MACH_VM_H_
-#define MINI_CHROMIUM_BASE_MAC_SCOPED_MACH_VM_H_
+#ifndef MINI_CHROMIUM_BASE_APPLE_SCOPED_MACH_VM_H_
+#define MINI_CHROMIUM_BASE_APPLE_SCOPED_MACH_VM_H_
 
 #include <mach/mach.h>
 
@@ -41,13 +41,12 @@
 //   ScopedMachVM vm_owner(address, mach_vm_round_page(size));
 
 namespace base {
-namespace mac {
+namespace apple {
 
 class ScopedMachVM {
  public:
   explicit ScopedMachVM(vm_address_t address = 0, vm_size_t size = 0)
-      : address_(address),
-        size_(size) {
+      : address_(address), size_(size) {
     DCHECK(address % PAGE_SIZE == 0);
     DCHECK(size % PAGE_SIZE == 0);
   }
@@ -63,13 +62,9 @@ class ScopedMachVM {
 
   void reset(vm_address_t address = 0, vm_size_t size = 0);
 
-  vm_address_t address() const {
-    return address_;
-  }
+  vm_address_t address() const { return address_; }
 
-  vm_size_t size() const {
-    return size_;
-  }
+  vm_size_t size() const { return size_; }
 
   void swap(ScopedMachVM& that) {
     std::swap(address_, that.address_);
@@ -86,7 +81,7 @@ class ScopedMachVM {
   vm_size_t size_;
 };
 
-}  // namespace mac
+}  // namespace apple
 }  // namespace base
 
-#endif  // MINI_CHROMIUM_BASE_MAC_SCOPED_MACH_VM_H_
+#endif  // MINI_CHROMIUM_BASE_APPLE_SCOPED_MACH_VM_H_
