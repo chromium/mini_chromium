@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef MINI_CHROMIUM_BASE_MAC_FOUNDATION_UTIL_H_
-#define MINI_CHROMIUM_BASE_MAC_FOUNDATION_UTIL_H_
+#ifndef MINI_CHROMIUM_BASE_APPLE_FOUNDATION_UTIL_H_
+#define MINI_CHROMIUM_BASE_APPLE_FOUNDATION_UTIL_H_
 
 #include "base/logging.h"
 #include "build/build_config.h"
@@ -21,7 +21,7 @@
 #endif  // defined(__OBJC__)
 
 namespace base {
-namespace mac {
+namespace apple {
 
 // CFCast<>() and CFCastStrict<>() cast a basic CFTypeRef to a more
 // specific CoreFoundation type. The compatibility of the passed
@@ -33,24 +33,24 @@ namespace mac {
 // triggering any DCHECK.
 //
 // Example usage:
-// CFNumberRef some_number = base::mac::CFCast<CFNumberRef>(
+// CFNumberRef some_number = base::apple::CFCast<CFNumberRef>(
 //     CFArrayGetValueAtIndex(array, index));
 //
 // CFTypeRef hello = CFSTR("hello world");
-// CFStringRef some_string = base::mac::CFCastStrict<CFStringRef>(hello);
+// CFStringRef some_string = base::apple::CFCastStrict<CFStringRef>(hello);
 
-template<typename T>
+template <typename T>
 T CFCast(const CFTypeRef& cf_val);
 
-template<typename T>
+template <typename T>
 T CFCastStrict(const CFTypeRef& cf_val);
 
-#define CF_CAST_DECL(TypeCF)                  \
-template<> TypeCF##Ref                        \
-CFCast<TypeCF##Ref>(const CFTypeRef& cf_val); \
-                                              \
-template<> TypeCF##Ref                        \
-CFCastStrict<TypeCF##Ref>(const CFTypeRef& cf_val)
+#define CF_CAST_DECL(TypeCF)                                \
+  template <>                                               \
+  TypeCF##Ref CFCast<TypeCF##Ref>(const CFTypeRef& cf_val); \
+                                                            \
+  template <>                                               \
+  TypeCF##Ref CFCastStrict<TypeCF##Ref>(const CFTypeRef& cf_val)
 
 CF_CAST_DECL(CFArray);
 CF_CAST_DECL(CFBag);
@@ -96,12 +96,12 @@ CF_CAST_DECL(SecTrustedApplication);
 // from it are of the expected types, but not crash if they're not.
 //
 // Example usage:
-// NSString* version = base::mac::ObjCCast<NSString>(
+// NSString* version = base::apple::ObjCCast<NSString>(
 //     [bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"]);
 //
-// NSString* str = base::mac::ObjCCastStrict<NSString>(
+// NSString* str = base::apple::ObjCCastStrict<NSString>(
 //     [ns_arr_of_ns_strs objectAtIndex:0]);
-template<typename T>
+template <typename T>
 T* ObjCCast(id objc_val) {
   if ([objc_val isKindOfClass:[T class]]) {
     return reinterpret_cast<T*>(objc_val);
@@ -109,7 +109,7 @@ T* ObjCCast(id objc_val) {
   return nil;
 }
 
-template<typename T>
+template <typename T>
 T* ObjCCastStrict(id objc_val) {
   T* rv = ObjCCast<T>(objc_val);
   DCHECK(objc_val == nil || rv);
@@ -118,7 +118,7 @@ T* ObjCCastStrict(id objc_val) {
 
 #endif  // defined(__OBJC__)
 
-}  // namespace mac
+}  // namespace apple
 }  // namespace base
 
-#endif  // MINI_CHROMIUM_BASE_MAC_FOUNDATION_UTIL_H_
+#endif  // MINI_CHROMIUM_BASE_APPLE_FOUNDATION_UTIL_H_

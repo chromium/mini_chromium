@@ -89,8 +89,11 @@ static_library("base") {
   if (mini_chromium_is_apple) {
     sources += [
       "apple/bridging.h",
+      "apple/foundation_util.h",
+      "apple/foundation_util.mm",
       "apple/mach_logging.cc",
       "apple/mach_logging.h",
+      "apple/scoped_cftyperef.h",
       "apple/scoped_mach_port.cc",
       "apple/scoped_mach_port.h",
       "apple/scoped_mach_vm.cc",
@@ -98,9 +101,6 @@ static_library("base") {
       "apple/scoped_nsautorelease_pool.h",
       "apple/scoped_nsautorelease_pool.mm",
       "apple/scoped_typeref.h",
-      "mac/foundation_util.h",
-      "mac/foundation_util.mm",
-      "mac/scoped_cftyperef.h",
       "strings/sys_string_conversions_mac.mm",
     ]
     frameworks = [

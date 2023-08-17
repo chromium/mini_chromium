@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef MINI_CHROMIUM_BASE_MAC_SCOPED_CFTYPEREF_H_
-#define MINI_CHROMIUM_BASE_MAC_SCOPED_CFTYPEREF_H_
+#ifndef MINI_CHROMIUM_BASE_APPLE_SCOPED_CFTYPEREF_H_
+#define MINI_CHROMIUM_BASE_APPLE_SCOPED_CFTYPEREF_H_
 
 #include <CoreFoundation/CoreFoundation.h>
 
@@ -31,4 +31,4 @@ using ScopedCFTypeRef =
 
 }  // namespace base
 
-#endif  // MINI_CHROMIUM_BASE_MAC_SCOPED_CFTYPEREF_H_
+#endif  // MINI_CHROMIUM_BASE_APPLE_SCOPED_CFTYPEREF_H_
