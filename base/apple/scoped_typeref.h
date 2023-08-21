@@ -9,6 +9,7 @@
 #include "base/memory/scoped_policy.h"
 
 namespace base {
+namespace apple {
 
 template <typename T>
 struct ScopedTypeRefTraits;
@@ -80,6 +81,7 @@ class ScopedTypeRef {
   T object_;
 };
 
+}  // namespace apple
 }  // namespace base
 
 #endif  // MINI_CHROMIUM_BASE_APPLE_SCOPED_TYPEREF_H_

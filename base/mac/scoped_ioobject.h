@@ -27,7 +27,8 @@ struct ScopedIOObjectTraits {
 }  // namespce internal
 
 template <typename IOT>
-using ScopedIOObject = ScopedTypeRef<IOT, internal::ScopedIOObjectTraits<IOT>>;
+using ScopedIOObject =
+    apple::ScopedTypeRef<IOT, internal::ScopedIOObjectTraits<IOT>>;
 
 }  // namespace mac
 }  // namespace base

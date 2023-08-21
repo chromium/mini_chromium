@@ -10,6 +10,7 @@
 #include "base/apple/scoped_typeref.h"
 
 namespace base {
+namespace apple {
 
 namespace internal {
 
@@ -29,6 +30,7 @@ template <typename CFT>
 using ScopedCFTypeRef =
     ScopedTypeRef<CFT, internal::ScopedCFTypeRefTraits<CFT>>;
 
+}  // namespace apple
 }  // namespace base
 
 #endif  // MINI_CHROMIUM_BASE_APPLE_SCOPED_CFTYPEREF_H_
