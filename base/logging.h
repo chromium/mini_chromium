@@ -6,6 +6,7 @@
 #define MINI_CHROMIUM_BASE_LOGGING_H_
 
 #include <errno.h>
+#include <stdint.h>
 
 #include <limits>
 #include <sstream>
