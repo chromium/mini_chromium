@@ -10,7 +10,6 @@ static_library("base") {
     "atomicops_internals_atomicword_compat.h",
     "atomicops_internals_portable.h",
     "auto_reset.h",
-    "base_export.h",
     "bit_cast.h",
     "check.h",
     "check_op.h",

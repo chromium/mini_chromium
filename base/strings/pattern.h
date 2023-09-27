@@ -5,7 +5,6 @@
 #ifndef BASE_STRINGS_PATTERN_H_
 #define BASE_STRINGS_PATTERN_H_
 
-#include "base/base_export.h"
 #include "base/strings/string_piece.h"
 
 namespace base {
@@ -15,8 +14,8 @@ namespace base {
 //
 // The backslash character (\) is an escape character for * and ?.
 // ? matches 0 or 1 character, while * matches 0 or more characters.
-BASE_EXPORT bool MatchPattern(StringPiece string, StringPiece pattern);
-BASE_EXPORT bool MatchPattern(StringPiece16 string, StringPiece16 pattern);
+bool MatchPattern(StringPiece string, StringPiece pattern);
+bool MatchPattern(StringPiece16 string, StringPiece16 pattern);
 
 }  // namespace base
 
