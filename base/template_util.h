@@ -40,6 +40,14 @@ struct remove_cvref {
 template <typename T>
 using remove_cvref_t = typename remove_cvref<T>::type;
 
+// Simplified implementation of C++20's std::iter_reference_t.
+// As opposed to std::iter_reference_t, this implementation does not restrict
+// the type of `Iter`.
+//
+// Reference: https://wg21.link/iterator.synopsis#:~:text=iter_reference_t
+template <typename Iter>
+using iter_reference_t = decltype(*std::declval<Iter&>());
+
 }  // namespace base
 
 #endif  // MINI_CHROMIUM_BASE_TEMPLATE_UTIL_H_
