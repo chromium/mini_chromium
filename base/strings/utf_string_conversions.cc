@@ -58,7 +58,7 @@ std::string UTF16ToUTF8(const StringPiece16& utf16) {
   return ret;
 }
 
-#if defined(WCHAR_T_IS_UTF16)
+#if defined(WCHAR_T_IS_16_BIT)
 std::string WideToUTF8(WStringPiece wide) {
   std::string ret;
   UTF16ToUTF8(
@@ -71,6 +71,6 @@ std::wstring UTF8ToWide(StringPiece utf8) {
   return std::wstring(reinterpret_cast<const wchar_t*>(utf16.data()),
                       utf16.size());
 }
-#endif  // defined(WCHAR_T_IS_UTF16)
+#endif  // defined(WCHAR_T_IS_16_BIT)
 
 }  // namespace

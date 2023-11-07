@@ -17,10 +17,10 @@ std::u16string UTF8ToUTF16(const StringPiece& utf8);
 bool UTF16ToUTF8(const char16_t* src, size_t src_len, std::string* output);
 std::string UTF16ToUTF8(const StringPiece16& utf16);
 
-#if defined(WCHAR_T_IS_UTF16)
+#if defined(WCHAR_T_IS_16_BIT)
 std::string WideToUTF8(WStringPiece wide);
 std::wstring UTF8ToWide(StringPiece utf8);
-#endif  // defined(WCHAR_T_IS_UTF16)
+#endif  // defined(WCHAR_T_IS_16_BIT)
 
 }  // namespace
 
