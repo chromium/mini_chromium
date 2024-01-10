@@ -46,7 +46,6 @@
 #include <sys/syscall.h>
 #include <sys/types.h>
 #elif BUILDFLAG(IS_WIN)
-#include <intrin.h>
 #include <windows.h>
 #elif BUILDFLAG(IS_ANDROID)
 #include <android/log.h>

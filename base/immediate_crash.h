@@ -5,6 +5,12 @@
 #ifndef MINI_CHROMIUM_BASE_IMMEDIATE_CRASH_H_
 #define MINI_CHROMIUM_BASE_IMMEDIATE_CRASH_H_
 
+#include "build/build_config.h"
+
+#if BUILDFLAG(IS_WIN)
+#include <intrin.h>
+#endif  // BUILDFLAG(IS_WIN)
+
 #if defined(COMPILER_GCC)
 #define IMMEDIATE_CRASH_ALWAYS_INLINE inline __attribute__((__always_inline__))
 #elif defined(COMPILER_MSVC)
