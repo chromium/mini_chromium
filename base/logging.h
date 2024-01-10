@@ -110,6 +110,9 @@ class LogMessage {
 
   std::ostream& stream() { return stream_; }
 
+ protected:
+  void Flush();
+
  private:
   void Init(const char* function);
 

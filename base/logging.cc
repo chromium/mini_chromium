@@ -146,6 +146,10 @@ LogMessage::LogMessage(const char* function,
 }
 
 LogMessage::~LogMessage() {
+  Flush();
+}
+
+void LogMessage::Flush() {
   stream_ << std::endl;
   std::string str_newline(stream_.str());
 
