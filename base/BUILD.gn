@@ -23,6 +23,7 @@ static_library("base") {
     "files/scoped_file.cc",
     "files/scoped_file.h",
     "format_macros.h",
+    "immediate_crash.h",
     "logging.cc",
     "logging.h",
     "memory/free_deleter.h",
