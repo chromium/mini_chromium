@@ -106,7 +106,7 @@ class LogMessage {
   LogMessage(const LogMessage&) = delete;
   LogMessage& operator=(const LogMessage&) = delete;
 
-  ~LogMessage();
+  virtual ~LogMessage();
 
   std::ostream& stream() { return stream_; }
 
