@@ -14,6 +14,7 @@ static_library("base") {
     "check.h",
     "check_op.h",
     "compiler_specific.h",
+    "containers/dynamic_extent.h",
     "containers/span.h",
     "debug/alias.cc",
     "debug/alias.h",
@@ -33,6 +34,8 @@ static_library("base") {
     "metrics/histogram_macros.h",
     "metrics/persistent_histogram_allocator.h",
     "notreached.h",
+    "numerics/basic_ops_impl.h",
+    "numerics/byte_conversions.h",
     "numerics/checked_math.h",
     "numerics/checked_math_impl.h",
     "numerics/clamped_math.h",
@@ -77,6 +80,7 @@ static_library("base") {
     "threading/thread_local_storage.cc",
     "threading/thread_local_storage.h",
     "types/cxx23_to_underlying.h",
+    "types/to_address.h",
   ]
 
   if (mini_chromium_is_posix || mini_chromium_is_fuchsia) {
