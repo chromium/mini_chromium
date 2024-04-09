@@ -559,7 +559,7 @@ inline constexpr bool AnalyzerAssumeTrue(bool arg) {
 // explanation requires cooperation of code that is not fully encapsulated close
 // to the UNSAFE_BUFFERS() usage, it should be rejected and replaced with safer
 // coding patterns or stronger guarantees.
-#if defined(__clang__)
+#if defined(__clang__) && HAS_ATTRIBUTE(unsafe_buffer_usage)
 // clang-format off
 // Formatting is off so that we can put each _Pragma on its own line, as
 // recommended by the gcc docs.
