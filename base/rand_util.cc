@@ -104,11 +104,6 @@ double RandDouble() {
   return result;
 }
 
-void RandBytes(void* output, size_t output_length) {
-  return RandBytes(
-      UNSAFE_BUFFERS(span(static_cast<uint8_t*>(output), output_length)));
-}
-
 void RandBytes(span<uint8_t> output) {
   if (output.empty()) {
     return;
