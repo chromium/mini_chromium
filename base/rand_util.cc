@@ -55,7 +55,7 @@ namespace base {
 
 uint64_t RandUint64() {
   uint64_t number;
-  RandBytes(&number, sizeof(number));
+  RandBytes(byte_span_from_ref(number));
   return number;
 }
 
