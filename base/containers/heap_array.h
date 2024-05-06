@@ -36,8 +36,8 @@ class TRIVIAL_ABI GSL_OWNER HeapArray {
   static_assert(!std::is_reference_v<T>,
                 "HeapArray cannot hold reference types");
 
-  using iterator = base::span<T>::iterator;
-  using const_iterator = base::span<const T>::iterator;
+  using iterator = typename base::span<T>::iterator;
+  using const_iterator = typename base::span<const T>::iterator;
   // We don't put this default value in the template parameter list to allow the
   // static_assert on is_reference_v to give a nicer error message.
   using deleter_type = std::
