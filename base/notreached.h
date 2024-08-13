@@ -15,8 +15,4 @@
 // base/logging.h.
 #define NOTREACHED() abort()
 
-// TODO(crbug.com/40580068): Remove this once the NotReachedIsFatal experiment
-// has been rolled out in Chromium.
-#define NOTREACHED_IN_MIGRATION() DCHECK(false)
-
 #endif  // MINI_CHROMIUM_BASE_NOTREACHED_H_
