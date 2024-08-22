@@ -80,24 +80,6 @@
 #define NOT_TAIL_CALLED
 #endif
 
-// Specify memory alignment for structs, classes, etc.
-// Use like:
-//   class ALIGNAS(16) MyClass { ... }
-//   ALIGNAS(16) int array[4];
-//
-// In most places you can use the C++11 keyword "alignas", which is preferred.
-//
-// Historically, compilers had trouble mixing __attribute__((...)) syntax with
-// alignas(...) syntax. However, at least Clang is very accepting nowadays. It
-// may be that this macro can be removed entirely.
-#if defined(__clang__)
-#define ALIGNAS(byte_alignment) alignas(byte_alignment)
-#elif defined(COMPILER_MSVC)
-#define ALIGNAS(byte_alignment) __declspec(align(byte_alignment))
-#elif defined(COMPILER_GCC) && HAS_ATTRIBUTE(aligned)
-#define ALIGNAS(byte_alignment) __attribute__((aligned(byte_alignment)))
-#endif
-
 // In case the compiler supports it NO_UNIQUE_ADDRESS evaluates to the C++20
 // attribute [[no_unique_address]]. This allows annotating data members so that
 // they need not have an address distinct from all other non-static data members
@@ -205,32 +187,6 @@
 #define DISABLE_CFI_DLSYM
 #endif
 
-// Macro useful for writing cross-platform function pointers.
-#if !defined(CDECL)
-#if BUILDFLAG(IS_WIN)
-#define CDECL __cdecl
-#else  // BUILDFLAG(IS_WIN)
-#define CDECL
-#endif  // BUILDFLAG(IS_WIN)
-#endif  // !defined(CDECL)
-
-// Macro for hinting that an expression is likely to be false.
-#if !defined(UNLIKELY)
-#if defined(COMPILER_GCC) || defined(__clang__)
-#define UNLIKELY(x) __builtin_expect(!!(x), 0)
-#else
-#define UNLIKELY(x) (x)
-#endif  // defined(COMPILER_GCC)
-#endif  // !defined(UNLIKELY)
-
-#if !defined(LIKELY)
-#if defined(COMPILER_GCC) || defined(__clang__)
-#define LIKELY(x) __builtin_expect(!!(x), 1)
-#else
-#define LIKELY(x) (x)
-#endif  // defined(COMPILER_GCC)
-#endif  // !defined(LIKELY)
-
 // Compiler feature-detection.
 // clang.llvm.org/docs/LanguageExtensions.html#has-feature-and-has-extension
 #if defined(__has_feature)
@@ -246,24 +202,6 @@
 #else
 // See https://en.cppreference.com/w/c/language/function_definition#func
 #define PRETTY_FUNCTION __func__
-#endif
-
-#if !defined(CPU_ARM_NEON)
-#if defined(__arm__)
-#if !defined(__ARMEB__) && !defined(__ARM_EABI__) && !defined(__EABI__) && \
-    !defined(__VFP_FP__) && !defined(_WIN32_WCE) && !defined(ANDROID)
-#error Chromium does not support middle endian architecture
-#endif
-#if defined(__ARM_NEON__)
-#define CPU_ARM_NEON 1
-#endif
-#endif  // defined(__arm__)
-#endif  // !defined(CPU_ARM_NEON)
-
-#if !defined(HAVE_MIPS_MSA_INTRINSICS)
-#if defined(__mips_msa) && defined(__mips_isa_rev) && (__mips_isa_rev >= 5)
-#define HAVE_MIPS_MSA_INTRINSICS 1
-#endif
 #endif
 
 #if defined(__clang__) && HAS_ATTRIBUTE(uninitialized)
