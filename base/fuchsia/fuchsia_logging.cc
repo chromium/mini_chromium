@@ -8,6 +8,8 @@
 
 #include <iomanip>
 
+#include "base/immediate_crash.h"
+
 namespace logging {
 
 ZxLogMessage::ZxLogMessage(const char* function,
