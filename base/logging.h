@@ -129,13 +129,6 @@ class LogMessageFatal final : public LogMessage {
   [[noreturn]] ~LogMessageFatal() override;
 };
 
-class LogMessageVoidify {
- public:
-  LogMessageVoidify() {}
-
-  void operator&(const std::ostream&) const {}
-};
-
 #if BUILDFLAG(IS_WIN)
 class Win32ErrorLogMessage : public LogMessage {
  public:
@@ -256,7 +249,13 @@ const LogSeverity LOG_0 = LOG_ERROR;
 #endif  // BUILDFLAG(IS_WIN)
 
 #define LAZY_STREAM(stream, condition) \
-    !(condition) ? (void) 0 : ::logging::LogMessageVoidify() & (stream)
+  switch (0)                           \
+  case 0:                              \
+  default:                             \
+    if (!(condition))                  \
+      ;                                \
+    else                               \
+      (stream)
 
 // FATAL is always enabled and required to be resolved in compile time for
 // LOG(FATAL) to be properly understood as [[noreturn]].
