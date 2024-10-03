@@ -476,6 +476,11 @@ void LogMessage::Init(const char* function) {
   message_start_ = stream_.str().size();
 }
 
+LogMessageFatal::~LogMessageFatal() {
+  Flush();
+  base::ImmediateCrash();
+}
+
 #if BUILDFLAG(IS_WIN)
 
 unsigned long GetLastSystemErrorCode() {
@@ -491,7 +496,17 @@ Win32ErrorLogMessage::Win32ErrorLogMessage(const char* function,
 }
 
 Win32ErrorLogMessage::~Win32ErrorLogMessage() {
+  AppendError();
+}
+
+void Win32ErrorLogMessage::AppendError() {
   stream() << ": " << SystemErrorCodeToString(err_);
+}
+
+Win32ErrorLogMessageFatal::~Win32ErrorLogMessageFatal() {
+  AppendError();
+  Flush();
+  base::ImmediateCrash();
 }
 
 #elif BUILDFLAG(IS_POSIX)
@@ -506,11 +521,21 @@ ErrnoLogMessage::ErrnoLogMessage(const char* function,
 }
 
 ErrnoLogMessage::~ErrnoLogMessage() {
+  AppendError();
+}
+
+void ErrnoLogMessage::AppendError() {
   stream() << ": "
            << base::safe_strerror(err_)
            << " ("
            << err_
            << ")";
+}
+
+ErrnoLogMessageFatal::~ErrnoLogMessageFatal() {
+  AppendError();
+  Flush();
+  base::ImmediateCrash();
 }
 
 #endif  // BUILDFLAG(IS_POSIX)

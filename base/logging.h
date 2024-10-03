@@ -123,6 +123,12 @@ class LogMessage {
   LogSeverity severity_;
 };
 
+class LogMessageFatal final : public LogMessage {
+ public:
+  using LogMessage::LogMessage;
+  [[noreturn]] ~LogMessageFatal() override;
+};
+
 class LogMessageVoidify {
  public:
   LogMessageVoidify() {}
@@ -144,9 +150,19 @@ class Win32ErrorLogMessage : public LogMessage {
 
   ~Win32ErrorLogMessage();
 
+ protected:
+  void AppendError();
+
  private:
   unsigned long err_;
 };
+
+class Win32ErrorLogMessageFatal final : public Win32ErrorLogMessage {
+ public:
+  using Win32ErrorLogMessage::Win32ErrorLogMessage;
+  [[noreturn]] ~Win32ErrorLogMessageFatal() override;
+};
+
 #elif BUILDFLAG(IS_POSIX)
 class ErrnoLogMessage : public LogMessage {
  public:
@@ -161,8 +177,17 @@ class ErrnoLogMessage : public LogMessage {
 
   ~ErrnoLogMessage();
 
+ protected:
+  void AppendError();
+
  private:
   int err_;
+};
+
+class ErrnoLogMessageFatal final : public ErrnoLogMessage {
+ public:
+  using ErrnoLogMessage::ErrnoLogMessage;
+  [[noreturn]] ~ErrnoLogMessageFatal() override;
 };
 #endif
 
@@ -187,8 +212,11 @@ class ErrnoLogMessage : public LogMessage {
     logging::ClassName(FUNCTION_SIGNATURE, __FILE__, __LINE__, \
                        logging::LOG_ERROR_REPORT, ## __VA_ARGS__)
 #define COMPACT_GOOGLE_LOG_EX_FATAL(ClassName, ...) \
-    logging::ClassName(FUNCTION_SIGNATURE, __FILE__, __LINE__, \
-                       logging::LOG_FATAL, ## __VA_ARGS__)
+  logging::ClassName##Fatal(FUNCTION_SIGNATURE,     \
+                            __FILE__,               \
+                            __LINE__,               \
+                            logging::LOG_FATAL,     \
+                            ##__VA_ARGS__)
 #define COMPACT_GOOGLE_LOG_EX_DFATAL(ClassName, ...) \
     logging::ClassName(FUNCTION_SIGNATURE, __FILE__, __LINE__, \
                        logging::LOG_DFATAL, ## __VA_ARGS__)
@@ -230,8 +258,11 @@ const LogSeverity LOG_0 = LOG_ERROR;
 #define LAZY_STREAM(stream, condition) \
     !(condition) ? (void) 0 : ::logging::LogMessageVoidify() & (stream)
 
-#define LOG_IS_ON(severity) \
-    ((::logging::LOG_ ## severity) >= ::logging::GetMinLogLevel())
+// FATAL is always enabled and required to be resolved in compile time for
+// LOG(FATAL) to be properly understood as [[noreturn]].
+#define LOG_IS_ON(severity)                               \
+  ((::logging::LOG_##severity) == ::logging::LOG_FATAL || \
+   (::logging::LOG_##severity) >= ::logging::GetMinLogLevel())
 #define VLOG_IS_ON(verbose_level) \
     ((verbose_level) <= ::logging::GetVlogLevel(__FILE__))
 

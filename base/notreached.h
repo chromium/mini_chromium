@@ -5,14 +5,9 @@
 #ifndef MINI_CHROMIUM_BASE_NOTREACHED_H_
 #define MINI_CHROMIUM_BASE_NOTREACHED_H_
 
-#include <stdlib.h>
-
 #include "base/check.h"
+#include "base/logging.h"
 
-// Using abort() for NOTREACHED() doesn't support streaming arguments. For a
-// more complete implementation we could use LOG(FATAL) but that is currently
-// not annotated as [[noreturn]] because ~LogMessage is not. See TODO in
-// base/logging.h.
-#define NOTREACHED() abort()
+#define NOTREACHED() LOG(FATAL) << "NOTREACHED hit. "
 
 #endif  // MINI_CHROMIUM_BASE_NOTREACHED_H_
