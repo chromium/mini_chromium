@@ -278,12 +278,12 @@ class GSL_POINTER span {
     requires(N == 0)
   = default;
 
-  template <typename It, size_t N>
+  template <typename It, size_t M>
     requires(internal::CompatibleIter<T, It>)
   UNSAFE_BUFFER_USAGE explicit constexpr span(
       It first,
-      std::integral_constant<size_t, N> count) noexcept
-      : span(first, N) {}
+      std::integral_constant<size_t, M> count) noexcept
+      : span(first, M) {}
 
   // Constructs a span from a contiguous iterator and a size.
   //
