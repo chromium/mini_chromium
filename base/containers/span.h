@@ -33,12 +33,30 @@
 
 namespace base {
 
+template <size_t N>
+using fixed_extent = std::integral_constant<size_t, N>;
+
 template <typename T,
           size_t Extent = dynamic_extent,
           typename InternalPtrType = T*>
 class span;
 
 namespace internal {
+
+template <typename T>
+concept IntegralConstantLike =
+    std::is_integral_v<decltype(T::value)> &&
+    !std::is_same_v<bool, std::remove_const_t<decltype(T::value)>> &&
+    std::convertible_to<T, decltype(T::value)> &&
+    std::equality_comparable_with<T, decltype(T::value)> &&
+    std::bool_constant<T() == T::value>::value &&
+    std::bool_constant<static_cast<decltype(T::value)>(T()) == T::value>::value;
+
+template <typename T>
+inline constexpr size_t MaybeStaticExt = dynamic_extent;
+template <typename T>
+  requires IntegralConstantLike<T>
+inline constexpr size_t MaybeStaticExt<T> = {T::value};
 
 template <typename From, typename To>
 concept LegalDataConversion =
@@ -259,6 +277,13 @@ class GSL_POINTER span {
   constexpr span() noexcept
     requires(N == 0)
   = default;
+
+  template <typename It, size_t N>
+    requires(internal::CompatibleIter<T, It>)
+  UNSAFE_BUFFER_USAGE explicit constexpr span(
+      It first,
+      std::integral_constant<size_t, N> count) noexcept
+      : span(first, N) {}
 
   // Constructs a span from a contiguous iterator and a size.
   //
@@ -1038,7 +1063,8 @@ class GSL_POINTER span<T, dynamic_extent, InternalPtrType> {
 // [span.deduct], deduction guides.
 template <typename It, typename EndOrSize>
   requires(std::contiguous_iterator<It>)
-span(It, EndOrSize) -> span<std::remove_reference_t<std::iter_reference_t<It>>>;
+span(It, EndOrSize) -> span<std::remove_reference_t<std::iter_reference_t<It>>,
+                            internal::MaybeStaticExt<EndOrSize>>;
 
 template <
     typename R,
