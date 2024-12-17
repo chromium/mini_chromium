@@ -8,7 +8,6 @@
 from __future__ import print_function
 
 import argparse
-import distutils.version
 import os
 import re
 import subprocess
@@ -16,8 +15,8 @@ import sys
 import textwrap
 
 
-def _AsVersion(string):
-  return distutils.version.StrictVersion(string)
+def _AsVersion(version_str):
+  return tuple((int(s) for s in re.findall(r'(\d+)', version_str)))
 
 
 def _RunXCRun(args, sdk=None):
