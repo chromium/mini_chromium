@@ -114,6 +114,13 @@ def _GetEnvAsDict(arch):
   return dict(kvs)
 
 
+def _SlashSlashes(args):
+  """Returns args as list, with backslashes instead of slashes in args[0]."""
+  args = list(args)  # *args is a tuple by default, which is read-only.
+  args[0] = args[0].replace('/', '\\')
+  return args
+
+
 class WinTool(object):
   def Dispatch(self, args):
     """Dispatches a string command to a method."""
@@ -133,8 +140,7 @@ class WinTool(object):
     This happens when there are exports from the dll or exe.
     """
     env = _GetEnvAsDict(arch)
-    args = list(args)  # *args is a tuple by default, which is read-only.
-    args[0] = args[0].replace('/', '\\')
+    args = _SlashSlashes(args)
     link = subprocess.Popen(args, env=env, shell=True, stdout=subprocess.PIPE)
     out, _ = link.communicate()
     for line in out.splitlines():
@@ -148,6 +154,7 @@ class WinTool(object):
   def ExecAsmWrapper(self, arch, *args):
     """Filter logo banner from invocations of asm.exe."""
     env = _GetEnvAsDict(arch)
+    args = _SlashSlashes(args)
     popen = subprocess.Popen(args, env=env, shell=True,
                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     out, _ = popen.communicate()
