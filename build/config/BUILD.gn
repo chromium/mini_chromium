@@ -800,7 +800,7 @@ if (mini_chromium_is_win) {
             command = "\"$python_path\" $helper_path asm-wrapper $env $ml {{defines}} {{include_dirs}} {{asmflags}} /c {{source}}"
           }
         } else {
-          command = "$ml {{defines}} {{include_dirs}} {{asmflags}} {{source}}"
+          command = "ninja -t msvc -e $env -- $ml {{defines}} {{include_dirs}} {{asmflags}} {{source}}"
         }
 
         description = "ASM {{output}}"
