@@ -342,7 +342,7 @@ config("default") {
   }
 
   if (mini_chromium_is_posix || mini_chromium_is_fuchsia ||
-        mini_chromium_is_clang) {
+      mini_chromium_is_clang) {
     cflags += [
       "-Wendif-labels",
       "-Wextra-semi",
@@ -770,25 +770,25 @@ if (mini_chromium_is_win) {
 
         if (mini_chromium_is_clang) {
           if (invoker.current_cpu == "arm64") {
-              ml = "$cc --target=aarch64-pc-windows -o{{output}} /showIncludes"
-              is_msvc_assembler = false
-              depsformat = "msvc"
+            ml = "$cc --target=aarch64-pc-windows -o{{output}} /showIncludes"
+            is_msvc_assembler = false
+            depsformat = "msvc"
+          } else {
+            ml = rebase_path(clang_path, root_build_dir) + "/bin/llvm-ml.exe"
+            if (invoker.current_cpu == "x64") {
+              ml += " -m64"
             } else {
-              ml = rebase_path(clang_path, root_build_dir) + "/bin/llvm-ml.exe"
-              if (invoker.current_cpu == "x64") {
-                ml += " -m64"
-              } else {
-                ml += " -m32"
-              }
+              ml += " -m32"
             }
+          }
         } else {
           if (invoker.current_cpu == "arm64") {
-              ml = "armasm64.exe"
-            } if (invoker.current_cpu == "x64") {
-              ml = "ml64.exe"
-            } else {
-              ml = "ml.exe"
-            }
+            ml = "armasm64.exe"
+          } else if (invoker.current_cpu == "x64") {
+            ml = "ml64.exe"
+          } else {
+            ml = "ml.exe"
+          }
         }
 
         if (is_msvc_assembler) {
