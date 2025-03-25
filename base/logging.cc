@@ -19,29 +19,9 @@
 #endif  // BUILDFLAG(IS_POSIX)
 
 #if BUILDFLAG(IS_APPLE)
-// In macOS 10.12 and iOS 10.0 and later ASL (Apple System Log) was deprecated
-// in favor of OS_LOG (Unified Logging).
-#include <AvailabilityMacros.h>
-#if BUILDFLAG(IS_IOS)
-#if !defined(__IPHONE_10_0) || __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_10_0
-#define USE_ASL
-#endif
-#else  // !BUILDFLAG(IS_IOS)
-#if !defined(MAC_OS_X_VERSION_10_12) || \
-    MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_12
-#define USE_ASL
-#endif
-#endif  // BUILDFLAG(IS_IOS)
-
-#if defined(USE_ASL)
-#include <asl.h>
-#else
-#include <os/log.h>
-#endif  // USE_ASL
-
 #include <CoreFoundation/CoreFoundation.h>
+#include <os/log.h>
 #include <pthread.h>
-
 #elif BUILDFLAG(IS_LINUX)
 #include <sys/syscall.h>
 #include <sys/types.h>
@@ -210,76 +190,6 @@ void LogMessage::Flush() {
         }
       }
 
-#if defined(USE_ASL)
-      // Use ASL when this might run on pre-10.12 systems. Unified Logging
-      // (os_log) was introduced in 10.12.
-
-      const class ASLClient {
-       public:
-        explicit ASLClient(const char* asl_facility)
-            : client_(asl_open(nullptr, asl_facility, ASL_OPT_NO_DELAY)) {}
-
-        ASLClient(const ASLClient&) = delete;
-        ASLClient& operator=(const ASLClient&) = delete;
-
-        ~ASLClient() { asl_close(client_); }
-
-        aslclient get() const { return client_; }
-
-       private:
-        aslclient client_;
-      } asl_client(main_bundle_id ? main_bundle_id : "com.apple.console");
-
-      const class ASLMessage {
-       public:
-        ASLMessage() : message_(asl_new(ASL_TYPE_MSG)) {}
-
-        ASLMessage(const ASLMessage&) = delete;
-        ASLMessage& operator=(const ASLMessage&) = delete;
-
-        ~ASLMessage() { asl_free(message_); }
-
-        aslmsg get() const { return message_; }
-
-       private:
-        aslmsg message_;
-      } asl_message;
-
-      // By default, messages are only readable by the admin group. Explicitly
-      // make them readable by the user generating the messages.
-      char euid_string[12];
-      snprintf(euid_string, std::size(euid_string), "%d", geteuid());
-      asl_set(asl_message.get(), ASL_KEY_READ_UID, euid_string);
-
-      // Map Chrome log severities to ASL log levels.
-      const char* const asl_level_string = [](LogSeverity severity) {
-#define ASL_LEVEL_STR(level) ASL_LEVEL_STR_X(level)
-#define ASL_LEVEL_STR_X(level) #level
-        switch (severity) {
-          case LOG_INFO:
-            return ASL_LEVEL_STR(ASL_LEVEL_INFO);
-          case LOG_WARNING:
-            return ASL_LEVEL_STR(ASL_LEVEL_WARNING);
-          case LOG_ERROR:
-            return ASL_LEVEL_STR(ASL_LEVEL_ERR);
-          case LOG_FATAL:
-            return ASL_LEVEL_STR(ASL_LEVEL_CRIT);
-          default:
-            return severity < 0 ? ASL_LEVEL_STR(ASL_LEVEL_DEBUG)
-                                : ASL_LEVEL_STR(ASL_LEVEL_NOTICE);
-        }
-#undef ASL_LEVEL_STR
-#undef ASL_LEVEL_STR_X
-      }(severity_);
-      asl_set(asl_message.get(), ASL_KEY_LEVEL, asl_level_string);
-
-      asl_set(asl_message.get(), ASL_KEY_MSG, str_newline.c_str());
-
-      asl_send(asl_client.get(), asl_message.get());
-#else
-      // Use Unified Logging (os_log) when this will only run on 10.12 and
-      // later. ASL is deprecated in 10.12.
-
       const class OSLog {
        public:
         explicit OSLog(const char* subsystem)
@@ -318,7 +228,6 @@ void LogMessage::Flush() {
 
       os_log_with_type(
           log.get(), os_log_type, "%{public}s", str_newline.c_str());
-#endif
     }
 #elif BUILDFLAG(IS_WIN)
     OutputDebugString(base::UTF8ToWide(str_newline).c_str());
