@@ -224,11 +224,20 @@ config("default") {
 
   if (mini_chromium_is_ios) {
     if (ios_deployment_target != "") {
-      if (target_environment == "simulator") {
-        common_flags +=
-            [ "-mios-simulator-version-min=" + ios_deployment_target ]
-      } else if (target_environment == "device") {
-        common_flags += [ "-mios-version-min=" + ios_deployment_target ]
+      if (target_platform == "iphoneos") {
+        if (target_environment == "simulator") {
+          common_flags +=
+          [ "-mios-simulator-version-min=" + ios_deployment_target ]
+        } else if (target_environment == "device") {
+          common_flags += [ "-mios-version-min=" + ios_deployment_target ]
+        }
+      } else if (target_platform == "tvos") {
+        if (target_environment == "simulator") {
+          common_flags +=
+          [ "-mtvos-simulator-version-min=" + ios_deployment_target ]
+        } else if (target_environment == "device") {
+          common_flags += [ "-mtvos-version-min=" + ios_deployment_target ]
+        }
       }
     }
   }
