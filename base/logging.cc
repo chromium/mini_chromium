@@ -90,10 +90,10 @@ std::string SystemErrorCodeToString(unsigned long error_code) {
     if (len >= 1 && msgbuf[len - 1] == ' ') {
       msgbuf[len - 1] = '\0';
     }
-    return base::StringPrintf("%s (%u)",
+    return base::StringPrintf("%s (%lu)",
                               base::WideToUTF8(msgbuf).c_str(), error_code);
   }
-  return base::StringPrintf("Error %u while retrieving error %u",
+  return base::StringPrintf("Error %lu while retrieving error %lu",
                             GetLastError(),
                             error_code);
 }
