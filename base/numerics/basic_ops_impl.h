@@ -12,7 +12,7 @@
 #include <span>
 #include <type_traits>
 
-namespace base::numerics::internal {
+namespace base::internal {
 
 // The correct type to perform math operations on given values of type `T`. This
 // may be a larger type than `T` to avoid promotion to `int` which involves sign
@@ -137,6 +137,6 @@ inline constexpr std::array<uint8_t, sizeof(T)> ToLittleEndian(T val) {
   return bytes;
 }
 
-}  // namespace base::numerics::internal
+}  // namespace base::internal
 
 #endif  //  MINI_CHROMIUM_BASE_NUMERICS_BASIC_OPS_IMPL_H_
