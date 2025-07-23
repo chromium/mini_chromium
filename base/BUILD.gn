@@ -155,9 +155,9 @@ static_library("base") {
     ]
 
     if (defined(is_fuchsia_tree) && is_fuchsia_tree) {
-      deps = [ "//zircon/system/ulib/syslog" ]
+      deps = [ "//sdk/lib/syslog/cpp" ]
     } else {
-      deps = [ "//third_party/fuchsia/sdk/$host_os-amd64/pkg/syslog" ]
+      deps = [ "//third_party/fuchsia/sdk/$host_os-amd64/pkg/syslog_cpp" ]
     }
   }
 

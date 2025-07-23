@@ -30,7 +30,7 @@
 #elif BUILDFLAG(IS_ANDROID)
 #include <android/log.h>
 #elif BUILDFLAG(IS_FUCHSIA)
-#include <lib/syslog/global.h>
+#include <lib/syslog/cpp/log_message_impl.h>
 #endif
 
 #include "base/check_op.h"
@@ -251,36 +251,34 @@ void LogMessage::Flush() {
     // The Android system may truncate the string if it's too long.
     __android_log_write(priority, "chromium", str_newline.c_str());
 #elif BUILDFLAG(IS_FUCHSIA)
-    fx_log_severity_t fx_severity;
+    fuchsia_logging::LogSeverity fx_severity;
     switch (severity_) {
       case LOG_INFO:
-        fx_severity = FX_LOG_INFO;
+        fx_severity = fuchsia_logging::LogSeverity::Info;
         break;
       case LOG_WARNING:
-        fx_severity = FX_LOG_WARNING;
+        fx_severity = fuchsia_logging::LogSeverity::Warn;
         break;
       case LOG_ERROR:
-        fx_severity = FX_LOG_ERROR;
+        fx_severity = fuchsia_logging::LogSeverity::Error;
         break;
       case LOG_FATAL:
-        fx_severity = FX_LOG_FATAL;
+        fx_severity = fuchsia_logging::LogSeverity::Fatal;
         break;
       default:
-        fx_severity = FX_LOG_INFO;
+        fx_severity = fuchsia_logging::LogSeverity::Info;
         break;
     }
-    // Temporarily remove the trailing newline from |str_newline|'s C-string
-    // representation, since fx_logger will add a newline of its own.
-    str_newline.pop_back();
+    // Fuchsia's logger doesn't want the trailing newline.
+    std::string_view message(str_newline);
+    message.remove_suffix(1);
+    message.remove_prefix(message_start_);
     // Ideally the tag would be the same as the caller, but this is not
     // supported right now.
-    fx_logger_log_with_source(fx_log_get_logger(),
-                              fx_severity,
-                              /*tag=*/nullptr,
-                              file_path_,
-                              line_,
-                              str_newline.c_str() + message_start_);
-    str_newline.push_back('\n');
+    fuchsia_logging::LogMessage(
+        fx_severity, file_path_, line_, nullptr, nullptr)
+            .stream()
+        << message;
 #endif  // BUILDFLAG(IS_*)
   }
 
