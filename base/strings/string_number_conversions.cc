@@ -186,25 +186,27 @@ class BaseIteratorRangeToNumberTraits {
   static constexpr int kBase = BASE;
 };
 
-typedef BaseIteratorRangeToNumberTraits<StringPiece::const_iterator, int, 10>
+typedef BaseIteratorRangeToNumberTraits<std::string_view::const_iterator,
+                                        int,
+                                        10>
     IteratorRangeToIntTraits;
 
-typedef BaseIteratorRangeToNumberTraits<StringPiece::const_iterator,
-                                       unsigned int,
-                                       10>
+typedef BaseIteratorRangeToNumberTraits<std::string_view::const_iterator,
+                                        unsigned int,
+                                        10>
     IteratorRangeToUintTraits;
 
-typedef BaseIteratorRangeToNumberTraits<StringPiece::const_iterator,
+typedef BaseIteratorRangeToNumberTraits<std::string_view::const_iterator,
                                         int64_t,
                                         10>
     IteratorRangeToInt64Traits;
 
-typedef BaseIteratorRangeToNumberTraits<StringPiece::const_iterator,
+typedef BaseIteratorRangeToNumberTraits<std::string_view::const_iterator,
                                         uint64_t,
                                         10>
     IteratorRangeToUint64Traits;
 
-typedef BaseIteratorRangeToNumberTraits<StringPiece::const_iterator,
+typedef BaseIteratorRangeToNumberTraits<std::string_view::const_iterator,
                                         size_t,
                                         10>
     IteratorRangeToSizeTTraits;
@@ -218,7 +220,7 @@ class BaseHexIteratorRangeToIntTraits
   }
 };
 
-typedef BaseHexIteratorRangeToIntTraits<StringPiece::const_iterator>
+typedef BaseHexIteratorRangeToIntTraits<std::string_view::const_iterator>
     HexIteratorRangeToIntTraits;
 
 }  // namespace
