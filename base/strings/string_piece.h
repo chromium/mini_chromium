@@ -9,6 +9,7 @@
 #include <iterator>
 #include <ostream>
 #include <string>
+#include <string_view>
 
 namespace base {
 
@@ -158,17 +159,17 @@ std::ostream& operator<<(std::ostream& ostream,
   return ostream;
 }
 
-typedef BasicStringPiece<std::string> StringPiece;
-typedef BasicStringPiece<std::u16string> StringPiece16;
+typedef BasicStringPiece<std::string> std::string_view;
+typedef BasicStringPiece<std::u16string> std::u16string_view;
 
-inline bool operator==(const StringPiece& x, const StringPiece& y) {
+inline bool operator==(std::string_view x, std::string_view y) {
   if (x.size() != y.size())
     return false;
 
   return StringPiece::wordmemcmp(x.data(), y.data(), x.size()) == 0;
 }
 
-inline bool operator==(const StringPiece16& x, const StringPiece16& y) {
+inline bool operator==(std::u16string_view x, std::u16string_view y) {
   if (x.size() != y.size())
     return false;
 
@@ -186,13 +187,13 @@ inline bool operator==(const StringPiece16& x, const StringPiece16& y) {
   return result;
 
 struct StringPieceHash {
-  std::size_t operator()(const StringPiece& sp) const {
-    HASH_STRING_PIECE(StringPiece, sp);
+  std::size_t operator()(std::string_view sp) const {
+    HASH_STRING_PIECE(std::string_view, sp);
   }
 };
 struct StringPiece16Hash {
-  std::size_t operator()(const StringPiece16& sp16) const {
-    HASH_STRING_PIECE(StringPiece16, sp16);
+  std::size_t operator()(std::u16string_view sp16) const {
+    HASH_STRING_PIECE(std::u16string_view, sp16);
   }
 };
 

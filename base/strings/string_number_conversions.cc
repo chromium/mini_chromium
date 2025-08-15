@@ -8,6 +8,7 @@
 #include <stdint.h>
 
 #include <limits>
+#include <string_view>
 
 namespace base {
 
@@ -222,34 +223,34 @@ typedef BaseHexIteratorRangeToIntTraits<StringPiece::const_iterator>
 
 }  // namespace
 
-bool StringToInt(const StringPiece& input, int* output) {
+bool StringToInt(std::string_view input, int* output) {
   return IteratorRangeToNumber<IteratorRangeToIntTraits>::Invoke(input.begin(),
                                                                  input.end(),
                                                                  output);
 }
 
-bool StringToUint(const StringPiece& input, unsigned int* output) {
+bool StringToUint(std::string_view input, unsigned int* output) {
   return IteratorRangeToNumber<IteratorRangeToUintTraits>::Invoke(input.begin(),
                                                                   input.end(),
                                                                   output);
 }
 
-bool StringToInt64(const StringPiece& input, int64_t* output) {
+bool StringToInt64(std::string_view input, int64_t* output) {
   return IteratorRangeToNumber<IteratorRangeToInt64Traits>::Invoke(
       input.begin(), input.end(), output);
 }
 
-bool StringToUint64(const StringPiece& input, uint64_t* output) {
+bool StringToUint64(std::string_view input, uint64_t* output) {
   return IteratorRangeToNumber<IteratorRangeToUint64Traits>::Invoke(
       input.begin(), input.end(), output);
 }
 
-bool StringToSizeT(const StringPiece& input, size_t* output) {
+bool StringToSizeT(std::string_view input, size_t* output) {
   return IteratorRangeToNumber<IteratorRangeToSizeTTraits>::Invoke(
       input.begin(), input.end(), output);
 }
 
-bool HexStringToInt(const StringPiece& input, int* output) {
+bool HexStringToInt(std::string_view input, int* output) {
   return IteratorRangeToNumber<HexIteratorRangeToIntTraits>::Invoke(
       input.begin(), input.end(), output);
 }
