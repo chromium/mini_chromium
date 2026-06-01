@@ -22,7 +22,7 @@ if (mini_chromium_is_mac) {
 } else if (mini_chromium_is_android) {
   declare_args() {
     android_ndk_root = ""
-    android_api_level = 21
+    android_api_level = 26
   }
 } else if (mini_chromium_is_linux) {
   declare_args() {
@@ -497,7 +497,7 @@ toolchain("gcc_like_toolchain") {
     cxx = ndk_bin_dir + clang_prefix + "-clang++"
     asm = cxx
     ld = cxx
-    ar = ndk_bin_dir + tool_prefix + "-ar"
+    ar = ndk_bin_dir + "llvm-ar"
   } else {
     cc = "clang"
     cxx = "clang++"
